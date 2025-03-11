@@ -4,6 +4,13 @@
 
 # PathExplorer
 
+### Stack Tecnológico (contemplado al momento):
+
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
 Aquí nuestro mockup: [Figma](https://www.figma.com/design/nQ3X7ufUrNWSnpMAhnRLdk/Mockup-Web?node-id=47-669&t=gVNieDOr3b6xSwEw-1)
 
 ### Institución:

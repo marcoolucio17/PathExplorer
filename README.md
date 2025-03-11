@@ -1,4 +1,10 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/852eeb60-2b3f-4636-aa86-6c5c9d623dc7" alt="Logo" width="150">
+</p>
+
 # PathExplorer
+
+Aquí nuestro mockup: [Figma](https://www.figma.com/design/nQ3X7ufUrNWSnpMAhnRLdk/Mockup-Web?node-id=47-669&t=gVNieDOr3b6xSwEw-1)
 
 ### Institución:
 Tecnológico de Monterrey

@@ -31,7 +31,7 @@ TC3004B.103 Planeación de sistemas de software
 | --- | --- | --- |
 | Marco Antonio Lucio Sosa | [@marcoolucio17](https://github.com/marcoolucio17) | A01285589@tec.mx |
 | Juan Eduardo Cibrián Loera | [@xxxx](https://github.com/xxxxx) | A01198418@tec.mx |
-| Axel Ariel Grande Ruiz | [@4xlRose](https://github.com/4xlRose) | a01611811@tec.mx |
+| Axel Ariel Grande Ruiz | [@4xlRose](https://github.com/4xlRose) | A01611811@tec.mx |
 | Gabriel Ernesto Mujica Proulx |[@xxxx](https://github.com/xxxxx) | A01285409@tec.mx |
 | José Emilio Ramírez García | [@xxxx](https://github.com/xxxxx) | A01620903@tec.mx |
 | Leonardo Pequeño Moreno | [@xxxx](https://github.com/xxxxx) | A01178029@tec.mx |

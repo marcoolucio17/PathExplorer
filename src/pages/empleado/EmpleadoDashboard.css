@@ -49,7 +49,7 @@
 
 .buscador-Dashboard input {
     width: 40%; 
-    height: 2.5em;
+    height: 3.1em;
    
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -84,12 +84,12 @@
 .buscar-boton {
     background-color: #a055f5;
     width: 5%;
-    
+    padding:1%;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    height: 2.5em;
+    
 }
 
 .filtrador {

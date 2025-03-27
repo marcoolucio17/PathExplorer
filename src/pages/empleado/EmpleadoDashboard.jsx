@@ -15,8 +15,10 @@ export const EmpleadoDashboard = () => {
       </div>
       <div class = "buscador-Dashboard">
         <input type="text" placeholder="Search by keyword"></input>
-        <i class="bi bi-search"></i>
-
+        <button class="buscar-boton"><i class="bi bi-search buscador"></i></button>
+        <div class = "buscador-espacio"></div>
+        <button class="filtro-boton"><i class="bi bi-caret-down-fill filtrador"></i></button>
+        <button class="filtro-boton"><i class="bi bi-funnel filtrador"></i></button>
       </div>
       <div class = "proyectos-Dashboard">
         <div class ="proyecto">
@@ -25,17 +27,22 @@ export const EmpleadoDashboard = () => {
           <p>Java Developer</p>
         </div>
         <div class ="proyecto" >
-        <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
+          <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
           <h1>Gansitos Project</h1>
           <p>Java Developer</p>
         </div>
         <div class ="proyecto" >
-        <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
+         <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
           <h1>Gansitos Project</h1>
           <p>Java Developer</p>
         </div>
         <div class ="proyecto" >
-        <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
+          <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
+          <h1>Gansitos Project</h1>
+          <p>Java Developer</p>
+        </div>
+        <div class ="proyecto" >
+          <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
           <h1>Gansitos Project</h1>
           <p>Java Developer</p>
         </div>

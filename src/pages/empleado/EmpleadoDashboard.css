@@ -42,24 +42,31 @@
     
     padding-bottom:1%;
     width: 72%;    
-    text-align: left;
-    /*position: relative;*/
+    display: flex;
+    
+    
 }
 
 .buscador-Dashboard input {
-    width: 45%; 
+    width: 40%; 
     height: 2.5em;
-    border-radius: 5px;
+   
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
     border: 0px;
-    padding-left: 2%;
-    padding-right: 0%;
+    padding-left: 1%;
     padding-top: 1%;
     padding-bottom: 1%;
-    background-color: rgba(255, 255, 255, 0.16);
-    color: #ffffff;
-    left: 0;
     position: relative;
-    
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #ffffff;    
+}
+
+.buscador-espacio {
+    width: 45%;
+    height: 2.5em; 
 }
 
 .buscador-Dashboard input::placeholder {
@@ -67,16 +74,33 @@
     opacity: 0.46;
 }
 
-.buscador-Dashboard i {
-    position: absolute;
-    margin-top: 0.5%;
-    margin-left: -8%;
-    width: 10%;
-    height: 1em;
-    color: white;
-    text-align: center;
+.buscador {   
+    width: 5% ;
+    height: 2em ;
+    color: white ;
+   
 }
 
+.buscar-boton {
+    background-color: #a055f5;
+    width: 5%;
+    
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 2.5em;
+}
+
+.filtrador {
+    width: 5% ;
+    height: 2em ;
+    color: white ;
+    
+}
+.filtro-boton {
+    background-color: #000432;
+}
 /*Contenedor para la muestra de proyectos*/
 .proyectos-Dashboard {
     margin-top: 1%;
@@ -89,7 +113,7 @@
     padding-top: 2%;
     padding-bottom: 2%;
 
-    width: 70%;
+    width: 72%;
     background-color: #242424;
     border-radius: 5px;
     display: grid;

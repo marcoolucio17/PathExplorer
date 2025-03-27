@@ -1,0 +1,126 @@
+/*El fondo*/
+.contenedor-Dashboard {
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000432;
+    overflow-y: auto;
+}
+
+/*Contenedor para poner el título y el subtítulo*/
+.titulo-Dashboard {
+    color: white;
+    text-align: left;
+    margin-top: 4%;
+    padding-top: 1%;
+   
+    margin-left: 14%;
+    padding-right: 1%;
+    margin-right: 14%;
+    padding-bottom:0.40%;
+    margin-bottom:0.60%;
+    width: 72%; 
+}
+
+.titulo-Dashboard h1 {
+    font-size: 2.5em;
+    font-weight:normal;
+}
+
+.titulo-Dashboard h2 {
+    font-size: 1.2em;
+    font-weight:normal;
+}
+
+/*Contenedor para las opciones de buscar y de filtro*/
+.buscador-Dashboard {
+    padding-top:1% ;
+    margin-left: 14%;
+    margin-right: 14%;
+    
+    padding-bottom:1%;
+    width: 72%;    
+    text-align: left;
+    /*position: relative;*/
+}
+
+.buscador-Dashboard input {
+    width: 45%; 
+    height: 2.5em;
+    border-radius: 5px;
+    border: 0px;
+    padding-left: 2%;
+    padding-right: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    left: 0;
+    position: relative;
+    
+}
+
+.buscador-Dashboard input::placeholder {
+    color: #ffffff;
+    opacity: 0.46;
+}
+
+.buscador-Dashboard i {
+    position: absolute;
+    margin-top: 0.5%;
+    margin-left: -8%;
+    width: 10%;
+    height: 1em;
+    color: white;
+    text-align: center;
+}
+
+/*Contenedor para la muestra de proyectos*/
+.proyectos-Dashboard {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 14%;
+    margin-right: 14%;
+
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    width: 70%;
+    background-color: #242424;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2%;
+    
+}
+
+.proyecto {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 5%;
+    margin: 5%;
+    color: black;
+    height: min-content;
+}
+
+.proyecto h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.proyecto p {
+    font-size: 1em;
+    font-weight: normal;
+    text-align: center;
+}
+
+.proyecto img {
+    width: 30%;
+    height: 15vh;
+    margin: 2%;
+}

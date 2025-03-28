@@ -1,0 +1,23 @@
+
+.titulo-boton {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.proyecto-crear {
+    width: 17%;
+    height: 3em;
+    border-radius: 5px;
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #ffffff;    
+}
+
+.proyecto-crear p {
+    font-size: 1em;
+    
+    font-weight: normal;
+}

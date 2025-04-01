@@ -17,6 +17,7 @@ import { ManagerDashboard } from "./pages/manager/ManagerDashboard";
 import { ManagerPerfil } from "./pages/manager/ManagerPerfil";
 import { ManagerProyecto } from "./pages/manager/ManagerProyecto";
 import { ManagerVistaPerfil } from "./pages/manager/ManagerVistaPerfil";
+import { ManagerCrearProyecto1 } from "./pages/manager/CrearProyecto/ManagerCrearProyecto1";
 
 // Imports de TFS
 import { TFSDashboard } from "./pages/tfs/TFSDashboard";
@@ -33,7 +34,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<ManagerDashboard />} />
+        <Route path="/" element={<ManagerCrearProyecto1 />} />
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* rutas de manager */}
@@ -43,6 +44,7 @@ function App() {
           <Route path="manager/perfil" element={<ManagerPerfil/>} />
           <Route path="manager/proyecto" element={<ManagerProyecto />} />
           <Route path="manager/vistaperfil" element={<ManagerVistaPerfil />} />
+          <Route path="manager/crearproyecto" element={<ManagerCrearProyecto1 />} />
         </Route>
 
         {/* rutas de tfs */}

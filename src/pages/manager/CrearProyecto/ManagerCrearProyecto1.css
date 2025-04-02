@@ -7,7 +7,7 @@
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 2%;
-    padding-bottom: 4%;
+    padding-bottom: 2%;
 
     width: 72%;
     background-color: #500076;
@@ -62,4 +62,44 @@
 .titulo-campo-crear-proyecto {
     width: 30%;
     align-items: center;
+}
+
+.botones-crear-proyecto {
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.botones-crear-proyecto button {
+    width: 30%;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 1.75em;
+    padding: 1%;
+    font-weight: normal;
+    align-items: center;
+    text-align: center;    
+}
+
+.boton-cancelar-form {
+    background-color: #D64242;
+    color: #ffffff;
+    
+    align-items: center;
+    
+}
+
+.boton-text {
+    font-size: 1em;
+    font-weight: normal;
+    
+    text-align: center; 
+}
+.boton-atras-siguiente-form {
+    background-color: #ffffff;
+    color: #000000;
+    align-items: center;
+    
 }

@@ -37,6 +37,11 @@ export const ManagerCrearProyecto1 = () => {
                     </div>
                     <input type="text" />
                 </div>
+                <div className="botones-crear-proyecto">
+                    <button className='boton-cancelar-form'><h3 className='boton-text'>Cancel</h3></button> 
+                    <button className='boton-atras-siguiente-form'><h3 className='boton-text'>Back</h3></button>
+                    <button className='boton-atras-siguiente-form'><h3 className='boton-text'>Next</h3></button>
+                </div>
                 
             </div>
         </div>

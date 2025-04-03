@@ -8,8 +8,9 @@
     padding-right: 2%;
     padding-top: 2%;
     padding-bottom: 2%;
-
+    
     width: 72%;
+    height: 70vh min-content;
     background-color: #500076;
     border-radius: 5px;   
 }
@@ -68,11 +69,14 @@
     width: 98%;
     margin-left: 1%;
     margin-right: 1%;
+    margin-top: 1%;
     display: flex;
+
+    bottom: 0;
     justify-content: space-between;
 }
 
-.botones-crear-proyecto button {
+.botones-crear-proyecto-formato  {
     width: 30%;
     height: 2em;
     border-radius: 10px;
@@ -80,7 +84,8 @@
     padding: 1%;
     font-weight: normal;
     align-items: center;
-    text-align: center;    
+    text-align: center; 
+
 }
 
 .boton-cancelar-form {
@@ -88,7 +93,14 @@
     color: #ffffff;
     
     align-items: center;
-    
+    width: 30%;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 1.75em;
+    padding: 1%;
+    font-weight: normal;
+    align-items: center;
+    text-align: center;  
 }
 
 .boton-text {
@@ -100,6 +112,13 @@
 .boton-atras-siguiente-form {
     background-color: #ffffff;
     color: #000000;
+    align-items: center;width: 30%;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 1.75em;
+    padding: 1%;
+    font-weight: normal;
     align-items: center;
+    text-align: center;  
     
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 import '../../empleado/EmpleadoDashboard.css'
 import './ManagerCrearProyecto1.css'
-
+import { NavLink } from 'react-router'
 
 export const ManagerCrearProyecto1 = () => {
     return (
@@ -16,7 +16,7 @@ export const ManagerCrearProyecto1 = () => {
                     <div className="titulo-campo-crear-proyecto">
                         <h2>Project Name:</h2>
                     </div>
-                    
+
                     <input type="text" />
                 </div>
                 <div className="campo-crear-proyecto">
@@ -38,9 +38,8 @@ export const ManagerCrearProyecto1 = () => {
                     <input type="text" />
                 </div>
                 <div className="botones-crear-proyecto">
-                    <button className='boton-cancelar-form'><h3 className='boton-text'>Cancel</h3></button> 
-                    <button className='boton-atras-siguiente-form'><h3 className='boton-text'>Back</h3></button>
-                    <button className='boton-atras-siguiente-form'><h3 className='boton-text'>Next</h3></button>
+                    <NavLink to="../manager/dashboard" className='boton-cancelar-form '><h3 className='boton-text'>Cancel</h3></NavLink>
+                    <NavLink to="../manager/dashboard/crearproyecto2" className='boton-atras-siguiente-form '><h3 className='boton-text'>Next</h3></NavLink>
                 </div>
                 
             </div>

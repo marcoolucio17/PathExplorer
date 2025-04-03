@@ -13,9 +13,8 @@
 .titulo-Dashboard, .titulo-crear-proyecto {
     color: white;
     text-align: left;
-    margin-top: 4%;
+    margin-top: 1%;
     padding-top: 1%;
-   
     margin-left: 14%;
     padding-right: 1%;
     margin-right: 14%;
@@ -39,18 +38,14 @@
     padding-top:1% ;
     margin-left: 14%;
     margin-right: 14%;
-    
     padding-bottom:1%;
     width: 72%;    
-    display: flex;
-    
-    
+    display: flex;    
 }
 
 .buscador-Dashboard input {
     width: 40%; 
     height: 3.1em;
-   
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border-top-right-radius: 0px;

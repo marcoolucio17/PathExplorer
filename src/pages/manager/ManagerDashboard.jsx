@@ -2,21 +2,23 @@ import React from 'react'
 
 import './ManagerDashboard.css'
 import '../empleado/EmpleadoDashboard.css'
+import { NavLink } from 'react-router'
 /**
  * Componente Dashboard para usuarios con rol de Manager
  * @returns 
  */
 
 export const ManagerDashboard = () => {
+ 
   return (
     <div class = "contenedor-Dashboard">
       <div class = "titulo-Dashboard">
         <div class = "titulo-boton">
           <h1>My Project Dashboard</h1>
-          <button class= "proyecto-crear">
+          <NavLink to="../manager/dashboard/crearproyecto1" className="proyecto-crear">
             <p>Create new project</p>
             <i class="bi bi-plus-lg"></i>
-          </button>
+          </NavLink>
         </div> 
         <br/>
         <h2>Hello Perenganit, we compiled these projects for you:</h2>

@@ -20,7 +20,6 @@ export const ManagerCrearProyecto2 = () => {
                             </div>
                             
                         </div>
-                        <hr className='linea'/>
                     </div>
                     <div className= "rol-seleccionar">
 

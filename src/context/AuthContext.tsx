@@ -5,7 +5,7 @@ const AuthContext = createContext<string | null>(null);
 // ojo: aquí se puede cambiar de "empleado" a "tfs" o "manager" para poder accesar sus respectivas páginas
 const AuthProvider = ({ children }) => {
   return (
-    <AuthContext.Provider value = "empleado">
+    <AuthContext.Provider value = "manager">
       {children}
     </AuthContext.Provider>
   );

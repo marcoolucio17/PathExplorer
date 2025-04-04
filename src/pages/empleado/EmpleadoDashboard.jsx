@@ -61,7 +61,7 @@ export const EmpleadoDashboard = () => {
             <h3>Participants:</h3>
             <div className="proyecto-participantes-imagenes">
               <img className="circulo_ancla" src = "/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src = "/images/Pepsi Logo.png"></img>
+              <img className="circulo_1" src = "/images/3d_avatar_6.png"></img>
               <img className="circulo_2" src = "/images/Pepsi Logo.png"></img>
               <p>and more</p>
             </div>
@@ -83,7 +83,7 @@ export const EmpleadoDashboard = () => {
             <h3>Participants:</h3>
             <div className="proyecto-participantes-imagenes">
               <img className="circulo_ancla" src = "/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src = "/images/Pepsi Logo.png"></img>
+              <img className="circulo_1" src = "/images/3d_avatar_6.png"></img>
               <img className="circulo_2" src = "/images/Pepsi Logo.png"></img>
               <p>and more</p>
             </div>

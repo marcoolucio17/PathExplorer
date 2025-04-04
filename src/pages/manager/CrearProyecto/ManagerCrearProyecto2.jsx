@@ -12,17 +12,51 @@ export const ManagerCrearProyecto2 = () => {
             </div>
             <div className="formulario-crear-proyecto">
                 <div className = "seleccion-role">
-                    <div className= "roles-seleccionados">
+                    <div className= "campo-rol roles-seleccionados">
                         <h2 className='titulo-roles-seleccionado'> Roles included:</h2>
                         <div className = "rol-registro">
                             <div className = "rol-seleccionado">
-                                <h3>Scrum masterX1</h3>
+                                <h3>Scrum master X1</h3>
                             </div>
-                            
+                            <div className = "rol-seleccionado-habilidades">
+                                <h3>View Skills</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div className= "rol-seleccionar">
+                        <hr className="separacion"/>
+                        <div className = "rol-registro">
+                            <div className = "rol-seleccionado">
+                                <h3>Front developer X4</h3>
+                            </div>
+                            <div className = "rol-seleccionado-habilidades">
+                                <h3>View Skills</h3>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div className= "campo-rol rol-seleccionar">
+                        <div className = "seleccion-rol">
+                            <div className = "titulo-seleccion-rol">
+                                <h2 className='titulo-roles-seleccionado'>Select role</h2>
+                            </div>
+                            <select className='select-rol'>
+                                
+                            </select>
+                        </div>
+                        <hr className="separacion"/>
+                        <div className = "seleccion-rol">
+                            <div className = "titulo-seleccion-rol">
+                                <h2 className='titulo-roles-seleccionado'>Quantity</h2>
+                            </div>
+                        </div>
+                        <hr className="separacion"/>
+                        <div className = "seleccion-rol">
+                            <div className = "titulo-seleccion-rol">
+                                <h2 className='titulo-roles-seleccionado'>Skills</h2>
+                            </div>
+                        </div>
+                        <div className="validar-rol">
+                            <h2>Add role</h2>
+                        </div>
                     </div>
                 </div>
                 <div className="botones-crear-proyecto">

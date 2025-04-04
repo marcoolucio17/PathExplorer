@@ -30,33 +30,74 @@ export const ManagerDashboard = () => {
         <button class="filtro-boton"><i class="bi bi-caret-down-fill filtrador"></i></button>
         <button class="filtro-boton"><i class="bi bi-funnel filtrador"></i></button>
       </div>
-      <div class = "proyectos-Dashboard">
-        <div class ="proyecto">
-          <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
-          <h1>Gansitos Project</h1>
-          <p>Java Developer</p>
+      <div className = "proyectos-Dashboard">
+        
+        <div className ="proyecto">
+          <div className="proyecto-titulo-informacion">
+            <img src = "/images/Pepsi Logo.png"></img>
+            <div className="proyecto-titulo-texto">
+              <h3>Project Stargate</h3>
+              <p>for Pepsi</p>
+            </div>
+          </div>
+          <div className="proyecto-contenido-informacion">
+            <h3>Sr. Software Engineer</h3>
+            <p>Work on the latest high-end full-stack technologies and develop a revolutionary project for Pepsi.</p>
+          </div>
+          <div className="proyecto-participantes-informacion">
+            <h3>Participants:</h3>
+            <div className="proyecto-participantes-imagenes">
+              <img className="circulo_ancla" src = "/images/Pepsi Logo.png"></img>
+              <img className="circulo_1" src = "/images/Pepsi Logo.png"></img>
+              <img className="circulo_2" src = "/images/Pepsi Logo.png"></img>
+              <p>and more</p>
+            </div>
+          </div>
         </div>
-        <div class ="proyecto" >
-          <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
-          <h1>Gansitos Project</h1>
-          <p>Java Developer</p>
+        <div className ="proyecto">
+          <div className="proyecto-titulo-informacion">
+            <img src = "/images/Pepsi Logo.png"></img>
+            <div className="proyecto-titulo-texto">
+              <h3>Project Stargate</h3>
+              <p>for Pepsi</p>
+            </div>
+          </div>
+          <div className="proyecto-contenido-informacion">
+            <h3>Sr. Software Engineer</h3>
+            <p>Work on the latest high-end full-stack technologies and develop a revolutionary project for Pepsi.</p>
+          </div>
+          <div className="proyecto-participantes-informacion">
+            <h3>Participants:</h3>
+            <div className="proyecto-participantes-imagenes">
+              <img className="circulo_ancla" src = "/images/Pepsi Logo.png"></img>
+              <img className="circulo_1" src = "/images/3d_avatar_6.png"></img>
+              <img className="circulo_2" src = "/images/Pepsi Logo.png"></img>
+              <p>and more</p>
+            </div>
+          </div>
         </div>
-        <div class ="proyecto" >
-         <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
-          <h1>Gansitos Project</h1>
-          <p>Java Developer</p>
+        <div className ="proyecto">
+          <div className="proyecto-titulo-informacion">
+            <img src = "/images/Pepsi Logo.png"></img>
+            <div className="proyecto-titulo-texto">
+              <h3>Project Stargate</h3>
+              <p>for Pepsi</p>
+            </div>
+          </div>
+          <div className="proyecto-contenido-informacion">
+            <h3>Sr. Software Engineer</h3>
+            <p>Work on the latest high-end full-stack technologies and develop a revolutionary project for Pepsi.</p>
+          </div>
+          <div className="proyecto-participantes-informacion">
+            <h3>Participants:</h3>
+            <div className="proyecto-participantes-imagenes">
+              <img className="circulo_ancla" src = "/images/Pepsi Logo.png"></img>
+              <img className="circulo_1" src = "/images/3d_avatar_6.png"></img>
+              <img className="circulo_2" src = "/images/Pepsi Logo.png"></img>
+              <p>and more</p>
+            </div>
+          </div>
         </div>
-        <div class ="proyecto" >
-          <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
-          <h1>Gansitos Project</h1>
-          <p>Java Developer</p>
-        </div>
-        <div class ="proyecto" >
-          <img src = "/images/3d_avatar_6.png" alt = "Avatar"></img>
-          <h1>Gansitos Project</h1>
-          <p>Java Developer</p>
-        </div>
-
       </div>
 
     </div>

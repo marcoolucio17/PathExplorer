@@ -3,12 +3,12 @@ import './EmpleadoProyecto.css'
 
 export const EmpleadoProyecto = () => {
   return (
-    <div class="card-content flex-grow-1 min-vh-100" >
-      <div class="card-body card-padding " >
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="row">
+    <div className="card-content flex-grow-1 min-vh-100" >
+      <div className="card-body card-padding " >
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="row">
                 <h1>Proyecto Pepsi</h1>
                 <div style={{display: 'flex'}}>
                   <h6 style={{marginRight:'10px'}}>Creado por Perenganit</h6>
@@ -29,7 +29,7 @@ export const EmpleadoProyecto = () => {
                 <br></br>
                 <div className="cuadrito">
                   <h6>Descripción de Proyecto</h6>
-                  <h7>Pepsi está buscando una aplicación móvil que le permita a sus clientes interactuar
+                  <h6>Pepsi está buscando una aplicación móvil que le permita a sus clientes interactuar
                     como una red social, en la que se puedan compartir fotos, conectar con otras personas, y ver actualizaciones 
                     de sus nuevos productos. 
                     <br></br>
@@ -41,7 +41,7 @@ export const EmpleadoProyecto = () => {
                       <li>Base de datos que almacene la información de sus usuarios.</li>
                       <li>Página web de administrador para uso interno de Pepsi, para moderación de la apilcación. </li>
                     </ul>
-                  </h7>
+                  </h6>
                 </div>
               </div>
             </div>
@@ -53,44 +53,44 @@ export const EmpleadoProyecto = () => {
                     <img src="/img/fotogabo.jpg" style={{ borderRadius: '50%', width: '25px', height: '25px' , marginRight: '10px'}}></img>
                     <h5>Elon Mosca</h5>
                   </div>
-                  <h7 style={{marginLeft: '35px'}}>Software Developer</h7>
+                  <h6 style={{marginLeft: '35px'}}>Software Developer</h6>
                 </div>
                 <div className="elemento">
                   <div style={{display: 'flex'}}>
                     <img src="/img/fotogabo.jpg" style={{ borderRadius: '50%', width: '25px', height: '25px' , marginRight: '10px'}}></img>
                     <h5>Julietota Jimenez</h5>
                   </div>
-                  <h7 style={{marginLeft: '35px'}}>UI/UX Lead</h7>
+                  <h6 style={{marginLeft: '35px'}}>UI/UX Lead</h6>
                 </div>
                 <div className="elemento">
                   <div style={{display: 'flex'}}>
                     <img src="/img/fotogabo.jpg" style={{ borderRadius: '50%', width: '25px', height: '25px' , marginRight: '10px'}}></img>
                     <h5>Gepeto Ruiz</h5>
                   </div>
-                  <h7 style={{marginLeft: '35px'}}>Sr. Software Architect</h7>
+                  <h6 style={{marginLeft: '35px'}}>Sr. Software Architect</h6>
                 </div>
                 <div className="elemento">
                   <div style={{display: 'flex'}}>
                     <img src="/img/fotogabo.jpg" style={{ borderRadius: '50%', width: '25px', height: '25px' , marginRight: '10px'}}></img>
                     <h5>Fulano Detal</h5>
                   </div>
-                  <h7 style={{marginLeft: '35px'}}>Project Manager</h7>
+                  <h6 style={{marginLeft: '35px'}}>Project Manager</h6>
                 </div>
               </div>
               <div className="row cuadrito">
                 <h4>Habilidades Necesarias</h4>
                 <div style={{display: 'flex', flexWrap: 'wrap', gap: '2px'}}>
-                  <a href="#" className="btn btn-secondary">C++</a>
+                  <a href="#" className="btn proyecto-btn-secondary">C++</a>
                   <br></br>
-                  <a href="#" className="btn btn-secondary">Agile</a>
+                  <a href="#" className="btn proyecto-btn-secondary">Agile</a>
                   <br></br>
-                  <a href="#" className="btn btn-secondary">AI</a>
+                  <a href="#" className="btn proyecto-btn-secondary">AI</a>
                   <br></br>
-                  <a href="#" className="btn btn-secondary">Human Resources</a>
+                  <a href="#" className="btn proyecto-btn-secondary">Human Resources</a>
                   <br></br>
-                  <a href="#" className="btn btn-secondary">Teamwork</a>
+                  <a href="#" className="btn proyecto-btn-secondary">Teamwork</a>
                   <br></br>
-                  <a href="#" className="btn btn-secondary">Business Intelligence</a>
+                  <a href="#" className="btn proyecto-btn-secondary">Business Intelligence</a>
                 </div>
               </div>
             </div>

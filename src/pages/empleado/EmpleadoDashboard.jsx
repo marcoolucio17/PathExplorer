@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './EmpleadoDashboard.css'
+import '../../styles/EmpleadoDashboard.css'
 /**
  * Componente dashboard para usuarios con rol de Empleado
  * @returns 

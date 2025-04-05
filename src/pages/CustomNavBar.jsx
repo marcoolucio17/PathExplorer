@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Logo from "../assets/Acc_GT_Dimensional_RGB 1.png";  // Ruta relativa al archivo actual
+import { useAuth } from "../context/AuthContext";
 
 function CustomNavbar() {
   const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate(); // Inicializar el hook
 
+  const authState = useAuth();
+
   return (
     <nav
-      className="navbar navbar-expand-lg fixed-top"
+      className="navbar navbar-expand-lg"
       style={{
         backgroundColor: "#4A0072",
         padding: "15px 20px",
@@ -28,7 +31,7 @@ function CustomNavbar() {
         {/* Iconos del Navbar (Dashboard, Notificaciones, Perfil) */}
         <div className="d-flex gap-4 align-items-center">
           {/* Dashboard */}
-          <button onClick={() => navigate("/dashboard")} className="btn p-0 text-decoration-none">
+          <button onClick={() => navigate( "/" + authState + "/dashboard" )} className="btn p-0 text-decoration-none">
             <div className="bg-white rounded-circle p-2 d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
               <i className="bi bi-layout-text-window text-dark fs-3"></i>
             </div>
@@ -74,7 +77,7 @@ function CustomNavbar() {
           </div>
 
           {/* Avatar del usuario */}
-          <button onClick={() => navigate("/perfil")} className="btn btn-link p-0 text-decoration-none">
+          <button onClick={() => navigate("/" + authState + "/perfil")} className="btn btn-link p-0 text-decoration-none">
             <div className="bg-white rounded-circle p-2 d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
               <i className="bi bi-person-circle text-dark fs-1"></i>
             </div>

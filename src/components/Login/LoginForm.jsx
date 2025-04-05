@@ -17,7 +17,7 @@ export const LoginForm = () => {
 
   return (
     <div className="mainLoginForm">
-      <img src="/src/assets/accenturelogowhite.svg" width="170" height="170" />
+      <img src="/src/images/accenturelogowhite.svg" width="170" height="170" />
 
       <p className="text-light" style={{ fontSize: "56px" }}>
         Sign in

@@ -1,17 +1,7 @@
-.container-fluid {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 3rem;
-  }
+
 
   .card-content {
-    width: 90%; 
-    max-width: 1300px; 
-    height:100%;
-    margin: 5vh auto; 
-    border-radius: 8px; 
-    padding: 1rem; 
+    padding: 3rem; 
     background-color:#000000;
     color: white;
     text-align: left;
@@ -42,14 +32,14 @@
     margin-bottom: 10px;
   }
 
-  .btn-secondary {
+  .proyecto-btn-secondary {
     background-color: #ebedf3;
     border-color: black;
     border-radius:100px;
     color:#000;
   }
   
-  .btn-secondary:hover {
+  .proyecto-btn-secondary:hover {
     background-color: white;
     border-color: black;
     color:#000;

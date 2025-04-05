@@ -1,0 +1,56 @@
+.container-fluid {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 3rem;
+  }
+
+  .card-content {
+    width: 90%; 
+    max-width: 1300px; 
+    height:100%;
+    margin: 5vh auto; 
+    border-radius: 8px; 
+    padding: 1rem; 
+    background-color:#000000;
+    color: white;
+    text-align: left;
+  }
+
+  .cuadrito {
+    background-color: #7125b8;
+    border-color: black;
+    border-radius:20px;
+    color:rgb(255, 255, 255);
+    padding:10px;
+  }
+
+  .datos {
+    background-color: rgb(49, 48, 48);
+    border-color: black;
+    border-radius:20px;
+    color:rgb(255, 255, 255);
+    padding:10px;
+  }
+
+  .elemento {
+    background-color: #4c1480;
+    border-radius:20px;
+    color:rgb(255, 255, 255);
+    align-content: center;
+    padding: 0.5rem;
+    margin-bottom: 10px;
+  }
+
+  .btn-secondary {
+    background-color: #ebedf3;
+    border-color: black;
+    border-radius:100px;
+    color:#000;
+  }
+  
+  .btn-secondary:hover {
+    background-color: white;
+    border-color: black;
+    color:#000;
+  }

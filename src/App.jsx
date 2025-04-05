@@ -33,7 +33,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<EmpleadoPerfil />} />
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* rutas de manager */}

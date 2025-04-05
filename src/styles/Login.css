@@ -54,6 +54,28 @@
     width: 120px;
     border: none; 
     outline: none; 
+    text-decoration: none;
+    color: white;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+    transition: 0.5 ease-in-out;
+}
+
+.customSubmitButton:hover {
+    background-color: #8c00ff;
+    border-radius: 20px;
+    width: 120px;
+    border: none; 
+    outline: none; 
+    text-decoration: none;
+    color: white;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 

@@ -13,6 +13,8 @@ import "../../styles/Login.css";
 export const LoginForm = () => {
   const authState = useAuth();
 
+  console.log(authState);
+
   return (
     <div className="mainLoginForm">
       <img src="/src/assets/accenturelogowhite.svg" width="170" height="170" />
@@ -40,20 +42,15 @@ export const LoginForm = () => {
           />
         </Form.Group>
 
-        <button className="customSubmitButton">
+        <Link className="customSubmitButton" to={authState + "/dashboard"}>
           {/* Esta funcionalidad es para simplemente atravesar la página hacia dashboard. */}
           {/* Más adelante, se incorporará la lógica para autentificar el usuario y verificar su rol antes de proceder. */}
-          <Link
-            style={{ textDecoration: "none", color: "inherit" }}
-            to={authState + "/dashboard"}
-          >
-            Submit
-          </Link>
-        </button>
+          Submit
+        </Link>
 
-        <div className = "d-flex mt-2 h-25 align-items-center justify-content-center">
+        <div className="d-flex mt-2 h-25 align-items-center justify-content-center">
           <p className="text-light m-0">Don't have an account?</p>
-          <Button  variant = "link">Register</Button>
+          <Button variant="link">Register</Button>
         </div>
       </Form>
     </div>

@@ -1,0 +1,628 @@
+/* root font size for rem units */
+html {
+    font-size: 16px; /* sets the base size for rem units */
+}
+
+/* main page container */
+.contenedor-Dashboard {
+    position: fixed; /* keeps element in place when scrolling */
+    top: 0; /* position from the top edge */
+    left: 0; /* position from the left edge */
+    width: 100%; /* element width relative to parent */
+    height: 100vh; /* element height relative to viewport height */
+    display: flex; /* enables flexbox layout */
+    flex-direction: row; /* arrange children horizontally */
+}
+
+.left-column-wrapper {
+    display: flex;
+    flex-direction: column; /* arrange children vertically */
+    flex: 1; /* allows element to grow/shrink */
+    min-width: 0; /* prevents flex item from overflowing */
+    height: 100vh;
+    overflow-y: auto; /* adds vertical scrollbar if needed */
+    background-color: #1b1b1b; /* sets the background color */
+}
+
+/* top part styling */
+.top-Part {
+    width: 100%;
+    /* height: 5rem; */ /* removed fixed height */
+    /* background-color: #1b1b1b; */ /* inherits from wrapper */
+    display: flex;
+    align-items: center;      /* vertically centers flex items */
+    justify-content: flex-start; /* aligns flex items to the start (left) */
+    padding-left: 4rem; /* space inside the left edge */
+    padding-top: 2rem;        /* space inside the top edge */
+    padding-bottom: 1rem;     /* space inside the bottom edge */
+    padding-right: 4rem;      /* space inside the right edge */
+    flex-shrink: 0; /* prevents flex item from shrinking */
+    box-sizing: border-box; /* includes padding/border in element's total width/height */
+}
+
+/* title container adjustments */
+.titulo-Dashboard.profile-title-only {
+    width: 100%;
+    height: 0%; /* seems odd, maybe adjust? */
+    text-align: left; /* aligns text to the left */
+    display: inline-block; /* makes element behave like inline but with block properties */
+}
+
+.profile-title-only h1 {
+    font-size: 2.8rem;
+    font-weight: 200; /* sets text thickness */
+    color: white; /* sets text color */
+}
+
+/* profile title container */
+.profile-title-only { /* might not be used, check jsx */
+    width: 100%;
+    margin-bottom: 2rem; /* space outside the bottom edge */
+    padding: 0; /* space inside the element edges */
+    text-align: left;
+}
+
+.profile-title-only h1 {
+    font-size: 2.8rem;
+    font-weight: 600; /* bolder */
+    margin: 0; /* space outside the element edges */
+}
+
+/* user image section */
+.profile-image-section {
+    /* align-self: center; */ /* removed centering */
+    margin-bottom: 1.5rem;
+}
+
+/* profile user image */
+.profile-image-section img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* makes corners round (50% = circle) */
+    object-fit: cover; /* scales image to maintain aspect ratio while filling container */
+    border: 3px solid #7125b8; /* sets border width, style, and color */
+}
+
+/* user details section */
+.user-details {
+    text-align: left;
+    /* align-self: center; */ /* removed centering */
+    margin-bottom: 2rem;
+}
+
+.user-details h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.user-details p {
+    font-size: 1rem;
+    color: #c0c0c0;
+    margin: 0;
+}
+
+/* experience section */
+.experience-section {
+    width: 100%;
+    /* margin-bottom: 2rem; */ /* removed margin */
+    /* background-color: #1b1b1b; */ /* inherits from wrapper */
+    padding: 2rem 4rem;
+    margin-top: 3rem; /* space outside the top edge */
+    flex-grow: 1; /* allows flex item to grow */
+    box-sizing: border-box;
+    color: white;
+    padding-top: 0; /* tabs handle spacing */
+}
+
+/* old h3 style removed */
+/* .experience-section h3 { ... } */
+
+/* --- new experience timeline styles --- */
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* space between flex items */
+}
+
+.experience-item {
+    display: flex;
+    gap: 2rem;
+    position: relative; /* allows absolute positioning for children */
+}
+
+.experience-date {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    width: 100px;
+    flex-shrink: 0;
+    text-align: right; /* aligns text to the right */
+    padding-top: 0.2rem;
+}
+
+.experience-content {
+    display: flex;
+    gap: 1.5rem;
+    flex-grow: 1;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.experience-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    overflow: hidden; /* hides content that overflows the element's box */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* horizontally centers flex items */
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.experience-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* or contain */
+}
+
+.experience-text {
+    flex-grow: 1;
+}
+
+.experience-text h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem 0;
+    color: white;
+}
+
+.experience-text p {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    margin: 0;
+    line-height: 1.5; /* space between lines of text */
+}
+
+.experience-timeline-line {
+    position: absolute; /* positions relative to nearest positioned ancestor */
+    left: -1rem;
+    top: 5px;
+    bottom: -2.5rem; /* position from the bottom edge */
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* stop the line on the last item */
+.experience-item:last-child .experience-timeline-line {
+    bottom: auto;
+    height: calc(100% - 5px);
+}
+
+/* old timeline styles removed */
+/* .experience-timeline { ... } */
+/* .timeline-bar { ... } */
+
+/* search bar section */
+.buscador-Dashboard {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    /* removed fixed width/margins */
+    display: flex;
+    flex-wrap: wrap; /* allows items to wrap to next line */
+    gap: 10px;
+    align-items: center;
+}
+
+.buscador-Dashboard input {
+    flex-grow: 1;
+    min-width: 200px;
+    height: 3.1em;
+    border-radius: 5px 0 0 5px;
+    border: 0px;
+    padding: 1% 1% 1% 15px;
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+.buscador-Dashboard input::placeholder {
+    color: #ffffff;
+    opacity: 0.46; /* sets transparency level */
+}
+
+.buscar-boton {
+    background-color: #a055f5;
+    height: 3.1em;
+    width: auto; /* width adjusts to content */
+    padding: 0 15px;
+    border-radius: 0 5px 5px 0;
+    border: none; /* removes border */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* changes mouse cursor on hover */
+}
+
+.buscador {
+    width: 1.5em;
+    height: 1.5em;
+    color: white;
+}
+
+/* removed .buscador-espacio */
+
+.filtro-boton {
+    background-color: transparent; /* makes background see-through */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 3.1em;
+    width: auto;
+    padding: 0 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.filtrador {
+    width: 1.2em;
+    height: 1.2em;
+    color: white;
+}
+
+/* right sidebar (projects/certs/skills) */
+.proyectos-Dashboard {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0; /* space outside the left edge */
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 300px;
+    flex-shrink: 0;
+    height: 100vh;
+    background-color: #4A008F;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.25); /* adds shadow effect */
+}
+
+.Certificates {
+    background-color: #3c076e;
+    border-radius: 0px;
+    padding: 20px 25px;
+    margin-top: 0%;
+    margin-bottom: 2%;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.Certificates .d-flex {
+    /* bootstrap handles this */
+}
+
+.Certificates h2 {
+    font-size: 1.8rem;
+    font-weight: normal; /* normal text thickness */
+    margin: 0;
+    margin-right: 15px; /* space outside the right edge */
+}
+
+.certificate-add-button {
+    display: inline-flex; /* like inline-block but for flex items */
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.certificate-add-button svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5; /* thickness of svg lines */
+}
+
+/* scrollable area for projects */
+.projects-list {
+    flex-grow: 0; /* doesn't grow */
+    overflow-y: auto;
+    padding: 25px 0px 25px 25px;
+}
+
+.project-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    height: 80px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* smooth change over time */
+}
+
+/* slide container left on hover */
+.project-container:hover {
+    transform: translateX(-10px); /* moves element horizontally */
+}
+
+.project-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: -15px;
+    z-index: 2; /* stacking order (higher is on top) */
+    flex-shrink: 0;
+    /* removed transition */
+}
+
+.grayscale {
+    filter: grayscale(100%); /* applies graphical effect (b&w) */
+    opacity: 0.7;
+}
+
+.project-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5%;
+    object-fit: cover;
+    border: 2px solid #7125b8;
+}
+
+.user-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 7px solid #1f1f1f;
+}
+
+.proyecto {
+    background-color: #7125b8;
+    border-radius: 0px;
+    padding: 0px 15px 0px 30px;
+    color: white;
+    width: 100%;
+    z-index: 1;
+    min-height: 80px; /* minimum element height */
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    /* removed transition */
+}
+
+.project-container2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.proyecto2 {
+    background-color: #7125b8;
+    border-radius: 0px;
+    padding: 10px 15px 10px 10px;
+    color: white;
+    width: 100%;
+    z-index: 1;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    /* removed transition */
+}
+
+.grayscale{ /* for icons */
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+/* removed hover transform rules for children */
+
+.text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.text-content h1 {
+    font-size: 1.1rem;
+    font-weight: bold; /* bold text */
+    text-align: left;
+    margin: 0;
+    white-space: normal; /* how whitespace inside element is handled */
+    overflow: break-word; /* deprecated, use overflow-wrap */
+    text-overflow: visible; /* how hidden overflow content is signaled */
+}
+
+.text-content p {
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-align: left;
+    margin: 0;
+    white-space: normal;
+    overflow: break-word; /* deprecated, use overflow-wrap */
+    text-overflow: visible;
+    color: #d2d2d2;
+}
+
+.text-content p i {
+    font-style: normal; /* sets text style (normal, italic, oblique) */
+}
+
+/* --- profile title and action buttons --- */
+
+/* title container flexbox */
+.profile-title-container {
+    display: flex;
+    justify-content: space-between; /* distributes space between flex items */
+    align-items: center;
+    width: 100%;
+    /* inherit padding/margin or adjust */
+}
+
+/* action buttons container */
+.profile-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* common action button styles */
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
+}
+
+/* button icon styles */
+.action-button i {
+    font-size: 1.2rem;
+    color: #ffffff;
+    line-height: 1;
+}
+
+/* view (eye) button */
+.view-button {
+    background-color: #FFA322;
+}
+
+.view-button:hover {
+    background-color: #e68a00;
+}
+
+/* edit (pencil) button */
+.edit-button {
+    background-color: #808080;
+}
+
+.edit-button:hover {
+    background-color: #666666;
+}
+
+/* --- employee info section --- */
+.employee-info-section {
+    background-color: #222222;
+    padding: 3rem 4rem;
+    margin: 0 4rem;
+    border-radius: 12px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* aligns flex items to the start of the cross axis */
+    flex-shrink: 0;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    /* make it a flex row container */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* left side container (image + details) */
+.employee-details-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+
+/* adjustments within employee info */
+.employee-info-section .profile-image-section {
+     margin-bottom: 0; /* now flex aligned */
+}
+
+.employee-info-section .user-details {
+     margin-bottom: 0;
+     /* width: 100%; */ /* removed width */
+}
+
+/* project info header (right side) */
+.project-info-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.project-header-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain; /* scales image to fit container while preserving aspect ratio */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-header-text h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem 0;
+    color: white;
+}
+
+.project-header-text p {
+    font-size: 0.9rem;
+    color: #c0c0c0;
+    margin: 0;
+}
+
+
+/* --- profile navigation tabs --- */
+.profile-nav-tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 1.5rem 4rem 0 0rem; /* adjusted right padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* line below the element */
+    margin: 0 4rem;
+    background-color: #1b1b1b;
+    position: relative;
+    z-index: 0; /* behind employee card shadow */
+}
+
+.nav-tab {
+    font-size: 1rem;
+    color: #a0a0a0;
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent; /* placeholder */
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-tab:hover {
+    color: #ffffff;
+}
+
+.nav-tab.active {
+    color: #d0a0ff;
+    font-weight: 500;
+    border-bottom-color: #d0a0ff; /* color of the bottom border */
+}

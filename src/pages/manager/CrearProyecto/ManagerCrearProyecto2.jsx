@@ -1,9 +1,10 @@
 import React from 'react'
-
-import '../../empleado/EmpleadoDashboard.css'
-import './ManagerCrearProyecto1.css'
 import { NavLink , Outlet} from 'react-router'
-import './ManagerCrearProyecto2.css'
+
+import '../../../styles/EmpleadoDashboard.css'
+import '../../../styles/ManagerCrearProyecto1.css'
+import '../../../styles/ManagerCrearProyecto2.css'
+
 export const ManagerCrearProyecto2 = () => { 
     return (
         <div className="contenedor-crear-proyecto">

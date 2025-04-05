@@ -1,8 +1,8 @@
 import React from 'react'
 
+import '../../../styles/EmpleadoDashboard.css'
+import '../../../styles/ManagerCrearProyecto1.css'
 
-import '../../empleado/EmpleadoDashboard.css'
-import './ManagerCrearProyecto1.css'
 import { NavLink } from 'react-router'
 
 export const ManagerCrearProyecto1 = () => {

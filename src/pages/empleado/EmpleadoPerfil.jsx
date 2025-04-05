@@ -2,10 +2,6 @@ import React from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './EmpleadoPerfil.css';
 
-/**
- * Componente dashboard para usuarios con rol de Empleado
- * @returns
- */
 export const EmpleadoPerfil = () => {
   return (
     <div className="pv-contenedor-Dashboard">

@@ -1,0 +1,46 @@
+
+
+  .card-content {
+    padding: 3rem; 
+    background-color:#000000;
+    color: white;
+    text-align: left;
+  }
+
+  .cuadrito {
+    background-color: #7125b8;
+    border-color: black;
+    border-radius:20px;
+    color:rgb(255, 255, 255);
+    padding:10px;
+  }
+
+  .datos {
+    background-color: rgb(49, 48, 48);
+    border-color: black;
+    border-radius:20px;
+    color:rgb(255, 255, 255);
+    padding:10px;
+  }
+
+  .elemento {
+    background-color: #4c1480;
+    border-radius:20px;
+    color:rgb(255, 255, 255);
+    align-content: center;
+    padding: 0.5rem;
+    margin-bottom: 10px;
+  }
+
+  .proyecto-btn-secondary {
+    background-color: #ebedf3;
+    border-color: black;
+    border-radius:100px;
+    color:#000;
+  }
+  
+  .proyecto-btn-secondary:hover {
+    background-color: white;
+    border-color: black;
+    color:#000;
+  }

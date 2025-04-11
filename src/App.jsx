@@ -17,8 +17,7 @@ import { ManagerDashboard } from "./pages/manager/ManagerDashboard";
 import { ManagerPerfil } from "./pages/manager/ManagerPerfil";
 import { ManagerProyecto } from "./pages/manager/ManagerProyecto";
 import { ManagerVistaPerfil } from "./pages/manager/ManagerVistaPerfil";
-import { ManagerCrearProyecto1 } from "./pages/manager/CrearProyecto/ManagerCrearProyecto1";
-import { ManagerCrearProyecto2 } from "./pages/manager/CrearProyecto/ManagerCrearProyecto2";
+
 
 // Imports de TFS
 import { TFSDashboard } from "./pages/tfs/TFSDashboard";
@@ -45,8 +44,6 @@ function App() {
           <Route path="manager/perfil" element={<ManagerPerfil/>} />
           <Route path="manager/proyecto" element={<ManagerProyecto />} />
           <Route path="manager/vistaperfil" element={<ManagerVistaPerfil />} />
-          <Route path="manager/dashboard/crearproyecto1" element={<ManagerCrearProyecto1 />} />
-          <Route path="manager/dashboard/crearproyecto2" element={<ManagerCrearProyecto2 />} />
         </Route>
 
         {/* rutas de tfs */}

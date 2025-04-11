@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
-import { useAuth } from "../../context/AuthContext";
+
+import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjectInfo'
 
 import "../../styles/EmpleadoDashboard.css";
 /**
@@ -8,8 +9,7 @@ import "../../styles/EmpleadoDashboard.css";
  * @returns
  */
 export const EmpleadoDashboard = () => {
-  const role = useAuth();
-
+ 
   return (
     <div className="contenedor-Dashboard">
       <div className="titulo-Dashboard">
@@ -32,93 +32,8 @@ export const EmpleadoDashboard = () => {
       </div>
 
       <div className="proyectos-Dashboard">
-        <div className="proyecto">
-          <div className="proyecto-titulo-informacion">
-            <img src="/images/Pepsi Logo.png"></img>
-            <div className="proyecto-titulo-texto">
-              <h3>Project Stargate</h3>
-              <p>for Pepsi</p>
-            </div>
-          </div>
-          <div className="proyecto-contenido-informacion">
-            <h3>
-              <Link to={"/" + role + "/proyecto"} style={{ color: "white" }}>
-                Sr. Software Engineer
-              </Link>
-            </h3>
-            <p>
-              Work on the latest high-end full-stack technologies and develop a
-              revolutionary project for Pepsi.
-            </p>
-          </div>
-          <div className="proyecto-participantes-informacion">
-            <h3>Participants:</h3>
-            <div className="proyecto-participantes-imagenes">
-              <img className="circulo_ancla" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_2" src="/images/Pepsi Logo.png"></img>
-              <p>and more</p>
-            </div>
-          </div>
-        </div>
-        <div className="proyecto">
-          <div className="proyecto-titulo-informacion">
-            <img src="/images/Pepsi Logo.png"></img>
-            <div className="proyecto-titulo-texto">
-              <h3>Project Stargate</h3>
-              <p>for Pepsi</p>
-            </div>
-          </div>
-          <div className="proyecto-contenido-informacion">
-            <h3>
-              <Link to={"/" + role + "/proyecto"} style={{ color: "white" }}>
-                Sr. Software Engineer
-              </Link>
-            </h3>
-            <p>
-              Work on the latest high-end full-stack technologies and develop a
-              revolutionary project for Pepsi.
-            </p>
-          </div>
-          <div className="proyecto-participantes-informacion">
-            <h3>Participants:</h3>
-            <div className="proyecto-participantes-imagenes">
-              <img className="circulo_ancla" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src="/images/3d_avatar_6.png"></img>
-              <img className="circulo_2" src="/images/Pepsi Logo.png"></img>
-              <p>and more</p>
-            </div>
-          </div>
-        </div>
-        <div className="proyecto">
-          <div className="proyecto-titulo-informacion">
-            <img src="/images/Pepsi Logo.png"></img>
-            <div className="proyecto-titulo-texto">
-              <h3>Project Stargate</h3>
-              <p>for Pepsi</p>
-            </div>
-          </div>
-          <div className="proyecto-contenido-informacion">
-            <h3>
-              <Link to={"/" + role + "/proyecto"} style={{ color: "white" }}>
-                Sr. Software Engineer
-              </Link>
-            </h3>
-            <p>
-              Work on the latest high-end full-stack technologies and develop a
-              revolutionary project for Pepsi.
-            </p>
-          </div>
-          <div className="proyecto-participantes-informacion">
-            <h3>Participants:</h3>
-            <div className="proyecto-participantes-imagenes">
-              <img className="circulo_ancla" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src="/images/3d_avatar_6.png"></img>
-              <img className="circulo_2" src="/images/Pepsi Logo.png"></img>
-              <p>and more</p>
-            </div>
-          </div>
-        </div>
+        <DashboardProjectInfo />
+        
       </div>
     </div>
   );

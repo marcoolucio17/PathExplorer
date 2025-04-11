@@ -13,7 +13,7 @@ import "../../styles/Login.css";
 export const LoginForm = () => {
   const authState = useAuth();
 
-  console.log(authState);
+ 
 
   return (
     <div className="mainLoginForm">

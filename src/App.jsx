@@ -11,7 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { EmpleadoDashboard } from "./pages/empleado/EmpleadoDashboard";
 import { EmpleadoPerfil } from "./pages/empleado/EmpleadoPerfil";
 import { EmpleadoProyecto } from "./pages/empleado/EmpleadoProyecto";
-import { CombinedProjectCard } from "./pages/empleado/CombinedProjectCard";
+
 
 // Imports de manager
 import { ManagerDashboard } from "./pages/manager/ManagerDashboard";
@@ -66,7 +66,6 @@ function App() {
           <Route path="empleado/dashboard" element={<EmpleadoDashboard />} />
           <Route path="empleado/perfil" element={<EmpleadoPerfil/>} />
           <Route path="empleado/proyecto" element={<EmpleadoProyecto />} />
-          <Route path="empleado/test" element={<CombinedProjectCard />} />
         </Route>
       </Routes>
     </AuthProvider>

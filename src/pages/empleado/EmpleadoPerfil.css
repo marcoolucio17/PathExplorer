@@ -257,7 +257,7 @@ html {
 }
 
 .pv-certificates-section {
-    background-color: #3c076e;
+    background-color: #44087b;
     border-radius: 0px;
     padding: 20px 25px;
     margin-top: 0%;
@@ -348,7 +348,7 @@ html {
 }
 
 .pv-project-item {
-    background-color: #7125b8;
+    background-color: #7125b8d2;
     border-radius: 0px;
     padding: 0px 15px 0px 30px;
     color: white;
@@ -372,7 +372,7 @@ html {
 }
 
 .pv-project-item-small {
-    background-color: #7125b8;
+    background-color: #7125b8d2;
     border-radius: 0px;
     padding: 10px 15px 10px 10px;
     color: white;

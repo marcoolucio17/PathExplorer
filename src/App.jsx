@@ -11,6 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { EmpleadoDashboard } from "./pages/empleado/EmpleadoDashboard";
 import { EmpleadoPerfil } from "./pages/empleado/EmpleadoPerfil";
 import { EmpleadoProyecto } from "./pages/empleado/EmpleadoProyecto";
+import { CombinedProjectCard } from "./pages/empleado/CombinedProjectCard";
 
 // Imports de manager
 import { ManagerDashboard } from "./pages/manager/ManagerDashboard";
@@ -30,6 +31,7 @@ import { TFSVistaPropuestas } from "./pages/tfs/TFSVistaPropuestas";
 import { Unauthorized } from "./pages/Unauthorized";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import Login from "./pages/Login";
+
 
 function App() {
   return (
@@ -64,6 +66,7 @@ function App() {
           <Route path="empleado/dashboard" element={<EmpleadoDashboard />} />
           <Route path="empleado/perfil" element={<EmpleadoPerfil/>} />
           <Route path="empleado/proyecto" element={<EmpleadoProyecto />} />
+          <Route path="empleado/test" element={<CombinedProjectCard />} />
         </Route>
       </Routes>
     </AuthProvider>

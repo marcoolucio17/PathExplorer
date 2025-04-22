@@ -366,40 +366,40 @@ body {
 
 .person-name {
   text-align: left;
-  font-size: 0.95rem; /* Adjust size if needed */
-  font-weight: 500; /* Use appropriate weight */
+  font-size: 0.95rem; 
+  font-weight: 500; 
   color: var(--text-light);
-  margin-bottom: 0.1rem; /* Small space between name and role */
+  margin-bottom: 0.1rem; 
 }
 
 .person-role {
   text-align: left;
   font-family: 'Graphik Light', sans-serif;
-  font-size: 0.8rem; /* Adjust size if needed */
+  font-size: 0.8rem; 
   color: var(--text-muted);
 }
 
-/* Removed display: none; to show individual person details */
+
 .people-section .person {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem; /* Add spacing between people */
+  margin-bottom: 1rem;
 }
 
 .people-section .person:last-of-type {
-  margin-bottom: 1.5rem; /* More space before the dropdown */
+  margin-bottom: 1.5rem; 
 }
 
 .person-avatar {
-  width: 40px; /* Control avatar size */
+  width: 40px; 
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 0.75rem; /* Space between avatar and text */
-  flex-shrink: 0; /* Prevent avatar from shrinking */
+  margin-right: 0.75rem; 
+  flex-shrink: 0; 
 }
 
-.person div { /* Container for name and role */
+.person div { 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -714,8 +714,12 @@ body {
 /* --- seccion skills --- */
 
 .skills-container {
-  padding: 0rem 0rem !important; /* Reduced top padding */
+  padding: 0rem 0rem !important; 
   text-align: center !important;
+  display: flex; 
+  flex-grow: 1; 
+  align-items: center;
+  justify-content: center;
 }
 
 .skills-list {

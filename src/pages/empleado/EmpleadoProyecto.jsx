@@ -40,7 +40,7 @@ export const EmpleadoProyecto = () => {
       <div className="proyecto-main-content">
         {/* Left Column */}
         <div className="proyecto-details">
-          <h1 className="card-title">Project Pepsi</h1>
+          <h1 className="card-title" style={{ fontSize: 35 }}>Project Pepsi</h1>
           <div className="proyecto-dates">
             <span>Start Date: 4/8/2025</span>
             <span>Est. Finish Date: 4/20/2025</span>

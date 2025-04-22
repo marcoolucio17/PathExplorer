@@ -1,7 +1,5 @@
 @import url('../fonts.css');
 
-/* CSS Global, especificamente de EmpleadoProyecto.jsx */
-
 :root {
   /* paleta de colores base */
   --bg-dark-1: #1a1a2e;
@@ -20,6 +18,7 @@
   --highlight-inner-medium: rgba(255, 255, 255, 0.15);
   --highlight-inner-strong: rgba(255, 255, 255, 0.25);
   --highlight-outer-subtle: rgba(255, 255, 255, 0.18);
+
 
   /* colores progreso y botones (morados) */
   --purple-progress-track: #3f3a60; /* usado con alpha 7d */
@@ -354,6 +353,8 @@ body {
 .sidebar-section h2 {
   margin-bottom: 1rem;
   /* hereda de .card-title o define aqui */
+  /* Add margin below title in sidebar sections */
+  margin-bottom: 1.5rem !important;
 }
 
 /* --- seccion personas (equipo) --- */
@@ -365,15 +366,44 @@ body {
 
 .person-name {
   text-align: left;
+  font-size: 0.95rem; /* Adjust size if needed */
+  font-weight: 500; /* Use appropriate weight */
+  color: var(--text-light);
+  margin-bottom: 0.1rem; /* Small space between name and role */
 }
 
 .person-role {
   text-align: left;
   font-family: 'Graphik Light', sans-serif;
+  font-size: 0.8rem; /* Adjust size if needed */
+  color: var(--text-muted);
 }
 
-/* esto es para mostrar un ejemplo, no forma parte del dropdown */
-.people-section .person { display: none; } /* oculto si no se usa */
+/* Removed display: none; to show individual person details */
+.people-section .person {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem; /* Add spacing between people */
+}
+
+.people-section .person:last-of-type {
+  margin-bottom: 1.5rem; /* More space before the dropdown */
+}
+
+.person-avatar {
+  width: 40px; /* Control avatar size */
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.75rem; /* Space between avatar and text */
+  flex-shrink: 0; /* Prevent avatar from shrinking */
+}
+
+.person div { /* Container for name and role */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 /* avatares apilados (parte del dropdown header) */
 .stacked-avatars {
@@ -408,7 +438,7 @@ body {
   display: flex;
   align-items: center;
   text-align: left !important;
-  gap: 0.5rem;
+  gap: 0.25rem; /* Reduced gap to accommodate font width */
   overflow: hidden;
   position: relative;
 }
@@ -440,8 +470,8 @@ body {
 }
 
 .members-dropdown:hover {
-  transform: scale(1.03) translateY(0);
-  filter: brightness(1.15);
+  transform: scale(1.01) translateY(0);
+  filter: brightness(1.05);
   border-color: var(--border-hover) !important;
   box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary-hover) !important;
   background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2)) !important; /* mantener fondo */
@@ -470,7 +500,7 @@ body {
   font-weight: 500;
   color: var(--text-light);
   text-shadow: var(--shadow-text);
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: transform 0s ease-in-out, opacity 0.3s ease-in-out !important;
   white-space: nowrap;
   background: none;
   font-family: 'Graphik Medium', sans-serif;
@@ -569,6 +599,7 @@ body {
 
 .members-dropdown.open .members-text {
   opacity: 1;
+  text-align: center;
 }
 
 .members-dropdown.open .stacked-avatars.hidden {
@@ -683,7 +714,7 @@ body {
 /* --- seccion skills --- */
 
 .skills-container {
-  padding: 2rem 0rem !important;
+  padding: 0rem 0rem !important; /* Reduced top padding */
   text-align: center !important;
 }
 

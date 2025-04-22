@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './EmpleadoProyecto.css';
 
+// Placeholder images
 const pepsiLogo = '/img/pepsi-logo.png';
 const user1 = '/img/fotogabo.jpg';
 const user2 = '/img/fotogabo.jpg';
@@ -9,12 +10,14 @@ const user3 = '/img/fotogabo.jpg';
 export const EmpleadoProyecto = () => {
   const [isMembersDropdownOpen, setIsMembersDropdownOpen] = useState(false);
 
+  // Reference to the entire "People" section container
   const peopleSectionRef = useRef(null);
 
   const toggleMembersDropdown = () => {
     setIsMembersDropdownOpen(!isMembersDropdownOpen);
   };
 
+  // Add or remove .dropdown-active on the .people-section parent
   useEffect(() => {
     if (peopleSectionRef.current) {
       if (isMembersDropdownOpen) {
@@ -25,6 +28,7 @@ export const EmpleadoProyecto = () => {
     }
   }, [isMembersDropdownOpen]);
 
+  // Example list of members
   const members = [
     { id: 1, name: 'Gabriel Martinez', avatar: user1, role: 'Frontend Developer' },
     { id: 2, name: 'Sofia Rodriguez', avatar: user2, role: 'Backend Developer' },
@@ -169,7 +173,6 @@ export const EmpleadoProyecto = () => {
                 <span className="skill-tag">HR</span>
                 <span className="skill-tag user-skill">Figma</span>
                 <span className="skill-tag">Photoshop</span>
-                <span className="skill-tag expand-tag">+ Expand</span>
               </div>
             </div>
           </div>

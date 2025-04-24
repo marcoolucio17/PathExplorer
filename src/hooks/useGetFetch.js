@@ -30,7 +30,7 @@ export const useGetFetch = ({rutaApi}) => {
 
             
             } catch (err) {
-                console.error('Error fetching data:', err);
+               setError(err);
             }
         };
         fetchData();

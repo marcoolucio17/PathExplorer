@@ -9,7 +9,8 @@ import "../../styles/EmpleadoDashboard.css";
  * @returns
  */
 export const EmpleadoDashboard = () => {
- 
+  const {data: data_projects }= useGetFetch({rutaApi: `projects`});
+
   return (
     <div className="contenedor-Dashboard">
       <div className="titulo-Dashboard">
@@ -32,7 +33,7 @@ export const EmpleadoDashboard = () => {
       </div>
 
       <div className="proyectos-Dashboard">
-        <DashboardProjectInfo />
+        <DashboardProjectInfo  projects={data_projects}/>
         
       </div>
     </div>

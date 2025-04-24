@@ -14,6 +14,7 @@
     justify-content: space-between;
     background-color: rgba(255, 255, 255, 0.16);
     color: #ffffff;    
+    text-decoration: none;
 }
 
 .proyecto-crear p {

@@ -13,8 +13,6 @@ import "../../styles/Login.css";
 export const LoginForm = () => {
   const authState = useAuth();
 
- 
-
   return (
     <div className="mainLoginForm">
       <img src="/images/accenturelogowhite.svg" width="170" height="170" />

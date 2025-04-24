@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './EmpleadoPerfil.css';
+import '../CustomNavBar.css';
 
 export const EmpleadoPerfil = () => {
   return (
@@ -9,7 +10,7 @@ export const EmpleadoPerfil = () => {
 
         <div className='pv-top-Part'>
           <div className="pv-profile-title-container">
-            <h1 style={{color: 'white'}}>My Profile</h1>
+            <h1 className="fs-2 custom-font2" style={{color: '#f3f3f3', fontWeight: 900}}>My Profile</h1>
             <div className="pv-profile-actions">
               <button className="pv-action-button pv-view-button">
                 <i className="bi bi-eye-fill"></i>
@@ -27,9 +28,9 @@ export const EmpleadoPerfil = () => {
               <img src="/imagesUser/Sammy.png" alt="User Profile" />
             </div>
             <div className="pv-user-details">
-              <h2 style={{ fontWeight: '400', color: 'white', fontSize: '2rem' }}>Sammy Garcy</h2>
-              <h2 style={{ fontWeight: 'normal', fontSize: '1.2rem' }}>Sr. Software Engineer @ Accenture</h2>
-              <h2 style={{ color: 'gray', fontWeight: 'lighter', fontSize: '1.2rem' }}><i className="bi bi-geo-alt-fill"></i> Monterrey, Nuevo León, México</h2>
+              <h2 className='fs-3 custom-font2' style={{ fontWeight: '400', color: 'white', fontSize: '2rem' }}>Sammy Garcy</h2>
+              <h2 className='custom-font3' style={{ fontWeight: 'normal', fontSize: '1.2rem' }}>Sr. Software Engineer at Accenture</h2>
+              <h2 className='custom-font4' style={{ color: 'gray', fontWeight: 'lighter', fontSize: '1.2rem' }}><i className="bi bi-geo-alt-fill"></i> Monterrey, Nuevo Leon, Mexico</h2>
             </div>
           </div>
 
@@ -84,7 +85,7 @@ export const EmpleadoPerfil = () => {
       <div className="pv-sidebar-container">
         <div className="pv-certificates-section">
           <div className="d-flex justify-content-between align-items-center">
-            <h2>My certificates</h2>
+            <h2 className='custom-font3' style={{fontSize: '1.7rem' }}>My certificates</h2>
             <div className="pv-certificate-add-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -100,8 +101,8 @@ export const EmpleadoPerfil = () => {
                 </div>
                 <div className="pv-project-item">
                     <div className="pv-text-content">
-                    <h1 style={{ fontWeight: 'normal' }}>JavaScript Connoisseur</h1>
-                    <p style={{ fontStyle: 'italic' }}>by Accenture</p>
+                    <h1 className='custom-font4' style={{ fontWeight: 'normal' }}>JavaScript Connoisseur</h1>
+                    <p className='custom-font5' style={{ fontStyle: 'italic' }}>by Accenture</p>
                     </div>
                 </div>
             </div>
@@ -111,15 +112,15 @@ export const EmpleadoPerfil = () => {
                  </div>
                 <div className="pv-project-item">
                     <div className="pv-text-content">
-                      <h1 style={{ fontWeight: 'normal' }}>Python Expert</h1>
-                      <p style={{ fontStyle: 'italic' }}>by Python Software Foundation</p>
+                      <h1 className='custom-font4' style={{ fontWeight: 'normal' }}>Python Expert</h1>
+                      <p className='custom-font5' style={{ fontStyle: 'italic' }}>by Python Software Foundation</p>
                     </div>
                 </div>
             </div>
         </div>
         <div className="pv-certificates-section">
           <div className="d-flex justify-content-between align-items-center">
-            <h2>My Skills</h2>
+          <h2 className='custom-font3' style={{fontSize: '1.7rem' }}>My Skills</h2>
              <div className="pv-certificate-add-button">
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>

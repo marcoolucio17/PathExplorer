@@ -13,6 +13,7 @@
   margin-left: var(--nav-logo-margin-left);
   margin-right: var(--nav-logo-margin-right);
 }
+
 .logo-img {
   height: 32px;
   width: auto;

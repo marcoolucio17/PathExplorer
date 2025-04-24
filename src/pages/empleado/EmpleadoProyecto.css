@@ -81,7 +81,17 @@
     --badge-translate-y: 20%;
   }
 
+  .glass-navbarDashboard {
+    --search-padding-y: 0.4rem;
+    --search-padding-x: 0.8rem;
+    --search-padding-left: 40px; 
+    --search-collapsed-width: 200px;
+    --search-expanded-width: 260px;
+  
+    --popover-border-color: var(--glass-border);
+  }
 }
+
 
 /* --- estilos generales --- */
 
@@ -171,7 +181,8 @@ body {
 
 /* --- barra de progreso --- */
 
-.proyecto-progress { }
+/*.proyecto-progress { }
+*/
 
 .progress-bar-wrapper {
   position: relative;

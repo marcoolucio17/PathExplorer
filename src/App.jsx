@@ -12,6 +12,7 @@ import { EmpleadoDashboard } from "./pages/empleado/EmpleadoDashboard";
 import { EmpleadoPerfil } from "./pages/empleado/EmpleadoPerfil";
 import { EmpleadoProyecto } from "./pages/empleado/EmpleadoProyecto";
 
+
 // Imports de manager
 import { ManagerDashboard } from "./pages/manager/ManagerDashboard";
 import { ManagerDashboardCreateProject } from "./pages/manager/ManagerDashboardCreateProject";
@@ -30,6 +31,7 @@ import { TFSVistaPropuestas } from "./pages/tfs/TFSVistaPropuestas";
 import { Unauthorized } from "./pages/Unauthorized";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import Login from "./pages/Login";
+
 
 function App() {
   return (

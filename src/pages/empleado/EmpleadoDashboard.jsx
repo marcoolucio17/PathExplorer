@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { Link } from "react-router";
 
 import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjectInfo'
@@ -18,6 +18,9 @@ export const EmpleadoDashboard = () => {
   const authState = useAuth();
   const {data: data_projects }= useGetFetch({rutaApi: `projects`});
 
+  const [isSkillDropdownOpen, setIsSkillDropdownOpen] = useState(false);
+  const [isCertificateDropdownOpen, setIsCertificateDropdownOpen] = useState(false);
+
   return (
     <div className="dashboard-container">
       <div className= "dashboard-header ">
@@ -31,13 +34,13 @@ export const EmpleadoDashboard = () => {
         </div>
         <div className="dashboard-header-buttons">
           <h2 className="title-header-buttons custom-font2">Sort by:</h2>
-          <div className="button-skills custom-font2"><h2>Skills</h2></div>
-          <div className="button-certificates custom-font2">
-            <h2>Certificates</h2>
-          </div>
-          <div className="button-compability custom-font2">
-            <h2>Compability</h2>
-          </div>
+          <button className="btn btn-secondary custom-font2">Skills</button>
+          <button className="btn btn-secondary custom-font2">
+            Certificates
+          </button>
+          <button className="btn btn-secondary custom-font2">
+            Compability
+          </button>
         </div>
       </div>
       <div className="dashboard-content"> 

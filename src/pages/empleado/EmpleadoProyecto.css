@@ -87,7 +87,7 @@
     --search-padding-left: 40px; 
     --search-collapsed-width: 200px;
     --search-expanded-width: 260px;
-  
+    --search-margin-left:0;
     --popover-border-color: var(--glass-border);
   }
 }

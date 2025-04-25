@@ -13,7 +13,6 @@ export const DashboardProjectInfo = ({projects}) => {
     // a un proyecto y se diriga a la página de información del proyecto
     const selectProject = (id) => {
         console.log(id);
-        
     }
     
     return (
@@ -30,23 +29,46 @@ export const DashboardProjectInfo = ({projects}) => {
 
 
         projects.map((project)  => (
-            <button className ="proyecto" key={project.idproyecto} onClick={() => selectProject(project.idproyecto)}>
-                <div className="proyecto-titulo-informacion">
-                   
-                    <div className="proyecto-titulo-texto">
-                        <h3>{project.pnombre}</h3>
-                        
+            project.proyecto_roles.map((proyecto_rol) => (
+            <div className ="proyecto" key={`${project.idproyecto}-${proyecto_rol.idrol}`} onClick={() => selectProject(project.idproyecto)}>
+                <div className="proyecto-parte-arriba">
+                    
+                    <img className="proyecto-imagen" src={project.imagen || "/images/ImagenProyectoDefault.png"} alt="Imagen de logo"></img>
+                    <div className="proyecto-titulos-info">
+                        <h2 className="titulo-proyecto"> {project.pnombre} </h2>
+                        <h2 className="cliente-proyecto"> by {project.cliente.clnombre}</h2>
                     </div>
                 </div>
-                <div className="proyecto-contenido-informacion">
-                   
-                    <p>{project.descripcion}</p>
+                <div className="proyecto-parte-media pp-m2">
+                    <h2 className="titulo-rol"> {proyecto_rol.roles.nombrerol} </h2>
+                    <h2 className="descripcion-rol-proyecto"> {proyecto_rol.roles.descripcionrol} </h2>
                 </div>
-                   
-                    
-            </button>
-        ))
+                <div className="proyecto-parte-abajo">
+                    <div className="proyecto-skills">
+                        {proyecto_rol.roles.requerimientos_roles.map((req_rol) => (
+                            <div className="btn btn-primary custom-font2" key={`${project.idproyecto}-${proyecto_rol.idrol}-${req_rol.requerimientos.habilidades.idhabilidad}`}>
+                                {req_rol.requerimientos.habilidades.nombre}
+                            </div>
+                        ))}
+                    </div>
+                    <div className="proyecto-participantes">
+                        
+                            
+                            <img  className="proyecto-participante" src={"/img/fotogabo.jpg"} alt="Imagen de empleado"></img>
+                            <img  className="proyecto-participante" src={"/img/fotogabo.jpg"} alt="Imagen de empleado"></img>
+                            <img  className="proyecto-participante" src={"/img/fotogabo.jpg"} alt="Imagen de empleado"></img>
+                                
+                            
+                        
+                        
+                    </div>
+
+
+                </div>
+                
+            </div>
+        )))
     
-    )
+    ))
 
 }

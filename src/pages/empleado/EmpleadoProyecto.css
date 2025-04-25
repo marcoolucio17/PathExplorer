@@ -106,6 +106,7 @@ body {
 
 .empleado-proyecto-container {
   background: transparent;
+  min-height: calc(100vh - 100px);
   color: var(--text-light);
   height: 100vh;
   display: flex;

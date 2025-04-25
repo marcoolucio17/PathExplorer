@@ -1,4 +1,4 @@
-import React, {useState,useEffect, useRef} from "react";
+import React, {useState,useEffect, useRef, use} from "react";
 import { Link } from "react-router";
 
 import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjectInfo'
@@ -17,16 +17,21 @@ import { useGetFetch } from '../../hooks/useGetFetch';
 export const EmpleadoDashboard = () => {
   const authState = useAuth();
   //Agregar el error y el loading de cada uno
-  const {data: data_projects}= useGetFetch({rutaApi: `projects`});
+  const [searchProjects, setSearchProjects] = useState('');
+  
+  const {data: data_projects, error}= useGetFetch({rutaApi: `projects`,pnombre: searchProjects});
 
-  const {data: data_skills} = useGetFetch({rutaApi: `skills`});
 
   const [isSkillDropdownOpen, setIsSkillDropdownOpen] = useState(true);
  
   const skillSectionRef = useRef(null);
+
+  
+
   const toggleSkillDropdown = () => {
     setIsSkillDropdownOpen(!isSkillDropdownOpen);
   };
+
 
   useEffect(() => {
     if (skillSectionRef.current) {
@@ -39,6 +44,8 @@ export const EmpleadoDashboard = () => {
     }
   }, [isSkillDropdownOpen]);
 
+ 
+
   return (
     <div className="dashboard-container">
       <div className= "dashboard-header " ref={skillSectionRef}>
@@ -46,6 +53,9 @@ export const EmpleadoDashboard = () => {
           <i className="bi bi-search nav-search-icon-dashboard"></i>
           <input
             type="text"
+            value={searchProjects}
+            name="searchDashboard"
+            onChange={(e) => setSearchProjects(e.target.value)}
             placeholder="Search..."
             className="nav-search-dashboard"
           />

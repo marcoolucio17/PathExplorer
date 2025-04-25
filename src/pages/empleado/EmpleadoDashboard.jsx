@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect, useRef} from "react";
 import { Link } from "react-router";
 
 import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjectInfo'
@@ -16,35 +16,56 @@ import { useGetFetch } from '../../hooks/useGetFetch';
 
 export const EmpleadoDashboard = () => {
   const authState = useAuth();
-  const {data: data_projects }= useGetFetch({rutaApi: `projects`});
+  //Agregar el error y el loading de cada uno
+  const {data: data_projects}= useGetFetch({rutaApi: `projects`});
 
-  const [isSkillDropdownOpen, setIsSkillDropdownOpen] = useState(false);
-  const [isCertificateDropdownOpen, setIsCertificateDropdownOpen] = useState(false);
+  const {data: data_skills} = useGetFetch({rutaApi: `skills`});
+
+  const [isSkillDropdownOpen, setIsSkillDropdownOpen] = useState(true);
+ 
+  const skillSectionRef = useRef(null);
+  const toggleSkillDropdown = () => {
+    setIsSkillDropdownOpen(!isSkillDropdownOpen);
+  };
+
+  useEffect(() => {
+    if (skillSectionRef.current) {
+      if (isSkillDropdownOpen) {
+        skillSectionRef.current.classList.add('dropdown-active');
+        
+      } else {
+        skillSectionRef.current.classList.remove('dropdown-active');
+      }
+    }
+  }, [isSkillDropdownOpen]);
 
   return (
     <div className="dashboard-container">
-      <div className= "dashboard-header ">
-        <div className="nav-search-container glass-navbarDashboard">
-          <i className="bi bi-search nav-search-icon"></i>
+      <div className= "dashboard-header " ref={skillSectionRef}>
+        <div className="nav-search-container-dashboard glass-navbarDashboard">
+          <i className="bi bi-search nav-search-icon-dashboard"></i>
           <input
             type="text"
             placeholder="Search..."
-            className="nav-search"
+            className="nav-search-dashboard"
           />
         </div>
-        <div className="dashboard-header-buttons">
+        <div className="dashboard-header-buttons" >
           <h2 className="title-header-buttons custom-font2">Sort by:</h2>
-          <button className="btn btn-secondary custom-font2">Skills</button>
-          <button className="btn btn-secondary custom-font2">
-            Certificates
-          </button>
-          <button className="btn btn-secondary custom-font2">
+          <div className={`dropdown-arrow btn btn-secondary custom-font2 skills_button ${isSkillDropdownOpen ? 'open' : ''}`} onClick={toggleSkillDropdown}>
+            Skills
+            
+          </div>
+          <div className="skills_button_content">
+            
+          </div>
+          <button className="btn btn-primary custom-font2">
             Compability
           </button>
         </div>
       </div>
       <div className="dashboard-content"> 
-
+            <DashboardProjectInfo projects={data_projects}/>
       </div>
     </div>
   );

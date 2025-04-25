@@ -68,7 +68,6 @@ export const DashboardProjectInfo = ({projects}) => {
                 
             </div>
         )))
-    
     ))
 
 }

@@ -136,3 +136,53 @@
   height: 50px;
   object-fit: cover;
 }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 100vh;
+  background-color: #111;
+  padding-top: 120px;
+  overflow-x: hidden;
+  z-index: 0;
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.sidebar-visible {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar.open {
+  width: 200px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-menu li:hover {
+  background-color: #222;
+}
+
+.sidebar-menu i {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}

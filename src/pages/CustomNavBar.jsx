@@ -1,90 +1,122 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import Logo from "../assets/Acc_GT_Dimensional_RGB 1.png";  // Ruta relativa al archivo actual
+import Logo from "../assets/Acc_GT_Dimensional_RGB 1.png";
 import { useAuth } from "../context/AuthContext";
+
+import "./CustomNavBar.css";
 
 function CustomNavbar() {
   const [showNotifications, setShowNotifications] = useState(false);
-  const navigate = useNavigate(); // Inicializar el hook
-
+  const navigate = useNavigate();
   const authState = useAuth();
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <nav
-      className="navbar navbar-expand-lg"
-      style={{
-        backgroundColor: "#4A0072",
-        padding: "15px 20px",
-        minHeight: "80px"
-      }}
-    >
-      <div className="container-fluid d-flex justify-content-between align-items-center">
-        {/* Logo */}
-        <button onClick={() => navigate("/")} className="navbar-brand text-white btn btn-link p-0 text-decoration-none fs-4">
-          <span className="fs-2">PathExplorer</span>
-          <img
-            src={Logo}
-            style={{ height: "25px", marginLeft: "10px", marginBottom: "7px" }}
-          />
-        </button>
+    <>
+      {/* Sidebar */}
+      <div
+        className={`sidebar 
+          ${isSidebarVisible ? "sidebar-visible" : ""} 
+          ${isSidebarOpen ? "open" : ""}`}
+        onMouseEnter={() => setIsSidebarOpen(true)}
+        onMouseLeave={() => {
+          setIsSidebarOpen(false);
+          setIsSidebarVisible(false);
+        }}
+      >
+        <ul className="sidebar-menu">
+          <li onClick={() => navigate("/")}>
+            <i className="bi bi-house"></i>
+            {isSidebarOpen && <span>Home</span>}
+          </li>
+          <li onClick={() => navigate("/projects")}>
+            <i className="bi bi-clipboard"></i>
+            {isSidebarOpen && <span>Projects</span>}
+          </li>
+          <li onClick={() => navigate("/certificates")}>
+            <i className="bi bi-award"></i>
+            {isSidebarOpen && <span>Certificates</span>}
+          </li>
+          <li onClick={() => navigate("/settings")}>
+            <i className="bi bi-gear"></i>
+            {isSidebarOpen && <span>Settings</span>}
+          </li>
+          <li onClick={() => navigate("/about")}>
+            <i className="bi bi-info-circle"></i>
+            {isSidebarOpen && <span>About</span>}
+          </li>
+        </ul>
+      </div>
 
-        {/* Iconos del Navbar (Dashboard, Notificaciones, Perfil) */}
-        <div className="d-flex gap-4 align-items-center">
-          {/* Dashboard */}
-          <button onClick={() => navigate( "/" + authState + "/dashboard" )} className="btn p-0 text-decoration-none">
-            <div className="bg-white rounded-circle p-2 d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
-              <i className="bi bi-layout-text-window text-dark fs-3"></i>
-            </div>
+      {/* Navbar */}
+      <nav className="navbar glass-navbar navbar-expand-lg">
+        <div className="container-fluid d-flex align-items-center">
+          {/* Logo only */}
+          <button
+            onMouseEnter={() => setIsSidebarVisible(true)}
+            className="navbar-brand btn btn-link p-0 nav-logo"
+          >
+            <img src={Logo} alt="Logo" className="logo-img" />
           </button>
 
-          {/* Notificaciones */}
-          <div className="position-relative">
-            <button
-              className="btn p-0 text-decoration-none"
-              onClick={() => setShowNotifications(!showNotifications)}
-            >
-              <div className="bg-white rounded-circle p-2 d-flex justify-content-center align-items-center position-relative" style={{ width: "50px", height: "50px" }}>
-                <i className="bi bi-bell text-dark fs-2"></i>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.75rem" }}>
-                  3
-                </span>
-              </div>
-            </button>
-
-            {/* Popover de Notificaciones */}
-            {showNotifications && (
-              <div
-                className="position-absolute bg-white text-dark rounded shadow-sm p-3"
-                style={{ top: "60px", right: 0, minWidth: "320px", zIndex: 1000, borderRadius: "15px" }}
-              >
-                <h5 className="fw-bold mb-3">Notifications</h5>
-
-                {/* Notificación 1 */}
-                <div className="d-flex align-items-center bg-light rounded p-2 shadow-lg">
-                  <img
-                    src={Logo}
-                    alt="Bytebase"
-                    className="rounded"
-                    style={{ width: "50px", height: "50px", objectFit: "cover" }}
-                  />
-                  <div className="ms-3">
-                    <h6 className="fw-bold mb-1">Welcome!!!</h6>
-                    <p className="mb-0 small">We're excited to have you here! 🚀 Explore your dashboard and discover new opportunities.</p>
-                  </div>
-                </div>
-              </div>
-            )}
+          {/* Search bar */}
+          <div className="nav-search-container">
+            <i className="bi bi-search nav-search-icon"></i>
+            <input
+              type="text"
+              placeholder="Search..."
+              className="nav-search"
+            />
           </div>
 
-          {/* Avatar del usuario */}
-          <button onClick={() => navigate("/" + authState + "/perfil")} className="btn btn-link p-0 text-decoration-none">
-            <div className="bg-white rounded-circle p-2 d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
-              <i className="bi bi-person-circle text-dark fs-1"></i>
+          {/* Icons */}
+          <div className="nav-icons d-flex gap-3 align-items-center">
+            <button
+              onClick={() => navigate(`/${authState}/dashboard`)}
+              className="icon-btn"
+            >
+              <i className="bi bi-list-ul"></i>
+            </button>
+
+            <div className="position-relative">
+              <button
+                onClick={() => setShowNotifications(!showNotifications)}
+                className="icon-btn"
+              >
+                <i className="bi bi-bell"></i>
+                <span className="badge-notif">1</span>
+              </button>
+              {showNotifications && (
+                <div className="glass-popover">
+                  <h6 className="fw-bold mb-2">Notifications</h6>
+                  <div className="notification-item d-flex align-items-center">
+                    <img
+                      src={Logo}
+                      alt="Avatar"
+                      className="rounded avatar-sm me-2"
+                    />
+                    <div>
+                      <p className="mb-1"><strong>Welcome!!!</strong></p>
+                      <p className="small mb-0">
+                        We’re excited to have you here! 🚀
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-          </button>
+
+            <button
+              onClick={() => navigate(`/${authState}/perfil`)}
+              className="icon-btn"
+            >
+              <i className="bi bi-person-circle"></i>
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
 

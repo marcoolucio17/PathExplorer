@@ -1,175 +1,200 @@
-import React from 'react';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import './EmpleadoPerfil.css';
+import React, { useState } from "react";
+import "./EmpleadoPerfil.css";
+
+const TABS = ["Contact Information", "Experience", "Objectives"];
 
 export const EmpleadoPerfil = () => {
+  const [activeTab, setActiveTab] = useState("Experience");
+  const [objectives, setObjectives] = useState([
+    { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
+    { id: 2, text: "Finish the advanced React course", completed: true },
+    { id: 3, text: "Mentor a junior developer on the team", completed: false },
+    { id: 4, text: "Contribute to an open-source project", completed: false },
+  ]);
+
+  const handleObjectiveToggle = (id) => {
+    setObjectives(
+      objectives.map((obj) =>
+        obj.id === id ? { ...obj, completed: !obj.completed } : obj
+      )
+    );
+  };
+
   return (
-    <div className="pv-contenedor-Dashboard">
-      <div className="pv-left-column-wrapper">
+    <div className="profile-layout">
+      <div className="profile-column-left">
+        <header className="profile-header-card glass-card">
+          <div className="profile-header-main">
+            <img
+              src="/imagesUser/Sammy.png"
+              alt="Sammy Garcy"
+              className="avatar-xl"
+            />
 
-        <div className='pv-top-Part'>
-          <div className="pv-profile-title-container">
-            <h1 style={{color: 'white'}}>My Profile</h1>
-            <div className="pv-profile-actions">
-              <button className="pv-action-button pv-view-button">
-                <i className="bi bi-eye-fill"></i>
+            <div className="profile-meta">
+              <h1>Sammy Garcy</h1>
+              <h2>Sr. Software Engineer at Accenture</h2>
+              <p>
+                <i className="bi bi-geo-alt-fill" /> Monterrey, Nuevo León, Mexico
+              </p>
+            </div>
+
+            <div className="profile-actions">
+              <button className="btn-view">
+                <i className="bi bi-eye-fill" />
               </button>
-              <button className="pv-action-button pv-edit-button">
-                <i className="bi bi-pencil-fill"></i>
+              <button className="btn-edit">
+                <i className="bi bi-pencil-fill" />
               </button>
             </div>
           </div>
-        </div>
+        </header>
 
-        <div className="pv-employee-info-section">
-          <div className="pv-employee-details-left">
-            <div className='pv-profile-image-section'>
-              <img src="/imagesUser/Sammy.png" alt="User Profile" />
-            </div>
-            <div className="pv-user-details">
-              <h2 style={{ fontWeight: '400', color: 'white', fontSize: '2rem' }}>Sammy Garcy</h2>
-              <h2 style={{ fontWeight: 'normal', fontSize: '1.2rem' }}>Sr. Software Engineer @ Accenture</h2>
-              <h2 style={{ color: 'gray', fontWeight: 'lighter', fontSize: '1.2rem' }}><i className="bi bi-geo-alt-fill"></i> Monterrey, Nuevo León, México</h2>
-            </div>
-          </div>
+        <nav className="profile-tabs">
+          {TABS.map((t) => (
+            <button
+              key={t}
+              className={activeTab === t ? "tab active" : "tab"}
+              onClick={() => setActiveTab(t)}
+            >
+              {t}
+            </button>
+          ))}
+        </nav>
 
-          <div className="pv-project-info-header">
-            <img src="/imagesUser/golf-logo.png" alt="Project Logo" className="pv-project-header-logo" />
-            <div className="pv-project-header-text">
-              <h4>Project Golf</h4>
-              <p>by Dad</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="pv-profile-nav-tabs">
-          <span className="pv-nav-tab">Contact Information</span>
-          <span className="pv-nav-tab pv-active">Experience</span>
-          <span className="pv-nav-tab">Objectives</span>
-        </div>
-
-        <div className="pv-experience-section">
-          <div className="pv-experience-list">
-              <div className="pv-experience-item">
-                <div className="pv-experience-date">Jun 2019-Present</div>
-                <div className="pv-experience-content">
-                  <div className="pv-experience-icon">
-                     <img src="/imagesUser/golf-logo.png" alt="Project Logo"/>
-                  </div>
-                  <div className="pv-experience-text">
-                    <h4 style={{ textAlign: 'left' }}>Sr. Software Engineer on Project Golf</h4>
-                    <p style={{ textAlign: 'left' }}>Worked as a senior software engineer on project golf. During his stay, Sammy developed and supervised more than 10000 features that are currently in production and generating around 1 quintillion dollars in value.</p>
-                  </div>
-                   <div className="pv-experience-timeline-line"></div>
+        <section className="profile-tab-body">
+          {activeTab === "Experience" && (
+            <ul className="timeline">
+              <li>
+                <span className="date">Jun 2019 – Present</span>
+                <div className="bullet">
+                  <img src="/imagesUser/golf-logo.png" alt="Project Golf" />
+                </div>
+                <div className="content">
+                  <h3>Sr. Software Engineer on Project Golf</h3>
+                  <p>
+                    Led development of 10 000+ production features that now
+                    generate ≈ 1 quintillion USD in value.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span className="date">Jan 2018 – May 2019</span>
+                <div className="bullet">
+                  <img src="/imagesUser/trump.png" alt="Project Stargate" />
+                </div>
+                <div className="content">
+                  <h3>Lead Architect — Project Stargate</h3>
+                  <p>
+                    Directed the full “frontback” stack and personally deployed
+                    42 000 features for a classified initiative.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          )}
+          {activeTab === "Contact Information" && (
+            <div className="contact-info-section">
+              <div className="contact-item">
+                <i className="bi bi-envelope-fill contact-icon"></i>
+                <div>
+                  <span className="contact-label">Email</span>
+                  <p className="contact-value">sammy.garcy@accenture.com</p>
                 </div>
               </div>
-              <div className="pv-experience-item">
-                 <div className="pv-experience-date">Jan 2018-May 2019</div>
-                 <div className="pv-experience-content">
-                  <div className="pv-experience-icon">
-                     <img src="/imagesUser/trump.png" alt="Project Logo"/>
-                  </div>
-                  <div className="pv-experience-text">
-                    <h4 style={{ textAlign: 'left' }}>Project Stargate</h4>
-                    <p style={{ textAlign: 'left' }}>Worked as lead architect on Project Stargate, a top-secret initiative rumored to work on a combination of frontend and backend - they call it "frontback". Sammy personally deployed over 42,000 features</p>
-                  </div>
-                   <div className="pv-experience-timeline-line"></div>
+              <div className="contact-item">
+                <i className="bi bi-telephone-fill contact-icon"></i>
+                <div>
+                  <span className="contact-label">Phone</span>
+                  <p className="contact-value">+52 81 1234 5678</p>
+                </div>
+              </div>
+              <div className="contact-item">
+                <i className="bi bi-linkedin contact-icon"></i>
+                <div>
+                  <span className="contact-label">LinkedIn</span>
+                  <p className="contact-value">linkedin.com/in/sammygarcy</p>
+                </div>
+              </div>
+              <div className="contact-item">
+                <i className="bi bi-github contact-icon"></i>
+                <div>
+                  <span className="contact-label">GitHub</span>
+                  <p className="contact-value">github.com/sammygarcy</p>
                 </div>
               </div>
             </div>
-          </div>
-
-      </div> {/* End of left-column-wrapper */}
-
-      <div className="pv-sidebar-container">
-        <div className="pv-certificates-section">
-          <div className="d-flex justify-content-between align-items-center">
-            <h2>My certificates</h2>
-            <div className="pv-certificate-add-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
+          )}
+          {activeTab === "Objectives" && (
+            <div className="objectives-section">
+              <ul className="objectives-list">
+                {objectives.map((obj) => (
+                  <li key={obj.id} className={`objective-item ${obj.completed ? 'completed' : ''}`}>
+                    <input
+                      type="checkbox"
+                      id={`objective-${obj.id}`}
+                      checked={obj.completed}
+                      onChange={() => handleObjectiveToggle(obj.id)}
+                      className="objective-checkbox"
+                    />
+                    <label htmlFor={`objective-${obj.id}`} className="objective-text">
+                      {obj.text}
+                    </label>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </div>
-        <div className="pv-projects-list">
-            <div className="pv-project-container">
-                 <div className="pv-project-image">
-                    <img src="/imagesUser/JavaScript-logo.png" alt="JavaScript Certificate" />
-                </div>
-                <div className="pv-project-item">
-                    <div className="pv-text-content">
-                    <h1 style={{ fontWeight: 'normal' }}>JavaScript Connoisseur</h1>
-                    <p style={{ fontStyle: 'italic' }}>by Accenture</p>
-                    </div>
-                </div>
-            </div>
-             <div className="pv-project-container">
-                 <div className="pv-project-image">
-                    <img src="/imagesUser/Python-logo.png" alt="Python Certificate" />
-                 </div>
-                <div className="pv-project-item">
-                    <div className="pv-text-content">
-                      <h1 style={{ fontWeight: 'normal' }}>Python Expert</h1>
-                      <p style={{ fontStyle: 'italic' }}>by Python Software Foundation</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="pv-certificates-section">
-          <div className="d-flex justify-content-between align-items-center">
-            <h2>My Skills</h2>
-             <div className="pv-certificate-add-button">
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div className="pv-projects-list">
-            <div className="pv-project-container-small">
-                 <div className="pv-project-item-small">
-                    <div>
-                        <i className="bi bi-tools pv-grayscale"></i>
-                    </div>
-                    <div className="pv-text-content" style={{ paddingLeft: '10px' }}>
-                        <h1 style={{ fontWeight: 'normal' }}>Hard Skills</h1>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                </div>
-            </div>
-             <div className="pv-project-container-small">
-                 <div className="pv-project-item-small">
-                    <div>
-                         <i className="bi bi-puzzle pv-grayscale"></i>
-                    </div>
-                    <div className="pv-text-content" style={{ paddingLeft: '10px' }}>
-                        <h1 style={{ fontWeight: 'normal' }}>Soft Skills</h1>
-                    </div>
-                    <div>
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                </div>
-            </div>
-            <div className="pv-project-container-small">
-                <div className="pv-project-item-small">
-                    <div>
-                        <i className="bi bi-box pv-grayscale"></i>
-                    </div>
-                    <div className="pv-text-content" style={{ paddingLeft: '10px' }}>
-                        <h1 style={{ fontWeight: 'normal' }}>Tools & Platforms</h1>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                </div>
-            </div>
-        </div>
+          )}
+        </section>
       </div>
+
+      <aside className="profile-sidebar">
+        <div className="sidebar-section glass-card">
+          <div className="section-title">
+            <h2>My certificates</h2>
+            <button className="btn btn-outline-light btn-sm rounded-circle section-add-btn">
+              <i className="bi bi-plus-lg" />
+            </button>
+          </div>
+
+          <article className="certificate">
+            <img src="/imagesUser/JavaScript-logo.png" alt="JS" />
+            <div>
+              <h3>JavaScript Connoisseur</h3>
+              <p>by Accenture</p>
+            </div>
+          </article>
+
+          <article className="certificate">
+            <img src="/imagesUser/Python-logo.png" alt="Python" />
+            <div>
+              <h3>Python Expert</h3>
+              <p>by Python Software Foundation</p>
+            </div>
+          </article>
+        </div>
+
+        <div className="sidebar-section glass-card">
+          <div className="section-title">
+            <h2>My Skills</h2>
+            <button className="btn btn-outline-light btn-sm rounded-circle section-add-btn">
+              <i className="bi bi-plus-lg" />
+            </button>
+          </div>
+
+          <div className="skill-chip-group">
+            <button className="skill-chip">
+              <i className="bi bi-tools" /> Hard skills
+            </button>
+            <button className="skill-chip">
+              <i className="bi bi-puzzle" /> Soft skills
+            </button>
+            <button className="skill-chip">
+              <i className="bi bi-box" /> Tools & Platforms
+            </button>
+          </div>
+        </div>
+      </aside>
     </div>
-  );
+);
 };

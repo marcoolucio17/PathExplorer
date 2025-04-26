@@ -1,0 +1,55 @@
+.register-main-div {
+    display: flex
+}
+
+.register-image-background {
+    background-image: url("/src/assets/loginbg.svg");
+    background-size: cover;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form-container {
+    background-color: black;
+    min-height: 90%;
+    max-width: 50%;
+    min-width: 400px;
+    width: 50vw;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.register-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    color: white;
+    align-items: center;
+}
+
+.register-role-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.register-confirm-button {
+    background-color: blueviolet;
+    color: white;
+    width: 7rem;
+    border-radius: 25px;
+    margin-top: 2rem;
+}
+
+.select-role {
+    margin-bottom: 0 important!;
+    font-size: large;
+}

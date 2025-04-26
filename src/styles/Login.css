@@ -49,34 +49,13 @@
 }
 
 .customSubmitButton {
-    background-color: #9A22FC;
-    border-radius: 20px;
-    width: 120px;
-    border: none; 
-    outline: none; 
-    text-decoration: none;
+    background-color: blueviolet;
     color: white;
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    
-    transition: 0.5 ease-in-out;
+    width: 7rem;
+    border-radius: 25px;
+    margin-top: 2rem;
 }
 
-.customSubmitButton:hover {
-    background-color: #8c00ff;
-    border-radius: 20px;
-    width: 120px;
-    border: none; 
-    outline: none; 
-    text-decoration: none;
-    color: white;
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
 
 
 

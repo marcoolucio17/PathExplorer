@@ -11,6 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { EmpleadoDashboard } from "./pages/empleado/EmpleadoDashboard";
 import { EmpleadoPerfil } from "./pages/empleado/EmpleadoPerfil";
 import { EmpleadoProyecto } from "./pages/empleado/EmpleadoProyecto";
+import { EmpleadoHome } from "./pages/empleado/EmpleadoHome";
 
 
 // Imports de manager
@@ -62,7 +63,7 @@ function App() {
 
         {/* rutas de empleado */}
         <Route element={<PrivateRoutes allowedRoles={["empleado"]} />}>
-          <Route path="empleado" element={<Navigate to = "dashboard" />} />
+          <Route path="empleado" element={<EmpleadoHome/>} />
           <Route path="empleado/dashboard" element={<EmpleadoDashboard />} />
           <Route path="empleado/perfil" element={<EmpleadoPerfil/>} />
           <Route path="empleado/proyecto" element={<EmpleadoProyecto />} />

@@ -1,124 +1,81 @@
-import React from "react";
+import React, {useState,useEffect, useRef, use} from "react";
 import { Link } from "react-router";
-import { useAuth } from "../../context/AuthContext";
+
+
+import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjectInfo'
 
 import "../../styles/EmpleadoDashboard.css";
+
+
+import { useAuth } from "../../context/AuthContext";
+import { useGetFetch } from '../../hooks/useGetFetch';
+import { DashboardSkillsCategory } from "../../components/Dashboard/DashboardSkillsCategory";
 /**
  * Componente dashboard para usuarios con rol de Empleado
  * @returns
  */
+
+//Se instalo npm i reactstrap
+
+//Cosas pendientes por hacer:
+// Realizar componente la barra de busqueda y el modal de skills
+// El filtro de skills que funcione correctamente
+// Realizar que las imágenes de los proyectos se vean correctamente
+// Realizar que la información de compatibilidad se vea correctamente
+// Realizar la condición de que si no hay proyectos se vea un mensaje de que no hay proyectos
+
 export const EmpleadoDashboard = () => {
-  const role = useAuth();
-
+  const authState = useAuth();
+  //Agregar el error y el loading de cada uno
+  const [searchProjects, setSearchProjects] = useState('');
+  const [skillSelected, setSkillSelected] = useState('Skills');
+  
+  const {data: data_projects, error}= useGetFetch({rutaApi: `projects`,nombre: searchProjects,condicion1: 'Skills'});
+  const {data: data_skills, error2}= useGetFetch({rutaApi: `skills`,nombre: '',condicion1: 'Skills'});
+  const [skillModalOpen, setSkillModalOpen] = useState(false);
+ 
+ const toggleSkillModal = () => {
+    setSkillModalOpen(!skillModalOpen);
+    console.log(skillModalOpen);
+  }
+ 
   return (
-    <div className="contenedor-Dashboard">
-      <div className="titulo-Dashboard">
-        <h1>My Project Dashboard</h1>
-        <br />
-        <h2>Hello Perenganit, we compiled these projects for you:</h2>
-      </div>
-      <div className="buscador-Dashboard">
-        <input type="text" placeholder="Search by keyword"></input>
-        <button className="buscar-boton">
-          <i className="bi bi-search buscador"></i>
-        </button>
-        <div className="buscador-espacio"></div>
-        <button className="filtro-boton">
-          <i className="bi bi-caret-down-fill filtrador"></i>
-        </button>
-        <button className="filtro-boton">
-          <i className="bi bi-funnel filtrador"></i>
-        </button>
+    <div className="dashboard-container">
+      <div className= "dashboard-header ">
+        <div className="nav-search-container-dashboard glass-navbarDashboard">
+          <i className="bi bi-search nav-search-icon-dashboard"></i>
+          <input
+            type="text"
+            value={searchProjects}
+            name="searchDashboard"
+            onChange={(e) => setSearchProjects(e.target.value)}
+            placeholder="Search..."
+            className="nav-search-dashboard"
+          />
+        </div>
+        <div className="dashboard-header-buttons" >
+          <h2 className="title-header-buttons custom-font2">Sort by:</h2>
+          <div className={`dropdown-arrow btn btn-secondary custom-font2 skills_button `} onClick={() => toggleSkillModal()}>
+            {skillSelected}
+            
+          </div>
+          <button className="btn btn-primary custom-font2">
+            Compability
+          </button>
+        </div>
       </div>
 
-      <div className="proyectos-Dashboard">
-        <div className="proyecto">
-          <div className="proyecto-titulo-informacion">
-            <img src="/images/Pepsi Logo.png"></img>
-            <div className="proyecto-titulo-texto">
-              <h3>Project Stargate</h3>
-              <p>for Pepsi</p>
-            </div>
-          </div>
-          <div className="proyecto-contenido-informacion">
-            <h3>
-              <Link to={"/" + role + "/proyecto"} style={{ color: "white" }}>
-                Sr. Software Engineer
-              </Link>
-            </h3>
-            <p>
-              Work on the latest high-end full-stack technologies and develop a
-              revolutionary project for Pepsi.
-            </p>
-          </div>
-          <div className="proyecto-participantes-informacion">
-            <h3>Participants:</h3>
-            <div className="proyecto-participantes-imagenes">
-              <img className="circulo_ancla" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_2" src="/images/Pepsi Logo.png"></img>
-              <p>and more</p>
-            </div>
-          </div>
-        </div>
-        <div className="proyecto">
-          <div className="proyecto-titulo-informacion">
-            <img src="/images/Pepsi Logo.png"></img>
-            <div className="proyecto-titulo-texto">
-              <h3>Project Stargate</h3>
-              <p>for Pepsi</p>
-            </div>
-          </div>
-          <div className="proyecto-contenido-informacion">
-            <h3>
-              <Link to={"/" + role + "/proyecto"} style={{ color: "white" }}>
-                Sr. Software Engineer
-              </Link>
-            </h3>
-            <p>
-              Work on the latest high-end full-stack technologies and develop a
-              revolutionary project for Pepsi.
-            </p>
-          </div>
-          <div className="proyecto-participantes-informacion">
-            <h3>Participants:</h3>
-            <div className="proyecto-participantes-imagenes">
-              <img className="circulo_ancla" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src="/images/3d_avatar_6.png"></img>
-              <img className="circulo_2" src="/images/Pepsi Logo.png"></img>
-              <p>and more</p>
-            </div>
-          </div>
-        </div>
-        <div className="proyecto">
-          <div className="proyecto-titulo-informacion">
-            <img src="/images/Pepsi Logo.png"></img>
-            <div className="proyecto-titulo-texto">
-              <h3>Project Stargate</h3>
-              <p>for Pepsi</p>
-            </div>
-          </div>
-          <div className="proyecto-contenido-informacion">
-            <h3>
-              <Link to={"/" + role + "/proyecto"} style={{ color: "white" }}>
-                Sr. Software Engineer
-              </Link>
-            </h3>
-            <p>
-              Work on the latest high-end full-stack technologies and develop a
-              revolutionary project for Pepsi.
-            </p>
-          </div>
-          <div className="proyecto-participantes-informacion">
-            <h3>Participants:</h3>
-            <div className="proyecto-participantes-imagenes">
-              <img className="circulo_ancla" src="/images/Pepsi Logo.png"></img>
-              <img className="circulo_1" src="/images/3d_avatar_6.png"></img>
-              <img className="circulo_2" src="/images/Pepsi Logo.png"></img>
-              <p>and more</p>
-            </div>
-          </div>
-        </div>
+    
+      <DashboardSkillsCategory 
+        data_skills={data_skills} 
+        skillModalOpen={skillModalOpen}
+        setSkillSelected={setSkillSelected} 
+        toggleSkillModal={toggleSkillModal}/>
+
+
+
+      <div className="dashboard-content"> 
+            {data_projects && <DashboardProjectInfo projects={data_projects}/>}
       </div>
     </div>
   );

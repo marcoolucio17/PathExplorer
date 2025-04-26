@@ -25,9 +25,9 @@
   --purple-progress-1: #7c54c4;
   --purple-progress-2: rgba(89, 0, 255, 0.75);
   --purple-shadow-base: 103, 66, 192; /* rgb para rgba */
-  --purple-btn-base: rgba(60, 40, 100, 0.3);
-  --purple-btn-primary-1: rgba(100, 60, 190, 0.7);
-  --purple-btn-primary-2: rgba(140, 90, 220, 0.8);
+  --purple-btn-base: rgba(60, 40, 100, 0.302);
+  --purple-btn-primary-1: #643cbeb3;
+  --purple-btn-primary-2: #8c5adccc;
   --purple-btn-secondary: rgba(80, 60, 150, 0.4);
   --purple-icon-1: rgba(128, 78, 243, 0.7);
   --purple-icon-2: rgba(159, 116, 228, 0.8);
@@ -116,6 +116,7 @@ body {
 
 .empleado-proyecto-container {
   background: transparent;
+  min-height: calc(100vh - 100px);
   color: var(--text-light);
   height: 100vh;
   display: flex;

@@ -1,4 +1,9 @@
 .glass-navbar {
+  position: sticky;
+  top: 0;          
+  left: 0;
+  width: 100%;       
+  z-index: 1000;    
   height: 115px;
   padding: 0 1.5rem;
   background: var(--navbar-bg);

@@ -12,13 +12,14 @@ import { EmpleadoDashboard } from "./pages/empleado/EmpleadoDashboard";
 import { EmpleadoPerfil } from "./pages/empleado/EmpleadoPerfil";
 import { EmpleadoProyecto } from "./pages/empleado/EmpleadoProyecto";
 
+
 // Imports de manager
 import { ManagerDashboard } from "./pages/manager/ManagerDashboard";
+import { ManagerDashboardCreateProject } from "./pages/manager/ManagerDashboardCreateProject";
 import { ManagerPerfil } from "./pages/manager/ManagerPerfil";
 import { ManagerProyecto } from "./pages/manager/ManagerProyecto";
 import { ManagerVistaPerfil } from "./pages/manager/ManagerVistaPerfil";
-import { ManagerCrearProyecto1 } from "./pages/manager/CrearProyecto/ManagerCrearProyecto1";
-import { ManagerCrearProyecto2 } from "./pages/manager/CrearProyecto/ManagerCrearProyecto2";
+
 
 // Imports de TFS
 import { TFSDashboard } from "./pages/tfs/TFSDashboard";
@@ -32,6 +33,7 @@ import PrivateRoutes from "./routes/PrivateRoutes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+
 function App() {
   return (
     <AuthProvider>
@@ -44,11 +46,10 @@ function App() {
         <Route element={<PrivateRoutes allowedRoles={["manager"]} />}>
           <Route path="manager" element={<Navigate to="dashboard" />} />
           <Route path="manager/dashboard" element={<ManagerDashboard />} />
+          <Route path="manager/dashboard/createproject" element={<ManagerDashboardCreateProject />} />
           <Route path="manager/perfil" element={<ManagerPerfil/>} />
           <Route path="manager/proyecto" element={<ManagerProyecto />} />
           <Route path="manager/vistaperfil" element={<ManagerVistaPerfil />} />
-          <Route path="manager/dashboard/crearproyecto1" element={<ManagerCrearProyecto1 />} />
-          <Route path="manager/dashboard/crearproyecto2" element={<ManagerCrearProyecto2 />} />
         </Route>
 
         {/* rutas de tfs */}

@@ -30,12 +30,14 @@ import { TFSVistaPropuestas } from "./pages/tfs/TFSVistaPropuestas";
 import { Unauthorized } from "./pages/Unauthorized";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Login/>} />
+        <Route path="register" element = { <Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* rutas de manager */}

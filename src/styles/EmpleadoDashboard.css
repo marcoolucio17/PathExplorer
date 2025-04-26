@@ -347,3 +347,33 @@
  .proyecto-participante:first-child {
     margin-left: 0;
  }
+
+ .modal-skills-category {
+    position:absolute;
+    height: 300px;
+    width: 300px;
+    top:20%;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    
+ }
+
+.modal-skills-category {
+    position:absolute;
+    height: 300px;
+    width: 300px;
+    top:20%;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    
+ }
+
+ 

@@ -14,25 +14,31 @@ axiosRetry(axiosInstance, {
 
 });
 
-export const useGetFetch = ({rutaApi,pnombre}) => {
+export const useGetFetch = ({rutaApi,nombre,condicion1}) => {
 
     const [data,setData] = useState([]);  
     const [error,setError] = useState(null);
     
     useEffect(() => {
         const fetchData = async () => {
-            const url = pnombre ? `http://localhost:5000/api/${rutaApi}?projectName=${pnombre}` : `http://localhost:5000/api/${rutaApi}`;
+            let url =`http://localhost:5000/api/${rutaApi}`;
+            if (nombre !== '' && condicion1 === 'Skills' && rutaApi === 'projects') {
+                url += `?projectName=${nombre}`;
+            } else if (nombre === '' && condicion1 !== 'Skills' && rutaApi === 'projects') {
+                url += `?skill=${condicion1}`;
+            } else if (nombre !== '' && condicion1 !== 'Skills') {
+                url = `projectName=${nombre}&skill=${condicion1}`;
+            } 
+
             try {
-                const response = await axiosInstance.get(url)
-                .then(response => setData(response.data))
-                .catch(err => setError(err));
+                const response = await axiosInstance.get(url);
+                setData(response.data)
             } catch (error) {
                 setError(error);
             }
         };  
         fetchData();
-
-    }, [rutaApi, pnombre]);
+    }, [rutaApi, nombre,condicion1]);
 
     return { data, error };
 }

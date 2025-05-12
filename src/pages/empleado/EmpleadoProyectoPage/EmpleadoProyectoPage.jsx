@@ -10,6 +10,7 @@ import peopleStyles from './PeopleSection.module.css';
 import skillsStyles from './SkillsSection.module.css';
 
 // Placeholder images
+const pepsiLogo = '/img/pepsi-logo.png';
 const user1 = '/img/fotogabo.jpg';
 const user2 = '/img/fotogabo.jpg';
 const user3 = '/img/fotogabo.jpg';

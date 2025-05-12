@@ -90,7 +90,7 @@ export const EmpleadoProyectoPage = () => {
         <div className={pageStyles.proyectoSidebar}>
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={peopleStyles.peopleSection} ref={peopleSectionRef}>
-              <h2 className={detailsStyles.cardTitle} style={{ fontSize: '1.35rem' }}>People</h2>
+              <h2 className={`${detailsStyles.cardTitle} ${peopleStyles.peopleTitle}`} style={{ fontSize: '1.35rem' }}>People</h2>
               <div className={peopleStyles.person}>
                 <img src={user1} alt="Roberto Gomez" className={peopleStyles.personAvatar} />
                 <div>
@@ -103,13 +103,6 @@ export const EmpleadoProyectoPage = () => {
                 <div>
                   <span className={peopleStyles.personName}>Felicia Martina</span>
                   <span className={peopleStyles.personRole}>Project Manager</span>
-                </div>
-              </div>
-              <div className={peopleStyles.person}>
-                <img src={pepsiLogo} alt="Pepsi Co." className={peopleStyles.personAvatar} />
-                <div>
-                  <span className={peopleStyles.personName}>Pepsi Co.</span>
-                  <span className={peopleStyles.personRole}>Cliente</span>
                 </div>
               </div>
 

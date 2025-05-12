@@ -91,29 +91,32 @@ export const EmpleadoProyectoPage = () => {
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={peopleStyles.peopleSection} ref={peopleSectionRef}>
               <h2 className={`${detailsStyles.cardTitle} ${peopleStyles.peopleTitle}`} style={{ fontSize: '1.35rem' }}>People</h2>
-              <div className={peopleStyles.person}>
-                <img src={user1} alt="Roberto Gomez" className={peopleStyles.personAvatar} />
-                <div>
-                  <span className={peopleStyles.personName}>Roberto Gomez</span>
-                  <span className={peopleStyles.personRole}>Creador de Proyecto</span>
+              <div className={peopleStyles.peopleContent}>
+                <div className={peopleStyles.person}>
+                  <img src={user1} alt="Roberto Gomez" className={peopleStyles.personAvatar} />
+                  <div>
+                    <span className={peopleStyles.personName}>Roberto Gomez</span>
+                    <span className={peopleStyles.personRole}>Creador de Proyecto</span>
+                  </div>
+                </div>
+                <div className={peopleStyles.person}>
+                  <img src={user2} alt="Felicia Martina" className={peopleStyles.personAvatar} />
+                  <div>
+                    <span className={peopleStyles.personName}>Felicia Martina</span>
+                    <span className={peopleStyles.personRole}>Project Manager</span>
+                  </div>
+                </div>
+                <div className={peopleStyles.person}>
+                  <img src={pepsiLogo} alt="Pepsi Co." className={peopleStyles.personAvatar} />
+                  <div>
+                    <span className={peopleStyles.personName}>Pepsi Co.</span>
+                    <span className={peopleStyles.personRole}>Cliente</span>
+                  </div>
                 </div>
               </div>
-              <div className={peopleStyles.person}>
-                <img src={user2} alt="Felicia Martina" className={peopleStyles.personAvatar} />
-                <div>
-                  <span className={peopleStyles.personName}>Felicia Martina</span>
-                  <span className={peopleStyles.personRole}>Project Manager</span>
-                </div>
+              <div className={peopleStyles.membersDropdownWrapper}>
+                <MembersDropdown members={members} peopleSectionRef={peopleSectionRef} />
               </div>
-              <div className={peopleStyles.person}>
-                <img src={pepsiLogo} alt="Pepsi Co." className={peopleStyles.personAvatar} />
-                <div>
-                  <span className={peopleStyles.personName}>Pepsi Co.</span>
-                  <span className={peopleStyles.personRole}>Cliente</span>
-                </div>
-              </div>
-
-              <MembersDropdown members={members} peopleSectionRef={peopleSectionRef} />
             </div>
           </GlassCard>
 

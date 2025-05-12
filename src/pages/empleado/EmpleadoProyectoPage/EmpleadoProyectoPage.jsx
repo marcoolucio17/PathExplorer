@@ -105,6 +105,13 @@ export const EmpleadoProyectoPage = () => {
                   <span className={peopleStyles.personRole}>Project Manager</span>
                 </div>
               </div>
+              <div className={peopleStyles.person}>
+                <img src={pepsiLogo} alt="Pepsi Co." className={peopleStyles.personAvatar} />
+                <div>
+                  <span className={peopleStyles.personName}>Pepsi Co.</span>
+                  <span className={peopleStyles.personRole}>Cliente</span>
+                </div>
+              </div>
 
               <MembersDropdown members={members} peopleSectionRef={peopleSectionRef} />
             </div>

@@ -5,12 +5,12 @@
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   box-shadow: var(--shadow-card);
-  padding: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.5rem); /* Responsive padding */
   color: var(--text-light);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(0.75rem, 1.5vw, 1rem); /* Responsive gap */
   height: 100%;
-  overflow: hidden;
-  min-height: 0; /* Allow flexbox to shrink */
+  overflow: visible;
+  position: relative;
 }

@@ -41,6 +41,7 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
+  min-height: 0;
 }
 
 .proyectoDescriptionContent {
@@ -50,6 +51,18 @@
   display: flex;
   flex-direction: column;
   gap: clamp(0.5rem, 1vw, 0.75rem);
+  min-height: 0;
+}
+
+/* Enable scrolling on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .proyectoDescription {
+    overflow-y: auto;
+  }
+  
+  .proyectoDescriptionContent {
+    min-width: 250px;
+  }
 }
 
 .descriptionSection {

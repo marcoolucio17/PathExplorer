@@ -1,17 +1,20 @@
 :root {
   --container-height: 70vh;
   --container-padding: 2rem;
+  --min-content-width: 320px;
 }
 
 .empleadoProyectoContainer {
   background: transparent;
   color: var(--text-light);
   height: 100vh;
+  min-height: 600px; /* Minimum height to prevent crushing */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--container-padding);
-  overflow: hidden;
+  overflow-x: auto; /* Allow horizontal scroll on zoom */
+  overflow-y: auto; /* Allow vertical scroll when needed */
 }
 
 .proyectoMainContent {
@@ -20,7 +23,10 @@
   max-width: 1200px;
   width: 100%;
   height: var(--container-height);
+  min-height: 500px; /* Minimum height */
+  min-width: var(--min-content-width); /* Minimum width */
   overflow: hidden;
+  position: relative;
 }
 
 .proyectoDetails {
@@ -38,6 +44,7 @@
   flex-direction: column;
   gap: clamp(0.5rem, 1vw, 0.75rem);
   height: 100%;
+  min-width: 0;
   overflow: hidden;
 }
 

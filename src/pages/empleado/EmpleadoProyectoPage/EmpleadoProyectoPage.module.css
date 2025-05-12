@@ -14,7 +14,7 @@
   gap: 1.5rem;
   max-width: 1200px;
   width: 100%;
-  height: calc(100vh - 4rem); /* Account for container padding */
+  height: calc(85vh - 4rem); /* Account for container padding */
   overflow: hidden;
 }
 
@@ -48,24 +48,26 @@
   overflow: hidden;
 }
 
-/* Add styles for sidebar sections to ensure equal height */
+/* Add styles for sidebar sections with different heights */
 .sidebarSection {
-  flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
-  max-height: calc(50% - 0.75rem); /* Half height minus half gap */
   overflow: hidden;
 }
 
-/* Ensure the first sidebar section (People) has higher z-index for dropdown */
+/* Make People section taller (60% of sidebar) */
 .sidebarSection:first-child {
+  flex: 2;
   z-index: 20;
+  max-height: calc(60% - 0.75rem);
 }
 
-/* The last sidebar section (skills) should have same flex as others */
+/* Make Skills section shorter (40% of sidebar) */
 .sidebarSection:last-child {
+  flex: 1;
   z-index: 10;
+  max-height: calc(40% - 0.75rem);
 }
 
 /* Responsive styles */

@@ -1,0 +1,27 @@
+.profileTabs {
+  display: flex;
+  gap: 2rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s;
+  text-align: center;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.tab:hover {
+  color: var(--text-light);
+}
+
+.tab.active {
+  color: #d0a0ff;
+  border-bottom-color: #d0a0ff;
+  font-weight: 500;
+}

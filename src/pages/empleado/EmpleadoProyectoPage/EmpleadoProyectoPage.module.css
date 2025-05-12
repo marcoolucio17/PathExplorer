@@ -1,5 +1,5 @@
 :root {
-  --container-height: 80vh; /* Change this value to adjust overall height */
+  --container-height: 70vh;
   --container-padding: 2rem;
 }
 
@@ -33,20 +33,19 @@
   border-radius: 16px;
   box-shadow: var(--shadow-card);
   color: var(--text-light);
-  padding: clamp(1rem, 2vw, 1.5rem); /* Responsive padding */
+  padding: clamp(0.75rem, 1.5vw, 1.25rem);
   display: flex;
   flex-direction: column;
-  gap: clamp(0.75rem, 1.5vw, 1rem); /* Responsive gap */
+  gap: clamp(0.5rem, 1vw, 0.75rem);
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .proyectoSidebar {
   flex: 1.5;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.5rem); /* Responsive gap */
+  gap: clamp(0.75rem, 1.5vw, 1rem);
   position: relative;
   z-index: 1;
   height: 100%;
@@ -58,7 +57,7 @@
   flex-direction: column;
   position: relative;
   overflow: visible;
-  min-height: 0; /* Allow shrinking */
+  min-height: 0;
 }
 
 /* Make People section taller (65% of sidebar) */
@@ -76,7 +75,7 @@
 /* Responsive styles */
 @media (max-width: 1024px) {
   :root {
-    --container-height: 90vh; /* Larger on mobile for better visibility */
+    --container-height: 90vh;
     --container-padding: 1rem;
   }
 
@@ -99,6 +98,6 @@
   }
   
   .sidebarSection {
-    min-height: 150px; /* Minimum height on mobile */
+    min-height: 150px;
   }
 }

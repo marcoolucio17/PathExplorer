@@ -42,7 +42,7 @@ const MOCK_EXPERIENCE = [
     logo: "/imagesUser/trump.png",
     alt: "Project Stargate",
     title: "Lead Architect — Project Stargate",
-    description: "Directed the full "frontback" stack and personally deployed 42 000 features for a classified initiative."
+    description: "Directed the full frontback stack and personally deployed 42 000 features for a classified initiative."
   }
 ];
 

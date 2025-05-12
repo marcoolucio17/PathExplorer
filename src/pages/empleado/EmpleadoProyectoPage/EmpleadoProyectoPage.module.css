@@ -1,11 +1,12 @@
 .empleadoProyectoContainer {
   background: transparent;
-  min-height: calc(100vh - 100px);
   color: var(--text-light);
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
 }
 
 .proyectoMainContent {
@@ -13,6 +14,8 @@
   gap: 1.5rem;
   max-width: 1200px;
   width: 100%;
+  height: calc(100vh - 4rem); /* Account for container padding */
+  overflow: hidden;
 }
 
 .proyectoDetails {

@@ -2,6 +2,13 @@
   position: relative;
   z-index: 50;
   overflow: visible;
+  min-height: 400px; /* Add minimum height to make it taller */
+  display: flex;
+  flex-direction: column;
+}
+
+.peopleTitle {
+  margin-bottom: 1.5rem; /* Add padding below title */
 }
 
 .person {

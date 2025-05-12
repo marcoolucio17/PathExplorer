@@ -10,6 +10,7 @@
 .peopleTitle {
   margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
   flex-shrink: 0;
+  min-height: 1.5rem;
 }
 
 .peopleContent {
@@ -17,8 +18,16 @@
   display: flex;
   flex-direction: column;
   gap: clamp(0.5rem, 1vw, 0.75rem);
-  overflow: hidden; /* Changed from auto to hidden */
+  overflow: hidden;
   min-height: 0;
+}
+
+/* Enable scrolling when content overflows on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .peopleContent {
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
 }
 
 .membersDropdownWrapper {
@@ -27,6 +36,7 @@
   position: relative;
   z-index: 100;
   margin-top: auto;
+  min-height: 2.5rem; /* Ensure dropdown is always visible */
 }
 
 .person {

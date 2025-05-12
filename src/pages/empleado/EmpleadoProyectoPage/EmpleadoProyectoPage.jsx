@@ -32,9 +32,6 @@ export const EmpleadoProyectoPage = () => {
         {/* Left Column */}
         <div className={pageStyles.proyectoDetails}>
           <h1 className={detailsStyles.cardTitle}>Project Pepsi</h1>
-          <div className={detailsStyles.proyectoHeader}>
-            <img src={pepsiLogo} alt="Pepsi" className={detailsStyles.pepsiLogo} />
-          </div>
           <div className={detailsStyles.proyectoDates}>
             <span>Start Date: 4/8/2025</span>
             <span>Est. Finish Date: 4/20/2025</span>

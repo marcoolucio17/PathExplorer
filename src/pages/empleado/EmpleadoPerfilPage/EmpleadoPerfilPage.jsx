@@ -1,0 +1,193 @@
+import React, { useState } from "react";
+// Import components
+import { ProfileHeaderCard } from "../../../components/ProfileHeaderCard";
+import { Tabs } from "../../../components/Tabs";
+import { GlassCard } from "../../../components/shared/GlassCard";
+import { SkillChip } from "../../../components/SkillChip";
+// Import page-specific styles
+import pageStyles from "./EmpleadoPerfilPage.module.css";
+// Import styles for specific sections
+import timelineStyles from "./Timeline.module.css";
+import contactInfoStyles from "./ContactInfo.module.css";
+import objectivesStyles from "./Objectives.module.css";
+import certificateStyles from "./Certificates.module.css";
+
+const TAB_OPTIONS = ["Contact Information", "Experience", "Objectives"];
+
+// Mock data - in a real app, this would come from props or context/API
+const MOCK_USER = {
+  name: "Sammy Garcy",
+  title: "Sr. Software Engineer",
+  company: "Accenture",
+  location: "Monterrey, Nuevo León, Mexico",
+  avatarUrl: "/imagesUser/Sammy.png",
+  email: "sammy.garcy@accenture.com",
+  phone: "+52 81 1234 5678",
+  linkedin: "linkedin.com/in/sammygarcy",
+  github: "github.com/sammygarcy"
+};
+
+const MOCK_EXPERIENCE = [
+  {
+    id: 1,
+    date: "Jun 2019 – Present",
+    logo: "/imagesUser/golf-logo.png",
+    alt: "Project Golf",
+    title: "Sr. Software Engineer on Project Golf",
+    description: "Led development of 10 000+ production features that now generate ≈ 1 quintillion USD in value."
+  },
+  {
+    id: 2,
+    date: "Jan 2018 – May 2019",
+    logo: "/imagesUser/trump.png",
+    alt: "Project Stargate",
+    title: "Lead Architect — Project Stargate",
+    description: "Directed the full frontback stack and personally deployed 42 000 features for a classified initiative."
+  }
+];
+
+const MOCK_CERTIFICATES = [
+  {id: 1, img: "/imagesUser/JavaScript-logo.png", alt: "JS", title: "JavaScript Connoisseur", issuer: "Accenture"},
+  {id: 2, img: "/imagesUser/Python-logo.png", alt: "Python", title: "Python Expert", issuer: "Python Software Foundation"}
+];
+
+export const EmpleadoPerfilPage = () => {
+  const [activeTab, setActiveTab] = useState("Experience");
+  const [objectives, setObjectives] = useState([
+    { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
+    { id: 2, text: "Finish the advanced React course", completed: true },
+    { id: 3, text: "Mentor a junior developer on the team", completed: false },
+    { id: 4, text: "Contribute to an open-source project", completed: false },
+  ]);
+
+  const handleObjectiveToggle = (id) => {
+    setObjectives(
+      objectives.map((obj) =>
+        obj.id === id ? { ...obj, completed: !obj.completed } : obj
+      )
+    );
+  };
+
+  const user = MOCK_USER;
+  const experienceItems = MOCK_EXPERIENCE;
+  const certificates = MOCK_CERTIFICATES;
+
+  return (
+    <div className={pageStyles.profileLayout}>
+      <div className={pageStyles.profileColumnLeft}>
+        <ProfileHeaderCard user={user} />
+
+        <Tabs
+          tabs={TAB_OPTIONS}
+          activeTab={activeTab}
+          onTabClick={setActiveTab}
+        />
+
+        <GlassCard className={pageStyles.tabContentContainer}>
+          {activeTab === "Experience" && (
+            <ul className={timelineStyles.timeline}>
+              {experienceItems.map(item => (
+                <li key={item.id}>
+                  <span className={timelineStyles.date}>{item.date}</span>
+                  <div className={timelineStyles.bullet}>
+                    <img src={item.logo} alt={item.alt} />
+                  </div>
+                  <div className={timelineStyles.content}>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {activeTab === "Contact Information" && (
+            <div className={contactInfoStyles.contactInfoSection}>
+              <div className={contactInfoStyles.contactItem}>
+                <i className={`bi bi-envelope-fill ${contactInfoStyles.contactIcon}`}></i>
+                <div>
+                  <span className={contactInfoStyles.contactLabel}>Email</span>
+                  <p className={contactInfoStyles.contactValue}>{user.email}</p>
+                </div>
+              </div>
+              <div className={contactInfoStyles.contactItem}>
+                <i className={`bi bi-telephone-fill ${contactInfoStyles.contactIcon}`}></i>
+                <div>
+                  <span className={contactInfoStyles.contactLabel}>Phone</span>
+                  <p className={contactInfoStyles.contactValue}>{user.phone}</p>
+                </div>
+              </div>
+              <div className={contactInfoStyles.contactItem}>
+                <i className={`bi bi-linkedin ${contactInfoStyles.contactIcon}`}></i>
+                <div>
+                  <span className={contactInfoStyles.contactLabel}>LinkedIn</span>
+                  <p className={contactInfoStyles.contactValue}>{user.linkedin}</p>
+                </div>
+              </div>
+              <div className={contactInfoStyles.contactItem}>
+                <i className={`bi bi-github ${contactInfoStyles.contactIcon}`}></i>
+                <div>
+                  <span className={contactInfoStyles.contactLabel}>GitHub</span>
+                  <p className={contactInfoStyles.contactValue}>{user.github}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          {activeTab === "Objectives" && (
+            <div className={objectivesStyles.objectivesSection}>
+              <ul className={objectivesStyles.objectivesList}>
+                {objectives.map((obj) => (
+                  <li key={obj.id} className={`${objectivesStyles.objectiveItem} ${obj.completed ? objectivesStyles.completed : ''}`}>
+                    <input
+                      type="checkbox"
+                      id={`objective-${obj.id}`}
+                      checked={obj.completed}
+                      onChange={() => handleObjectiveToggle(obj.id)}
+                      className={objectivesStyles.objectiveCheckbox}
+                    />
+                    <label htmlFor={`objective-${obj.id}`} className={objectivesStyles.objectiveText}>
+                      {obj.text}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </GlassCard>
+      </div>
+
+      <aside className={pageStyles.profileSidebar}>
+        <GlassCard>
+          <div className={certificateStyles.sectionHeader}>
+            <h2 className={certificateStyles.sectionTitle}>My certificates</h2>
+            <button className={certificateStyles.sectionAddBtn}>
+              <i className="bi bi-plus-lg" />
+            </button>
+          </div>
+          {certificates.map(cert => (
+            <article key={cert.id} className={certificateStyles.certificate}>
+              <img src={cert.img} alt={cert.alt} />
+              <div>
+                <h3>{cert.title}</h3>
+                <p>by {cert.issuer}</p>
+              </div>
+            </article>
+          ))}
+        </GlassCard>
+
+        <GlassCard>
+          <div className={certificateStyles.sectionHeader}>
+            <h2 className={certificateStyles.sectionTitle}>My Skills</h2>
+            <button className={certificateStyles.sectionAddBtn}>
+              <i className="bi bi-plus-lg" />
+            </button>
+          </div>
+          <div className={pageStyles.skillChipGroup}>
+            <SkillChip text="Hard skills" iconClass="bi bi-tools" />
+            <SkillChip text="Soft skills" iconClass="bi bi-puzzle" />
+            <SkillChip text="Tools & Platforms" iconClass="bi bi-box" />
+          </div>
+        </GlassCard>
+      </aside>
+    </div>
+  );
+};

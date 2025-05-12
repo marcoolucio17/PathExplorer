@@ -79,7 +79,56 @@
   z-index: 10;
 }
 
-/* Responsive styles */
+/* Media queries for zoom and smaller viewports */
+@media (max-width: 768px), (max-height: 700px) {
+  :root {
+    --container-height: 85vh;
+    --container-padding: 1rem;
+  }
+  
+  .empleadoProyectoContainer {
+    padding: var(--container-padding);
+    overflow-y: auto;
+  }
+  
+  .proyectoMainContent {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 2rem);
+  }
+  
+  .proyectoDetails {
+    overflow-y: auto;
+    min-height: 400px;
+  }
+  
+  .proyectoSidebar {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .sidebarSection {
+    min-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+/* High zoom levels or very small viewports */
+@media (max-width: 480px), (max-height: 600px) {
+  .proyectoDetails {
+    padding: 0.5rem;
+  }
+  
+  .empleadoProyectoContainer {
+    padding: 0.5rem;
+  }
+  
+  .proyectoMainContent {
+    gap: 0.75rem;
+  }
+}
+
+/* Responsive styles - refactored */
 @media (max-width: 1024px) {
   :root {
     --container-height: 90vh;

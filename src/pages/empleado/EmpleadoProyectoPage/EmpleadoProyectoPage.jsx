@@ -123,7 +123,7 @@ export const EmpleadoProyectoPage = () => {
           {/* Skills Section */}
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={skillsStyles.skillsSection}>
-              <h2 className={detailsStyles.cardTitle} style={{ fontSize: '1.35rem' }}>Skills Required</h2>
+              <h2 className={`${detailsStyles.cardTitle} ${skillsStyles.skillsTitle}`} style={{ fontSize: '1.35rem' }}>Skills Required</h2>
               <div className={skillsStyles.skillsContainer}>
                 <div className={skillsStyles.skillsList}>
                   <span className={`${skillsStyles.skillTag} ${skillsStyles.userSkill}`}>JavaScript</span>

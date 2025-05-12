@@ -201,3 +201,30 @@
   box-shadow: var(--shadow-inset-press);
   transition-duration: 0.1s;
 }
+
+/* Zoom and small viewport responsiveness */
+@media (max-width: 480px), (max-height: 600px) {
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+  
+  .proyectoDates {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .sectionText,
+  .deliverablesList li {
+    min-width: 200px;
+  }
+  
+  .proyectoActions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
+}

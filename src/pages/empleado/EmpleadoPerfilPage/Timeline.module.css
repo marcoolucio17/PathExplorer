@@ -37,7 +37,7 @@
   left: 1.5rem;
   top: 0;
   width: 2px;
-  height: 10px;
+  height: calc(10px + 1.5rem); /* Height to center of date */
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -46,10 +46,24 @@
   content: "";
   position: absolute;
   left: 1.5rem;
-  top: calc(10px + 3rem); /* Start after date height */
+  top: calc(10px + 1.5rem); /* Start from center of date */
   width: 2px;
   bottom: -1.5rem; /* Extend to next item */
   background: rgba(255, 255, 255, 0.15);
+}
+
+/* Add a connection dot at date level */
+.timeline li .date::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-color, #fff);
+  border: 2px solid #2c2c46;
 }
 
 .date {

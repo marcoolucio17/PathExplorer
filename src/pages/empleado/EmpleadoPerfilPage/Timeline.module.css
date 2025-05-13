@@ -34,7 +34,7 @@
 .timeline li::before {
   content: "";
   position: absolute;
-  left: -4rem;
+  left: calc(4rem - 40px);
   top: 0;
   width: 2px;
   height: 10px;
@@ -45,7 +45,7 @@
 .timeline li::after {
   content: "";
   position: absolute;
-  left: -4rem;
+  left: calc(4rem - 40px);
   top: calc(10px + 3rem); /* Start after date height */
   width: 2px;
   bottom: -1.5rem; /* Extend to next item */

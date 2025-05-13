@@ -32,27 +32,21 @@
 .profileColumnLeft {
   position: relative;
   flex: 3;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: var(--shadow-card);
-  color: var(--text-light);
-  padding: clamp(0.75rem, 1.5vw, 1.25rem);
   display: flex;
   flex-direction: column;
-  gap: clamp(0.3rem, 0.6vw, 0.5rem); /* Reduced gap */
+  gap: clamp(0.3rem, 0.6vw, 0.5rem);
   height: 100%;
   min-width: 0;
   overflow: hidden;
 }
 
-/* Make ProfileHeaderCard much smaller */
+/* Make ProfileHeaderCard full width and sticky to top */
 .profileColumnLeft > :first-child {
   flex-shrink: 0;
-  max-height: 120px; /* Fixed small height */
+  max-height: 120px;
   margin-bottom: 0;
+  width: 100%;
+  position: relative;
 }
 
 /* Tabs should be compact */

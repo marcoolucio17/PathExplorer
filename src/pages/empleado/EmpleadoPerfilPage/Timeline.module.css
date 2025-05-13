@@ -91,6 +91,22 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+/* Add a dot on the timeline at the date position */
+.bullet::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary-color, #fff);
+  border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .bullet img {

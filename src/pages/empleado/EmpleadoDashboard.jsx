@@ -6,8 +6,6 @@ import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjec
 
 import "../../styles/EmpleadoDashboard.css";
 
-
-import { useAuth } from "../../context/AuthContext";
 import { useGetFetch } from '../../hooks/useGetFetch';
 import { DashboardSkillsCategory } from "../../components/Dashboard/DashboardSkillsCategory";
 /**
@@ -25,7 +23,7 @@ import { DashboardSkillsCategory } from "../../components/Dashboard/DashboardSki
 // Realizar la condición de que si no hay proyectos se vea un mensaje de que no hay proyectos
 
 export const EmpleadoDashboard = () => {
-  const authState = useAuth();
+  const authState = localStorage.getItem("role");
   //Agregar el error y el loading de cada uno
   const [searchProjects, setSearchProjects] = useState('');
   const [skillSelected, setSkillSelected] = useState('Skills');

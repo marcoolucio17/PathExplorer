@@ -85,7 +85,7 @@ export const EmpleadoPerfilPage = () => {
             onTabClick={setActiveTab}
           />
 
-          <GlassCard className={pageStyles.tabContentContainer}>
+          <div className={pageStyles.tabContentContainer}>
             {activeTab === "Experience" && (
               <ul className={timelineStyles.timeline}>
                 {experienceItems.map(item => (
@@ -154,7 +154,7 @@ export const EmpleadoPerfilPage = () => {
                 </ul>
               </div>
             )}
-          </GlassCard>
+          </div>
         </div>
 
         {/* Right Column */}

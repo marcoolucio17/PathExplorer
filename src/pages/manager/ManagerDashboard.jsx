@@ -5,7 +5,6 @@ import '../../styles/ManagerDashboard.css'
 
 import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjectInfo'
 import { NavLink, Link } from 'react-router'
-import { useAuth } from "../../context/AuthContext";
 import { useGetFetch } from '../../hooks/useGetFetch';
 /**
  * Componente Dashboard para usuarios con rol de Manager
@@ -13,7 +12,7 @@ import { useGetFetch } from '../../hooks/useGetFetch';
  */
 
 export const ManagerDashboard = () => {
-  const authState = useAuth();
+  const authState = localStorage.getItem("role");
   
   const {data: data_projects }= useGetFetch({rutaApi: `projects`});
 

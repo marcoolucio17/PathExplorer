@@ -52,7 +52,7 @@ const MOCK_CERTIFICATES = [
 ];
 
 export const EmpleadoPerfilPage = () => {
-  const [activeTab, setActiveTab] = useState("Experience");
+  const [activeTab, setActiveTab] = useState("Contact Information");
   const [objectives, setObjectives] = useState([
     { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
     { id: 2, text: "Finish the advanced React course", completed: true },

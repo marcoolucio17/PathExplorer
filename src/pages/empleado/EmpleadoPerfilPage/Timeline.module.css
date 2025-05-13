@@ -28,16 +28,18 @@
   gap: clamp(0.75rem, 1.5vw, 1rem);
   position: relative;
   padding-left: 3.5rem;
+  --date-top: 10px;
+  --date-height: 3rem;
 }
 
 /* Create timeline segment above the date */
 .timeline li::before {
   content: "";
   position: absolute;
-  left: 1.5rem;
+  left: -3.5rem;
   top: 0;
   width: 2px;
-  height: calc(10px + 1.5rem); /* Height to center of date */
+  height: 0px;
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -45,32 +47,17 @@
 .timeline li::after {
   content: "";
   position: absolute;
-  left: 1.5rem;
-  top: calc(10px + 1.5rem); /* Start from center of date */
+  left: -3.5rem;
+  top: 2.5rem; /* Start after date height */
   width: 2px;
-  bottom: -1.5rem; /* Extend to next item */
+  bottom: -1rem; /* Extend to next item */
   background: rgba(255, 255, 255, 0.15);
-}
-
-/* Add a connection dot at date level */
-.timeline li .date::after {
-  content: "";
-  position: absolute;
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary-color, #fff);
-  border: 2px solid #2c2c46;
 }
 
 .date {
   position: absolute;
   left: -145px;
   top: 10px;
-  height: 3rem;
   width: 140px;
   text-align: right;
   color: var(--text-muted-darker);
@@ -93,13 +80,6 @@
   .timeline li {
     flex-direction: column;
     align-items: flex-start;
-  }
-  
-  /* Hide timeline segments on smaller screens */
-  .timeline li::before,
-  .timeline li::after,
-  .timeline li .date::after {
-    display: none;
   }
 }
 
@@ -164,13 +144,5 @@
   
   .timeline::before {
     left: 1rem;
-    background: rgba(255, 255, 255, 0.15);
-  }
-  
-  /* Hide timeline segments on mobile */
-  .timeline li::before,
-  .timeline li::after,
-  .timeline li .date::after {
-    display: none;
   }
 }

@@ -19,7 +19,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: rgba(255, 255, 255, 0.15);
+  background: transparent;
 }
 
 .timeline li {

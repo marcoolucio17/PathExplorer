@@ -48,35 +48,17 @@
   overflow: hidden;
 }
 
-/* Reset all margins for direct children */
-.profileColumnLeft > * {
-  margin: 0;
-}
-
-/* Remove extra margin from ProfileHeaderCard */
+/* Ensure ProfileHeaderCard doesn't take too much space */
 .profileColumnLeft > :first-child {
-  margin-bottom: 0;
   flex-shrink: 0;
+  max-height: 25%;
 }
 
-/* Tabs container should not add extra spacing */
+/* Tabs should be compact */
 .profileColumnLeft > :nth-child(2) {
-  margin-bottom: 0;
   flex-shrink: 0;
 }
 
-/* Ensure proper gaps between elements */
-.profileColumnLeft > * + * {
-  margin-top: clamp(0.5rem, 1vw, 0.75rem);
-}
-
-/* Add proper viewport constraints */
-@viewport {
-  width: device-width;
-  zoom: 1.0;
-}
-
-/* Ensure proper sidebar handling on zoom */
 .profileSidebar {
   flex: 1.5;
   display: flex;
@@ -88,48 +70,19 @@
   min-width: 280px;
 }
 
-/* Sidebar sections with flexible heights */
 .sidebarSection {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   min-height: 0;
-  padding: 0;
 }
 
-/* Remove extra padding from GlassCard children in sidebar */
-.sidebarSection > div {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-/* Ensure certificate content doesn't overflow */
-.sidebarSection:first-child > div {
-  overflow-y: auto;
-}
-
-/* Skills section should stay compact */
-.sidebarSection:last-child > div {
-  overflow: hidden;
-}
-
-/* Enable scrolling in sidebar sections on zoom */
-@media (max-width: 768px), (max-height: 700px) {
-  .sidebarSection {
-    overflow-y: auto;
-  }
-}
-
-/* Make Certificates section taller (65% of sidebar) */
 .sidebarSection:first-child {
   flex: 2;
   z-index: 20;
 }
 
-/* Make Skills section shorter (35% of sidebar) */
 .sidebarSection:last-child {
   flex: 1;
   z-index: 10;
@@ -138,17 +91,17 @@
 .tabContentContainer {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Ensure tab content fills the container */
+/* Ensure content is visible and scrollable */
 .tabContentContainer > * {
   flex: 1;
-  height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .skillChipGroup {
@@ -161,7 +114,6 @@
   padding: clamp(0.25rem, 0.5vw, 0.5rem);
 }
 
-/* Media queries for zoom and smaller viewports */
 @media (max-width: 768px), (max-height: 700px) {
   :root {
     --container-height: 85vh;
@@ -195,7 +147,6 @@
   }
 }
 
-/* High zoom levels or very small viewports */
 @media (max-width: 480px), (max-height: 600px) {
   .profileColumnLeft {
     padding: 0.5rem;
@@ -210,7 +161,6 @@
   }
 }
 
-/* Responsive styles - refactored */
 @media (max-width: 1024px) {
   :root {
     --container-height: 90vh;

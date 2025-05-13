@@ -3,15 +3,13 @@
 import React, { useContext } from "react";
 import { Outlet, Navigate } from "react-router";
 
-import { useAuth } from "../context/AuthContext";
-
 import CustomNavBar from "../pages/CustomNavBar";
 
 const PrivateRoutes = ({ allowedRoles }) => {
-  const role = useAuth();
+  let authRole = localStorage.getItem("role");
 
-  if (!role) return <p>Loading...</p>;
-  if (!allowedRoles.includes(role)) return <Navigate to="/unauthorized" />;
+  if (!authRole) return <p>Loading...</p>;
+  if (!allowedRoles.includes(authRole)) return <Navigate to="/unauthorized" />;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>

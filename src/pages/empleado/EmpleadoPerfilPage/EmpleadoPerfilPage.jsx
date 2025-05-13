@@ -30,7 +30,8 @@ const MOCK_USER = {
 const MOCK_EXPERIENCE = [
   {
     id: 1,
-    date: "Jun 2019 – Present",
+    dateStart: "Jun 2019",
+    dateEnd: "Present",
     logo: "/imagesUser/golf-logo.png",
     alt: "Project Golf",
     title: "Sr. Software Engineer on Project Golf",
@@ -38,7 +39,8 @@ const MOCK_EXPERIENCE = [
   },
   {
     id: 2,
-    date: "Jan 2018 – May 2019",
+    dateStart: "Jan 2018",
+    dateEnd: "May 2019",
     logo: "/imagesUser/trump.png",
     alt: "Project Stargate",
     title: "Lead Architect — Project Stargate",
@@ -88,9 +90,15 @@ export const EmpleadoPerfilPage = () => {
           <div className={pageStyles.tabContentContainer}>
             {activeTab === "Experience" && (
               <ul className={timelineStyles.timeline}>
-                {experienceItems.map(item => (
-                  <li key={item.id}>
-                    <span className={timelineStyles.date}>{item.date}</span>
+                {experienceItems.map((item, index) => (
+                  <li 
+                    key={item.id}
+                    style={{
+                      '--date-top': '0.5rem',
+                      '--date-height': 'auto',
+                    }}
+                  >
+                    <span className={timelineStyles.date}>{item.dateStart} - {item.dateEnd}</span>
                     <div className={timelineStyles.bullet}>
                       <img src={item.logo} alt={item.alt} />
                     </div>

@@ -98,6 +98,17 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+/* Ensure certificate content doesn't overflow */
+.sidebarSection:first-child > div {
+  overflow-y: auto;
+}
+
+/* Skills section should stay compact */
+.sidebarSection:last-child > div {
+  overflow: hidden;
 }
 
 /* Enable scrolling in sidebar sections on zoom */

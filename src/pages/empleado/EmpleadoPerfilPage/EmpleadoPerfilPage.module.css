@@ -114,7 +114,8 @@
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   box-shadow: var(--shadow-card);
-  padding: clamp(0.75rem, 1.5vw, 1.25rem);
+  padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(0.75rem, 1.5vw, 1.25rem) 0; /* No bottom padding */
+  width: 100%; /* Full width */
 }
 
 /* Force content visibility */

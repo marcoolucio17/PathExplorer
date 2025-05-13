@@ -89,7 +89,7 @@
   position: absolute;
   left: -145px;
   top: var(--date-top);
-  height: var(--date-height);
+  min-height: var(--date-height);
   width: 140px;
   text-align: right;
   color: var(--text-muted-darker);
@@ -100,7 +100,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding: 0.5rem 10px 0.5rem 0;
 }
 
 /* Adjust date positioning to stay within container */

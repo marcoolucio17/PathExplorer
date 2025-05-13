@@ -49,10 +49,11 @@
   position: relative;
 }
 
-/* Tabs should be compact */
+/* Tabs should be compact and full width */
 .profileColumnLeft > :nth-child(2) {
   flex-shrink: 0;
   margin-bottom: 0;
+  width: 100%;
 }
 
 /* Add proper viewport constraints */

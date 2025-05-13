@@ -59,6 +59,32 @@
   display: none;
 }
 
+/* Add a horizontal connection from date to timeline */
+.date::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Add a dot at the connection point */
+.timeline li .bullet::before {
+  content: "";
+  position: absolute;
+  left: calc(-3.5rem + 1.5rem - 4px);
+  top: calc(var(--date-top) + var(--date-height) / 2 - 10px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-color, #fff);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  z-index: 4;
+}
+
 .date {
   position: absolute;
   left: -145px;

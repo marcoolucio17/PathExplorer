@@ -39,7 +39,7 @@
   left: 1.5rem;
   top: 0;
   width: 2px;
-  height: calc(var(--date-top) + var(--date-height) / 2);
+  height: calc(var(--date-top) + 1.25rem);
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -48,9 +48,9 @@
   content: "";
   position: absolute;
   left: 1.5rem;
-  top: calc(var(--date-top) + var(--date-height) / 2);
+  top: calc(var(--date-top) + 1.25rem);
   width: 2px;
-  bottom: calc(-1 * clamp(1rem, 2vw, 1.5rem)); /* Dynamic gap */
+  bottom: calc(-1 * clamp(1rem, 2vw, 1.5rem));
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -76,7 +76,7 @@
   content: "";
   position: absolute;
   left: calc(-3.5rem + 1.5rem - 4px);
-  top: calc(var(--date-top) + var(--date-height) / 2 - 10px);
+  top: calc(var(--date-top) + 1.25rem - 10px);
   width: 8px;
   height: 8px;
   border-radius: 50%;

@@ -36,10 +36,10 @@
 .timeline li::before {
   content: "";
   position: absolute;
-  left: -3.5rem;
+  left: 1.5rem;
   top: 0;
   width: 2px;
-  height: 0px;
+  height: calc(var(--date-top) + var(--date-height) / 2);
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -47,11 +47,16 @@
 .timeline li::after {
   content: "";
   position: absolute;
-  left: -3.5rem;
-  top: 2.5rem; /* Start after date height */
+  left: 1.5rem;
+  top: calc(var(--date-top) + var(--date-height) / 2);
   width: 2px;
-  bottom: -1rem; /* Extend to next item */
+  bottom: calc(-1 * clamp(1rem, 2vw, 1.5rem)); /* Dynamic gap */
   background: rgba(255, 255, 255, 0.15);
+}
+
+/* Hide the bottom segment for the last item */
+.timeline li:last-child::after {
+  display: none;
 }
 
 .date {

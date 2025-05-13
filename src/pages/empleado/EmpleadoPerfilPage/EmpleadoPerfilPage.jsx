@@ -74,120 +74,124 @@ export const EmpleadoPerfilPage = () => {
 
   return (
     <div className={pageStyles.profileLayout}>
-      <div className={pageStyles.profileColumnLeft}>
-        <ProfileHeaderCard user={user} />
+      <div className={pageStyles.mainContentWrapper}>
+        {/* Left Column */}
+        <div className={pageStyles.profileColumnLeft}>
+          <ProfileHeaderCard user={user} />
 
-        <Tabs
-          tabs={TAB_OPTIONS}
-          activeTab={activeTab}
-          onTabClick={setActiveTab}
-        />
+          <Tabs
+            tabs={TAB_OPTIONS}
+            activeTab={activeTab}
+            onTabClick={setActiveTab}
+          />
 
-        <GlassCard className={pageStyles.tabContentContainer}>
-          {activeTab === "Experience" && (
-            <ul className={timelineStyles.timeline}>
-              {experienceItems.map(item => (
-                <li key={item.id}>
-                  <span className={timelineStyles.date}>{item.date}</span>
-                  <div className={timelineStyles.bullet}>
-                    <img src={item.logo} alt={item.alt} />
-                  </div>
-                  <div className={timelineStyles.content}>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-          {activeTab === "Contact Information" && (
-            <div className={contactInfoStyles.contactInfoSection}>
-              <div className={contactInfoStyles.contactItem}>
-                <i className={`bi bi-envelope-fill ${contactInfoStyles.contactIcon}`}></i>
-                <div>
-                  <span className={contactInfoStyles.contactLabel}>Email</span>
-                  <p className={contactInfoStyles.contactValue}>{user.email}</p>
-                </div>
-              </div>
-              <div className={contactInfoStyles.contactItem}>
-                <i className={`bi bi-telephone-fill ${contactInfoStyles.contactIcon}`}></i>
-                <div>
-                  <span className={contactInfoStyles.contactLabel}>Phone</span>
-                  <p className={contactInfoStyles.contactValue}>{user.phone}</p>
-                </div>
-              </div>
-              <div className={contactInfoStyles.contactItem}>
-                <i className={`bi bi-linkedin ${contactInfoStyles.contactIcon}`}></i>
-                <div>
-                  <span className={contactInfoStyles.contactLabel}>LinkedIn</span>
-                  <p className={contactInfoStyles.contactValue}>{user.linkedin}</p>
-                </div>
-              </div>
-              <div className={contactInfoStyles.contactItem}>
-                <i className={`bi bi-github ${contactInfoStyles.contactIcon}`}></i>
-                <div>
-                  <span className={contactInfoStyles.contactLabel}>GitHub</span>
-                  <p className={contactInfoStyles.contactValue}>{user.github}</p>
-                </div>
-              </div>
-            </div>
-          )}
-          {activeTab === "Objectives" && (
-            <div className={objectivesStyles.objectivesSection}>
-              <ul className={objectivesStyles.objectivesList}>
-                {objectives.map((obj) => (
-                  <li key={obj.id} className={`${objectivesStyles.objectiveItem} ${obj.completed ? objectivesStyles.completed : ''}`}>
-                    <input
-                      type="checkbox"
-                      id={`objective-${obj.id}`}
-                      checked={obj.completed}
-                      onChange={() => handleObjectiveToggle(obj.id)}
-                      className={objectivesStyles.objectiveCheckbox}
-                    />
-                    <label htmlFor={`objective-${obj.id}`} className={objectivesStyles.objectiveText}>
-                      {obj.text}
-                    </label>
+          <GlassCard className={pageStyles.tabContentContainer}>
+            {activeTab === "Experience" && (
+              <ul className={timelineStyles.timeline}>
+                {experienceItems.map(item => (
+                  <li key={item.id}>
+                    <span className={timelineStyles.date}>{item.date}</span>
+                    <div className={timelineStyles.bullet}>
+                      <img src={item.logo} alt={item.alt} />
+                    </div>
+                    <div className={timelineStyles.content}>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                    </div>
                   </li>
                 ))}
               </ul>
-            </div>
-          )}
-        </GlassCard>
-      </div>
-
-      <aside className={pageStyles.profileSidebar}>
-        <GlassCard>
-          <div className={certificateStyles.sectionHeader}>
-            <h2 className={certificateStyles.sectionTitle}>My certificates</h2>
-            <button className={certificateStyles.sectionAddBtn}>
-              <i className="bi bi-plus-lg" />
-            </button>
-          </div>
-          {certificates.map(cert => (
-            <article key={cert.id} className={certificateStyles.certificate}>
-              <img src={cert.img} alt={cert.alt} />
-              <div>
-                <h3>{cert.title}</h3>
-                <p>by {cert.issuer}</p>
+            )}
+            {activeTab === "Contact Information" && (
+              <div className={contactInfoStyles.contactInfoSection}>
+                <div className={contactInfoStyles.contactItem}>
+                  <i className={`bi bi-envelope-fill ${contactInfoStyles.contactIcon}`}></i>
+                  <div>
+                    <span className={contactInfoStyles.contactLabel}>Email</span>
+                    <p className={contactInfoStyles.contactValue}>{user.email}</p>
+                  </div>
+                </div>
+                <div className={contactInfoStyles.contactItem}>
+                  <i className={`bi bi-telephone-fill ${contactInfoStyles.contactIcon}`}></i>
+                  <div>
+                    <span className={contactInfoStyles.contactLabel}>Phone</span>
+                    <p className={contactInfoStyles.contactValue}>{user.phone}</p>
+                  </div>
+                </div>
+                <div className={contactInfoStyles.contactItem}>
+                  <i className={`bi bi-linkedin ${contactInfoStyles.contactIcon}`}></i>
+                  <div>
+                    <span className={contactInfoStyles.contactLabel}>LinkedIn</span>
+                    <p className={contactInfoStyles.contactValue}>{user.linkedin}</p>
+                  </div>
+                </div>
+                <div className={contactInfoStyles.contactItem}>
+                  <i className={`bi bi-github ${contactInfoStyles.contactIcon}`}></i>
+                  <div>
+                    <span className={contactInfoStyles.contactLabel}>GitHub</span>
+                    <p className={contactInfoStyles.contactValue}>{user.github}</p>
+                  </div>
+                </div>
               </div>
-            </article>
-          ))}
-        </GlassCard>
+            )}
+            {activeTab === "Objectives" && (
+              <div className={objectivesStyles.objectivesSection}>
+                <ul className={objectivesStyles.objectivesList}>
+                  {objectives.map((obj) => (
+                    <li key={obj.id} className={`${objectivesStyles.objectiveItem} ${obj.completed ? objectivesStyles.completed : ''}`}>
+                      <input
+                        type="checkbox"
+                        id={`objective-${obj.id}`}
+                        checked={obj.completed}
+                        onChange={() => handleObjectiveToggle(obj.id)}
+                        className={objectivesStyles.objectiveCheckbox}
+                      />
+                      <label htmlFor={`objective-${obj.id}`} className={objectivesStyles.objectiveText}>
+                        {obj.text}
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </GlassCard>
+        </div>
 
-        <GlassCard>
-          <div className={certificateStyles.sectionHeader}>
-            <h2 className={certificateStyles.sectionTitle}>My Skills</h2>
-            <button className={certificateStyles.sectionAddBtn}>
-              <i className="bi bi-plus-lg" />
-            </button>
-          </div>
-          <div className={pageStyles.skillChipGroup}>
-            <SkillChip text="Hard skills" iconClass="bi bi-tools" />
-            <SkillChip text="Soft skills" iconClass="bi bi-puzzle" />
-            <SkillChip text="Tools & Platforms" iconClass="bi bi-box" />
-          </div>
-        </GlassCard>
-      </aside>
+        {/* Right Column */}
+        <div className={pageStyles.profileSidebar}>
+          <GlassCard className={pageStyles.sidebarSection}>
+            <div className={certificateStyles.sectionHeader}>
+              <h2 className={certificateStyles.sectionTitle}>My certificates</h2>
+              <button className={certificateStyles.sectionAddBtn}>
+                <i className="bi bi-plus-lg" />
+              </button>
+            </div>
+            {certificates.map(cert => (
+              <article key={cert.id} className={certificateStyles.certificate}>
+                <img src={cert.img} alt={cert.alt} />
+                <div>
+                  <h3>{cert.title}</h3>
+                  <p>by {cert.issuer}</p>
+                </div>
+              </article>
+            ))}
+          </GlassCard>
+
+          <GlassCard className={pageStyles.sidebarSection}>
+            <div className={certificateStyles.sectionHeader}>
+              <h2 className={certificateStyles.sectionTitle}>My Skills</h2>
+              <button className={certificateStyles.sectionAddBtn}>
+                <i className="bi bi-plus-lg" />
+              </button>
+            </div>
+            <div className={pageStyles.skillChipGroup}>
+              <SkillChip text="Hard skills" iconClass="bi bi-tools" />
+              <SkillChip text="Soft skills" iconClass="bi bi-puzzle" />
+              <SkillChip text="Tools & Platforms" iconClass="bi bi-box" />
+            </div>
+          </GlassCard>
+        </div>
+      </div>
     </div>
   );
 };

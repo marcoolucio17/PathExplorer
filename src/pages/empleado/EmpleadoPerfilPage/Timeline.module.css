@@ -99,7 +99,7 @@
 .bullet::before {
   content: "";
   position: absolute;
-  left: -40px;
+  left: calc(1.5rem - 40px);
   top: 50%;
   transform: translateY(-50%);
   width: 12px;

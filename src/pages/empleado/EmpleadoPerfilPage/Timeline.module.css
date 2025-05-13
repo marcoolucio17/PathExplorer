@@ -188,5 +188,14 @@
   
   .timeline::before {
     left: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Hide timeline segments and connections on mobile */
+  .timeline li::before,
+  .timeline li::after,
+  .date::after,
+  .timeline li .bullet::before {
+    display: none;
   }
 }

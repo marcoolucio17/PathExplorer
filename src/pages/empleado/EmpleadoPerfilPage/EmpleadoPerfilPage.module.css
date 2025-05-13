@@ -140,9 +140,10 @@
 }
 
 /* Ensure tab content fills the container */
-.tabContentContainer > div {
+.tabContentContainer > * {
   flex: 1;
   height: 100%;
+  overflow-y: auto;
 }
 
 .skillChipGroup {

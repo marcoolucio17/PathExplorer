@@ -132,7 +132,7 @@
   overflow-x: hidden;
   position: relative;
   z-index: 1;
-  min-height: 200px;
+  min-height: 0; /* Allow content to shrink */
 }
 
 .skillChipGroup {

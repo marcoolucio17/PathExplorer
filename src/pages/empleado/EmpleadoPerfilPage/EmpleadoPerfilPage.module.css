@@ -1,52 +1,224 @@
+:root {
+  --container-height: 70vh;
+  --container-padding: 2rem;
+  --min-content-width: 320px;
+}
+
 .profileLayout {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
+  background: transparent;
+  color: var(--text-light);
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-padding);
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.mainContentWrapper {
   display: flex;
   gap: 1.5rem;
-  min-height: calc(100vh - 100px);
-  padding: 3.5rem 0;
-  color: var(--text-light);
+  max-width: 1200px;
+  width: 100%;
+  height: var(--container-height);
+  min-height: 500px;
+  min-width: var(--min-content-width);
+  overflow: hidden;
+  position: relative;
 }
 
 .profileColumnLeft {
+  position: relative;
   flex: 3;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  color: var(--text-light);
+  padding: clamp(0.75rem, 1.5vw, 1.25rem);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  height: 100%;
   min-width: 0;
+  overflow: hidden;
 }
 
+/* Remove extra margin from ProfileHeaderCard */
+.profileColumnLeft > :first-child {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+/* Tabs container should not add extra spacing */
+.profileColumnLeft > :nth-child(2) {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+/* Ensure proper gaps between elements */
+.profileColumnLeft > * + * {
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+/* Add proper viewport constraints */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+/* Ensure proper sidebar handling on zoom */
 .profileSidebar {
   flex: 1.5;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  min-width: 0;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-width: 280px;
+}
+
+/* Sidebar sections with flexible heights */
+.sidebarSection {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  padding: 0;
+}
+
+/* Remove extra padding from GlassCard children in sidebar */
+.sidebarSection > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Enable scrolling in sidebar sections on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .sidebarSection {
+    overflow-y: auto;
+  }
+}
+
+/* Make Certificates section taller (65% of sidebar) */
+.sidebarSection:first-child {
+  flex: 2;
+  z-index: 20;
+}
+
+/* Make Skills section shorter (35% of sidebar) */
+.sidebarSection:last-child {
+  flex: 1;
+  z-index: 10;
 }
 
 .tabContentContainer {
-  /* Additional styles for the tab content glass card if needed */
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure tab content fills the container */
+.tabContentContainer > div {
+  flex: 1;
+  height: 100%;
 }
 
 .skillChipGroup {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  gap: clamp(0.4rem, 0.8vw, 0.6rem);
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  padding: clamp(0.25rem, 0.5vw, 0.5rem);
 }
 
-/* Responsive styles */
-@media (max-width: 1024px) {
+/* Media queries for zoom and smaller viewports */
+@media (max-width: 768px), (max-height: 700px) {
+  :root {
+    --container-height: 85vh;
+    --container-padding: 1rem;
+  }
+  
   .profileLayout {
+    padding: var(--container-padding);
+    overflow-y: auto;
+  }
+  
+  .mainContentWrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 2rem);
+  }
+  
+  .profileColumnLeft {
+    overflow-y: auto;
+    min-height: 400px;
+  }
+  
+  .profileSidebar {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .sidebarSection {
+    min-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+/* High zoom levels or very small viewports */
+@media (max-width: 480px), (max-height: 600px) {
+  .profileColumnLeft {
+    padding: 0.5rem;
+  }
+  
+  .profileLayout {
+    padding: 0.5rem;
+  }
+  
+  .mainContentWrapper {
+    gap: 0.75rem;
+  }
+}
+
+/* Responsive styles - refactored */
+@media (max-width: 1024px) {
+  :root {
+    --container-height: 90vh;
+    --container-padding: 1rem;
+  }
+
+  .profileLayout {
+    padding: var(--container-padding);
+  }
+
+  .mainContentWrapper {
     flex-direction: column;
     max-width: 100%;
-    gap: 1.5rem;
-    padding: 1.5rem 1rem 3rem;
+    height: var(--container-height);
   }
 
   .profileColumnLeft,
   .profileSidebar {
     flex: none;
     width: 100%;
+    height: 50%;
+    min-height: 0;
+  }
+  
+  .sidebarSection {
+    min-height: 150px;
   }
 }

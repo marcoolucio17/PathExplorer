@@ -48,6 +48,11 @@
   overflow: hidden;
 }
 
+/* Reset all margins for direct children */
+.profileColumnLeft > * {
+  margin: 0;
+}
+
 /* Remove extra margin from ProfileHeaderCard */
 .profileColumnLeft > :first-child {
   margin-bottom: 0;

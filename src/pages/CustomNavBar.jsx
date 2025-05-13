@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Logo from "../assets/Acc_GT_Dimensional_RGB 1.png";
-import { useAuth } from "../context/AuthContext";
 
 import "./CustomNavBar.css";
 
 function CustomNavbar() {
   const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
-  const authState = useAuth();
+  const authState = localStorage.getItem("role");
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

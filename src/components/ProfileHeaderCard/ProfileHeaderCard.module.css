@@ -1,5 +1,6 @@
 .profileHeaderCard {
-  /* Can override GlassCard defaults if needed */
+  /* Override GlassCard defaults for more compact display */
+  padding: clamp(0.5rem, 1vw, 0.75rem) !important; /* Reduced padding */
 }
 
 .profileHeaderMain {

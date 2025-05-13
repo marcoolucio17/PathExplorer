@@ -30,6 +30,28 @@
   padding-left: 3.5rem;
 }
 
+/* Create timeline segment above the date */
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -4rem;
+  top: 0;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Create timeline segment below the date */
+.timeline li::after {
+  content: "";
+  position: absolute;
+  left: -4rem;
+  top: calc(10px + 3rem); /* Start after date height */
+  width: 2px;
+  bottom: -1.5rem; /* Extend to next item */
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .date {
   position: absolute;
   left: -145px;

@@ -42,10 +42,23 @@
   padding: clamp(0.75rem, 1.5vw, 1.25rem);
   display: flex;
   flex-direction: column;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
+  gap: clamp(0.3rem, 0.6vw, 0.5rem); /* Reduced gap */
   height: 100%;
   min-width: 0;
   overflow: hidden;
+}
+
+/* Make ProfileHeaderCard much smaller */
+.profileColumnLeft > :first-child {
+  flex-shrink: 0;
+  max-height: 120px; /* Fixed small height */
+  margin-bottom: 0;
+}
+
+/* Tabs should be compact */
+.profileColumnLeft > :nth-child(2) {
+  flex-shrink: 0;
+  margin-bottom: 0;
 }
 
 /* Add proper viewport constraints */

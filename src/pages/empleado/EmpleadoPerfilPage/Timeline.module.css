@@ -164,5 +164,13 @@
   
   .timeline::before {
     left: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Hide timeline segments on mobile */
+  .timeline li::before,
+  .timeline li::after,
+  .timeline li .date::after {
+    display: none;
   }
 }

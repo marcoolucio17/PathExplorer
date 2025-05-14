@@ -7,6 +7,7 @@ import { SkillChip } from "../../../components/SkillChip";
 import { CertificateModal } from "../../../components/CertificateModal";
 import { CVModal } from "../../../components/CVModal";
 import { SkillsModal } from "../../../components/SkillsModal";
+import { AddCertificateModal } from "../../../components/AddCertificateModal";
 import CustomScrollbar from "../../../components/CustomScrollbar";
 import { GlassFade } from "../../../components/GlassFade";
 // Import page-specific styles
@@ -110,10 +111,12 @@ export const EmpleadoPerfilPage = () => {
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
+  const [isAddCertificateModalOpen, setIsAddCertificateModalOpen] = useState(false);
   const [userSkills, setUserSkills] = useState([
     "JavaScript", "React", "Node.js", "Python", "SQL", "Git",
     "Leadership", "Communication", "Problem Solving", "Teamwork", "Time Management"
   ]);
+  const [userCertificates, setUserCertificates] = useState(MOCK_CERTIFICATES);
   const [objectives, setObjectives] = useState([
     { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
     { id: 2, text: "Finish the advanced React course", completed: true },
@@ -164,9 +167,20 @@ export const EmpleadoPerfilPage = () => {
     setUserSkills(newSkills);
   };
 
+  const handleAddCertificateClick = () => {
+    setIsAddCertificateModalOpen(true);
+  };
+
+  const closeAddCertificateModal = () => {
+    setIsAddCertificateModalOpen(false);
+  };
+
+  const handleAddCertificate = (newCertificate) => {
+    setUserCertificates([...userCertificates, newCertificate]);
+  };
+
   const user = MOCK_USER;
   const experienceItems = MOCK_EXPERIENCE;
-  const certificates = MOCK_CERTIFICATES;
 
   return (
     <div className={pageStyles.profileLayout}>
@@ -318,13 +332,13 @@ export const EmpleadoPerfilPage = () => {
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={certificateStyles.sectionHeader}>
               <h2 className={certificateStyles.sectionTitle}>My certificates</h2>
-              <button className={skillsStyles.sectionAddBtn}>
+              <button className={skillsStyles.sectionAddBtn} onClick={handleAddCertificateClick}>
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
             <div style={{ height: '400px', position: 'relative', flex: 1, minHeight: 0 }}>
               <GlassFade fadeType="glass" fadeBackground="glass" fadeHeight="auto" style={{ height: '100%' }}>
-                {certificates.map(cert => (
+                {userCertificates.map(cert => (
                   <article 
                     key={cert.id} 
                     className={certificateStyles.certificate}
@@ -360,6 +374,12 @@ export const EmpleadoPerfilPage = () => {
         onClose={closeSkillsModal}
         userSkills={userSkills}
         onUpdateSkills={handleUpdateSkills}
+      />
+      
+      <AddCertificateModal
+        isOpen={isAddCertificateModalOpen}
+        onClose={closeAddCertificateModal}
+        onAddCertificate={handleAddCertificate}
       />
     </div>
   );

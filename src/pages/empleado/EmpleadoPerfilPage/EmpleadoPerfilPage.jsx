@@ -293,8 +293,7 @@ export const EmpleadoPerfilPage = () => {
                     <div className={skillsStyles.skillChipsContainer}>
                       {userSkills.filter(skill => 
                         // Filter hard skills (technical skills)
-                        !["Leadership", "Communication", "Problem Solving", "Teamwork", "Time Management", 
-                         "Active Listening", "Critical Thinking", "Adaptability", "Creativity & Innovation"].includes(skill)
+                        !SOFT_SKILLS_LIST.includes(skill)
                       ).map(skill => (
                         <SkillChip key={skill} text={skill} />
                       ))}
@@ -307,8 +306,7 @@ export const EmpleadoPerfilPage = () => {
                     <div className={skillsStyles.skillChipsContainer}>
                       {userSkills.filter(skill => 
                         // Filter soft skills
-                        ["Leadership", "Communication", "Problem Solving", "Teamwork", "Time Management", 
-                         "Active Listening", "Critical Thinking", "Adaptability", "Creativity & Innovation"].includes(skill)
+                        SOFT_SKILLS_LIST.includes(skill)
                       ).map(skill => (
                         <SkillChip key={skill} text={skill} />
                       ))}

@@ -164,7 +164,7 @@ export const EmpleadoPerfilPage = () => {
 
           <div className={pageStyles.tabContentContainer}>
             {activeTab === "Experience" && (
-              <CustomScrollbar>
+              <CustomScrollbar fadeBackground="transparent">
                 <ul className={timelineStyles.timeline}>
                   {experienceItems.map((item, index) => (
                     <li 

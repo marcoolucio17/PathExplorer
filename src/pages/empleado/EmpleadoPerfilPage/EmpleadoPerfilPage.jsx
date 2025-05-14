@@ -60,8 +60,28 @@ const MOCK_EXPERIENCE = [
 ];
 
 const MOCK_CERTIFICATES = [
-  {id: 1, img: "/imagesUser/JavaScript-logo.png", alt: "JS", title: "JavaScript Connoisseur", issuer: "Accenture"},
-  {id: 2, img: "/imagesUser/Python-logo.png", alt: "Python", title: "Python Expert", issuer: "Python Software Foundation"}
+  {
+    id: 1, 
+    img: "/imagesUser/JavaScript-logo.png", 
+    alt: "JS", 
+    title: "JavaScript Connoisseur", 
+    issuer: "Accenture",
+    skill: "JavaScript",
+    dateObtained: "15 de marzo, 2023",
+    dateExpiry: "15 de marzo, 2026",
+    certificateImage: "/imagesUser/js-certificate-full.png"
+  },
+  {
+    id: 2, 
+    img: "/imagesUser/Python-logo.png", 
+    alt: "Python", 
+    title: "Python Expert", 
+    issuer: "Python Software Foundation",
+    skill: "Python",
+    dateObtained: "22 de enero, 2023",
+    dateExpiry: null,
+    certificateImage: "/imagesUser/python-certificate-full.png"
+  }
 ];
 
 export const EmpleadoPerfilPage = () => {

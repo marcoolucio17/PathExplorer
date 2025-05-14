@@ -1,9 +1,7 @@
 import React from 'react';
 import styles from './CustomScrollbar.module.css';
 
-const CustomScrollbar = ({ children, className = '', maxHeight = '100%', style = {}, fadeBackground = 'glass' }) => {
-  const fadeClass = fadeBackground === 'transparent' ? styles.fadeBottomTransparent : styles.fadeBottom;
-  
+const CustomScrollbar = ({ children, className = '', maxHeight = '100%', style = {} }) => {
   return (
     <div 
       className={`${styles.scrollWrapper} ${className}`}
@@ -14,7 +12,6 @@ const CustomScrollbar = ({ children, className = '', maxHeight = '100%', style =
           {children}
         </div>
       </div>
-      <div className={fadeClass}></div>
     </div>
   );
 };

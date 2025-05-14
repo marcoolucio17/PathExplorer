@@ -144,17 +144,26 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
             />
           </div>
 
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className={styles.categorySelect}
-          >
-            {categories.map(category => (
-              <option key={category} value={category}>
-                {category === 'all' ? 'All Categories' : category}
-              </option>
-            ))}
-          </select>
+          <div className={styles.filterButtons}>
+            <button
+              className={`${styles.filterButton} ${selectedCategory === 'all' ? styles.active : ''}`}
+              onClick={() => setSelectedCategory('all')}
+            >
+              All
+            </button>
+            <button
+              className={`${styles.filterButton} ${selectedCategory === 'hard' ? styles.active : ''}`}
+              onClick={() => setSelectedCategory('hard')}
+            >
+              Hard Skills
+            </button>
+            <button
+              className={`${styles.filterButton} ${selectedCategory === 'Soft Skills' ? styles.active : ''}`}
+              onClick={() => setSelectedCategory('Soft Skills')}
+            >
+              Soft Skills
+            </button>
+          </div>
         </div>
 
         <div className={styles.skillsContainer}>

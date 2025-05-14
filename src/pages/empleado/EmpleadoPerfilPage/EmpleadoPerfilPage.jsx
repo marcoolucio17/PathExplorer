@@ -7,6 +7,7 @@ import { SkillChip } from "../../../components/SkillChip";
 import { CertificateModal } from "../../../components/CertificateModal";
 import { CVModal } from "../../../components/CVModal";
 import { SkillsModal } from "../../../components/SkillsModal";
+import { AddCertificateModal } from "../../../components/AddCertificateModal";
 import CustomScrollbar from "../../../components/CustomScrollbar";
 import { GlassFade } from "../../../components/GlassFade";
 // Import page-specific styles

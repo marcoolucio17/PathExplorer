@@ -2,7 +2,7 @@ import React from 'react';
 import GlassCard from '../shared/GlassCard/GlassCard';
 import styles from './ProfileHeaderCard.module.css';
 
-const ProfileHeaderCard = ({ user }) => {
+const ProfileHeaderCard = ({ user, onCVClick, onEditClick }) => {
   return (
     <GlassCard className={styles.profileHeaderCard}>
       <div className={styles.profileHeaderMain}>
@@ -19,11 +19,13 @@ const ProfileHeaderCard = ({ user }) => {
           </p>
         </div>
         <div className={styles.profileActions}>
-          <button className={styles.btnView}>
-            <i className="bi bi-eye-fill" />
+          <button className={styles.btnCV} onClick={onCVClick} title="View CV">
+            <i className="bi bi-file-earmark-text" />
+            <span className={styles.buttonText}>CV</span>
           </button>
-          <button className={styles.btnEdit}>
+          <button className={styles.btnEdit} onClick={onEditClick} title="Edit Profile">
             <i className="bi bi-pencil-fill" />
+            <span className={styles.buttonText}>Edit</span>
           </button>
         </div>
       </div>

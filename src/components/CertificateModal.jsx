@@ -3,26 +3,24 @@ import styles from './CertificateModal.module.css';
 
 export const CertificateModal = ({ certificate, isOpen, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
-      setShouldRender(true);
+    if (isOpen && certificate) {
+      setIsVisible(true);
       setIsClosing(false);
-    } else if (shouldRender) {
-      setIsClosing(true);
-      const timer = setTimeout(() => {
-        setShouldRender(false);
-        setIsClosing(false);
-      }, 300); // Match animation duration
-      return () => clearTimeout(timer);
     }
-  }, [isOpen, shouldRender]);
+  }, [isOpen, certificate]);
 
-  if (!shouldRender || !certificate) return null;
+  if (!isVisible || !certificate) return null;
 
   const handleClose = () => {
-    onClose();
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsVisible(false);
+      setIsClosing(false);
+    }, 300); // Match animation duration
   };
 
   const handleBackdropClick = (e) => {

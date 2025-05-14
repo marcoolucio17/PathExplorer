@@ -14,9 +14,14 @@ const ProfileHeaderCard = ({ user }) => {
         <div className={styles.profileMeta}>
           <h1>{user.name}</h1>
           <h2>{user.title} at {user.company}</h2>
-          <p>
-            <i className="bi bi-geo-alt-fill" /> {user.location}
-          </p>
+          <div className={styles.infoRow}>
+            <p className={styles.location}>
+              <i className="bi bi-geo-alt-fill" /> {user.location}
+            </p>
+            <p className={styles.project}>
+              <i className="bi bi-diagram-3-fill" /> Project Golf
+            </p>
+          </div>
         </div>
       </div>
     </GlassCard>

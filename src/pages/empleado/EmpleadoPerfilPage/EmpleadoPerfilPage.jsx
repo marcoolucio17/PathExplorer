@@ -252,6 +252,12 @@ export const EmpleadoPerfilPage = () => {
           </GlassCard>
         </div>
       </div>
+
+      <CertificateModal 
+        certificate={selectedCertificate}
+        isOpen={isCertificateModalOpen}
+        onClose={closeCertificateModal}
+      />
     </div>
   );
 };

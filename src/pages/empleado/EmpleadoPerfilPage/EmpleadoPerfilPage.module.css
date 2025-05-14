@@ -264,4 +264,13 @@
   .sidebarSection {
     min-height: 150px;
   }
+  
+  .cvButtonContainer {
+    flex-direction: column;
+  }
+  
+  .cvButton,
+  .cvDownloadButton {
+    width: 100%;
+  }
 }

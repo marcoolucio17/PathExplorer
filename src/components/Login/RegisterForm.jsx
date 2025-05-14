@@ -69,7 +69,7 @@ const RegisterForm = () => {
       const currentPath = location.pathname;
       const newPath = currentPath.replace("/register", "");
 
-      if (res.status === 201) {
+      if (res.status < 399) {
         console.log("Registration successful:", res.data);
       } else {
         throw new Error("Unexpected response status: " + res.status);

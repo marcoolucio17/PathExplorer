@@ -7,6 +7,7 @@ import { SkillChip } from "../../../components/SkillChip";
 import { CertificateModal } from "../../../components/CertificateModal";
 import { CVModal } from "../../../components/CVModal";
 import CustomScrollbar from "../../../components/CustomScrollbar";
+import { TextFade } from "../../../components/TextFade";
 // Import page-specific styles
 import pageStyles from "./EmpleadoPerfilPage.module.css";
 // Import styles for specific sections
@@ -180,7 +181,9 @@ export const EmpleadoPerfilPage = () => {
                       </div>
                       <div className={timelineStyles.content}>
                         <h3>{item.title}</h3>
-                        <p>{item.description}</p>
+                        <TextFade type="multiLine" lines={2} fadeLength="medium" transparent={true}>
+                          <p>{item.description}</p>
+                        </TextFade>
                       </div>
                     </li>
                   ))}
@@ -193,7 +196,9 @@ export const EmpleadoPerfilPage = () => {
                   <i className={`bi bi-envelope-fill ${contactInfoStyles.contactIcon}`}></i>
                   <div>
                     <span className={contactInfoStyles.contactLabel}>Email</span>
-                    <p className={contactInfoStyles.contactValue}>{user.email}</p>
+                    <TextFade type="singleLine" transparent={true}>
+                      <p className={contactInfoStyles.contactValue}>{user.email}</p>
+                    </TextFade>
                   </div>
                 </div>
                 <div className={contactInfoStyles.contactItem}>
@@ -207,14 +212,18 @@ export const EmpleadoPerfilPage = () => {
                   <i className={`bi bi-linkedin ${contactInfoStyles.contactIcon}`}></i>
                   <div>
                     <span className={contactInfoStyles.contactLabel}>LinkedIn</span>
-                    <p className={contactInfoStyles.contactValue}>{user.linkedin}</p>
+                    <TextFade type="singleLine" transparent={true}>
+                      <p className={contactInfoStyles.contactValue}>{user.linkedin}</p>
+                    </TextFade>
                   </div>
                 </div>
                 <div className={contactInfoStyles.contactItem}>
                   <i className={`bi bi-github ${contactInfoStyles.contactIcon}`}></i>
                   <div>
                     <span className={contactInfoStyles.contactLabel}>GitHub</span>
-                    <p className={contactInfoStyles.contactValue}>{user.github}</p>
+                    <TextFade type="singleLine" transparent={true}>
+                      <p className={contactInfoStyles.contactValue}>{user.github}</p>
+                    </TextFade>
                   </div>
                 </div>
               </div>

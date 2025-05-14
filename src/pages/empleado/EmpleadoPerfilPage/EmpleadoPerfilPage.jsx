@@ -6,6 +6,7 @@ import { GlassCard } from "../../../components/shared/GlassCard";
 import { SkillChip } from "../../../components/SkillChip";
 import { CertificateModal } from "../../../components/CertificateModal";
 import { CVModal } from "../../../components/CVModal";
+import CustomScrollbar from "../../../components/CustomScrollbar";
 // Import page-specific styles
 import pageStyles from "./EmpleadoPerfilPage.module.css";
 // Import styles for specific sections

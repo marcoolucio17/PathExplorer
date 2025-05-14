@@ -114,7 +114,7 @@ export const EmpleadoPerfilPage = () => {
 
   const closeCertificateModal = () => {
     setIsCertificateModalOpen(false);
-    setSelectedCertificate(null);
+    // Don't clear the certificate immediately - let the modal handle its own cleanup
   };
 
   const user = MOCK_USER;

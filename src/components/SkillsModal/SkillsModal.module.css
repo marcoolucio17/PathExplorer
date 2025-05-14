@@ -243,6 +243,7 @@
   flex-direction: column;
   gap: 1rem;
   min-height: 0; /* Important for flex overflow */
+  max-height: calc(100vh - 400px); /* Ensure container doesn't exceed viewport */
 }
 
 /* Category section */

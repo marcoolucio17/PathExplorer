@@ -216,6 +216,35 @@ export const EmpleadoPerfilPage = () => {
         <div className={pageStyles.profileSidebar}>
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={skillsStyles.sectionHeader}>
+              <h2 className={skillsStyles.sectionTitle}>Curriculum Vitae</h2>
+            </div>
+            <div className={pageStyles.cvButtonContainer}>
+              <button 
+                className={pageStyles.cvButton}
+                onClick={() => window.open('/cv/sammy-garcy-cv.pdf', '_blank')}
+              >
+                <i className="bi bi-file-earmark-pdf"></i>
+                View CV
+              </button>
+              <button 
+                className={pageStyles.cvDownloadButton}
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/cv/sammy-garcy-cv.pdf';
+                  link.download = 'Sammy_Garcy_CV.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+              >
+                <i className="bi bi-download"></i>
+                Download
+              </button>
+            </div>
+          </GlassCard>
+
+          <GlassCard className={pageStyles.sidebarSection}>
+            <div className={skillsStyles.sectionHeader}>
               <h2 className={skillsStyles.sectionTitle}>My Skills</h2>
               <button className={skillsStyles.sectionAddBtn}>
                 <i className="bi bi-plus-lg" />

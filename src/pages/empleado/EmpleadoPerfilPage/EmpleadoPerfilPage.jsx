@@ -332,7 +332,7 @@ export const EmpleadoPerfilPage = () => {
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={certificateStyles.sectionHeader}>
               <h2 className={certificateStyles.sectionTitle}>My certificates</h2>
-              <button className={skillsStyles.sectionAddBtn}>
+              <button className={skillsStyles.sectionAddBtn} onClick={handleAddCertificateClick}>
                 <i className="bi bi-plus-lg" />
               </button>
             </div>

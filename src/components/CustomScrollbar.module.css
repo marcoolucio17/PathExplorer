@@ -56,78 +56,92 @@
   box-sizing: border-box;
 }
 
-/* Bottom fade effect for glass containers - more subtle */
+/* Bottom fade effect for glass containers - reduced height */
 .fadeBottom {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 40px; /* Reduced from 80px */
   background: linear-gradient(to bottom, 
     transparent 0%,
-    rgba(42, 42, 70, 0.1) 10%,
-    rgba(42, 42, 70, 0.3) 30%,
-    rgba(42, 42, 70, 0.5) 50%,
-    rgba(42, 42, 70, 0.7) 70%,
-    rgba(42, 42, 70, 0.85) 85%,
-    rgba(42, 42, 70, 0.95) 95%,
-    rgba(42, 42, 70, 1) 100%
+    rgba(42, 42, 70, 0.02) 5%,
+    rgba(42, 42, 70, 0.08) 10%,
+    rgba(42, 42, 70, 0.15) 15%,
+    rgba(42, 42, 70, 0.22) 20%,
+    rgba(42, 42, 70, 0.3) 25%,
+    rgba(42, 42, 70, 0.38) 30%,
+    rgba(42, 42, 70, 0.46) 35%,
+    rgba(42, 42, 70, 0.54) 40%,
+    rgba(42, 42, 70, 0.62) 45%,
+    rgba(42, 42, 70, 0.68) 50%,
+    rgba(42, 42, 70, 0.74) 55%,
+    rgba(42, 42, 70, 0.79) 60%,
+    rgba(42, 42, 70, 0.83) 65%,
+    rgba(42, 42, 70, 0.86) 70%,
+    rgba(42, 42, 70, 0.88) 75%,
+    rgba(42, 42, 70, 0.9) 80%,
+    rgba(42, 42, 70, 0.91) 85%,
+    rgba(42, 42, 70, 0.92) 90%,
+    rgba(42, 42, 70, 0.93) 95%,
+    rgba(42, 42, 70, 0.94) 100%
   );
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  mask-image: linear-gradient(to bottom, transparent, black 20px, black);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20px, black);
 }
 
-/* Bottom fade effect for transparent containers - more subtle */
+/* Bottom fade effect for transparent containers - reduced height */
 .fadeBottomTransparent {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 40px; /* Reduced from 80px */
+  width: 100%; /* Full width */
   background: linear-gradient(to bottom, 
     transparent 0%,
     rgba(30, 29, 54, 0.05) 10%,
-    rgba(30, 29, 54, 0.15) 25%,
-    rgba(30, 29, 54, 0.3) 40%,
-    rgba(30, 29, 54, 0.5) 55%,
-    rgba(30, 29, 54, 0.7) 70%,
-    rgba(30, 29, 54, 0.85) 85%,
-    rgba(30, 29, 54, 0.95) 95%,
+    rgba(30, 29, 54, 0.15) 20%,
+    rgba(30, 29, 54, 0.3) 30%,
+    rgba(30, 29, 54, 0.45) 40%,
+    rgba(30, 29, 54, 0.6) 50%,
+    rgba(30, 29, 54, 0.75) 60%,
+    rgba(30, 29, 54, 0.85) 70%,
+    rgba(30, 29, 54, 0.92) 80%,
+    rgba(30, 29, 54, 0.97) 90%,
+    rgba(30, 29, 54, 0.99) 95%,
     rgba(30, 29, 54, 1) 100%
   );
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  mask-image: linear-gradient(to bottom, transparent, black 20px, black);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20px, black);
 }
 
-/* Top fade effect for scrolled content - more subtle */
+/* Top fade effect for scrolled content - reduced height */
 .fadeTop {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 30px; /* Reduced from 60px */
   background: linear-gradient(to bottom, 
     rgba(42, 42, 70, 1) 0%,
-    rgba(42, 42, 70, 0.95) 5%,
-    rgba(42, 42, 70, 0.85) 15%,
-    rgba(42, 42, 70, 0.7) 30%,
-    rgba(42, 42, 70, 0.5) 45%,
-    rgba(42, 42, 70, 0.3) 60%,
-    rgba(42, 42, 70, 0.15) 75%,
+    rgba(42, 42, 70, 0.99) 5%,
+    rgba(42, 42, 70, 0.97) 10%,
+    rgba(42, 42, 70, 0.92) 20%,
+    rgba(42, 42, 70, 0.85) 30%,
+    rgba(42, 42, 70, 0.75) 40%,
+    rgba(42, 42, 70, 0.6) 50%,
+    rgba(42, 42, 70, 0.45) 60%,
+    rgba(42, 42, 70, 0.3) 70%,
+    rgba(42, 42, 70, 0.15) 80%,
     rgba(42, 42, 70, 0.05) 90%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  mask-image: linear-gradient(to bottom, black 80%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
 }
 
 .fadeTopTransparent {
@@ -135,30 +149,125 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 30px; /* Reduced from 60px */
   background: linear-gradient(to bottom, 
     rgba(30, 29, 54, 1) 0%,
-    rgba(30, 29, 54, 0.95) 5%,
-    rgba(30, 29, 54, 0.85) 15%,
-    rgba(30, 29, 54, 0.7) 30%,
-    rgba(30, 29, 54, 0.5) 45%,
-    rgba(30, 29, 54, 0.3) 60%,
-    rgba(30, 29, 54, 0.15) 75%,
+    rgba(30, 29, 54, 0.99) 5%,
+    rgba(30, 29, 54, 0.97) 10%,
+    rgba(30, 29, 54, 0.92) 20%,
+    rgba(30, 29, 54, 0.85) 30%,
+    rgba(30, 29, 54, 0.75) 40%,
+    rgba(30, 29, 54, 0.6) 50%,
+    rgba(30, 29, 54, 0.45) 60%,
+    rgba(30, 29, 54, 0.3) 70%,
+    rgba(30, 29, 54, 0.15) 80%,
     rgba(30, 29, 54, 0.05) 90%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  mask-image: linear-gradient(to bottom, black 80%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+}
+
+/* Left side fade effect */
+.fadeLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to right, 
+    rgba(42, 42, 70, 1) 0%,
+    rgba(42, 42, 70, 0.97) 10%,
+    rgba(42, 42, 70, 0.9) 20%,
+    rgba(42, 42, 70, 0.75) 30%,
+    rgba(42, 42, 70, 0.6) 40%,
+    rgba(42, 42, 70, 0.4) 50%,
+    rgba(42, 42, 70, 0.25) 60%,
+    rgba(42, 42, 70, 0.1) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.fadeLeftTransparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to right, 
+    rgba(30, 29, 54, 1) 0%,
+    rgba(30, 29, 54, 0.97) 10%,
+    rgba(30, 29, 54, 0.9) 20%,
+    rgba(30, 29, 54, 0.75) 30%,
+    rgba(30, 29, 54, 0.6) 40%,
+    rgba(30, 29, 54, 0.4) 50%,
+    rgba(30, 29, 54, 0.25) 60%,
+    rgba(30, 29, 54, 0.1) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+/* Right side fade effect */
+.fadeRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to left, 
+    rgba(42, 42, 70, 1) 0%,
+    rgba(42, 42, 70, 0.97) 10%,
+    rgba(42, 42, 70, 0.9) 20%,
+    rgba(42, 42, 70, 0.75) 30%,
+    rgba(42, 42, 70, 0.6) 40%,
+    rgba(42, 42, 70, 0.4) 50%,
+    rgba(42, 42, 70, 0.25) 60%,
+    rgba(42, 42, 70, 0.1) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.fadeRightTransparent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to left, 
+    rgba(30, 29, 54, 1) 0%,
+    rgba(30, 29, 54, 0.97) 10%,
+    rgba(30, 29, 54, 0.9) 20%,
+    rgba(30, 29, 54, 0.75) 30%,
+    rgba(30, 29, 54, 0.6) 40%,
+    rgba(30, 29, 54, 0.4) 50%,
+    rgba(30, 29, 54, 0.25) 60%,
+    rgba(30, 29, 54, 0.1) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
 }
 
 /* Dynamic blur effect for better blending */
 .fadeBottom::before,
 .fadeBottomTransparent::before,
 .fadeTop::before,
-.fadeTopTransparent::before {
+.fadeTopTransparent::before,
+.fadeLeft::before,
+.fadeLeftTransparent::before,
+.fadeRight::before,
+.fadeRightTransparent::before {
   content: '';
   position: absolute;
   left: 0;

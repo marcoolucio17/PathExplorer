@@ -69,6 +69,7 @@
   );
   pointer-events: none;
   z-index: 10;
+  transition: opacity 0.3s ease;
 }
 
 /* Bottom fade effect for transparent containers */
@@ -86,4 +87,40 @@
   );
   pointer-events: none;
   z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+/* Top fade effect for scrolled content */
+.fadeTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, 
+    #2a2a46 0%,
+    rgba(42, 42, 70, 0.9) 20%,
+    rgba(42, 42, 70, 0.6) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.fadeTopTransparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, 
+    #1e1d36 0%,
+    rgba(30, 29, 54, 0.9) 15%,
+    rgba(30, 29, 54, 0.6) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
 }

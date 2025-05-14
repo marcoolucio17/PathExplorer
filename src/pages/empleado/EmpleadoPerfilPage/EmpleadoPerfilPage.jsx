@@ -253,7 +253,7 @@ export const EmpleadoPerfilPage = () => {
               </button>
             </div>
             <div style={{ height: '300px', position: 'relative', flex: 1, minHeight: 0 }}>
-              <GlassFade fadeType="glass" fadeBackground="default" style={{ height: '100%' }}>
+              <GlassFade fadeType="glass" fadeBackground="glass" style={{ height: '100%' }}>
                 <div className={skillsStyles.skillsContent}>
                   <div className={skillsStyles.skillCategory}>
                     <h3 className={skillsStyles.categoryHeader}>Hard Skills</h3>

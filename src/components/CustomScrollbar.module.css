@@ -10,6 +10,7 @@
   width: 100%;
   height: 100%;
   position: relative;
+  padding-bottom: 1px; /* Prevent margin collapse */
 }
 
 /* Ultra-sleek custom scrollbar - always visible */
@@ -52,60 +53,81 @@
 .scrollContent {
   width: 100%;
   padding-right: 8px;
+  box-sizing: border-box;
 }
 
-/* Bottom fade effect for glass containers */
+/* Bottom fade effect for glass containers - more subtle */
 .fadeBottom {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 80px;
   background: linear-gradient(to bottom, 
-    transparent 0%, 
-    rgba(42, 42, 70, 0.6) 40%,
-    rgba(42, 42, 70, 0.9) 80%,
-    #2a2a46 100%
+    transparent 0%,
+    rgba(42, 42, 70, 0.1) 10%,
+    rgba(42, 42, 70, 0.3) 30%,
+    rgba(42, 42, 70, 0.5) 50%,
+    rgba(42, 42, 70, 0.7) 70%,
+    rgba(42, 42, 70, 0.85) 85%,
+    rgba(42, 42, 70, 0.95) 95%,
+    rgba(42, 42, 70, 1) 100%
   );
   pointer-events: none;
   z-index: 10;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  mask-image: linear-gradient(to bottom, transparent, black 20px, black);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20px, black);
 }
 
-/* Bottom fade effect for transparent containers */
+/* Bottom fade effect for transparent containers - more subtle */
 .fadeBottomTransparent {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 80px;
   background: linear-gradient(to bottom, 
-    transparent 0%, 
-    rgba(30, 29, 54, 0.6) 50%,
-    rgba(30, 29, 54, 0.9) 85%,
-    #1e1d36 100%
+    transparent 0%,
+    rgba(30, 29, 54, 0.05) 10%,
+    rgba(30, 29, 54, 0.15) 25%,
+    rgba(30, 29, 54, 0.3) 40%,
+    rgba(30, 29, 54, 0.5) 55%,
+    rgba(30, 29, 54, 0.7) 70%,
+    rgba(30, 29, 54, 0.85) 85%,
+    rgba(30, 29, 54, 0.95) 95%,
+    rgba(30, 29, 54, 1) 100%
   );
   pointer-events: none;
   z-index: 10;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  mask-image: linear-gradient(to bottom, transparent, black 20px, black);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20px, black);
 }
 
-/* Top fade effect for scrolled content */
+/* Top fade effect for scrolled content - more subtle */
 .fadeTop {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 60px;
   background: linear-gradient(to bottom, 
-    #2a2a46 0%,
-    rgba(42, 42, 70, 0.9) 20%,
-    rgba(42, 42, 70, 0.6) 60%,
+    rgba(42, 42, 70, 1) 0%,
+    rgba(42, 42, 70, 0.95) 5%,
+    rgba(42, 42, 70, 0.85) 15%,
+    rgba(42, 42, 70, 0.7) 30%,
+    rgba(42, 42, 70, 0.5) 45%,
+    rgba(42, 42, 70, 0.3) 60%,
+    rgba(42, 42, 70, 0.15) 75%,
+    rgba(42, 42, 70, 0.05) 90%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 10;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  mask-image: linear-gradient(to bottom, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
 }
 
 .fadeTopTransparent {
@@ -113,14 +135,37 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 60px;
   background: linear-gradient(to bottom, 
-    #1e1d36 0%,
-    rgba(30, 29, 54, 0.9) 15%,
-    rgba(30, 29, 54, 0.6) 50%,
+    rgba(30, 29, 54, 1) 0%,
+    rgba(30, 29, 54, 0.95) 5%,
+    rgba(30, 29, 54, 0.85) 15%,
+    rgba(30, 29, 54, 0.7) 30%,
+    rgba(30, 29, 54, 0.5) 45%,
+    rgba(30, 29, 54, 0.3) 60%,
+    rgba(30, 29, 54, 0.15) 75%,
+    rgba(30, 29, 54, 0.05) 90%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 10;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  mask-image: linear-gradient(to bottom, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+}
+
+/* Dynamic blur effect for better blending */
+.fadeBottom::before,
+.fadeBottomTransparent::before,
+.fadeTop::before,
+.fadeTopTransparent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0.6;
 }

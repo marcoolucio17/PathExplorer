@@ -5,15 +5,17 @@ export const GlassFade = ({
   children, 
   className = '',
   fadeType = 'glass', // 'glass' or 'feather'
-  fadeBackground = 'default', // 'default' or 'transparent'
+  fadeBackground = 'default', // 'default' or 'transparent' or 'glass'
   showNoise = false,
-  style = {}
+  style = {},
+  fadeHeight = 'auto' // 'auto' for dynamic, or specific pixel value
 }) => {
   const [fadeState, setFadeState] = useState({
     showTop: false,
     showBottom: false,
     topOpacity: 0,
-    bottomOpacity: 0
+    bottomOpacity: 0,
+    dynamicFadeHeight: 80 // default fade height
   });
   const containerRef = useRef(null);
 
@@ -25,12 +27,22 @@ export const GlassFade = ({
       const scrollBottom = scrollHeight - scrollTop - clientHeight;
       const totalScrollable = scrollHeight - clientHeight;
       
+      // Calculate dynamic fade height based on container height
+      let calculatedFadeHeight = 80; // default
+      if (fadeHeight === 'auto') {
+        // Make fade height proportional to container height (20% of container height, min 40px, max 120px)
+        calculatedFadeHeight = Math.min(120, Math.max(40, clientHeight * 0.2));
+      } else if (typeof fadeHeight === 'number') {
+        calculatedFadeHeight = fadeHeight;
+      }
+      
       if (totalScrollable <= 0) {
         setFadeState({
           showTop: false,
           showBottom: false,
           topOpacity: 0,
-          bottomOpacity: 0
+          bottomOpacity: 0,
+          dynamicFadeHeight: calculatedFadeHeight
         });
         return;
       }
@@ -58,7 +70,8 @@ export const GlassFade = ({
         showTop: scrollTop > 10,
         showBottom: scrollBottom > 10,
         topOpacity,
-        bottomOpacity
+        bottomOpacity,
+        dynamicFadeHeight: calculatedFadeHeight
       });
     };
 
@@ -78,7 +91,7 @@ export const GlassFade = ({
         resizeObserver.disconnect();
       };
     }
-  }, []);
+  }, [fadeHeight]);
 
   const getFadeClass = (isTop) => {
     const prefix = fadeType === 'feather' ? 'feather' : 'glass';
@@ -106,13 +119,19 @@ export const GlassFade = ({
       {fadeState.showTop && (
         <div 
           className={`${getFadeClass(true)} ${styles.dynamicFade}`}
-          style={{ opacity: fadeState.topOpacity }}
+          style={{ 
+            opacity: fadeState.topOpacity,
+            height: `${fadeState.dynamicFadeHeight * 0.8}px` // Top fade slightly smaller
+          }}
         />
       )}
       {fadeState.showBottom && (
         <div 
           className={`${getFadeClass(false)} ${styles.dynamicFade}`}
-          style={{ opacity: fadeState.bottomOpacity }}
+          style={{ 
+            opacity: fadeState.bottomOpacity,
+            height: `${fadeState.dynamicFadeHeight}px`
+          }}
         />
       )}
       {showNoise && <div className={styles.noiseOverlay} />}

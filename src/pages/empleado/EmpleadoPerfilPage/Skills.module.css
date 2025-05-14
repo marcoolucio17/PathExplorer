@@ -1,0 +1,96 @@
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 500;
+  color: var(--text-light);
+  margin: 0;
+  font-family: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.sectionAddBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.sectionAddBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: scale(1.05);
+}
+
+.sectionAddBtn:active {
+  transform: scale(0.98);
+}
+
+.sectionAddBtn i {
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.skillsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skillCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.categoryHeader {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin: 0;
+  font-family: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin: 0.15rem 0;
+}
+
+.skillChipsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sectionHeader {
+    margin-bottom: 1rem;
+  }
+  
+  .skillsContent {
+    gap: 1.5rem;
+  }
+  
+  .categoryHeader {
+    font-size: 1rem;
+  }
+  
+  .skillChipsContainer {
+    gap: 0.5rem;
+  }
+}

@@ -33,10 +33,12 @@
 .skillChip i {
   font-size: 0.9rem;
   display: none; /* Hide icons by default */
+  margin-right: 0.3rem; /* Add spacing between icon and text */
 }
 
 .userSkill i {
   display: inline-flex; /* Show icon for selected skills */
+  color: #4A9ECC; /* Make check icon blue */
 }
 
 .userSkill {

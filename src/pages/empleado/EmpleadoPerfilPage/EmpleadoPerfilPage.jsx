@@ -111,10 +111,12 @@ export const EmpleadoPerfilPage = () => {
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
+  const [isAddCertificateModalOpen, setIsAddCertificateModalOpen] = useState(false);
   const [userSkills, setUserSkills] = useState([
     "JavaScript", "React", "Node.js", "Python", "SQL", "Git",
     "Leadership", "Communication", "Problem Solving", "Teamwork", "Time Management"
   ]);
+  const [userCertificates, setUserCertificates] = useState(MOCK_CERTIFICATES);
   const [objectives, setObjectives] = useState([
     { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
     { id: 2, text: "Finish the advanced React course", completed: true },

@@ -154,6 +154,8 @@
   margin-bottom: 1.5rem;
   display: flex;
   gap: 1rem;
+  flex-shrink: 0; /* Prevent shrinking */
+  min-height: 50px; /* Ensure minimum height */
 }
 
 .searchBox {

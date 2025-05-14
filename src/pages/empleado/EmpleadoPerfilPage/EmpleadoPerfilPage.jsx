@@ -258,6 +258,7 @@ export const EmpleadoPerfilPage = () => {
         certificate={selectedCertificate}
         isOpen={isCertificateModalOpen}
         onClose={closeCertificateModal}
+        onAnimationComplete={() => setSelectedCertificate(null)}
       />
     </div>
   );

@@ -8,10 +8,12 @@ const CustomScrollbar = ({
   style = {}, 
   fadeBackground = '#2a2a46',
   showFade = true,
-  fadeHeight = 60
+  fadeHeight = 80,
+  fadeIntensity = 1
 }) => {
   const [isNearBottom, setIsNearBottom] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
@@ -21,11 +23,16 @@ const CustomScrollbar = ({
       const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current;
       const scrollBottom = scrollHeight - scrollTop - clientHeight;
       
-      // Show fade when there's more content to scroll (not at bottom)
-      setIsNearBottom(scrollBottom > 10);
+      // Calculate scroll progress
+      const totalScrollable = scrollHeight - clientHeight;
+      const progress = totalScrollable > 0 ? scrollTop / totalScrollable : 0;
+      setScrollProgress(progress);
+      
+      // Show fade when there's more content to scroll
+      setIsNearBottom(scrollBottom > 5);
       
       // Show top fade when scrolled down
-      setIsScrolled(scrollTop > 10);
+      setIsScrolled(scrollTop > 5);
     };
 
     const scrollContainer = scrollContainerRef.current;
@@ -64,6 +71,19 @@ const CustomScrollbar = ({
     return isTop ? styles.fadeTop : styles.fadeBottom;
   };
 
+  // Calculate dynamic fade opacity based on scroll position
+  const getBottomFadeOpacity = () => {
+    if (!isNearBottom) return 0;
+    // Fade out more as we approach the bottom
+    return Math.min(1, (1 - scrollProgress) * fadeIntensity);
+  };
+
+  const getTopFadeOpacity = () => {
+    if (!isScrolled) return 0;
+    // Fade out more as we approach the top
+    return Math.min(1, scrollProgress * fadeIntensity);
+  };
+
   return (
     <div 
       className={`${styles.scrollWrapper} ${className}`}
@@ -77,13 +97,19 @@ const CustomScrollbar = ({
       {showFade && isScrolled && (
         <div 
           className={getFadeClassName(true)}
-          style={{ height: fadeHeight * 0.7 }}
+          style={{ 
+            height: fadeHeight * 0.75,
+            opacity: getTopFadeOpacity()
+          }}
         />
       )}
       {showFade && isNearBottom && (
         <div 
           className={getFadeClassName(false)}
-          style={{ height: fadeHeight }}
+          style={{ 
+            height: fadeHeight,
+            opacity: getBottomFadeOpacity()
+          }}
         />
       )}
     </div>

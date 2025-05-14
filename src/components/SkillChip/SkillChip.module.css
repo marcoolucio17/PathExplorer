@@ -25,13 +25,14 @@
   background-color: var(--skill-hover-bg);
   border-color: var(--border-strong);
   color: var(--text-light);
-  transform: translateY(-1px) scale(1.02);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   filter: brightness(1.15);
 }
 
 .skillChip i {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+  display: none; /* Hide icons by default */
 }
 
 .userSkill {

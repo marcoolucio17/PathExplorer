@@ -90,6 +90,8 @@ const MOCK_CERTIFICATES = [
 
 export const EmpleadoPerfilPage = () => {
   const [activeTab, setActiveTab] = useState("Contact Information");
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
   const [objectives, setObjectives] = useState([
     { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
     { id: 2, text: "Finish the advanced React course", completed: true },
@@ -103,6 +105,16 @@ export const EmpleadoPerfilPage = () => {
         obj.id === id ? { ...obj, completed: !obj.completed } : obj
       )
     );
+  };
+
+  const handleCertificateClick = (certificate) => {
+    setSelectedCertificate(certificate);
+    setIsCertificateModalOpen(true);
+  };
+
+  const closeCertificateModal = () => {
+    setIsCertificateModalOpen(false);
+    setSelectedCertificate(null);
   };
 
   const user = MOCK_USER;

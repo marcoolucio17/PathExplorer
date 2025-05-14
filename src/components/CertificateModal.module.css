@@ -272,15 +272,19 @@
   }
   
   .certificateImage,
-  .certificateDetails,
-  .verifyButton {
+  .certificateDetails {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
   
-  .verifyButton {
-    width: calc(100% - 3rem);
+  .buttonGroup {
     margin: 0 1.5rem 1.5rem;
+    flex-direction: column;
+  }
+  
+  .downloadButton,
+  .verifyButton {
+    width: 100%;
   }
 }
 

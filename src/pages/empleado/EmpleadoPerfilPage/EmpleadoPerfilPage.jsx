@@ -4,6 +4,7 @@ import { ProfileHeaderCard } from "../../../components/ProfileHeaderCard";
 import { Tabs } from "../../../components/Tabs";
 import { GlassCard } from "../../../components/shared/GlassCard";
 import { SkillList } from "../../../components/SkillList";
+import { CertificateModal } from "../../../components/CertificateModal";
 // Import page-specific styles
 import pageStyles from "./EmpleadoPerfilPage.module.css";
 // Import styles for specific sections
@@ -178,6 +179,21 @@ export const EmpleadoPerfilPage = () => {
         {/* Right Column */}
         <div className={pageStyles.profileSidebar}>
           <GlassCard className={pageStyles.sidebarSection}>
+            <div className={skillsStyles.sectionHeader}>
+              <h2 className={skillsStyles.sectionTitle}>My Skills</h2>
+              <button className={skillsStyles.sectionAddBtn}>
+                <i className="bi bi-plus-lg" />
+              </button>
+            </div>
+            <div className={skillsStyles.skillsContainer}>
+              <SkillList skills={[
+                { text: "Hard skills", iconClass: "bi bi-tools" },
+                { text: "Soft skills", iconClass: "bi bi-puzzle" },
+              ]} />
+            </div>
+          </GlassCard>
+          
+          <GlassCard className={pageStyles.sidebarSection}>
             <div className={certificateStyles.sectionHeader}>
               <h2 className={certificateStyles.sectionTitle}>My certificates</h2>
               <button className={certificateStyles.sectionAddBtn}>
@@ -193,22 +209,6 @@ export const EmpleadoPerfilPage = () => {
                 </div>
               </article>
             ))}
-          </GlassCard>
-
-          <GlassCard className={pageStyles.sidebarSection}>
-            <div className={skillsStyles.sectionHeader}>
-              <h2 className={skillsStyles.sectionTitle}>My Skills</h2>
-              <button className={skillsStyles.sectionAddBtn}>
-                <i className="bi bi-plus-lg" />
-              </button>
-            </div>
-            <div className={skillsStyles.skillsContainer}>
-              <SkillList skills={[
-                { text: "Hard skills", iconClass: "bi bi-tools" },
-                { text: "Soft skills", iconClass: "bi bi-puzzle" },
-                { text: "Tools & Platforms", iconClass: "bi bi-box" }
-              ]} />
-            </div>
           </GlassCard>
         </div>
       </div>

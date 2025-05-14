@@ -237,7 +237,11 @@ export const EmpleadoPerfilPage = () => {
               </button>
             </div>
             {certificates.map(cert => (
-              <article key={cert.id} className={certificateStyles.certificate}>
+              <article 
+                key={cert.id} 
+                className={certificateStyles.certificate}
+                onClick={() => handleCertificateClick(cert)}
+              >
                 <img src={cert.img} alt={cert.alt} />
                 <div>
                   <h3>{cert.title}</h3>

@@ -6,21 +6,31 @@ const ProfileHeaderCard = ({ user }) => {
   return (
     <GlassCard className={styles.profileHeaderCard}>
       <div className={styles.profileHeaderMain}>
-        <img
-          src={user.avatarUrl}
-          alt={`${user.name}`}
-          className={styles.avatarXl}
-        />
-        <div className={styles.profileMeta}>
-          <h1>{user.name}</h1>
-          <h2>{user.title} at {user.company}</h2>
-          <div className={styles.infoRow}>
+        <div className={styles.employeeSection}>
+          <img
+            src={user.avatarUrl}
+            alt={`${user.name}`}
+            className={styles.avatarXl}
+          />
+          <div className={styles.employeeMeta}>
+            <h1>{user.name}</h1>
+            <h2>{user.title} at {user.company}</h2>
             <p className={styles.location}>
               <i className="bi bi-geo-alt-fill" /> {user.location}
             </p>
-            <p className={styles.project}>
-              <i className="bi bi-diagram-3-fill" /> Project Golf
-            </p>
+          </div>
+        </div>
+        
+        <div className={styles.projectSection}>
+          <img
+            src="/imagesUser/golf-logo.png"
+            alt="Project Golf"
+            className={styles.projectLogo}
+          />
+          <div className={styles.projectMeta}>
+            <h3>Project Golf</h3>
+            <p className={styles.projectDuration}>Jun 2019 - Present</p>
+            <p className={styles.projectRole}>Sr. Software Engineer</p>
           </div>
         </div>
       </div>

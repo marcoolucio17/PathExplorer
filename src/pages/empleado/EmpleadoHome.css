@@ -152,7 +152,7 @@ body {
 .proyecto-details2 {
   position: relative;
   flex: 3;
-  background-image: url('public/images/software-development.jpg');
+  background-image: url('/images/software-development.jpg');
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);

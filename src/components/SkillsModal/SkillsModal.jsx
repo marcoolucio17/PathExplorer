@@ -165,8 +165,8 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
               Hard Skills
             </button>
             <button
-              className={`${styles.filterButton} ${selectedCategory === 'Soft Skills' ? styles.active : ''}`}
-              onClick={() => setSelectedCategory('Soft Skills')}
+              className={`${styles.filterButton} ${selectedCategory === 'soft' ? styles.active : ''}`}
+              onClick={() => setSelectedCategory('soft')}
             >
               Soft Skills
             </button>

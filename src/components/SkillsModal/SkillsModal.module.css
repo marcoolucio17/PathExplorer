@@ -162,6 +162,38 @@
   color: var(--text-light);
 }
 
+.filterButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.filterButton {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filterButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filterButton.active {
+  background: var(--primary-color, #4A9ECC);
+  border-color: var(--primary-color, #4A9ECC);
+  color: white;
+}
+
+.filterButton.active:hover {
+  background: var(--primary-hover, #3A8EBC);
+}
+
 /* Skills container */
 .skillsContainer {
   flex: 1;

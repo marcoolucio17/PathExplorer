@@ -40,7 +40,7 @@
   text-align: left;
   gap: clamp(0.75rem, 1.5vw, 1rem);
   margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
-  padding: 0.875rem;
+  padding: 0.75rem;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -59,8 +59,8 @@
 }
 
 .certificate img {
-  width: clamp(45px, 5vw, 55px);
-  height: clamp(45px, 5vw, 55px);
+  width: clamp(40px, 4.5vw, 50px);
+  height: clamp(40px, 4.5vw, 50px);
   border-radius: 6px;
   object-fit: cover;
   border: 2px solid var(--purple-progress-1);
@@ -69,14 +69,14 @@
 
 .certificate h3 {
   margin: 0;
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-size: clamp(0.85rem, 1.1vw, 0.95rem);
   color: var(--text-light);
   font-family: 'Graphik Medium', sans-serif;
 }
 
 .certificate p {
   margin: 0;
-  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  font-size: clamp(0.7rem, 0.95vw, 0.8rem);
   color: var(--text-muted);
   font-family: 'Graphik Regular', sans-serif;
 }

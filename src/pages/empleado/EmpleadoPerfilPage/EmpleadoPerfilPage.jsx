@@ -291,8 +291,8 @@ export const EmpleadoPerfilPage = () => {
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
-            <div style={{ maxHeight: '400px', position: 'relative' }}>
-              <GlassFade fadeType="glass" fadeBackground="default">
+            <div style={{ height: '400px', position: 'relative', flex: 1, minHeight: 0 }}>
+              <GlassFade fadeType="glass" fadeBackground="default" style={{ height: '100%' }}>
                 {certificates.map(cert => (
                   <article 
                     key={cert.id} 

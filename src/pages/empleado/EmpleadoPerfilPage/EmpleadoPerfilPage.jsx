@@ -291,12 +291,11 @@ export const EmpleadoPerfilPage = () => {
                     <h3 className={skillsStyles.categoryHeader}>Hard Skills</h3>
                     <div className={skillsStyles.divider}></div>
                     <div className={skillsStyles.skillChipsContainer}>
-                      {userSkills.filter(skill => 
-                        // Filter hard skills (technical skills)
-                        !SOFT_SKILLS_LIST.includes(skill)
-                      ).map(skill => (
-                        <SkillChip key={skill} text={skill} />
-                      ))}
+                      {userSkills
+                        .filter(skill => !SOFT_SKILLS_LIST.includes(skill))
+                        .map((skill, index) => (
+                          <SkillChip key={`hard-${skill}-${index}`} text={skill} />
+                        ))}
                     </div>
                   </div>
                   
@@ -304,12 +303,11 @@ export const EmpleadoPerfilPage = () => {
                     <h3 className={skillsStyles.categoryHeader}>Soft Skills</h3>
                     <div className={skillsStyles.divider}></div>
                     <div className={skillsStyles.skillChipsContainer}>
-                      {userSkills.filter(skill => 
-                        // Filter soft skills
-                        SOFT_SKILLS_LIST.includes(skill)
-                      ).map(skill => (
-                        <SkillChip key={skill} text={skill} />
-                      ))}
+                      {userSkills
+                        .filter(skill => SOFT_SKILLS_LIST.includes(skill))
+                        .map((skill, index) => (
+                          <SkillChip key={`soft-${skill}-${index}`} text={skill} />
+                        ))}
                     </div>
                   </div>
                 </div>

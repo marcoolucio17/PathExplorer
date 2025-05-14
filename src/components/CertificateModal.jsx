@@ -3,26 +3,42 @@ import styles from './CertificateModal.module.css';
 
 export const CertificateModal = ({ certificate, isOpen, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      setShouldRender(true);
       setIsClosing(false);
+    } else if (shouldRender) {
+      setIsClosing(true);
+      const timer = setTimeout(() => {
+        setShouldRender(false);
+        setIsClosing(false);
+      }, 300); // Match animation duration
+      return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen, shouldRender]);
 
-  if (!isOpen || !certificate) return null;
+  if (!shouldRender || !certificate) return null;
 
   const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-    }, 300); // Match animation duration
+    onClose();
   };
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose();
     }
+  };
+
+  const handleDownload = () => {
+    // Create a temporary link to download the certificate image
+    const link = document.createElement('a');
+    link.href = certificate.certificateImage || certificate.img;
+    link.download = `${certificate.title}-Certificate.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -70,17 +86,27 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
           )}
         </div>
 
-        {certificate.verifyUrl && (
-          <a 
-            href={certificate.verifyUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className={styles.verifyButton}
+        <div className={styles.buttonGroup}>
+          <button 
+            onClick={handleDownload} 
+            className={styles.downloadButton}
           >
-            <i className="bi bi-box-arrow-up-right"></i>
-            Verify Certificate
-          </a>
-        )}
+            <i className="bi bi-download"></i>
+            Download Certificate
+          </button>
+          
+          {certificate.verifyUrl && (
+            <a 
+              href={certificate.verifyUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={styles.verifyButton}
+            >
+              <i className="bi bi-box-arrow-up-right"></i>
+              Verify Certificate
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

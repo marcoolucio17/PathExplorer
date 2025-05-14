@@ -150,21 +150,21 @@ const CustomScrollbar = ({
           }}
         />
       )}
-      {showFade && showSideFades && isScrolledHorizontally && (
+      {showFade && showSideFades && (
         <div 
           className={getFadeClassName('left')}
           style={{ 
             width: 40,
-            opacity: getLeftFadeOpacity()
+            opacity: isScrolledHorizontally ? 1 : 0.7
           }}
         />
       )}
-      {showFade && showSideFades && isNearRight && (
+      {showFade && showSideFades && (
         <div 
           className={getFadeClassName('right')}
           style={{ 
             width: 40,
-            opacity: getRightFadeOpacity()
+            opacity: isNearRight ? 1 : 0.7
           }}
         />
       )}

@@ -174,6 +174,7 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
                     <SkillChip
                       key={skill}
                       text={skill}
+                      iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
                       isUserSkill={selectedSkills.has(skill)}
                       onClick={() => toggleSkill(skill)}
                     />

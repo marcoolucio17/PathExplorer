@@ -21,7 +21,7 @@ export const useGetFetch = ({rutaApi,nombre,condicion1}) => {
     
     useEffect(() => {
         const fetchData = async () => {
-            let url =`http://localhost:8080/api/${rutaApi}`;
+            let url =`https://pathexplorer-backend.onrender.com/api/${rutaApi}`;
             if (nombre !== '' && condicion1 === 'Skills' && rutaApi === 'projects') {
                 url += `?projectName=${nombre}`;
             } else if (nombre === '' && condicion1 !== 'Skills' && rutaApi === 'projects') {

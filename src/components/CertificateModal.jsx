@@ -4,23 +4,28 @@ import styles from './CertificateModal.module.css';
 export const CertificateModal = ({ certificate, isOpen, onClose }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [localCertificate, setLocalCertificate] = useState(null);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && certificate) {
+      setLocalCertificate(certificate);
       setIsAnimating(true);
       setIsClosing(false);
+    } else if (!isOpen && isAnimating) {
+      // Start closing animation
+      setIsClosing(true);
+      setTimeout(() => {
+        setIsAnimating(false);
+        setIsClosing(false);
+        setLocalCertificate(null);
+      }, 300); // Match animation duration
     }
-  }, [isOpen]);
+  }, [isOpen, certificate, isAnimating]);
 
-  if (!isAnimating || !certificate) return null;
+  if (!isAnimating || !localCertificate) return null;
 
   const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setIsAnimating(false);
-      setIsClosing(false);
-      onClose();
-    }, 300); // Match animation duration
+    onClose();
   };
 
   const handleBackdropClick = (e) => {
@@ -31,13 +36,13 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
 
   const handleDownload = async () => {
     try {
-      const imageUrl = certificate.certificateImage || certificate.img;
+      const imageUrl = localCertificate.certificateImage || localCertificate.img;
       
       // For local images or same-origin images
       if (imageUrl.startsWith('/') || imageUrl.startsWith(window.location.origin)) {
         const link = document.createElement('a');
         link.href = imageUrl;
-        link.download = `${certificate.title}-Certificate.png`;
+        link.download = `${localCertificate.title}-Certificate.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -48,7 +53,7 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `${certificate.title}-Certificate.png`;
+        link.download = `${localCertificate.title}-Certificate.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -57,7 +62,7 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
     } catch (error) {
       console.error('Error downloading certificate:', error);
       // Fallback: open image in new tab if download fails
-      window.open(certificate.certificateImage || certificate.img, '_blank');
+      window.open(localCertificate.certificateImage || localCertificate.img, '_blank');
     }
   };
 
@@ -72,36 +77,36 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
         </button>
         
         <div className={styles.modalHeader}>
-          <h2 className={styles.certificateTitle}>{certificate.title}</h2>
-          <p className={styles.skill}>{certificate.skill}</p>
+          <h2 className={styles.certificateTitle}>{localCertificate.title}</h2>
+          <p className={styles.skill}>{localCertificate.skill}</p>
         </div>
 
         <div className={styles.certificateImage}>
-          <img src={certificate.certificateImage || certificate.img} alt={certificate.title} />
+          <img src={localCertificate.certificateImage || localCertificate.img} alt={localCertificate.title} />
         </div>
 
         <div className={styles.certificateDetails}>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>Issued by:</span>
-            <span className={styles.detailValue}>{certificate.issuer}</span>
+            <span className={styles.detailValue}>{localCertificate.issuer}</span>
           </div>
           
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>Obtained Date:</span>
-            <span className={styles.detailValue}>{certificate.fechaObtenido}</span>
+            <span className={styles.detailValue}>{localCertificate.fechaObtenido}</span>
           </div>
           
-          {certificate.fechaExpirado && (
+          {localCertificate.fechaExpirado && (
             <div className={styles.detailRow}>
               <span className={styles.detailLabel}>Expiration Date:</span>
-              <span className={styles.detailValue}>{certificate.fechaExpirado}</span>
+              <span className={styles.detailValue}>{localCertificate.fechaExpirado}</span>
             </div>
           )}
 
-          {certificate.credentialId && (
+          {localCertificate.credentialId && (
             <div className={styles.detailRow}>
               <span className={styles.detailLabel}>Credential ID:</span>
-              <span className={styles.detailValue}>{certificate.credentialId}</span>
+              <span className={styles.detailValue}>{localCertificate.credentialId}</span>
             </div>
           )}
         </div>
@@ -115,9 +120,9 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
             Download Certificate
           </button>
           
-          {certificate.verifyUrl && (
+          {localCertificate.verifyUrl && (
             <a 
-              href={certificate.verifyUrl} 
+              href={localCertificate.verifyUrl} 
               target="_blank" 
               rel="noopener noreferrer" 
               className={styles.verifyButton}

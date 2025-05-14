@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ProfileHeaderCard } from "../../../components/ProfileHeaderCard";
 import { Tabs } from "../../../components/Tabs";
 import { GlassCard } from "../../../components/shared/GlassCard";
-import { SkillChip } from "../../../components/SkillChip";
+import { SkillList } from "../../../components/SkillList";
 // Import page-specific styles
 import pageStyles from "./EmpleadoPerfilPage.module.css";
 // Import styles for specific sections
@@ -45,7 +45,16 @@ const MOCK_EXPERIENCE = [
     alt: "Project Stargate",
     title: "Lead Architect — Project Stargate",
     description: "Directed the full frontback stack and personally deployed 42 000 features for a classified initiative."
-  }
+  },
+  {
+    id: 3,
+    dateStart: "Jan 2018",
+    dateEnd: "May 2019",
+    logo: "/imagesUser/trump.png",
+    alt: "Project Stargate",
+    title: "Lead Architect — Project Stargate",
+    description: "Directed the full frontback stack and personally deployed 42 000 features for a classified initiative."
+  },
 ];
 
 const MOCK_CERTIFICATES = [

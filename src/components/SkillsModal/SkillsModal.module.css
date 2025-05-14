@@ -48,7 +48,7 @@
   max-width: 800px;
   width: 100%;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden; /* Changed from overflow-y: auto to hidden */
   position: relative;
   animation: slideIn 0.3s ease;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);

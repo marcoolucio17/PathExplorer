@@ -1,49 +1,51 @@
 .profileHeaderCard {
   /* Full width when no outer container */
   width: 100%;
-  padding: clamp(1.25rem, 2vw, 1.75rem) !important;
-  min-height: 120px;
+  padding: 2rem !important;
+  min-height: 150px;
 }
 
 .profileHeaderMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+.employeeSection, .projectSection {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-.avatarXl {
+.avatarXl, .projectLogo {
   width: 90px;
   height: 90px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--purple-progress-1);
+  flex-shrink: 0;
 }
 
-.profileMeta {
+.employeeMeta {
   flex-grow: 1;
 }
 
-.profileMeta h1 {
+.employeeMeta h1 {
   font-size: 1.75rem;
   color: var(--text-light);
   margin: 0;
   font-family: 'Graphik Semibold', sans-serif;
 }
 
-.profileMeta h2 {
+.employeeMeta h2 {
   font-size: 1.1rem;
   color: var(--text-main);
   margin: 0.25rem 0;
   font-family: 'Graphik Medium', sans-serif;
 }
 
-.infoRow {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-.location, .project {
+.location {
   font-size: 0.95rem;
   color: var(--text-muted);
   margin: 0;
@@ -53,9 +55,30 @@
   font-family: 'Graphik Regular', sans-serif;
 }
 
-.location i, .project i {
+.location i {
   color: var(--purple-icon-1);
   font-size: 1rem;
+}
+
+.projectMeta h3 {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin: 0;
+  font-family: 'Graphik Semibold', sans-serif;
+}
+
+.projectDuration {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin: 0.25rem 0;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.projectRole {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: 'Graphik Medium', sans-serif;
 }
 
 .profileActions {

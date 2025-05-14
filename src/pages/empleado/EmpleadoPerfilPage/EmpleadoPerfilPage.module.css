@@ -94,7 +94,7 @@
 
 /* Skills section (first - smaller) */
 .sidebarSection:first-child {
-  flex: 1;
+  flex: 1.5;
   z-index: 20;
 }
 

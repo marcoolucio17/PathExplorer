@@ -56,106 +56,110 @@
   box-sizing: border-box;
 }
 
-/* Bottom fade effect for glass containers - reduced height */
+/* Bottom fade effect for glass containers with ultra-smooth edges */
 .fadeBottom {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40px; /* Reduced from 80px */
-  background: linear-gradient(to bottom, 
-    transparent 0%,
-    rgba(42, 42, 70, 0.02) 5%,
-    rgba(42, 42, 70, 0.08) 10%,
-    rgba(42, 42, 70, 0.15) 15%,
-    rgba(42, 42, 70, 0.22) 20%,
-    rgba(42, 42, 70, 0.3) 25%,
-    rgba(42, 42, 70, 0.38) 30%,
-    rgba(42, 42, 70, 0.46) 35%,
-    rgba(42, 42, 70, 0.54) 40%,
-    rgba(42, 42, 70, 0.62) 45%,
-    rgba(42, 42, 70, 0.68) 50%,
-    rgba(42, 42, 70, 0.74) 55%,
-    rgba(42, 42, 70, 0.79) 60%,
-    rgba(42, 42, 70, 0.83) 65%,
-    rgba(42, 42, 70, 0.86) 70%,
-    rgba(42, 42, 70, 0.88) 75%,
-    rgba(42, 42, 70, 0.9) 80%,
-    rgba(42, 42, 70, 0.91) 85%,
-    rgba(42, 42, 70, 0.92) 90%,
-    rgba(42, 42, 70, 0.93) 95%,
-    rgba(42, 42, 70, 0.94) 100%
-  );
+  height: 40px;
+  background: 
+    radial-gradient(ellipse 100% 100% at center bottom, 
+      rgba(42, 42, 70, 0.92) 0%,
+      rgba(42, 42, 70, 0.88) 20%,
+      rgba(42, 42, 70, 0.7) 40%,
+      rgba(42, 42, 70, 0.45) 60%,
+      rgba(42, 42, 70, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Bottom fade effect for transparent containers - reduced height */
+/* Bottom fade effect for transparent containers with ultra-smooth edges */
 .fadeBottomTransparent {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40px; /* Reduced from 80px */
-  width: 100%; /* Full width */
-  background: linear-gradient(to bottom, 
-    transparent 0%,
-    rgba(30, 29, 54, 0.02) 5%,
-    rgba(30, 29, 54, 0.08) 10%,
-    rgba(30, 29, 54, 0.15) 15%,
-    rgba(30, 29, 54, 0.22) 20%,
-    rgba(30, 29, 54, 0.3) 25%,
-    rgba(30, 29, 54, 0.38) 30%,
-    rgba(30, 29, 54, 0.46) 35%,
-    rgba(30, 29, 54, 0.54) 40%,
-    rgba(30, 29, 54, 0.62) 45%,
-    rgba(30, 29, 54, 0.68) 50%,
-    rgba(30, 29, 54, 0.74) 55%,
-    rgba(30, 29, 54, 0.79) 60%,
-    rgba(30, 29, 54, 0.83) 65%,
-    rgba(30, 29, 54, 0.86) 70%,
-    rgba(30, 29, 54, 0.88) 75%,
-    rgba(30, 29, 54, 0.9) 80%,
-    rgba(30, 29, 54, 0.91) 85%,
-    rgba(30, 29, 54, 0.92) 90%,
-    rgba(30, 29, 54, 0.93) 95%,
-    rgba(30, 29, 54, 0.94) 100%
-  );
+  height: 40px;
+  width: 100%;
+  background: 
+    radial-gradient(ellipse 100% 100% at center bottom, 
+      rgba(30, 29, 54, 0.92) 0%,
+      rgba(30, 29, 54, 0.88) 20%,
+      rgba(30, 29, 54, 0.7) 40%,
+      rgba(30, 29, 54, 0.45) 60%,
+      rgba(30, 29, 54, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Top fade effect for scrolled content - reduced height */
+/* Top fade effect for scrolled content with ultra-smooth edges */
 .fadeTop {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 30px; /* Reduced from 60px */
-  background: linear-gradient(to bottom, 
-    rgba(42, 42, 70, 0.94) 0%,
-    rgba(42, 42, 70, 0.93) 5%,
-    rgba(42, 42, 70, 0.92) 10%,
-    rgba(42, 42, 70, 0.9) 15%,
-    rgba(42, 42, 70, 0.86) 20%,
-    rgba(42, 42, 70, 0.8) 25%,
-    rgba(42, 42, 70, 0.72) 30%,
-    rgba(42, 42, 70, 0.64) 35%,
-    rgba(42, 42, 70, 0.56) 40%,
-    rgba(42, 42, 70, 0.48) 45%,
-    rgba(42, 42, 70, 0.4) 50%,
-    rgba(42, 42, 70, 0.32) 55%,
-    rgba(42, 42, 70, 0.24) 60%,
-    rgba(42, 42, 70, 0.18) 65%,
-    rgba(42, 42, 70, 0.12) 70%,
-    rgba(42, 42, 70, 0.08) 75%,
-    rgba(42, 42, 70, 0.05) 80%,
-    rgba(42, 42, 70, 0.03) 85%,
-    rgba(42, 42, 70, 0.01) 90%,
-    transparent 100%
-  );
+  height: 30px;
+  background: 
+    radial-gradient(ellipse 100% 100% at center top, 
+      rgba(42, 42, 70, 0.92) 0%,
+      rgba(42, 42, 70, 0.88) 20%,
+      rgba(42, 42, 70, 0.7) 40%,
+      rgba(42, 42, 70, 0.45) 60%,
+      rgba(42, 42, 70, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -166,159 +170,85 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 30px; /* Reduced from 60px */
-  background: linear-gradient(to bottom, 
-    rgba(30, 29, 54, 0.94) 0%,
-    rgba(30, 29, 54, 0.93) 5%,
-    rgba(30, 29, 54, 0.92) 10%,
-    rgba(30, 29, 54, 0.9) 15%,
-    rgba(30, 29, 54, 0.86) 20%,
-    rgba(30, 29, 54, 0.8) 25%,
-    rgba(30, 29, 54, 0.72) 30%,
-    rgba(30, 29, 54, 0.64) 35%,
-    rgba(30, 29, 54, 0.56) 40%,
-    rgba(30, 29, 54, 0.48) 45%,
-    rgba(30, 29, 54, 0.4) 50%,
-    rgba(30, 29, 54, 0.32) 55%,
-    rgba(30, 29, 54, 0.24) 60%,
-    rgba(30, 29, 54, 0.18) 65%,
-    rgba(30, 29, 54, 0.12) 70%,
-    rgba(30, 29, 54, 0.08) 75%,
-    rgba(30, 29, 54, 0.05) 80%,
-    rgba(30, 29, 54, 0.03) 85%,
-    rgba(30, 29, 54, 0.01) 90%,
-    transparent 100%
-  );
+  height: 30px;
+  background: 
+    radial-gradient(ellipse 100% 100% at center top, 
+      rgba(30, 29, 54, 0.92) 0%,
+      rgba(30, 29, 54, 0.88) 20%,
+      rgba(30, 29, 54, 0.7) 40%,
+      rgba(30, 29, 54, 0.45) 60%,
+      rgba(30, 29, 54, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
   pointer-events: none;
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Left side fade effect */
-.fadeLeft {
+/* Additional soft edge effect using pseudo-elements */
+.fadeBottom::before,
+.fadeBottomTransparent::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 200% 50% at center bottom, 
+      rgba(42, 42, 70, 0.3) 0%,
+      transparent 100%
+    );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.fadeTop::before,
+.fadeTopTransparent::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
-  width: 40px; /* Increased from 30px */
-  background: linear-gradient(to right, 
-    rgba(42, 42, 70, 0.92) 0%,
-    rgba(42, 42, 70, 0.88) 5%,
-    rgba(42, 42, 70, 0.82) 10%,
-    rgba(42, 42, 70, 0.74) 15%,
-    rgba(42, 42, 70, 0.66) 20%,
-    rgba(42, 42, 70, 0.58) 25%,
-    rgba(42, 42, 70, 0.5) 30%,
-    rgba(42, 42, 70, 0.42) 35%,
-    rgba(42, 42, 70, 0.34) 40%,
-    rgba(42, 42, 70, 0.28) 45%,
-    rgba(42, 42, 70, 0.22) 50%,
-    rgba(42, 42, 70, 0.16) 55%,
-    rgba(42, 42, 70, 0.12) 60%,
-    rgba(42, 42, 70, 0.08) 65%,
-    rgba(42, 42, 70, 0.05) 70%,
-    rgba(42, 42, 70, 0.03) 75%,
-    rgba(42, 42, 70, 0.01) 80%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 11; /* Higher than top/bottom */
-  transition: opacity 0.3s ease;
-}
-
-.fadeLeftTransparent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 40px;
-  background: linear-gradient(to right, 
-    rgba(30, 29, 54, 0.92) 0%,
-    rgba(30, 29, 54, 0.88) 5%,
-    rgba(30, 29, 54, 0.82) 10%,
-    rgba(30, 29, 54, 0.74) 15%,
-    rgba(30, 29, 54, 0.66) 20%,
-    rgba(30, 29, 54, 0.58) 25%,
-    rgba(30, 29, 54, 0.5) 30%,
-    rgba(30, 29, 54, 0.42) 35%,
-    rgba(30, 29, 54, 0.34) 40%,
-    rgba(30, 29, 54, 0.28) 45%,
-    rgba(30, 29, 54, 0.22) 50%,
-    rgba(30, 29, 54, 0.16) 55%,
-    rgba(30, 29, 54, 0.12) 60%,
-    rgba(30, 29, 54, 0.08) 65%,
-    rgba(30, 29, 54, 0.05) 70%,
-    rgba(30, 29, 54, 0.03) 75%,
-    rgba(30, 29, 54, 0.01) 80%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 11;
-  transition: opacity 0.3s ease;
-}
-
-/* Right side fade effect */
-.fadeRight {
-  position: absolute;
-  top: 0;
   right: 0;
-  bottom: 0;
-  width: 40px;
-  background: linear-gradient(to left, 
-    rgba(42, 42, 70, 0.92) 0%,
-    rgba(42, 42, 70, 0.88) 5%,
-    rgba(42, 42, 70, 0.82) 10%,
-    rgba(42, 42, 70, 0.74) 15%,
-    rgba(42, 42, 70, 0.66) 20%,
-    rgba(42, 42, 70, 0.58) 25%,
-    rgba(42, 42, 70, 0.5) 30%,
-    rgba(42, 42, 70, 0.42) 35%,
-    rgba(42, 42, 70, 0.34) 40%,
-    rgba(42, 42, 70, 0.28) 45%,
-    rgba(42, 42, 70, 0.22) 50%,
-    rgba(42, 42, 70, 0.16) 55%,
-    rgba(42, 42, 70, 0.12) 60%,
-    rgba(42, 42, 70, 0.08) 65%,
-    rgba(42, 42, 70, 0.05) 70%,
-    rgba(42, 42, 70, 0.03) 75%,
-    rgba(42, 42, 70, 0.01) 80%,
-    transparent 100%
-  );
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 200% 50% at center top, 
+      rgba(42, 42, 70, 0.3) 0%,
+      transparent 100%
+    );
+  opacity: 0.6;
   pointer-events: none;
-  z-index: 11;
-  transition: opacity 0.3s ease;
 }
 
-.fadeRightTransparent {
+/* Feathered edge variant using box shadow for extra softness */
+.fadeBottomSoft {
   position: absolute;
-  top: 0;
-  right: 0;
   bottom: 0;
-  width: 40px;
-  background: linear-gradient(to left, 
-    rgba(30, 29, 54, 0.92) 0%,
-    rgba(30, 29, 54, 0.88) 5%,
-    rgba(30, 29, 54, 0.82) 10%,
-    rgba(30, 29, 54, 0.74) 15%,
-    rgba(30, 29, 54, 0.66) 20%,
-    rgba(30, 29, 54, 0.58) 25%,
-    rgba(30, 29, 54, 0.5) 30%,
-    rgba(30, 29, 54, 0.42) 35%,
-    rgba(30, 29, 54, 0.34) 40%,
-    rgba(30, 29, 54, 0.28) 45%,
-    rgba(30, 29, 54, 0.22) 50%,
-    rgba(30, 29, 54, 0.16) 55%,
-    rgba(30, 29, 54, 0.12) 60%,
-    rgba(30, 29, 54, 0.08) 65%,
-    rgba(30, 29, 54, 0.05) 70%,
-    rgba(30, 29, 54, 0.03) 75%,
-    rgba(30, 29, 54, 0.01) 80%,
-    transparent 100%
-  );
+  left: 20%;
+  right: 20%;
+  height: 20px;
+  background: transparent;
+  box-shadow: 
+    0 -5px 10px 5px rgba(42, 42, 70, 0.2),
+    0 -10px 20px 10px rgba(42, 42, 70, 0.15),
+    0 -15px 30px 15px rgba(42, 42, 70, 0.1),
+    0 -20px 40px 20px rgba(42, 42, 70, 0.05);
   pointer-events: none;
   z-index: 11;
-  transition: opacity 0.3s ease;
+  opacity: 0.8;
 }
-
-/* Dynamic blur effect for better blending - REMOVED for cleaner look */
-/* Removing the ::before pseudo-elements that added blur */

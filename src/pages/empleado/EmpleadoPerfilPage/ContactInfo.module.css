@@ -41,6 +41,7 @@
   font-size: clamp(0.8rem, 1.1vw, 0.95rem);
   color: var(--text-light);
   /* Remove word-break to test horizontal scrolling */
+  font-family: 'Graphik Light', sans-serif;
   white-space: nowrap;
 }
 

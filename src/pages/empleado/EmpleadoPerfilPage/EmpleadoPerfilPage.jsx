@@ -84,7 +84,7 @@ const MOCK_CERTIFICATES = [
     issuer: "Python Software Foundation",
     skill: "Python",
     fechaObtenido: "22 de enero, 2023",
-    fechaExpirado: null,
+    fechaExpirado: "15 de marzo, 2026",
     certificateImage: "/imagesUser/Python-logo.png",
     credentialId: "PSF-2023-5678",
     verifyUrl: "https://python.org/verify/PSF-2023-5678"
@@ -289,7 +289,7 @@ export const EmpleadoPerfilPage = () => {
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={certificateStyles.sectionHeader}>
               <h2 className={certificateStyles.sectionTitle}>My certificates</h2>
-              <button className={certificateStyles.sectionAddBtn}>
+              <button className={skillsStyles.sectionAddBtn}>
                 <i className="bi bi-plus-lg" />
               </button>
             </div>

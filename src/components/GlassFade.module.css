@@ -124,9 +124,7 @@
   right: 0;
   pointer-events: none;
   z-index: 10;
-  border-bottom-left-radius: 10000px;
-  border-bottom-right-radius: 10000px;
-  width: 97%;
+  width: 100%;
   
   background: 
     linear-gradient(to bottom,
@@ -143,8 +141,15 @@
       rgba(60, 40, 100, 0.01) 90%,
       transparent 100%
     );
+    
+  /* Add soft edges using mask for natural fading */
+  mask-image: 
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: 
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 20px rgba(60, 40, 100, 0.2);
 }
 
 /* Transparent background variant */

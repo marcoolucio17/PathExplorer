@@ -11,6 +11,7 @@ import timelineStyles from "./Timeline.module.css";
 import contactInfoStyles from "./ContactInfo.module.css";
 import objectivesStyles from "./Objectives.module.css";
 import certificateStyles from "./Certificates.module.css";
+import skillsStyles from "./Skills.module.css";
 
 const TAB_OPTIONS = ["Contact Information", "Experience", "Objectives"];
 

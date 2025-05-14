@@ -141,16 +141,24 @@ export const EmpleadoPerfilPage = () => {
       <div className={pageStyles.mainContentWrapper}>
         {/* Left Column */}
         <div className={pageStyles.profileColumnLeft}>
-          <ProfileHeaderCard 
-            user={user} 
-            onCVClick={handleCVClick}
-            onEditClick={handleEditClick}
-          />
+          <ProfileHeaderCard user={user} />
 
           <Tabs
             tabs={TAB_OPTIONS}
             activeTab={activeTab}
             onTabClick={setActiveTab}
+            actionButtons={
+              <>
+                <button className={pageStyles.actionBtn} onClick={handleCVClick} title="View CV">
+                  <i className="bi bi-file-earmark-text" />
+                  <span className={pageStyles.buttonText}>CV</span>
+                </button>
+                <button className={pageStyles.actionBtn} onClick={handleEditClick} title="Edit Profile">
+                  <i className="bi bi-pencil-fill" />
+                  <span className={pageStyles.buttonText}>Edit</span>
+                </button>
+              </>
+            }
           />
 
           <div className={pageStyles.tabContentContainer}>

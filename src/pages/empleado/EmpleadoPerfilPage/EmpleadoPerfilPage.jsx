@@ -291,21 +291,23 @@ export const EmpleadoPerfilPage = () => {
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
-            <CustomScrollbar maxHeight="400px">
-              {certificates.map(cert => (
-                <article 
-                  key={cert.id} 
-                  className={certificateStyles.certificate}
-                  onClick={() => handleCertificateClick(cert)}
-                >
-                  <img src={cert.img} alt={cert.alt} />
-                  <div>
-                    <h3>{cert.title}</h3>
-                    <p>by {cert.issuer}</p>
-                  </div>
-                </article>
-              ))}
-            </CustomScrollbar>
+            <div style={{ maxHeight: '400px', position: 'relative' }}>
+              <GlassFade fadeType="glass" fadeBackground="default">
+                {certificates.map(cert => (
+                  <article 
+                    key={cert.id} 
+                    className={certificateStyles.certificate}
+                    onClick={() => handleCertificateClick(cert)}
+                  >
+                    <img src={cert.img} alt={cert.alt} />
+                    <div>
+                      <h3>{cert.title}</h3>
+                      <p>by {cert.issuer}</p>
+                    </div>
+                  </article>
+                ))}
+              </GlassFade>
+            </div>
           </GlassCard>
         </div>
       </div>

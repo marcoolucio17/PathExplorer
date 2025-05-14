@@ -167,6 +167,18 @@ export const EmpleadoPerfilPage = () => {
     setUserSkills(newSkills);
   };
 
+  const handleAddCertificateClick = () => {
+    setIsAddCertificateModalOpen(true);
+  };
+
+  const closeAddCertificateModal = () => {
+    setIsAddCertificateModalOpen(false);
+  };
+
+  const handleAddCertificate = (newCertificate) => {
+    setUserCertificates([...userCertificates, newCertificate]);
+  };
+
   const user = MOCK_USER;
   const experienceItems = MOCK_EXPERIENCE;
   const certificates = MOCK_CERTIFICATES;

@@ -51,7 +51,7 @@
   padding-right: 0.5rem; /* Add padding for scrollbar */
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden; /* Prevent horizontal overflow */
+  /* Removed overflow: hidden to allow scrolling */
 }
 
 .skillCategory {

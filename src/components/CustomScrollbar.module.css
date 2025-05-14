@@ -1,0 +1,62 @@
+.scrollContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Custom scrollbar styles */
+.scrollContainer::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px 0;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background: rgba(139, 146, 255, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.scrollContainer:hover::-webkit-scrollbar-thumb {
+  background: rgba(139, 146, 255, 0.3);
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 146, 255, 0.5);
+  width: 6px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:active {
+  background: rgba(139, 146, 255, 0.6);
+}
+
+/* Hide scrollbar when not hovering */
+.scrollContainer::-webkit-scrollbar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scrollContainer:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+/* Firefox scrollbar styling */
+.scrollContainer {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 146, 255, 0.2) transparent;
+}
+
+/* Smooth scrolling */
+.scrollContainer {
+  scroll-behavior: smooth;
+}
+
+/* Add subtle glow effect on scroll */
+.scrollContainer:hover::-webkit-scrollbar-thumb {
+  box-shadow: 0 0 8px rgba(139, 146, 255, 0.3);
+}

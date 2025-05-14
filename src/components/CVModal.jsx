@@ -31,8 +31,8 @@ export const CVModal = ({ isOpen, onClose }) => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/cv/sammy-garcy-cv.pdf';
-    link.download = 'Sammy_Garcy_CV.pdf';
+    link.href = '/imagesUser/Computer-Science-Resume-Example.png';
+    link.download = 'Sammy_Garcy_CV.png';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

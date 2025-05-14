@@ -5,7 +5,6 @@ import { Tabs } from "../../../components/Tabs";
 import { GlassCard } from "../../../components/shared/GlassCard";
 import { SkillList } from "../../../components/SkillList";
 import { CertificateModal } from "../../../components/CertificateModal";
-import { CertificateModal } from "../../../components/CertificateModal";
 // Import page-specific styles
 import pageStyles from "./EmpleadoPerfilPage.module.css";
 // Import styles for specific sections

@@ -197,6 +197,7 @@
 .filterButtons {
   display: flex;
   gap: 8px;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .filterButton {
@@ -212,6 +213,8 @@
   transition: all 0.2s ease;
   white-space: nowrap;
   font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-width: 80px; /* Ensure minimum width */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .filterButton:hover {

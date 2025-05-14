@@ -83,9 +83,9 @@
   gap: 0.5rem;
   width: 100%;
   max-width: 100%;
-  overflow: hidden; /* Prevent chips from overflowing */
   box-sizing: border-box;
   padding-right: 0.25rem; /* Small padding to ensure chips don't touch edge */
+  word-wrap: break-word; /* Allow words to break if needed */
 }
 
 /* Override chip overflow if needed */

@@ -1,0 +1,80 @@
+.peopleSection {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.peopleTitle {
+  margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
+  flex-shrink: 0;
+  min-height: 1.5rem;
+}
+
+.peopleContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Enable scrolling when content overflows on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .peopleContent {
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+}
+
+.membersDropdownWrapper {
+  flex-shrink: 0;
+  padding-top: clamp(0.5rem, 1vw, 0.75rem);
+  position: relative;
+  z-index: 100;
+  margin-top: auto;
+  min-height: 2.5rem; /* Ensure dropdown is always visible */
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+.person:last-of-type {
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.personAvatar {
+  width: clamp(35px, 4vw, 40px);
+  height: clamp(35px, 4vw, 40px);
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.person div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.personName {
+  text-align: left;
+  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 0.1rem;
+}
+
+.personRole {
+  text-align: left;
+  font-family: 'Graphik Light', sans-serif;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  color: var(--text-muted);
+}

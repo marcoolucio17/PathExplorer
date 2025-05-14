@@ -346,6 +346,13 @@ export const EmpleadoPerfilPage = () => {
         isOpen={isCVModalOpen}
         onClose={closeCVModal}
       />
+      
+      <SkillsModal
+        isOpen={isSkillsModalOpen}
+        onClose={closeSkillsModal}
+        userSkills={userSkills}
+        onUpdateSkills={handleUpdateSkills}
+      />
     </div>
   );
 };

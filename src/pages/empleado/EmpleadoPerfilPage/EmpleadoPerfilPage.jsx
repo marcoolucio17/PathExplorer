@@ -268,7 +268,7 @@ export const EmpleadoPerfilPage = () => {
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={skillsStyles.sectionHeader}>
               <h2 className={skillsStyles.sectionTitle}>My Skills</h2>
-              <button className={skillsStyles.sectionAddBtn}>
+              <button className={skillsStyles.sectionAddBtn} onClick={handleSkillsClick}>
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
@@ -279,12 +279,13 @@ export const EmpleadoPerfilPage = () => {
                     <h3 className={skillsStyles.categoryHeader}>Hard Skills</h3>
                     <div className={skillsStyles.divider}></div>
                     <div className={skillsStyles.skillChipsContainer}>
-                      <SkillChip text="JavaScript" />
-                      <SkillChip text="React" />
-                      <SkillChip text="Node.js" />
-                      <SkillChip text="Python" />
-                      <SkillChip text="SQL" />
-                      <SkillChip text="Git" />
+                      {userSkills.filter(skill => 
+                        // Filter hard skills (technical skills)
+                        !["Leadership", "Communication", "Problem Solving", "Teamwork", "Time Management", 
+                         "Active Listening", "Critical Thinking", "Adaptability", "Creativity & Innovation"].includes(skill)
+                      ).map(skill => (
+                        <SkillChip key={skill} text={skill} />
+                      ))}
                     </div>
                   </div>
                   
@@ -292,11 +293,13 @@ export const EmpleadoPerfilPage = () => {
                     <h3 className={skillsStyles.categoryHeader}>Soft Skills</h3>
                     <div className={skillsStyles.divider}></div>
                     <div className={skillsStyles.skillChipsContainer}>
-                      <SkillChip text="Leadership" />
-                      <SkillChip text="Communication" />
-                      <SkillChip text="Problem Solving" />
-                      <SkillChip text="Teamwork" />
-                      <SkillChip text="Time Management" />
+                      {userSkills.filter(skill => 
+                        // Filter soft skills
+                        ["Leadership", "Communication", "Problem Solving", "Teamwork", "Time Management", 
+                         "Active Listening", "Critical Thinking", "Adaptability", "Creativity & Innovation"].includes(skill)
+                      ).map(skill => (
+                        <SkillChip key={skill} text={skill} />
+                      ))}
                     </div>
                   </div>
                 </div>

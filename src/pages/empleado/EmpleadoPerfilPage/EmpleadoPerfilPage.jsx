@@ -20,6 +20,18 @@ import skillsStyles from "./Skills.module.css";
 
 const TAB_OPTIONS = ["Contact Information", "Experience", "Objectives"];
 
+// Soft skills list for categorization
+const SOFT_SKILLS_LIST = [
+  "Accountability", "Active Listening", "Adaptability", "Collaboration", "Communication", 
+  "Conflict Resolution", "Creativity & Innovation", "Critical Thinking", "Cultural Awareness", 
+  "Decision-Making", "Emotional Intelligence", "Empathy", "Facilitation", "Flexibility", 
+  "Growth Mindset", "Leadership", "Mentoring & Coaching", "Negotiation", "Networking", 
+  "Presentation Skills", "Prioritization", "Problem-Solving", "Public Speaking", "Resilience", 
+  "Self-Motivation", "Stakeholder Management", "Stress Management", "Teamwork", 
+  "Technical Writing", "Time Management", "Git mastery", "agile practices", 
+  "architectural writing", "code reviews"
+];
+
 // Mock data - in a real app, this would come from props or context/API
 const MOCK_USER = {
   name: "Sammy Garcy",

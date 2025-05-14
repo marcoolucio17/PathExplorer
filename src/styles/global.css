@@ -1,5 +1,4 @@
-/* src/index.css (or src/styles/global.css) */
-@import url('./pages/fonts.css'); /* Adjust path as needed */
+@import url('../fonts.css');
 
 :root {
   /* paleta de colores base */
@@ -60,15 +59,14 @@
   --shadow-dropdown: 0 8px 20px rgba(0, 0, 0, 0.4);
   --shadow-icon: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-  /* Navbar specific variables - these could potentially live closer to a Navbar component's CSS
-     if they are *only* used by it, or be prefixed like --navbar-specific-var if global */
+  /* Navbar specific variables */
   --navbar-bg: linear-gradient(135deg, #190b2b82, #1515327f);
   --nav-logo-margin-left: 2rem;
   --nav-logo-margin-right: 1rem;
   --search-padding-y: 0.4rem;
   --search-padding-x: 0.8rem;
   --search-padding-left: 40px;
-  --search-collapsed-width-default: 140px; /* Renamed to avoid conflict if multiple navbars */
+  --search-collapsed-width-default: 140px;
   --search-expanded-width-default: 260px;
   --popover-border-color-default: var(--glass-border);
   --badge-size: 1.5rem;
@@ -78,7 +76,7 @@
   --badge-translate-x: -10%;
   --badge-translate-y: 20%;
 
-  /* Dashboard Navbar specific - similar logic */
+  /* Dashboard Navbar specific */
   --search-collapsed-width-dashboard: 200px;
   --search-expanded-width-dashboard: 260px;
   --search-margin-left-dashboard: 0;
@@ -98,31 +96,30 @@ html, body {
 
 body {
   background: linear-gradient(135deg, var(--bg-dark-1) 10%, var(--bg-dark-2) 50%, var(--bg-dark-3) 100%);
-  background-color: var(--bg-dark-1); /* Fallback */
+  background-color: var(--bg-dark-1);
   color: var(--text-main);
   font-family: 'Graphik Regular', sans-serif;
   margin: 0;
-  overflow-x: hidden; /* Be careful with this globally, might hide legitimate overflow */
+  overflow-x: hidden;
 }
 
-/* Responsive changes for main layout could also live here or in the page component's CSS */
+/* Responsive adjustments - these can be applied to components that need them */
 @media (max-width: 1024px) {
-  /* This specifically targets a class that might be on your main page layout component */
-  .page-container-responsive-adjustment { /* Example: a class on EmpleadoPerfil's main div */
+  .page-container-responsive {
     overflow-y: auto;
-    display: block; /* Overrides flex if needed */
+    display: block;
     padding: 1rem;
     height: auto;
     min-height: 100vh;
   }
 
-  .main-content-responsive-adjustment { /* Example: a class on the flex container inside */
+  .main-content-responsive {
     flex-direction: column;
     max-width: 100%;
     gap: 1.5rem;
   }
 
-  .column-responsive-adjustment { /* Example: a class for both left and right columns */
+  .column-responsive {
     flex: none;
     width: 100%;
   }

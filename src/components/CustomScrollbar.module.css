@@ -1,0 +1,254 @@
+.scrollWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scrollContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-bottom: 1px; /* Prevent margin collapse */
+}
+
+/* Ultra-sleek custom scrollbar - always visible */
+.scrollContainer::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background: rgba(139, 146, 255, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  min-height: 30px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 146, 255, 0.4);
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:active {
+  background: rgba(139, 146, 255, 0.5);
+}
+
+/* Firefox scrollbar - always visible */
+.scrollContainer {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 146, 255, 0.2) rgba(255, 255, 255, 0.03);
+}
+
+/* Smooth scrolling */
+.scrollContainer {
+  scroll-behavior: smooth;
+}
+
+/* Add padding to content to prevent overlap with scrollbar */
+.scrollContent {
+  width: 100%;
+  padding-right: 8px;
+  box-sizing: border-box;
+}
+
+/* Bottom fade effect for glass containers with ultra-smooth edges */
+.fadeBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: 
+    radial-gradient(ellipse 100% 100% at center bottom, 
+      rgba(42, 42, 70, 0.92) 0%,
+      rgba(42, 42, 70, 0.88) 20%,
+      rgba(42, 42, 70, 0.7) 40%,
+      rgba(42, 42, 70, 0.45) 60%,
+      rgba(42, 42, 70, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Bottom fade effect for transparent containers with ultra-smooth edges */
+.fadeBottomTransparent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  width: 100%;
+  background: 
+    radial-gradient(ellipse 100% 100% at center bottom, 
+      rgba(30, 29, 54, 0.92) 0%,
+      rgba(30, 29, 54, 0.88) 20%,
+      rgba(30, 29, 54, 0.7) 40%,
+      rgba(30, 29, 54, 0.45) 60%,
+      rgba(30, 29, 54, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center bottom, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Top fade effect for scrolled content with ultra-smooth edges */
+.fadeTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: 
+    radial-gradient(ellipse 100% 100% at center top, 
+      rgba(42, 42, 70, 0.92) 0%,
+      rgba(42, 42, 70, 0.88) 20%,
+      rgba(42, 42, 70, 0.7) 40%,
+      rgba(42, 42, 70, 0.45) 60%,
+      rgba(42, 42, 70, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fadeTopTransparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: 
+    radial-gradient(ellipse 100% 100% at center top, 
+      rgba(30, 29, 54, 0.92) 0%,
+      rgba(30, 29, 54, 0.88) 20%,
+      rgba(30, 29, 54, 0.7) 40%,
+      rgba(30, 29, 54, 0.45) 60%,
+      rgba(30, 29, 54, 0.2) 80%,
+      transparent 100%
+    );
+  /* Multi-layer masking for ultra-smooth edges */
+  mask-image: 
+    radial-gradient(ellipse 100% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-position: center, center;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    radial-gradient(ellipse 140% 100% at center top, black 0%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Additional soft edge effect using pseudo-elements */
+.fadeBottom::before,
+.fadeBottomTransparent::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 200% 50% at center bottom, 
+      rgba(42, 42, 70, 0.3) 0%,
+      transparent 100%
+    );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.fadeTop::before,
+.fadeTopTransparent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 200% 50% at center top, 
+      rgba(42, 42, 70, 0.3) 0%,
+      transparent 100%
+    );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Feathered edge variant using box shadow for extra softness */
+.fadeBottomSoft {
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 20px;
+  background: transparent;
+  box-shadow: 
+    0 -5px 10px 5px rgba(42, 42, 70, 0.2),
+    0 -10px 20px 10px rgba(42, 42, 70, 0.15),
+    0 -15px 30px 15px rgba(42, 42, 70, 0.1),
+    0 -20px 40px 20px rgba(42, 42, 70, 0.05);
+  pointer-events: none;
+  z-index: 11;
+  opacity: 0.8;
+}

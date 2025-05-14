@@ -35,6 +35,10 @@
   display: none; /* Hide icons by default */
 }
 
+.userSkill i {
+  display: inline-flex; /* Show icon for selected skills */
+}
+
 .userSkill {
   border: 1.5px solid var(--user-skill-border);
   font-family: 'Graphik Light', sans-serif;

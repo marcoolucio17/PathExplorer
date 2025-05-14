@@ -1,21 +1,22 @@
 .profileHeaderCard {
   /* Full width when no outer container */
   width: 100%;
-  padding: clamp(0.5rem, 1vw, 0.75rem) !important;
+  padding: clamp(1.25rem, 2vw, 1.75rem) !important;
+  min-height: 120px;
 }
 
 .profileHeaderMain {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Reduced from 1.75rem */
+  gap: 1.5rem;
 }
 
 .avatarXl {
-  width: 80px; /* Reduced from 110px */
-  height: 80px; /* Reduced from 110px */
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--purple-progress-1); /* Reduced from 3px */
+  border: 3px solid var(--purple-progress-1);
 }
 
 .profileMeta {
@@ -23,30 +24,38 @@
 }
 
 .profileMeta h1 {
-  font-size: 1.5rem; /* Reduced from 2rem */
+  font-size: 1.75rem;
   color: var(--text-light);
   margin: 0;
   font-family: 'Graphik Semibold', sans-serif;
 }
 
 .profileMeta h2 {
-  font-size: 1rem; /* Reduced from 1.1rem */
+  font-size: 1.1rem;
   color: var(--text-main);
-  margin: 0.1rem 0; /* Reduced from 0.25rem */
+  margin: 0.25rem 0;
   font-family: 'Graphik Medium', sans-serif;
 }
 
-.profileMeta p {
-  font-size: 0.85rem; /* Reduced from 0.95rem */
+.infoRow {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.location, .project {
+  font-size: 0.95rem;
   color: var(--text-muted);
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
+  font-family: 'Graphik Regular', sans-serif;
 }
 
-.profileMeta p i {
+.location i, .project i {
   color: var(--purple-icon-1);
+  font-size: 1rem;
 }
 
 .profileActions {

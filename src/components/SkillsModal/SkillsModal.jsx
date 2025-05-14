@@ -189,9 +189,6 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         </div>
 
         <div className={styles.skillsContainer}>
-          <div style={{color: 'white', padding: '10px', background: 'red'}}>
-            TEST: Categories found: {Object.keys(filteredCategories).length}
-          </div>
           {Object.entries(filteredCategories).map(([category, skills]) => (
             <div key={category} className={styles.categorySection}>
               <button
@@ -204,25 +201,15 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
               
               {expandedCategories.has(category) && (
                 <div className={styles.skillsList}>
-                  <div style={{color: 'yellow', margin: '5px'}}>
-                    Skills count: {skills.length}
-                  </div>
-                  {skills.length > 0 ? (
-                    skills.map((skill, index) => (
-                      <div key={`${skill}-${index}`} style={{
-                        color: 'white',
-                        background: 'blue',
-                        padding: '5px',
-                        margin: '2px',
-                        borderRadius: '5px',
-                        display: 'inline-block'
-                      }}>
-                        {skill}
-                      </div>
-                    ))
-                  ) : (
-                    <div style={{color: 'white'}}>No skills in this category</div>
-                  )}
+                  {skills.map(skill => (
+                    <SkillChip
+                      key={skill}
+                      text={skill}
+                      iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
+                      isUserSkill={selectedSkills.has(skill)}
+                      onClick={() => toggleSkill(skill)}
+                    />
+                  ))}
                 </div>
               )}
             </div>

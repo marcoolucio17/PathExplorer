@@ -1,5 +1,12 @@
 .profileTabs {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.tabsContainer {
+  display: flex;
   gap: 2rem;
 }
 
@@ -24,4 +31,49 @@
   color: #d0a0ff;
   border-bottom-color: #d0a0ff;
   font-weight: 500;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profileTabs {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .tabsContainer {
+    gap: 1rem;
+  }
+  
+  .tab {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+  }
+  
+  .actionButtons {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileTabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .tabsContainer {
+    justify-content: space-around;
+  }
+  
+  .actionButtons {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
 }

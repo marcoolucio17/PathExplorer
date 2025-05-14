@@ -41,6 +41,7 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
+  min-height: 0;
 }
 
 .proyectoDescriptionContent {
@@ -50,6 +51,18 @@
   display: flex;
   flex-direction: column;
   gap: clamp(0.5rem, 1vw, 0.75rem);
+  min-height: 0;
+}
+
+/* Enable scrolling on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .proyectoDescription {
+    overflow-y: auto;
+  }
+  
+  .proyectoDescriptionContent {
+    min-width: 250px;
+  }
 }
 
 .descriptionSection {
@@ -187,4 +200,31 @@
   filter: brightness(0.9);
   box-shadow: var(--shadow-inset-press);
   transition-duration: 0.1s;
+}
+
+/* Zoom and small viewport responsiveness */
+@media (max-width: 480px), (max-height: 600px) {
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+  
+  .proyectoDates {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .sectionText,
+  .deliverablesList li {
+    min-width: 200px;
+  }
+  
+  .proyectoActions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
 }

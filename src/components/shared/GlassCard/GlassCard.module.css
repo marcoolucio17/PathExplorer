@@ -11,6 +11,6 @@
   flex-direction: column;
   gap: clamp(0.5rem, 1vw, 0.75rem); /* Reduced gap */
   height: 100%;
-  overflow: visible;
+  overflow: visible; /* Allow children to handle overflow */
   position: relative;
 }

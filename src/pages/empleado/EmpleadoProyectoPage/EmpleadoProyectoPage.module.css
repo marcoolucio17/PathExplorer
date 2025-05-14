@@ -1,17 +1,20 @@
 :root {
   --container-height: 70vh;
   --container-padding: 2rem;
+  --min-content-width: 320px;
 }
 
 .empleadoProyectoContainer {
   background: transparent;
   color: var(--text-light);
   height: 100vh;
+  min-height: 600px; /* Minimum height to prevent crushing */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--container-padding);
-  overflow: hidden;
+  overflow-x: auto; /* Allow horizontal scroll on zoom */
+  overflow-y: auto; /* Allow vertical scroll when needed */
 }
 
 .proyectoMainContent {
@@ -20,7 +23,10 @@
   max-width: 1200px;
   width: 100%;
   height: var(--container-height);
+  min-height: 500px; /* Minimum height */
+  min-width: var(--min-content-width); /* Minimum width */
   overflow: hidden;
+  position: relative;
 }
 
 .proyectoDetails {
@@ -38,9 +44,17 @@
   flex-direction: column;
   gap: clamp(0.5rem, 1vw, 0.75rem);
   height: 100%;
+  min-width: 0;
   overflow: hidden;
 }
 
+/* Add proper viewport constraints */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+/* Ensure proper sidebar handling on zoom */
 .proyectoSidebar {
   flex: 1.5;
   display: flex;
@@ -49,6 +63,7 @@
   position: relative;
   z-index: 1;
   height: 100%;
+  min-width: 280px; /* Minimum width for sidebar */
 }
 
 /* Sidebar sections with flexible heights */
@@ -58,6 +73,13 @@
   position: relative;
   overflow: visible;
   min-height: 0;
+}
+
+/* Enable scrolling in sidebar sections on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .sidebarSection {
+    overflow-y: auto;
+  }
 }
 
 /* Make People section taller (65% of sidebar) */
@@ -72,7 +94,56 @@
   z-index: 10;
 }
 
-/* Responsive styles */
+/* Media queries for zoom and smaller viewports */
+@media (max-width: 768px), (max-height: 700px) {
+  :root {
+    --container-height: 85vh;
+    --container-padding: 1rem;
+  }
+  
+  .empleadoProyectoContainer {
+    padding: var(--container-padding);
+    overflow-y: auto;
+  }
+  
+  .proyectoMainContent {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 2rem);
+  }
+  
+  .proyectoDetails {
+    overflow-y: auto;
+    min-height: 400px;
+  }
+  
+  .proyectoSidebar {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .sidebarSection {
+    min-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+/* High zoom levels or very small viewports */
+@media (max-width: 480px), (max-height: 600px) {
+  .proyectoDetails {
+    padding: 0.5rem;
+  }
+  
+  .empleadoProyectoContainer {
+    padding: 0.5rem;
+  }
+  
+  .proyectoMainContent {
+    gap: 0.75rem;
+  }
+}
+
+/* Responsive styles - refactored */
 @media (max-width: 1024px) {
   :root {
     --container-height: 90vh;

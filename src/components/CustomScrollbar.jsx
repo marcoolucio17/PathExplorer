@@ -11,6 +11,7 @@ const CustomScrollbar = ({
   fadeHeight = 60
 }) => {
   const [isNearBottom, setIsNearBottom] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
@@ -22,16 +23,31 @@ const CustomScrollbar = ({
       
       // Show fade when there's more content to scroll (not at bottom)
       setIsNearBottom(scrollBottom > 10);
+      
+      // Show top fade when scrolled down
+      setIsScrolled(scrollTop > 10);
     };
 
     const scrollContainer = scrollContainerRef.current;
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll);
+      
       // Check initial state
-      handleScroll();
+      const checkInitialOverflow = () => {
+        if (!scrollContainerRef.current) return;
+        const { scrollHeight, clientHeight } = scrollContainerRef.current;
+        const hasOverflow = scrollHeight > clientHeight;
+        setIsNearBottom(hasOverflow);
+        handleScroll();
+      };
+      
+      // Use timeout to ensure content is rendered
+      setTimeout(checkInitialOverflow, 0);
 
       // Also check on resize
-      const resizeObserver = new ResizeObserver(handleScroll);
+      const resizeObserver = new ResizeObserver(() => {
+        checkInitialOverflow();
+      });
       resizeObserver.observe(scrollContainer);
 
       return () => {
@@ -39,13 +55,13 @@ const CustomScrollbar = ({
         resizeObserver.disconnect();
       };
     }
-  }, []);
+  }, [children]); // Re-check when children change
 
-  const getFadeClassName = () => {
+  const getFadeClassName = (isTop = false) => {
     if (fadeBackground === 'transparent') {
-      return styles.fadeBottomTransparent;
+      return isTop ? styles.fadeTopTransparent : styles.fadeBottomTransparent;
     }
-    return styles.fadeBottom;
+    return isTop ? styles.fadeTop : styles.fadeBottom;
   };
 
   return (
@@ -58,9 +74,15 @@ const CustomScrollbar = ({
           {children}
         </div>
       </div>
+      {showFade && isScrolled && (
+        <div 
+          className={getFadeClassName(true)}
+          style={{ height: fadeHeight * 0.7 }}
+        />
+      )}
       {showFade && isNearBottom && (
         <div 
-          className={getFadeClassName()}
+          className={getFadeClassName(false)}
           style={{ height: fadeHeight }}
         />
       )}

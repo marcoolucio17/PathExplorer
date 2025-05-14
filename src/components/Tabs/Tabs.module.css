@@ -1,13 +1,13 @@
 .profileTabs {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  min-height: 40px; /* Maintain height even when tabs are hidden */
 }
 
 .tabsContainer {
-  display: none; /* Hide the tabs */
+  display: flex;
+  gap: 2rem;
 }
 
 .tab {
@@ -36,6 +36,7 @@
 .actionButtons {
   display: flex;
   gap: 0.5rem;
+  margin-left: auto;
 }
 
 /* Responsive adjustments */

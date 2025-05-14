@@ -375,6 +375,12 @@ export const EmpleadoPerfilPage = () => {
         userSkills={userSkills}
         onUpdateSkills={handleUpdateSkills}
       />
+      
+      <AddCertificateModal
+        isOpen={isAddCertificateModalOpen}
+        onClose={closeAddCertificateModal}
+        onAddCertificate={handleAddCertificate}
+      />
     </div>
   );
 };

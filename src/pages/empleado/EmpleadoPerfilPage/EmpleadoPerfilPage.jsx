@@ -201,11 +201,11 @@ export const EmpleadoPerfilPage = () => {
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
-            <div className={pageStyles.skillChipGroup}>
-              <SkillChip text="Hard skills" iconClass="bi bi-tools" />
-              <SkillChip text="Soft skills" iconClass="bi bi-puzzle" />
-              <SkillChip text="Tools & Platforms" iconClass="bi bi-box" />
-            </div>
+            <SkillList skills={[
+              { text: "Hard skills", iconClass: "bi bi-tools" },
+              { text: "Soft skills", iconClass: "bi bi-puzzle" },
+              { text: "Tools & Platforms", iconClass: "bi bi-box" }
+            ]} />
           </GlassCard>
         </div>
       </div>

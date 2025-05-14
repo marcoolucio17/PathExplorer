@@ -50,6 +50,7 @@
   gap: 1.5rem;
   padding-right: 0.5rem; /* Add padding for scrollbar */
   width: 100%;
+  box-sizing: border-box;
   overflow: hidden; /* Prevent horizontal overflow */
 }
 
@@ -58,6 +59,7 @@
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
+  overflow: hidden; /* Ensure category content doesn't overflow */
 }
 
 .categoryHeader {
@@ -82,12 +84,14 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden; /* Prevent chips from overflowing */
+  box-sizing: border-box;
+  padding-right: 0.25rem; /* Small padding to ensure chips don't touch edge */
 }
 
 /* Override chip overflow if needed */
 .skillChipsContainer > * {
   flex-shrink: 0;
-  max-width: 100%;
+  max-width: calc(100% - 0.5rem); /* Ensure chips don't exceed container width */
   overflow: hidden;
   text-overflow: ellipsis;
 }

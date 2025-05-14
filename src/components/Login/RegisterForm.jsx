@@ -67,7 +67,7 @@ const RegisterForm = () => {
       );
 
       const currentPath = location.pathname;
-      const newPath = currentPath.replace("/register", "");
+      const newPath = currentPath.replace(/\/register/g, "");
 
       if (res.status < 399) {
         console.log("Registration successful:", res.data);
@@ -77,11 +77,11 @@ const RegisterForm = () => {
 
       let authz = res.data.authz;
 
-      // we update the authstate
       localStorage.setItem("role", roleMap[authz]);
       localStorage.setItem("token", res.data.token);
       setIsLoading(false);
-      navigate(newPath + roleMap[authz]);
+
+      navigate(newPath + "/" + roleMap[authz]);
     } catch (err) {
       setIsLoading(false);
       setRegisterError(

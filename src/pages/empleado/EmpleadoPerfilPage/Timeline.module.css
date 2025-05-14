@@ -9,7 +9,6 @@
   gap: clamp(1rem, 2vw, 1.5rem);
   position: relative;
   height: 100%;
-  overflow-y: auto;
 }
 
 .timeline::before {
@@ -28,18 +27,16 @@
   gap: clamp(0.75rem, 1.5vw, 1rem);
   position: relative;
   padding-left: 3.5rem;
-  --date-top: 10px;
-  --date-height: 3rem;
 }
 
 /* Create timeline segment above the date */
 .timeline li::before {
   content: "";
   position: absolute;
-  left: 1.5rem;
+  left: -3.75rem;
   top: 0;
   width: 2px;
-  height: calc(var(--date-top) + 1.25rem);
+  height: 0px;
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -47,49 +44,28 @@
 .timeline li::after {
   content: "";
   position: absolute;
-  left: 1.5rem;
-  top: calc(var(--date-top) + 1.25rem);
+  left: -3.75rem;
+  top: 2.5rem; /* Start after date height */
   width: 2px;
-  bottom: calc(-1 * clamp(1rem, 2vw, 1.5rem));
+  bottom: -1.75rem; /* Extend to next item */
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Hide the bottom segment for the last item */
-.timeline li:last-child::after {
-  display: none;
-}
-
-/* Add a horizontal connection from date to timeline */
-.date::after {
+.timeline li:last-child::after
+{
   content: "";
   position: absolute;
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 2px;
+  left: -3.75rem;
+  top: 2.5rem; /* Start after date height */
+  width: 0px;
+  bottom: 0rem; /* Extend to next item */
   background: rgba(255, 255, 255, 0.15);
-}
-
-/* Add a dot at the connection point */
-.timeline li .bullet::before {
-  content: "";
-  position: absolute;
-  left: calc(-3.5rem + 1.5rem - 4px);
-  top: calc(var(--date-top) + 1.25rem - 10px);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary-color, #fff);
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  z-index: 4;
 }
 
 .date {
   position: absolute;
   left: -145px;
-  top: var(--date-top);
-  min-height: var(--date-height);
+  top: 10px;
   width: 140px;
   text-align: right;
   color: var(--text-muted-darker);
@@ -97,10 +73,6 @@
   font-family: 'Graphik Light', sans-serif;
   overflow: visible;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0.5rem 10px 0.5rem 0;
 }
 
 /* Adjust date positioning to stay within container */
@@ -116,14 +88,6 @@
   .timeline li {
     flex-direction: column;
     align-items: flex-start;
-  }
-  
-  /* Hide timeline segments and connections on smaller screens */
-  .timeline li::before,
-  .timeline li::after,
-  .date::after,
-  .timeline li .bullet::before {
-    display: none;
   }
 }
 
@@ -188,14 +152,5 @@
   
   .timeline::before {
     left: 1rem;
-    background: rgba(255, 255, 255, 0.15);
-  }
-  
-  /* Hide timeline segments and connections on mobile */
-  .timeline li::before,
-  .timeline li::after,
-  .date::after,
-  .timeline li .bullet::before {
-    display: none;
   }
 }

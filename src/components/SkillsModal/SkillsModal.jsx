@@ -179,31 +179,37 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         </div>
 
         <div className={styles.skillsContainer}>
-          {Object.entries(filteredCategories).map(([category, skills]) => (
-            <div key={category} className={styles.categorySection}>
-              <button
-                className={styles.categoryHeader}
-                onClick={() => toggleCategory(category)}
-              >
-                <span>{category}</span>
-                <i className={`bi bi-chevron-${expandedCategories.has(category) ? 'up' : 'down'}`}></i>
-              </button>
-              
-              {expandedCategories.has(category) && (
-                <div className={styles.skillsList}>
-                  {skills.map(skill => (
-                    <SkillChip
-                      key={skill}
-                      text={skill}
-                      iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
-                      isUserSkill={selectedSkills.has(skill)}
-                      onClick={() => toggleSkill(skill)}
-                    />
-                  ))}
-                </div>
-              )}
+          {Object.keys(filteredCategories).length === 0 ? (
+            <div className={styles.emptyState}>
+              <p>No skills found matching your criteria.</p>
             </div>
-          ))}
+          ) : (
+            Object.entries(filteredCategories).map(([category, skills]) => (
+              <div key={category} className={styles.categorySection}>
+                <button
+                  className={styles.categoryHeader}
+                  onClick={() => toggleCategory(category)}
+                >
+                  <span>{category}</span>
+                  <i className={`bi bi-chevron-${expandedCategories.has(category) ? 'up' : 'down'}`}></i>
+                </button>
+                
+                {expandedCategories.has(category) && (
+                  <div className={styles.skillsList}>
+                    {skills.map(skill => (
+                      <SkillChip
+                        key={skill}
+                        text={skill}
+                        iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
+                        isUserSkill={selectedSkills.has(skill)}
+                        onClick={() => toggleSkill(skill)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
         </div>
 
         <div className={styles.buttonGroup}>

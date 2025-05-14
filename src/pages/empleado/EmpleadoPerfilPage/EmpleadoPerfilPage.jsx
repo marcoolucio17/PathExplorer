@@ -252,8 +252,8 @@ export const EmpleadoPerfilPage = () => {
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
-            <div style={{ maxHeight: '300px', position: 'relative' }}>
-              <GlassFade fadeType="glass" fadeBackground="default">
+            <div style={{ height: '300px', position: 'relative', flex: 1, minHeight: 0 }}>
+              <GlassFade fadeType="glass" fadeBackground="default" style={{ height: '100%' }}>
                 <div className={skillsStyles.skillsContent}>
                   <div className={skillsStyles.skillCategory}>
                     <h3 className={skillsStyles.categoryHeader}>Hard Skills</h3>

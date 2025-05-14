@@ -101,25 +101,11 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
   };
 
   const getFilteredCategories = () => {
-    const filtered = {};
-    Object.entries(SKILLS_DATA).forEach(([category, skills]) => {
-      const filteredSkills = skills.filter(skill =>
-        skill.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      
-      // Apply category filter
-      if (selectedCategory === 'all' || 
-          selectedCategory === category ||
-          (selectedCategory === 'hard' && category !== 'Soft Skills') ||
-          (selectedCategory === 'soft' && category === 'Soft Skills')) {
-        if (filteredSkills.length > 0) {
-          filtered[category] = filteredSkills;
-        }
-      }
-    });
+    // Start with all categories for debugging
+    const filtered = {...SKILLS_DATA};
     
     // Debug log to see what's being filtered
-    console.log('Filtered categories:', filtered);
+    console.log('All categories:', Object.keys(SKILLS_DATA));
     console.log('Selected category:', selectedCategory);
     
     return filtered;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SkillsModal.module.css';
-import { SkillChip } from '../SkillChip';
+import SkillChip from '../SkillChip/SkillChip';
 
 // Complete skills data structure from the Excel file
 const SKILLS_DATA = {

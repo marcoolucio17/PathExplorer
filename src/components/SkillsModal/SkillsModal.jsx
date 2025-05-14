@@ -104,18 +104,13 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
     const filtered = {};
     
     Object.entries(SKILLS_DATA).forEach(([category, skills]) => {
-      // Filter skills by search term
-      const filteredSkills = skills.filter(skill =>
-        skill.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      
-      // Apply category filter
+      // Apply category filter first
       let shouldInclude = false;
       
       if (selectedCategory === 'all') {
         shouldInclude = true;
       } else if (selectedCategory === 'hard') {
-        // For hard skills, exclude both "Soft Skills" category and other soft skill categories
+        // For hard skills, exclude soft skill categories
         shouldInclude = category !== 'Soft Skills' && 
                        category !== 'Collaboration & Product Skills' &&
                        category !== 'Project Management & Agile';
@@ -126,10 +121,25 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
                        category === 'Project Management & Agile';
       }
       
-      if (shouldInclude && filteredSkills.length > 0) {
-        filtered[category] = filteredSkills;
+      if (shouldInclude) {
+        // Then filter skills by search term if there is one
+        if (searchTerm) {
+          const filteredSkills = skills.filter(skill =>
+            skill.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+          if (filteredSkills.length > 0) {
+            filtered[category] = filteredSkills;
+          }
+        } else {
+          // If no search term, include all skills in the category
+          filtered[category] = skills;
+        }
       }
     });
+    
+    console.log('Filtered categories:', Object.keys(filtered));
+    console.log('Selected category:', selectedCategory);
+    console.log('Search term:', searchTerm);
     
     return filtered;
   };

@@ -91,15 +91,21 @@
   }
 }
 
-/* Make Certificates section taller (65% of sidebar) */
-.sidebarSection:first-child {
-  flex: 1.5;
+/* CV section (first - smaller) */
+.sidebarSection:nth-child(1) {
+  flex: 0.3;
+  z-index: 30;
+}
+
+/* Skills section (second - medium) */
+.sidebarSection:nth-child(2) {
+  flex: 1;
   z-index: 20;
 }
 
-/* Make Skills section shorter (35% of sidebar) */
+/* Certificates section (last - larger) */
 .sidebarSection:last-child {
-  flex: 1;
+  flex: 1.5;
   z-index: 10;
 }
 

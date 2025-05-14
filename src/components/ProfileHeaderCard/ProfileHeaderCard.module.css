@@ -160,14 +160,19 @@
   .projectSection {
     width: 100%;
   }
+  
+  .projectMeta {
+    text-align: left;
+  }
 }
 
 @media (max-width: 768px) {
   .profileHeaderCard {
-    padding: 1.5rem !important;
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 1rem;
   }
   
-  .avatarXl, .projectLogo {
+  .avatarXl {
     width: 70px;
     height: 70px;
   }
@@ -187,10 +192,10 @@
 
 @media (max-width: 480px) {
   .profileHeaderCard {
-    padding: 1rem !important;
+    padding: 1.5rem 1rem !important;
   }
   
-  .employeeSection, .projectSection {
+  .employeeSection {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
@@ -208,7 +213,7 @@
     gap: 1.5rem;
   }
   
-  .avatarXl, .projectLogo {
+  .avatarXl {
     width: 60px;
     height: 60px;
   }

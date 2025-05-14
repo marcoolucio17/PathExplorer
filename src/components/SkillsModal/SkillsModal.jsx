@@ -201,15 +201,19 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
               
               {expandedCategories.has(category) && (
                 <div className={styles.skillsList}>
-                  {skills.map(skill => (
-                    <SkillChip
-                      key={skill}
-                      text={skill}
-                      iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
-                      isUserSkill={selectedSkills.has(skill)}
-                      onClick={() => toggleSkill(skill)}
-                    />
-                  ))}
+                  {skills.length > 0 ? (
+                    skills.map(skill => (
+                      <SkillChip
+                        key={skill}
+                        text={skill}
+                        iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
+                        isUserSkill={selectedSkills.has(skill)}
+                        onClick={() => toggleSkill(skill)}
+                      />
+                    ))
+                  ) : (
+                    <div style={{color: 'white'}}>No skills in this category</div>
+                  )}
                 </div>
               )}
             </div>

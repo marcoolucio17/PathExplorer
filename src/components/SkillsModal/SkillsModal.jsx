@@ -106,8 +106,14 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
       const filteredSkills = skills.filter(skill =>
         skill.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      if (filteredSkills.length > 0 && (selectedCategory === 'all' || selectedCategory === category)) {
-        filtered[category] = filteredSkills;
+      
+      // Apply category filter
+      if (selectedCategory === 'all' || 
+          selectedCategory === category ||
+          (selectedCategory === 'hard' && category !== 'Soft Skills')) {
+        if (filteredSkills.length > 0) {
+          filtered[category] = filteredSkills;
+        }
       }
     });
     return filtered;

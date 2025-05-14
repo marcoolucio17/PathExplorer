@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import styles from './CertificateModal.module.css';
 
 export const CertificateModal = ({ certificate, isOpen, onClose }) => {
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (isOpen && certificate) {
-      setIsVisible(true);
+    if (isOpen) {
+      setIsAnimating(true);
       setIsClosing(false);
     }
-  }, [isOpen, certificate]);
+  }, [isOpen]);
 
-  if (!isVisible || !certificate) return null;
+  if (!isAnimating || !certificate) return null;
 
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
-      onClose();
-      setIsVisible(false);
+      setIsAnimating(false);
       setIsClosing(false);
+      onClose();
     }, 300); // Match animation duration
   };
 

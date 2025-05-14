@@ -225,6 +225,7 @@ export const EmpleadoPerfilPage = () => {
               <SkillList skills={[
                 { text: "Hard skills", iconClass: "bi bi-tools" },
                 { text: "Soft skills", iconClass: "bi bi-puzzle" },
+                { text: "Tools & Platforms", iconClass: "bi bi-box" }
               ]} />
             </div>
           </GlassCard>

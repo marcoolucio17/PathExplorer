@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ProfileHeaderCard } from "../../../components/ProfileHeaderCard";
 import { Tabs } from "../../../components/Tabs";
 import { GlassCard } from "../../../components/shared/GlassCard";
-import SkillChip from "../../../components/SkillChip";
+import { SkillChip } from "../../../components/SkillChip";
 import { CertificateModal } from "../../../components/CertificateModal";
 // Import page-specific styles
 import pageStyles from "./EmpleadoPerfilPage.module.css";

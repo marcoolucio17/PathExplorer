@@ -10,13 +10,10 @@ const CustomScrollbar = ({
   showFade = true,
   fadeHeight = 40, // Reduced default height
   fadeIntensity = 1,
-  showSideFades = true, // Enable by default
   showHorizontalScroll = false // New prop to enable horizontal scrolling
 }) => {
   const [isNearBottom, setIsNearBottom] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNearRight, setIsNearRight] = useState(false);
-  const [isScrolledHorizontally, setIsScrolledHorizontally] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const scrollContainerRef = useRef(null);
 
@@ -43,11 +40,9 @@ const CustomScrollbar = ({
       
       // Show fade when there's more content to scroll
       setIsNearBottom(scrollBottom > 5);
-      setIsNearRight(scrollRight > 5);
       
-      // Show top/left fade when scrolled down/right
+      // Show top fade when scrolled down
       setIsScrolled(scrollTop > 5);
-      setIsScrolledHorizontally(scrollLeft > 5);
     };
 
     const scrollContainer = scrollContainerRef.current;
@@ -59,9 +54,7 @@ const CustomScrollbar = ({
         if (!scrollContainerRef.current) return;
         const { scrollHeight, clientHeight, scrollWidth, clientWidth } = scrollContainerRef.current;
         const hasVerticalOverflow = scrollHeight > clientHeight;
-        const hasHorizontalOverflow = scrollWidth > clientWidth;
         setIsNearBottom(hasVerticalOverflow);
-        setIsNearRight(hasHorizontalOverflow);
         handleScroll();
       };
       
@@ -85,9 +78,7 @@ const CustomScrollbar = ({
     const suffix = fadeBackground === 'transparent' ? 'Transparent' : '';
     const typeMap = {
       'top': 'fadeTop',
-      'bottom': 'fadeBottom',
-      'left': 'fadeLeft',
-      'right': 'fadeRight'
+      'bottom': 'fadeBottom'
     };
     
     return styles[`${typeMap[type]}${suffix}`];
@@ -104,16 +95,6 @@ const CustomScrollbar = ({
     if (!isScrolled) return 0;
     // Fade out more as we approach the top
     return Math.min(1, scrollProgress * fadeIntensity);
-  };
-
-  const getLeftFadeOpacity = () => {
-    if (!isScrolledHorizontally) return 0;
-    return fadeIntensity;
-  };
-
-  const getRightFadeOpacity = () => {
-    if (!isNearRight) return 0;
-    return fadeIntensity;
   };
 
   return (
@@ -147,24 +128,6 @@ const CustomScrollbar = ({
           style={{ 
             height: fadeHeight,
             opacity: getBottomFadeOpacity()
-          }}
-        />
-      )}
-      {showFade && showSideFades && (
-        <div 
-          className={getFadeClassName('left')}
-          style={{ 
-            width: 40,
-            opacity: isScrolledHorizontally ? 1 : 0.7
-          }}
-        />
-      )}
-      {showFade && showSideFades && (
-        <div 
-          className={getFadeClassName('right')}
-          style={{ 
-            width: 40,
-            opacity: isNearRight ? 1 : 0.7
           }}
         />
       )}

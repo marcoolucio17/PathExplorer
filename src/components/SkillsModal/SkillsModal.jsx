@@ -55,8 +55,6 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
       setIsVisible(true);
       setIsClosing(false);
       setSelectedSkills(new Set(userSkills));
-      // Reset expanded categories when opening
-      setExpandedCategories(new Set(Object.keys(SKILLS_DATA)));
     }
   }, [isOpen, userSkills]);
 

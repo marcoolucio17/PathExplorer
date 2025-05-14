@@ -26,6 +26,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .sectionAddBtn:hover {
@@ -48,12 +49,15 @@
   flex-direction: column;
   gap: 1.5rem;
   padding-right: 0.5rem; /* Add padding for scrollbar */
+  width: 100%;
+  overflow: hidden; /* Prevent horizontal overflow */
 }
 
 .skillCategory {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .categoryHeader {
@@ -75,6 +79,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* Prevent chips from overflowing */
+}
+
+/* Override chip overflow if needed */
+.skillChipsContainer > * {
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Mobile responsiveness */

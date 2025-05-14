@@ -110,7 +110,8 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
       // Apply category filter
       if (selectedCategory === 'all' || 
           selectedCategory === category ||
-          (selectedCategory === 'hard' && category !== 'Soft Skills')) {
+          (selectedCategory === 'hard' && category !== 'Soft Skills') ||
+          (selectedCategory === 'soft' && category === 'Soft Skills')) {
         if (filteredSkills.length > 0) {
           filtered[category] = filteredSkills;
         }

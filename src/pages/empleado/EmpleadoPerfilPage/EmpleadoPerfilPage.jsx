@@ -292,7 +292,7 @@ export const EmpleadoPerfilPage = () => {
               </button>
             </div>
             <div style={{ height: '400px', position: 'relative', flex: 1, minHeight: 0 }}>
-              <GlassFade fadeType="glass" fadeBackground="default" style={{ height: '100%' }}>
+              <GlassFade fadeType="glass" fadeBackground="glass" fadeHeight="auto" style={{ height: '100%' }}>
                 {certificates.map(cert => (
                   <article 
                     key={cert.id} 

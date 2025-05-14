@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CertificateModal.module.css';
 
-export const CertificateModal = ({ certificate, isOpen, onClose }) => {
+export const CertificateModal = ({ certificate, isOpen, onClose, onAnimationComplete }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [localCertificate, setLocalCertificate] = useState(null);
@@ -18,9 +18,12 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
         setIsAnimating(false);
         setIsClosing(false);
         setLocalCertificate(null);
+        if (onAnimationComplete) {
+          onAnimationComplete();
+        }
       }, 300); // Match animation duration
     }
-  }, [isOpen, certificate, isAnimating]);
+  }, [isOpen, certificate, isAnimating, onAnimationComplete]);
 
   if (!isAnimating || !localCertificate) return null;
 

@@ -117,6 +117,11 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         }
       }
     });
+    
+    // Debug log to see what's being filtered
+    console.log('Filtered categories:', filtered);
+    console.log('Selected category:', selectedCategory);
+    
     return filtered;
   };
 

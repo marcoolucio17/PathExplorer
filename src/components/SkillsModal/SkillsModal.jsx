@@ -189,7 +189,7 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
                 <i className={`bi bi-chevron-${expandedCategories.has(category) ? 'up' : 'down'}`}></i>
               </button>
               
-              {(expandedCategories.has(category) || searchTerm) && (
+              {expandedCategories.has(category) && (
                 <div className={styles.skillsList}>
                   {skills.map(skill => (
                     <SkillChip

@@ -46,3 +46,15 @@
 .expandTag {
   background-color: var(--expand-skill-bg);
 }
+
+/* Selected state for modal */
+.userSkill.skillChip {
+  background-color: rgba(74, 158, 204, 0.2);
+  border-color: #4A9ECC;
+  color: #fff;
+}
+
+.userSkill.skillChip:hover {
+  background-color: rgba(74, 158, 204, 0.3);
+  border-color: #5AAEDC;
+}

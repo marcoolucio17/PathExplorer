@@ -179,6 +179,9 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         </div>
 
         <div className={styles.skillsContainer}>
+          <div style={{color: 'white', padding: '1rem'}}>
+            Debug: Found {Object.keys(filteredCategories).length} categories
+          </div>
           {Object.keys(filteredCategories).length === 0 ? (
             <div className={styles.emptyState}>
               <p>No skills found matching your criteria.</p>

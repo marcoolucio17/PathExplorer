@@ -59,7 +59,7 @@
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
-  overflow: hidden; /* Ensure category content doesn't overflow */
+  /* Removed overflow: hidden to allow content to be scrollable */
 }
 
 .categoryHeader {

@@ -1,8 +1,9 @@
 .profileHeaderCard {
   /* Full width when no outer container */
   width: 100%;
-  padding: 2rem !important;
-  min-height: 150px;
+  padding: 2.5rem 2rem !important;
+  min-height: 180px;
+  margin-bottom: 1.5rem;
 }
 
 .profileHeaderMain {
@@ -12,13 +13,18 @@
   gap: 3rem;
 }
 
-.employeeSection, .projectSection {
+.employeeSection {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-.avatarXl, .projectLogo {
+.projectSection {
+  display: flex;
+  align-items: center;
+}
+
+.avatarXl {
   width: 90px;
   height: 90px;
   border-radius: 50%;
@@ -58,6 +64,10 @@
 .location i {
   color: var(--purple-icon-1);
   font-size: 1rem;
+}
+
+.projectMeta {
+  text-align: right;
 }
 
 .projectMeta h3 {

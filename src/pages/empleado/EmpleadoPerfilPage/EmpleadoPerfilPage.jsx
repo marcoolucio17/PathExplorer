@@ -67,9 +67,11 @@ const MOCK_CERTIFICATES = [
     title: "JavaScript Connoisseur", 
     issuer: "Accenture",
     skill: "JavaScript",
-    dateObtained: "15 de marzo, 2023",
-    dateExpiry: "15 de marzo, 2026",
-    certificateImage: "/imagesUser/js-certificate-full.png"
+    fechaObtenido: "15 de marzo, 2023",
+    fechaExpirado: "15 de marzo, 2026",
+    certificateImage: "/imagesUser/js-certificate-full.png",
+    credentialId: "JS-2023-1234",
+    verifyUrl: "https://accenture.com/verify/JS-2023-1234"
   },
   {
     id: 2, 
@@ -78,9 +80,11 @@ const MOCK_CERTIFICATES = [
     title: "Python Expert", 
     issuer: "Python Software Foundation",
     skill: "Python",
-    dateObtained: "22 de enero, 2023",
-    dateExpiry: null,
-    certificateImage: "/imagesUser/python-certificate-full.png"
+    fechaObtenido: "22 de enero, 2023",
+    fechaExpirado: null,
+    certificateImage: "/imagesUser/python-certificate-full.png",
+    credentialId: "PSF-2023-5678",
+    verifyUrl: "https://python.org/verify/PSF-2023-5678"
   }
 ];
 

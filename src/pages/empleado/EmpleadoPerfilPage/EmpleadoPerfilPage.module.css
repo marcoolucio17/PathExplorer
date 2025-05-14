@@ -110,12 +110,12 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  background: transparent; /* Make transparent */
+  backdrop-filter: none; /* Remove blur */
+  -webkit-backdrop-filter: none;
+  border: none; /* Remove border */
   border-radius: 16px;
-  box-shadow: var(--shadow-card);
+  box-shadow: none; /* Remove shadow */
   padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(0.75rem, 1.5vw, 1.25rem) clamp(0.75rem, 1.5vw, 1.25rem); /* No bottom padding */
   width: 100%; /* Full width */
 }

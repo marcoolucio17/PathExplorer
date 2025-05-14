@@ -48,7 +48,7 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedSkills, setSelectedSkills] = useState(new Set(userSkills));
-  const [expandedCategories, setExpandedCategories] = useState(new Set());
+  const [expandedCategories, setExpandedCategories] = useState(new Set(Object.keys(SKILLS_DATA)));
 
   useEffect(() => {
     if (isOpen) {

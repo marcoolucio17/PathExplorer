@@ -140,6 +140,18 @@ export const EmpleadoPerfilPage = () => {
     console.log("Edit profile clicked");
   };
 
+  const handleSkillsClick = () => {
+    setIsSkillsModalOpen(true);
+  };
+
+  const closeSkillsModal = () => {
+    setIsSkillsModalOpen(false);
+  };
+
+  const handleUpdateSkills = (newSkills) => {
+    setUserSkills(newSkills);
+  };
+
   const user = MOCK_USER;
   const experienceItems = MOCK_EXPERIENCE;
   const certificates = MOCK_CERTIFICATES;

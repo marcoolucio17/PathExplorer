@@ -54,7 +54,7 @@
   padding-right: 8px;
 }
 
-/* Bottom fade effect */
+/* Bottom fade effect for glass containers */
 .fadeBottom {
   position: absolute;
   bottom: 0;
@@ -66,6 +66,23 @@
     rgba(42, 42, 70, 0.6) 40%,
     rgba(42, 42, 70, 0.9) 80%,
     #2a2a46 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Bottom fade effect for transparent containers */
+.fadeBottomTransparent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(30, 29, 54, 0.6) 50%,
+    rgba(30, 29, 54, 0.9) 85%,
+    #1e1d36 100%
   );
   pointer-events: none;
   z-index: 10;

@@ -1,5 +1,12 @@
 .profileTabs {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.tabsContainer {
+  display: flex;
   gap: 2rem;
 }
 
@@ -24,4 +31,10 @@
   color: #d0a0ff;
   border-bottom-color: #d0a0ff;
   font-weight: 500;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
 }

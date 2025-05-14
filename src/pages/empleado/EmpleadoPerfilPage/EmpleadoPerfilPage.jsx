@@ -181,7 +181,6 @@ export const EmpleadoPerfilPage = () => {
 
   const user = MOCK_USER;
   const experienceItems = MOCK_EXPERIENCE;
-  const certificates = MOCK_CERTIFICATES;
 
   return (
     <div className={pageStyles.profileLayout}>

@@ -92,14 +92,7 @@ export const GlassFade = ({
     <div className={`${styles.glassFadeContainer} ${className}`} style={style}>
       <div 
         ref={containerRef}
-        style={{ 
-          height: '100%', 
-          overflowY: 'auto',
-          overflowX: 'hidden',
-          position: 'relative',
-          scrollBehavior: 'smooth',
-          padding: '0.125rem' // Small padding to prevent content cutoff
-        }}
+        className={styles.scrollContainer}
       >
         {children}
       </div>

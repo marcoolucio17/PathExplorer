@@ -164,26 +164,28 @@ export const EmpleadoPerfilPage = () => {
 
           <div className={pageStyles.tabContentContainer}>
             {activeTab === "Experience" && (
-              <ul className={timelineStyles.timeline}>
-                {experienceItems.map((item, index) => (
-                  <li 
-                    key={item.id}
-                    style={{
-                      '--date-top': '0.5rem',
-                      '--date-height': 'auto',
-                    }}
-                  >
-                    <span className={timelineStyles.date}>{item.dateStart} - {item.dateEnd}</span>
-                    <div className={timelineStyles.bullet}>
-                      <img src={item.logo} alt={item.alt} />
-                    </div>
-                    <div className={timelineStyles.content}>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              <CustomScrollbar>
+                <ul className={timelineStyles.timeline}>
+                  {experienceItems.map((item, index) => (
+                    <li 
+                      key={item.id}
+                      style={{
+                        '--date-top': '0.5rem',
+                        '--date-height': 'auto',
+                      }}
+                    >
+                      <span className={timelineStyles.date}>{item.dateStart} - {item.dateEnd}</span>
+                      <div className={timelineStyles.bullet}>
+                        <img src={item.logo} alt={item.alt} />
+                      </div>
+                      <div className={timelineStyles.content}>
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </CustomScrollbar>
             )}
             {activeTab === "Contact Information" && (
               <div className={contactInfoStyles.contactInfoSection}>

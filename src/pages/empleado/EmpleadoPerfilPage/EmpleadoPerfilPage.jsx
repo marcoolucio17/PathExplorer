@@ -141,7 +141,11 @@ export const EmpleadoPerfilPage = () => {
       <div className={pageStyles.mainContentWrapper}>
         {/* Left Column */}
         <div className={pageStyles.profileColumnLeft}>
-          <ProfileHeaderCard user={user} />
+          <ProfileHeaderCard 
+            user={user} 
+            onCVClick={handleCVClick}
+            onEditClick={handleEditClick}
+          />
 
           <Tabs
             tabs={TAB_OPTIONS}

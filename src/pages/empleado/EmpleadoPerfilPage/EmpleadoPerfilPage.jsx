@@ -165,7 +165,7 @@ export const EmpleadoPerfilPage = () => {
 
           <div className={pageStyles.tabContentContainer}>
             {activeTab === "Experience" && (
-              <CustomScrollbar fadeBackground="transparent">
+              <CustomScrollbar fadeBackground="transparent" fadeHeight={40}>
                 <ul className={timelineStyles.timeline}>
                   {experienceItems.map((item, index) => (
                     <li 
@@ -189,36 +189,38 @@ export const EmpleadoPerfilPage = () => {
               </CustomScrollbar>
             )}
             {activeTab === "Contact Information" && (
-              <div className={contactInfoStyles.contactInfoSection}>
-                <div className={contactInfoStyles.contactItem}>
-                  <i className={`bi bi-envelope-fill ${contactInfoStyles.contactIcon}`}></i>
-                  <div>
-                    <span className={contactInfoStyles.contactLabel}>Email</span>
-                    <p className={contactInfoStyles.contactValue}>{user.email}</p>
+              <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showSideFades={true} showHorizontalScroll={true}>
+                <div className={contactInfoStyles.contactInfoSection}>
+                  <div className={contactInfoStyles.contactItem}>
+                    <i className={`bi bi-envelope-fill ${contactInfoStyles.contactIcon}`}></i>
+                    <div>
+                      <span className={contactInfoStyles.contactLabel}>Email</span>
+                      <p className={contactInfoStyles.contactValue}>{user.email}</p>
+                    </div>
+                  </div>
+                  <div className={contactInfoStyles.contactItem}>
+                    <i className={`bi bi-telephone-fill ${contactInfoStyles.contactIcon}`}></i>
+                    <div>
+                      <span className={contactInfoStyles.contactLabel}>Phone</span>
+                      <p className={contactInfoStyles.contactValue}>{user.phone}</p>
+                    </div>
+                  </div>
+                  <div className={contactInfoStyles.contactItem}>
+                    <i className={`bi bi-linkedin ${contactInfoStyles.contactIcon}`}></i>
+                    <div>
+                      <span className={contactInfoStyles.contactLabel}>LinkedIn</span>
+                      <p className={contactInfoStyles.contactValue}>{user.linkedin}</p>
+                    </div>
+                  </div>
+                  <div className={contactInfoStyles.contactItem}>
+                    <i className={`bi bi-github ${contactInfoStyles.contactIcon}`}></i>
+                    <div>
+                      <span className={contactInfoStyles.contactLabel}>GitHub</span>
+                      <p className={contactInfoStyles.contactValue}>{user.github}</p>
+                    </div>
                   </div>
                 </div>
-                <div className={contactInfoStyles.contactItem}>
-                  <i className={`bi bi-telephone-fill ${contactInfoStyles.contactIcon}`}></i>
-                  <div>
-                    <span className={contactInfoStyles.contactLabel}>Phone</span>
-                    <p className={contactInfoStyles.contactValue}>{user.phone}</p>
-                  </div>
-                </div>
-                <div className={contactInfoStyles.contactItem}>
-                  <i className={`bi bi-linkedin ${contactInfoStyles.contactIcon}`}></i>
-                  <div>
-                    <span className={contactInfoStyles.contactLabel}>LinkedIn</span>
-                    <p className={contactInfoStyles.contactValue}>{user.linkedin}</p>
-                  </div>
-                </div>
-                <div className={contactInfoStyles.contactItem}>
-                  <i className={`bi bi-github ${contactInfoStyles.contactIcon}`}></i>
-                  <div>
-                    <span className={contactInfoStyles.contactLabel}>GitHub</span>
-                    <p className={contactInfoStyles.contactValue}>{user.github}</p>
-                  </div>
-                </div>
-              </div>
+              </CustomScrollbar>
             )}
             {activeTab === "Objectives" && (
               <div className={objectivesStyles.objectivesSection}>

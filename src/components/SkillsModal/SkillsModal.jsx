@@ -48,7 +48,7 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedSkills, setSelectedSkills] = useState(new Set(userSkills));
-  const [expandedCategories, setExpandedCategories] = useState(new Set(Object.keys(SKILLS_DATA))); // Start with all expanded
+  const [expandedCategories, setExpandedCategories] = useState(new Set(Object.keys(SKILLS_DATA)));
 
   useEffect(() => {
     if (isOpen) {
@@ -99,20 +99,6 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
     onUpdateSkills(Array.from(selectedSkills));
     handleClose();
   };
-
-  const getFilteredCategories = () => {
-    // Start with all categories for debugging
-    const filtered = {...SKILLS_DATA};
-    
-    // Debug log to see what's being filtered
-    console.log('All categories:', Object.keys(SKILLS_DATA));
-    console.log('Selected category:', selectedCategory);
-    
-    return filtered;
-  };
-
-  const filteredCategories = getFilteredCategories();
-  const categories = ['all', ...Object.keys(SKILLS_DATA)];
 
   return (
     <div
@@ -165,40 +151,32 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         </div>
 
         <div className={styles.skillsContainer}>
-          <div style={{color: 'white', padding: '1rem'}}>
-            Debug: Found {Object.keys(filteredCategories).length} categories
-          </div>
-          {Object.keys(filteredCategories).length === 0 ? (
-            <div className={styles.emptyState}>
-              <p>No skills found matching your criteria.</p>
+          {/* Simplified rendering for debugging */}
+          {Object.entries(SKILLS_DATA).map(([category, skills]) => (
+            <div key={category} className={styles.categorySection}>
+              <button
+                className={styles.categoryHeader}
+                onClick={() => toggleCategory(category)}
+              >
+                <span>{category}</span>
+                <i className={`bi bi-chevron-${expandedCategories.has(category) ? 'up' : 'down'}`}></i>
+              </button>
+              
+              {expandedCategories.has(category) && (
+                <div className={styles.skillsList}>
+                  {skills.slice(0, 5).map(skill => (
+                    <SkillChip
+                      key={skill}
+                      text={skill}
+                      iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
+                      isUserSkill={selectedSkills.has(skill)}
+                      onClick={() => toggleSkill(skill)}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-          ) : (
-            Object.entries(filteredCategories).map(([category, skills]) => (
-              <div key={category} className={styles.categorySection}>
-                <button
-                  className={styles.categoryHeader}
-                  onClick={() => toggleCategory(category)}
-                >
-                  <span>{category}</span>
-                  <i className={`bi bi-chevron-${expandedCategories.has(category) ? 'up' : 'down'}`}></i>
-                </button>
-                
-                {expandedCategories.has(category) && (
-                  <div className={styles.skillsList}>
-                    {skills.map(skill => (
-                      <SkillChip
-                        key={skill}
-                        text={skill}
-                        iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
-                        isUserSkill={selectedSkills.has(skill)}
-                        onClick={() => toggleSkill(skill)}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))
-          )}
+          ))}
         </div>
 
         <div className={styles.buttonGroup}>

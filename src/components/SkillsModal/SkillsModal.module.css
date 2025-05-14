@@ -294,6 +294,8 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   animation: slideDown 0.3s ease-out;
+  overflow: visible; /* Ensure skills are visible */
+  min-height: 50px; /* Minimum height to ensure visibility */
 }
 
 .emptyState {

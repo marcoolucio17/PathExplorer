@@ -22,11 +22,6 @@ const ProfileHeaderCard = ({ user }) => {
         </div>
         
         <div className={styles.projectSection}>
-          <img
-            src="/imagesUser/golf-logo.png"
-            alt="Project Golf"
-            className={styles.projectLogo}
-          />
           <div className={styles.projectMeta}>
             <h3>Project Golf</h3>
             <p className={styles.projectDuration}>Jun 2019 - Present</p>

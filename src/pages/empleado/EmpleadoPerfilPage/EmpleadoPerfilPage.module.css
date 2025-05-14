@@ -80,8 +80,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: visible;
+  overflow: hidden; /* Changed from visible to hidden */
   min-height: 0;
+  box-sizing: border-box;
 }
 
 /* Enable scrolling in sidebar sections on zoom */

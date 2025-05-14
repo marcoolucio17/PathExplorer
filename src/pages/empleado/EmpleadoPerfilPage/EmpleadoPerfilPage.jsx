@@ -6,6 +6,7 @@ import { GlassCard } from "../../../components/shared/GlassCard";
 import { SkillChip } from "../../../components/SkillChip";
 import { CertificateModal } from "../../../components/CertificateModal";
 import { CVModal } from "../../../components/CVModal";
+import { SkillsModal } from "../../../components/SkillsModal";
 import CustomScrollbar from "../../../components/CustomScrollbar";
 import { GlassFade } from "../../../components/GlassFade";
 // Import page-specific styles
@@ -18,6 +19,18 @@ import certificateStyles from "./Certificates.module.css";
 import skillsStyles from "./Skills.module.css";
 
 const TAB_OPTIONS = ["Contact Information", "Experience", "Objectives"];
+
+// Soft skills list for categorization
+const SOFT_SKILLS_LIST = [
+  "Accountability", "Active Listening", "Adaptability", "Collaboration", "Communication", 
+  "Conflict Resolution", "Creativity & Innovation", "Critical Thinking", "Cultural Awareness", 
+  "Decision-Making", "Emotional Intelligence", "Empathy", "Facilitation", "Flexibility", 
+  "Growth Mindset", "Leadership", "Mentoring & Coaching", "Negotiation", "Networking", 
+  "Presentation Skills", "Prioritization", "Problem-Solving", "Public Speaking", "Resilience", 
+  "Self-Motivation", "Stakeholder Management", "Stress Management", "Teamwork", 
+  "Technical Writing", "Time Management", "Git mastery", "agile practices", 
+  "architectural writing", "code reviews"
+];
 
 // Mock data - in a real app, this would come from props or context/API
 const MOCK_USER = {
@@ -96,6 +109,11 @@ export const EmpleadoPerfilPage = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+  const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
+  const [userSkills, setUserSkills] = useState([
+    "JavaScript", "React", "Node.js", "Python", "SQL", "Git",
+    "Leadership", "Communication", "Problem Solving", "Teamwork", "Time Management"
+  ]);
   const [objectives, setObjectives] = useState([
     { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
     { id: 2, text: "Finish the advanced React course", completed: true },
@@ -132,6 +150,18 @@ export const EmpleadoPerfilPage = () => {
   const handleEditClick = () => {
     // Handle edit functionality
     console.log("Edit profile clicked");
+  };
+
+  const handleSkillsClick = () => {
+    setIsSkillsModalOpen(true);
+  };
+
+  const closeSkillsModal = () => {
+    setIsSkillsModalOpen(false);
+  };
+
+  const handleUpdateSkills = (newSkills) => {
+    setUserSkills(newSkills);
   };
 
   const user = MOCK_USER;
@@ -250,7 +280,7 @@ export const EmpleadoPerfilPage = () => {
           <GlassCard className={pageStyles.sidebarSection}>
             <div className={skillsStyles.sectionHeader}>
               <h2 className={skillsStyles.sectionTitle}>My Skills</h2>
-              <button className={skillsStyles.sectionAddBtn}>
+              <button className={skillsStyles.sectionAddBtn} onClick={handleSkillsClick}>
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
@@ -261,12 +291,11 @@ export const EmpleadoPerfilPage = () => {
                     <h3 className={skillsStyles.categoryHeader}>Hard Skills</h3>
                     <div className={skillsStyles.divider}></div>
                     <div className={skillsStyles.skillChipsContainer}>
-                      <SkillChip text="JavaScript" />
-                      <SkillChip text="React" />
-                      <SkillChip text="Node.js" />
-                      <SkillChip text="Python" />
-                      <SkillChip text="SQL" />
-                      <SkillChip text="Git" />
+                      {userSkills
+                        .filter(skill => !SOFT_SKILLS_LIST.includes(skill))
+                        .map((skill, index) => (
+                          <SkillChip key={`hard-${skill}-${index}`} text={skill} />
+                        ))}
                     </div>
                   </div>
                   
@@ -274,11 +303,11 @@ export const EmpleadoPerfilPage = () => {
                     <h3 className={skillsStyles.categoryHeader}>Soft Skills</h3>
                     <div className={skillsStyles.divider}></div>
                     <div className={skillsStyles.skillChipsContainer}>
-                      <SkillChip text="Leadership" />
-                      <SkillChip text="Communication" />
-                      <SkillChip text="Problem Solving" />
-                      <SkillChip text="Teamwork" />
-                      <SkillChip text="Time Management" />
+                      {userSkills
+                        .filter(skill => SOFT_SKILLS_LIST.includes(skill))
+                        .map((skill, index) => (
+                          <SkillChip key={`soft-${skill}-${index}`} text={skill} />
+                        ))}
                     </div>
                   </div>
                 </div>
@@ -324,6 +353,13 @@ export const EmpleadoPerfilPage = () => {
       <CVModal 
         isOpen={isCVModalOpen}
         onClose={closeCVModal}
+      />
+      
+      <SkillsModal
+        isOpen={isSkillsModalOpen}
+        onClose={closeSkillsModal}
+        userSkills={userSkills}
+        onUpdateSkills={handleUpdateSkills}
       />
     </div>
   );

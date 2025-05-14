@@ -320,22 +320,5 @@
   transition: opacity 0.3s ease;
 }
 
-/* Dynamic blur effect for better blending */
-.fadeBottom::before,
-.fadeBottomTransparent::before,
-.fadeTop::before,
-.fadeTopTransparent::before,
-.fadeLeft::before,
-.fadeLeftTransparent::before,
-.fadeRight::before,
-.fadeRightTransparent::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  opacity: 0.6;
-}
+/* Dynamic blur effect for better blending - REMOVED for cleaner look */
+/* Removing the ::before pseudo-elements that added blur */

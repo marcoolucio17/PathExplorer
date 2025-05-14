@@ -93,6 +93,7 @@ export const EmpleadoPerfilPage = () => {
   const [activeTab, setActiveTab] = useState("Contact Information");
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [objectives, setObjectives] = useState([
     { id: 1, text: "Complete Q2 performance review self-assessment", completed: false },
     { id: 2, text: "Finish the advanced React course", completed: true },
@@ -116,6 +117,19 @@ export const EmpleadoPerfilPage = () => {
   const closeCertificateModal = () => {
     setIsCertificateModalOpen(false);
     // Don't clear the certificate immediately - let the modal handle its own cleanup
+  };
+
+  const handleCVClick = () => {
+    setIsCVModalOpen(true);
+  };
+
+  const closeCVModal = () => {
+    setIsCVModalOpen(false);
+  };
+
+  const handleEditClick = () => {
+    // Handle edit functionality
+    console.log("Edit profile clicked");
   };
 
   const user = MOCK_USER;

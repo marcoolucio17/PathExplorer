@@ -137,10 +137,6 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
       }
     });
     
-    console.log('Filtered categories:', Object.keys(filtered));
-    console.log('Selected category:', selectedCategory);
-    console.log('Search term:', searchTerm);
-    
     return filtered;
   };
 

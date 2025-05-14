@@ -2,13 +2,13 @@
   background-color: rgba(60, 40, 100, 0.3);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid var(--glass-border);
-  color: var(--text-skill);
-  padding: clamp(0.25rem, 0.5vw, 0.35rem) clamp(0.6rem, 1.2vw, 0.9rem);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.35rem 0.9rem;
   border-radius: 50px;
-  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-size: 0.85rem;
   white-space: nowrap;
-  box-shadow: var(--shadow-outer-subtle);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   display: inline-flex;
@@ -22,9 +22,9 @@
 }
 
 .skillChip:hover {
-  background-color: var(--skill-hover-bg);
-  border-color: var(--border-strong);
-  color: var(--text-light);
+  background-color: rgba(80, 60, 120, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   filter: brightness(1.15);
@@ -42,15 +42,15 @@
 }
 
 .userSkill {
-  border: 1.5px solid var(--user-skill-border);
+  border: 1.5px solid rgba(74, 158, 204, 0.5);
   font-family: 'Graphik Light', sans-serif;
-  color: var(--text-light);
-  background-color: var(--user-skill-bg);
-  box-shadow: inset 0 0 5px var(--highlight-inner-faint), var(--shadow-outer-subtle);
+  color: #fff;
+  background-color: rgba(74, 158, 204, 0.15);
+  box-shadow: inset 0 0 5px rgba(74, 158, 204, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .expandTag {
-  background-color: var(--expand-skill-bg);
+  background-color: rgba(100, 80, 140, 0.3);
 }
 
 /* Selected state for modal */

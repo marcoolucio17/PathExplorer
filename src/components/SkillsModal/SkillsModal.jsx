@@ -151,32 +151,20 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         </div>
 
         <div className={styles.skillsContainer}>
-          {/* Simplified rendering for debugging */}
-          {Object.entries(SKILLS_DATA).map(([category, skills]) => (
-            <div key={category} className={styles.categorySection}>
-              <button
-                className={styles.categoryHeader}
-                onClick={() => toggleCategory(category)}
-              >
-                <span>{category}</span>
-                <i className={`bi bi-chevron-${expandedCategories.has(category) ? 'up' : 'down'}`}></i>
-              </button>
-              
-              {expandedCategories.has(category) && (
-                <div className={styles.skillsList}>
-                  {skills.slice(0, 5).map(skill => (
-                    <SkillChip
-                      key={skill}
-                      text={skill}
-                      iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
-                      isUserSkill={selectedSkills.has(skill)}
-                      onClick={() => toggleSkill(skill)}
-                    />
-                  ))}
-                </div>
-              )}
+          <div style={{color: 'white', padding: '1rem', border: '1px solid white'}}>
+            Test Content - This is a simple test
+          </div>
+          <div className={styles.categorySection}>
+            <div style={{color: 'white'}}>Category: Front-End Development</div>
+            <div className={styles.skillsList}>
+              <span style={{color: 'white', padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '20px'}}>
+                React
+              </span>
+              <span style={{color: 'white', padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '20px'}}>
+                TypeScript
+              </span>
             </div>
-          ))}
+          </div>
         </div>
 
         <div className={styles.buttonGroup}>

@@ -31,14 +31,36 @@ export const CertificateModal = ({ certificate, isOpen, onClose }) => {
     }
   };
 
-  const handleDownload = () => {
-    // Create a temporary link to download the certificate image
-    const link = document.createElement('a');
-    link.href = certificate.certificateImage || certificate.img;
-    link.download = `${certificate.title}-Certificate.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownload = async () => {
+    try {
+      const imageUrl = certificate.certificateImage || certificate.img;
+      
+      // For local images or same-origin images
+      if (imageUrl.startsWith('/') || imageUrl.startsWith(window.location.origin)) {
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.download = `${certificate.title}-Certificate.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        // For external images (handle CORS)
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${certificate.title}-Certificate.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      console.error('Error downloading certificate:', error);
+      // Fallback: open image in new tab if download fails
+      window.open(certificate.certificateImage || certificate.img, '_blank');
+    }
   };
 
   return (

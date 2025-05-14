@@ -91,14 +91,8 @@
   }
 }
 
-/* CV section (first - smaller) */
-.sidebarSection:nth-child(1) {
-  flex: 0.3;
-  z-index: 30;
-}
-
-/* Skills section (second - medium) */
-.sidebarSection:nth-child(2) {
+/* Skills section (first - smaller) */
+.sidebarSection:first-child {
   flex: 1;
   z-index: 20;
 }

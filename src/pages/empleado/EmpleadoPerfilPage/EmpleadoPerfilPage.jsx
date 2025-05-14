@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ProfileHeaderCard } from "../../../components/ProfileHeaderCard";
 import { Tabs } from "../../../components/Tabs";
 import { GlassCard } from "../../../components/shared/GlassCard";
-import { SkillList } from "../../../components/SkillList";
+import { SkillChip } from "../../../components/SkillChip";
 import { CertificateModal } from "../../../components/CertificateModal";
 // Import page-specific styles
 import pageStyles from "./EmpleadoPerfilPage.module.css";
@@ -69,7 +69,7 @@ const MOCK_CERTIFICATES = [
     skill: "JavaScript",
     fechaObtenido: "15 de marzo, 2023",
     fechaExpirado: "15 de marzo, 2026",
-    certificateImage: "/imagesUser/js-certificate-full.png",
+    certificateImage: "/imagesUser/JavaScript-logo.png",
     credentialId: "JS-2023-1234",
     verifyUrl: "https://accenture.com/verify/JS-2023-1234"
   },
@@ -82,7 +82,7 @@ const MOCK_CERTIFICATES = [
     skill: "Python",
     fechaObtenido: "22 de enero, 2023",
     fechaExpirado: null,
-    certificateImage: "/imagesUser/python-certificate-full.png",
+    certificateImage: "/imagesUser/Python-logo.png",
     credentialId: "PSF-2023-5678",
     verifyUrl: "https://python.org/verify/PSF-2023-5678"
   }

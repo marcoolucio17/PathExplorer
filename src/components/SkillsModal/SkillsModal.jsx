@@ -55,6 +55,8 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
       setIsVisible(true);
       setIsClosing(false);
       setSelectedSkills(new Set(userSkills));
+      // Reset expanded categories when opening
+      setExpandedCategories(new Set(Object.keys(SKILLS_DATA)));
     }
   }, [isOpen, userSkills]);
 
@@ -99,6 +101,42 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
     onUpdateSkills(Array.from(selectedSkills));
     handleClose();
   };
+
+  const getFilteredCategories = () => {
+    const filtered = {};
+    
+    Object.entries(SKILLS_DATA).forEach(([category, skills]) => {
+      // Filter skills by search term
+      const filteredSkills = skills.filter(skill =>
+        skill.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      
+      // Apply category filter
+      let shouldInclude = false;
+      
+      if (selectedCategory === 'all') {
+        shouldInclude = true;
+      } else if (selectedCategory === 'hard') {
+        // For hard skills, exclude both "Soft Skills" category and other soft skill categories
+        shouldInclude = category !== 'Soft Skills' && 
+                       category !== 'Collaboration & Product Skills' &&
+                       category !== 'Project Management & Agile';
+      } else if (selectedCategory === 'soft') {
+        // For soft skills, only include the relevant categories
+        shouldInclude = category === 'Soft Skills' || 
+                       category === 'Collaboration & Product Skills' ||
+                       category === 'Project Management & Agile';
+      }
+      
+      if (shouldInclude && filteredSkills.length > 0) {
+        filtered[category] = filteredSkills;
+      }
+    });
+    
+    return filtered;
+  };
+
+  const filteredCategories = getFilteredCategories();
 
   return (
     <div
@@ -151,20 +189,31 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         </div>
 
         <div className={styles.skillsContainer}>
-          <div style={{color: 'white', padding: '1rem', border: '1px solid white'}}>
-            Test Content - This is a simple test
-          </div>
-          <div className={styles.categorySection}>
-            <div style={{color: 'white'}}>Category: Front-End Development</div>
-            <div className={styles.skillsList}>
-              <span style={{color: 'white', padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '20px'}}>
-                React
-              </span>
-              <span style={{color: 'white', padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '20px'}}>
-                TypeScript
-              </span>
+          {Object.entries(filteredCategories).map(([category, skills]) => (
+            <div key={category} className={styles.categorySection}>
+              <button
+                className={styles.categoryHeader}
+                onClick={() => toggleCategory(category)}
+              >
+                <span>{category}</span>
+                <i className={`bi bi-chevron-${expandedCategories.has(category) ? 'up' : 'down'}`}></i>
+              </button>
+              
+              {expandedCategories.has(category) && (
+                <div className={styles.skillsList}>
+                  {skills.map(skill => (
+                    <SkillChip
+                      key={skill}
+                      text={skill}
+                      iconClass={selectedSkills.has(skill) ? "bi bi-check-circle-fill" : null}
+                      isUserSkill={selectedSkills.has(skill)}
+                      onClick={() => toggleSkill(skill)}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
+          ))}
         </div>
 
         <div className={styles.buttonGroup}>

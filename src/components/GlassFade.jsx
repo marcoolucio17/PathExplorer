@@ -82,7 +82,14 @@ export const GlassFade = ({
 
   const getFadeClass = (isTop) => {
     const prefix = fadeType === 'feather' ? 'feather' : 'glass';
-    const suffix = fadeBackground === 'transparent' ? 'Transparent' : '';
+    let suffix = '';
+    
+    if (fadeBackground === 'transparent') {
+      suffix = 'Transparent';
+    } else if (fadeBackground === 'glass') {
+      suffix = 'Glass';
+    }
+    
     const position = isTop ? 'Top' : 'Bottom';
     
     return styles[`${prefix}Fade${position}${suffix}`];

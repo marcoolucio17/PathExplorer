@@ -221,12 +221,31 @@ export const EmpleadoPerfilPage = () => {
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
-            <div className={skillsStyles.skillsContainer}>
-              <SkillList skills={[
-                { text: "Hard skills", iconClass: "bi bi-tools" },
-                { text: "Soft skills", iconClass: "bi bi-puzzle" },
-                { text: "Tools & Platforms", iconClass: "bi bi-box" }
-              ]} />
+            <div className={skillsStyles.skillsContent}>
+              <div className={skillsStyles.skillCategory}>
+                <h3 className={skillsStyles.categoryHeader}>Hard Skills</h3>
+                <div className={skillsStyles.divider}></div>
+                <div className={skillsStyles.skillChipsContainer}>
+                  <SkillChip text="JavaScript" />
+                  <SkillChip text="React" />
+                  <SkillChip text="Node.js" />
+                  <SkillChip text="Python" />
+                  <SkillChip text="SQL" />
+                  <SkillChip text="Git" />
+                </div>
+              </div>
+              
+              <div className={skillsStyles.skillCategory}>
+                <h3 className={skillsStyles.categoryHeader}>Soft Skills</h3>
+                <div className={skillsStyles.divider}></div>
+                <div className={skillsStyles.skillChipsContainer}>
+                  <SkillChip text="Leadership" />
+                  <SkillChip text="Communication" />
+                  <SkillChip text="Problem Solving" />
+                  <SkillChip text="Teamwork" />
+                  <SkillChip text="Time Management" />
+                </div>
+              </div>
             </div>
           </GlassCard>
           

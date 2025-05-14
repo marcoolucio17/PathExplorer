@@ -129,6 +129,7 @@ export const SkillsModal = ({ isOpen, onClose, userSkills = [], onUpdateSkills }
         <div className={styles.modalHeader}>
           <h2 className={styles.title}>Manage Skills</h2>
           <p className={styles.subtitle}>Add or remove skills from your profile</p>
+          <p className={styles.selectedCount}>{selectedSkills.size} skills selected</p>
         </div>
 
         <div className={styles.controls}>

@@ -196,17 +196,19 @@ export const EmpleadoPerfilPage = () => {
           </GlassCard>
 
           <GlassCard className={pageStyles.sidebarSection}>
-            <div className={certificateStyles.sectionHeader}>
-              <h2 className={certificateStyles.sectionTitle}>My Skills</h2>
-              <button className={certificateStyles.sectionAddBtn}>
+            <div className={skillsStyles.sectionHeader}>
+              <h2 className={skillsStyles.sectionTitle}>My Skills</h2>
+              <button className={skillsStyles.sectionAddBtn}>
                 <i className="bi bi-plus-lg" />
               </button>
             </div>
-            <SkillList skills={[
-              { text: "Hard skills", iconClass: "bi bi-tools" },
-              { text: "Soft skills", iconClass: "bi bi-puzzle" },
-              { text: "Tools & Platforms", iconClass: "bi bi-box" }
-            ]} />
+            <div className={skillsStyles.skillsContainer}>
+              <SkillList skills={[
+                { text: "Hard skills", iconClass: "bi bi-tools" },
+                { text: "Soft skills", iconClass: "bi bi-puzzle" },
+                { text: "Tools & Platforms", iconClass: "bi bi-box" }
+              ]} />
+            </div>
           </GlassCard>
         </div>
       </div>

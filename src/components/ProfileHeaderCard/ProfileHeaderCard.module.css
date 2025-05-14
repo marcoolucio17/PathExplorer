@@ -140,56 +140,78 @@
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+  .profileHeaderMain {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .projectSection {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .profileHeaderCard {
-    padding: clamp(1rem, 1.5vw, 1.25rem) !important;
+    padding: 1.5rem !important;
   }
   
-  .profileHeaderMain {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .avatarXl {
+  .avatarXl, .projectLogo {
     width: 70px;
     height: 70px;
   }
   
-  .profileMeta h1 {
+  .employeeMeta h1, .projectMeta h3 {
     font-size: 1.5rem;
   }
   
-  .profileMeta h2 {
+  .employeeMeta h2 {
     font-size: 1rem;
   }
   
-  .infoRow {
-    gap: 1.5rem;
-  }
-  
-  .location, .project {
+  .location, .projectDuration, .projectRole {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
+  .profileHeaderCard {
+    padding: 1rem !important;
+  }
+  
+  .employeeSection, .projectSection {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .employeeMeta, .projectMeta {
+    text-align: center;
+  }
+  
+  .location {
+    justify-content: center;
+  }
+  
   .profileHeaderMain {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: 1.5rem;
   }
   
-  .profileMeta {
-    text-align: center;
+  .avatarXl, .projectLogo {
+    width: 60px;
+    height: 60px;
   }
   
-  .infoRow {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
+  .employeeMeta h1, .projectMeta h3 {
+    font-size: 1.25rem;
   }
   
-  .location, .project {
+  .employeeMeta h2 {
+    font-size: 0.9rem;
+  }
+  
+  .location, .projectDuration, .projectRole {
     font-size: 0.85rem;
   }
 }

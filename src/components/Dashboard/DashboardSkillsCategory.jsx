@@ -1,5 +1,4 @@
-import React,  { useState, useEffect } from 'react'
-import { Modal,ModalHeader,ModalBody,ModalFooter } from "reactstrap";
+import { Modal,ModalHeader,ModalBody } from "reactstrap";
 import '../../styles/EmpleadoDashboard.css'
 import '../../styles/ManagerDashboard.css'
 
@@ -9,7 +8,7 @@ export const DashboardSkillsCategory = ({data_skills, skillModalOpen, setSkillSe
     return (
         <Modal isOpen={skillModalOpen}  className="modal-skills-category" backdrop={false} >
         <ModalHeader   className="modal-skills-header">
-          Skills Category
+          Select a skill
           <button className="btn-custom-close" onClick={toggleSkillModal}><i class="bi bi-x-lg"></i></button>
         </ModalHeader>
         <ModalBody className="modal-skills-body">

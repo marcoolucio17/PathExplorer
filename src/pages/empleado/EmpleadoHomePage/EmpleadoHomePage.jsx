@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 // Import components
 import { GlassCard } from "../../../components/shared/GlassCard";
 import { ProgressCircle } from "../../../components/ProgressCircle";
-import CustomScrollbar from "../../../components/CustomScrollbar";
-import { GlassFade } from "../../../components/GlassFade";
 // Import page-specific styles
 import pageStyles from "./EmpleadoHomePage.module.css";
 // Import styles for specific sections
@@ -99,119 +97,115 @@ export const EmpleadoHomePage = () => {
           <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
         </div>
 
-        <div className={pageStyles.contentContainer}>
-          {/* Main Content Area */}
-          <div className={pageStyles.mainContent}>
-            {/* Progress Section Card */}
-            <GlassCard className={pageStyles.progressCard}>
-              <div className={pageStyles.progressContent}>
-                <div className={pageStyles.circlesContainer}>
-                  <div className={pageStyles.progressItemWrapper}>
-                    <ProgressCircle 
-                      value={goalProgress} 
-                      maxValue={3} 
-                      title="Goal Progress"
-                      primaryColor="#8b5cf6"
-                      secondaryColor="#3b82f6"
-                      size={120}
-                      strokeWidth={12}
-                    />
+        {/* Main Content */}
+        <div className={pageStyles.contentSection}>
+          {/* Progress Section */}
+          <GlassCard className={pageStyles.progressCard}>
+            <div className={pageStyles.progressContent}>
+              <div className={pageStyles.progressLeft}>
+                <ProgressCircle 
+                  value={goalProgress} 
+                  maxValue={3} 
+                  title="Goal Progress"
+                  primaryColor="#8b5cf6"
+                  secondaryColor="#3b82f6"
+                  size={100}
+                  strokeWidth={10}
+                />
+              </div>
+              
+              <div className={pageStyles.progressCenter}>
+                <ProgressCircle 
+                  value={projectProgress} 
+                  maxValue={100} 
+                  title="Project Progress"
+                  primaryColor="#06b6d4"
+                  secondaryColor="#3b82f6"
+                  size={120}
+                  strokeWidth={12}
+                />
+              </div>
+              
+              <div className={pageStyles.progressRight}>
+                <h3 className={pageStyles.recommendedTitle}>Recommended:</h3>
+                <button className={pageStyles.recommendedButton}>
+                  Skills
+                </button>
+                <button className={pageStyles.recommendedButton}>
+                  Certificates
+                </button>
+              </div>
+            </div>
+          </GlassCard>
+
+          {/* Project Recommendations Section */}
+          <GlassCard className={pageStyles.recommendationsCard}>
+            <h3 className={pageStyles.recommendationTitle}>
+              Based on your profile, you'd be a great fit for these projects:
+            </h3>
+            
+            <div className={pageStyles.projectCardsWrapper}>
+              {recommendedProjects.map((project) => (
+                <div key={project.idproyecto} className={pageStyles.projectCard}>
+                  <h4 className={pageStyles.projectName}>{project.pnombre}</h4>
+                  <div className={pageStyles.matchPercentage}>{project.matchPercentage}%</div>
+                  <div className={pageStyles.skillsContainer}>
+                    {project.skills.map((skill, idx) => (
+                      <span key={idx} className={pageStyles.skillTag}>
+                        {skill}
+                      </span>
+                    ))}
                   </div>
-                  
-                  <div className={pageStyles.progressItemWrapper}>
-                    <ProgressCircle 
-                      value={projectProgress} 
-                      maxValue={100} 
-                      title=""
-                      primaryColor="#06b6d4"
-                      secondaryColor="#3b82f6"
-                      size={120}
-                      strokeWidth={12}
-                    />
-                    <h3 className={pageStyles.progressLabel}>Project Progress</h3>
+                  <button 
+                    className={pageStyles.applyButton}
+                    onClick={() => handleApplyToProject(project.idproyecto)}
+                  >
+                    <i className="bi bi-check-circle-fill" />
+                    Apply
+                  </button>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        </div>
+
+        {/* Sidebar */}
+        <div className={pageStyles.sidebar}>
+          {/* Quick Actions */}
+          <GlassCard className={pageStyles.sidebarCard}>
+            <h2 className={quickActionsStyles.sectionTitle}>Quick Actions</h2>
+            <div className={quickActionsStyles.actionsContainer}>
+              {quickActions.map((action) => (
+                <div key={action.id} className={quickActionsStyles.actionItem}>
+                  <div className={quickActionsStyles.actionInfo}>
+                    <i className={`${action.icon} ${quickActionsStyles.actionIcon}`} />
+                    <span className={quickActionsStyles.actionTitle}>{action.title}</span>
+                  </div>
+                  <button
+                    onClick={() => navigate(action.path)}
+                    className={quickActionsStyles.actionButton}
+                  >
+                    <i className="bi bi-arrow-right-circle-fill" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+
+          {/* Announcements */}
+          <GlassCard className={pageStyles.sidebarCard}>
+            <h2 className={announcementsStyles.sectionTitle}>Announcements</h2>
+            <div className={announcementsStyles.announcementsContainer}>
+              {announcements.map((announcement) => (
+                <div key={announcement.id} className={announcementsStyles.announcementItem}>
+                  <i className={`${announcement.icon} ${announcementsStyles.announcementIcon}`} />
+                  <div className={announcementsStyles.announcementText}>
+                    {announcement.text}
                   </div>
                 </div>
-                
-                <div className={pageStyles.recommendedSection}>
-                  <h3 className={pageStyles.recommendedTitle}>Recommended:</h3>
-                  <button className={pageStyles.recommendedButton}>
-                    Skills
-                  </button>
-                  <button className={pageStyles.recommendedButton}>
-                    Certificates
-                  </button>
-                </div>
-              </div>
-            </GlassCard>
-
-            {/* Project Recommendations Card */}
-            <GlassCard className={pageStyles.projectRecommendationsCard}>
-              <h3 className={pageStyles.recommendationTitle}>
-                Based on your profile, you'd be a great fit for these projects:
-              </h3>
-              <div className={pageStyles.projectCardsContainer}>
-                {recommendedProjects.map((project, index) => (
-                  <div key={project.idproyecto} className={pageStyles.projectCard}>
-                    <h4 className={pageStyles.projectName}>{project.pnombre}</h4>
-                    <div className={pageStyles.matchPercentage}>{project.matchPercentage}%</div>
-                    <div className={pageStyles.skillsContainer}>
-                      {project.skills.map((skill, idx) => (
-                        <span key={idx} className={pageStyles.skillTag}>
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                    <button 
-                      className={pageStyles.applyButton}
-                      onClick={() => handleApplyToProject(project.idproyecto)}
-                    >
-                      <i className="bi bi-check-circle-fill" />
-                      Apply
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
-          </div>
-
-          {/* Sidebar */}
-          <div className={pageStyles.sidebarContainer}>
-            {/* Quick Actions Card */}
-            <GlassCard className={pageStyles.sidebarCard}>
-              <h2 className={quickActionsStyles.sectionTitle}>Quick Actions</h2>
-              <div className={quickActionsStyles.actionsContainer}>
-                {quickActions.map((action) => (
-                  <div key={action.id} className={quickActionsStyles.actionItem}>
-                    <div className={quickActionsStyles.actionInfo}>
-                      <i className={`${action.icon} ${quickActionsStyles.actionIcon}`} />
-                      <span className={quickActionsStyles.actionTitle}>{action.title}</span>
-                    </div>
-                    <button
-                      onClick={() => navigate(action.path)}
-                      className={quickActionsStyles.actionButton}
-                    >
-                      <i className="bi bi-arrow-right-circle-fill" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
-
-            {/* Announcements Card */}
-            <GlassCard className={pageStyles.sidebarCard}>
-              <h2 className={announcementsStyles.sectionTitle}>Announcements</h2>
-              <div className={announcementsStyles.announcementsContainer}>
-                {announcements.map((announcement) => (
-                  <div key={announcement.id} className={announcementsStyles.announcementItem}>
-                    <i className={`${announcement.icon} ${announcementsStyles.announcementIcon}`} />
-                    <div className={announcementsStyles.announcementText}>
-                      {announcement.text}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
-          </div>
+              ))}
+            </div>
+          </GlassCard>
         </div>
       </div>
     </div>

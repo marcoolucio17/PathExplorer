@@ -20,97 +20,257 @@
 
 .mainContentWrapper {
   display: flex;
+  flex-direction: column;
   gap: 1.5rem;
   max-width: 1200px;
   width: 100%;
   height: var(--container-height);
   min-height: 500px;
   min-width: var(--min-content-width);
-  overflow: hidden;
   position: relative;
-  text-align: left;
 }
 
-.homeColumnLeft {
-  position: relative;
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.3rem, 0.6vw, 0.5rem);
-  height: 100%;
-  min-width: 0;
-  overflow: hidden;
-}
-
+/* Header Section */
 .headerSection {
-  flex-shrink: 0;
-  margin-bottom: 1.5rem;
   text-align: left;
+  flex-shrink: 0;
 }
 
 .mainTitle {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: white;
-  margin-bottom: 0.3rem;
+  margin: 0 0 0.3rem 0;
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
 }
 
-.recommendationsSection {
+.contentContainer {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.mainContent {
   flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: visible;
-  min-height: 0;
-  box-sizing: border-box;
+  gap: 1.5rem;
+  min-width: 0;
 }
 
-.homeSidebar {
-  flex: 1.5;
+/* Progress Card */
+.progressCard {
+  width: 100%;
+  padding: 2rem;
+}
+
+.progressContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.circlesContainer {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-end;
+}
+
+.progressItemWrapper {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.75rem, 1.5vw, 1rem);
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  min-width: 280px;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.sidebarSection {
+.progressLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  text-align: center;
+}
+
+.recommendedSection {
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: visible;
-  min-height: 0;
-  box-sizing: border-box;
+  gap: 0.75rem;
+  align-items: flex-end;
 }
 
-/* Quick Actions section (first - smaller) */
-.sidebarSection:first-child {
+.recommendedTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+}
+
+.recommendedButton {
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.recommendedButton:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+/* Project Recommendations Card */
+.projectRecommendationsCard {
   flex: 1;
-  z-index: 20;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow: hidden;
 }
 
-/* Announcements section (last - larger) */
-.sidebarSection:last-child {
-  flex: 1.5;
+.recommendationTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 1.5rem 0;
+  flex-shrink: 0;
+}
+
+.projectCardsContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 1rem;
+}
+
+.projectCard {
+  background: rgba(10, 10, 20, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  height: fit-content;
+}
+
+.projectCard:hover {
+  background: rgba(10, 10, 20, 0.8);
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.projectName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.5rem 0;
+}
+
+.matchPercentage {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.skillsContainer {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skillTag {
+  padding: 0.3rem 0.8rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.applyButton {
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.applyButton:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.applyButton i {
+  font-size: 1rem;
+}
+
+/* Project Progress Label */
+.projectProgressLabel {
+  position: absolute;
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
   z-index: 10;
 }
 
-/* Enable scrolling in sidebar sections on zoom */
-@media (max-width: 768px), (max-height: 700px) {
-  .sidebarSection {
-    overflow-y: auto;
-  }
+/* Sidebar */
+.sidebarContainer {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-shrink: 0;
 }
 
-/* Media queries for zoom and smaller viewports */
+.sidebarCard {
+  width: 100%;
+}
+
+/* Media queries for responsive design */
 @media (max-width: 768px), (max-height: 700px) {
   :root {
     --container-height: 85vh;
@@ -123,28 +283,55 @@
   }
   
   .mainContentWrapper {
-    flex-direction: column;
     height: auto;
     min-height: calc(100vh - 2rem);
   }
   
-  .homeColumnLeft {
-    overflow-y: auto;
-    min-height: 400px;
-  }
-  
-  .homeSidebar {
+  .contentContainer {
     flex-direction: column;
-    height: auto;
+    gap: 1.5rem;
   }
   
-  .sidebarSection {
-    min-height: 250px;
-    overflow-y: auto;
+  .progressContent {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .circlesContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .recommendedSection {
+    align-items: center;
+    width: 100%;
+  }
+  
+  .projectCardsContainer {
+    grid-template-columns: 1fr;
+    position: static;
+  }
+  
+  .projectProgressLabel {
+    position: static;
+    transform: none;
+    margin: 1rem auto;
+    display: block;
+    text-align: center;
+  }
+  
+  .sidebarContainer {
+    width: 100%;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  
+  .sidebarCard {
+    flex: 1;
   }
 }
 
-/* Responsive styles - refactored */
 @media (max-width: 1024px) {
   :root {
     --container-height: 90vh;
@@ -156,20 +343,34 @@
   }
 
   .mainContentWrapper {
-    flex-direction: column;
     max-width: 100%;
     height: var(--container-height);
   }
 
-  .homeColumnLeft,
-  .homeSidebar {
-    flex: none;
-    width: 100%;
-    height: 50%;
-    min-height: 0;
+  .projectCardsContainer {
+    grid-template-columns: repeat(2, 1fr);
   }
   
-  .sidebarSection {
-    min-height: 150px;
+  .sidebarContainer {
+    width: 280px;
   }
+}
+
+/* Custom scrollbar styling */
+.projectCardsContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.projectCardsContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.projectCardsContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.projectCardsContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

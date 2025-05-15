@@ -21,7 +21,8 @@ export const useGetFetch = ({rutaApi,nombre,condicion1}) => {
     
     useEffect(() => {
         const fetchData = async () => {
-            // let url =`https://pathexplorer-backend.onrender.com/api/${rutaApi}`;
+
+           // let url =`https://pathexplorer-backend.onrender.com/api/${rutaApi}`;
 
             let url =`http://localhost:8080/api/${rutaApi}`;
 

@@ -170,11 +170,6 @@ export const EmpleadoHomePage = () => {
                     </button>
                   </div>
                 ))}
-                
-                {/* Project Progress Label */}
-                <div className={pageStyles.projectProgressLabel}>
-                  <span>Project Progress</span>
-                </div>
               </div>
             </GlassCard>
           </div>

@@ -241,22 +241,6 @@
   font-size: 1rem;
 }
 
-/* Project Progress Label */
-.projectProgressLabel {
-  position: absolute;
-  top: -2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-  white-space: nowrap;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-  z-index: 10;
-}
-
 /* Sidebar */
 .sidebarContainer {
   width: 320px;

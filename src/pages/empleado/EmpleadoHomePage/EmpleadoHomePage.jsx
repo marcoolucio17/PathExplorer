@@ -91,14 +91,14 @@ export const EmpleadoHomePage = () => {
   return (
     <div className={pageStyles.homeLayout}>
       <div className={pageStyles.mainContentWrapper}>
-        {/* Header Section */}
-        <div className={pageStyles.headerSection}>
-          <h1 className={pageStyles.mainTitle}>Welcome Back, Steely Dan</h1>
-          <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
-        </div>
-
-        {/* Main Content */}
+        {/* Main Content Area */}
         <div className={pageStyles.contentSection}>
+          {/* Header Section */}
+          <div className={pageStyles.headerSection}>
+            <h1 className={pageStyles.mainTitle}>Welcome Back, Steely Dan</h1>
+            <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
+          </div>
+          
           {/* Progress Section - No GlassCard wrapper */}
           <div className={pageStyles.progressCard}>
             <div className={pageStyles.progressContent}>
@@ -138,7 +138,7 @@ export const EmpleadoHomePage = () => {
             </div>
           </div>
 
-          {/* Project Recommendations Section - No GlassCard wrapper */}
+          {/* Project Recommendations Section - Fills remaining height */}
           <div className={pageStyles.recommendationsCard}>
             <h3 className={pageStyles.recommendationTitle}>
               Based on your profile, you'd be a great fit for these projects:
@@ -171,7 +171,7 @@ export const EmpleadoHomePage = () => {
 
         {/* Sidebar */}
         <div className={pageStyles.sidebar}>
-          {/* Quick Actions */}
+          {/* Quick Actions Card - Flexible height */}
           <GlassCard className={pageStyles.sidebarCard}>
             <h2 className={quickActionsStyles.sectionTitle}>Quick Actions</h2>
             <div className={quickActionsStyles.actionsContainer}>
@@ -192,7 +192,7 @@ export const EmpleadoHomePage = () => {
             </div>
           </GlassCard>
 
-          {/* Announcements */}
+          {/* Announcements Card - Flexible height */}
           <GlassCard className={pageStyles.sidebarCard}>
             <h2 className={announcementsStyles.sectionTitle}>Announcements</h2>
             <div className={announcementsStyles.announcementsContainer}>

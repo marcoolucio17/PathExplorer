@@ -66,9 +66,10 @@
 /* Progress Card */
 .progressCard {
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
   flex-shrink: 0;
   height: fit-content;
+  background: transparent;
 }
 
 .progressContent {

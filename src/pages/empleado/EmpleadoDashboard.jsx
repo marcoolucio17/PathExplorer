@@ -54,7 +54,7 @@ export const EmpleadoDashboard = () => {
           />
         </div>
         <div className="dashboard-header-buttons" >
-          <h2 className="title-header-buttons custom-font2">Sort by:</h2>
+          <h2 className="title-header-buttons">Sort by:</h2>
           <div className={`dropdown-arrow btn btn-secondary custom-font2 skills_button `} onClick={() => toggleSkillModal()}>
             {skillSelected}
             

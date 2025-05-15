@@ -313,7 +313,7 @@
     box-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
  }
 
- .proyecto-skills .btn-primary {
+ .proyecto-skills .btn-primary, .custom-font2 {
     background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
     border-color: var(--border-strong);
     box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
@@ -348,32 +348,111 @@
     margin-left: 0;
  }
 
- .modal-skills-category {
-    position:absolute;
-    height: 300px;
-    width: 300px;
-    top:20%;
+.modal-skills-category .modal-content {
+
+    min-height: 500px;
+    min-width: 400px;
+
     background: var(--glass-bg) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     box-shadow: var(--shadow-card);
-    
+    font-size: 0.6rem;
+    font-family: 'Graphik Medium', sans-serif;
+    color: var(--text-light);
  }
 
 .modal-skills-category {
-    position:absolute;
-    height: 300px;
-    width: 300px;
-    top:20%;
-    background: var(--glass-bg) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    box-shadow: var(--shadow-card);
-    
+    position: absolute;
+    top: 15% !important;
+    left: 0% !important;
  }
 
+ .modal-skills- .btn-close {
+    color: var(--text-light) !important;
+    opacity: 0.5;
+    font-size: 1.2rem;
+ }
+
+.modal-skills-header .btn-close:hover {
+    font-size: 1.6rem;
+ }
  
+
+.modal-skills-category .modal-header,.modal-skills-category  .modal-header, .modal-skills-category .modal-footer {
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
+.btn-custom-close {
+    
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  
+  font-size: 1.5rem;
+  
+  font-weight: bold;
+  color: var(--text-light);
+  font-size: 1.5rem;
+  padding: 0;
+    margin: 0;
+  cursor: pointer;
+}
+
+.btn-custom-close:hover {
+  color: var(--purple-btn-primary-1);
+
+}
+
+.modal-skills-category .modal-header {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: none;
+    border-bottom: none !important;
+    width: 100%;
+}
+
+.modal-skills-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  
+}
+
+
+.title-skills-technique,.title-skills-no-technique  {
+    font-size: 1rem;
+    font-style: italic;
+    
+}
+
+.skills-name h2{
+    font-size: 1rem !important;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Graphik Medium', sans-serif;
+    color: var(--text-main);
+    font-weight: 600;
+    margin: 0;
+}
+
+.Technical-skills, .Soft-skills{
+    width: 100%;
+    height: 135px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: none;
+    padding-right: 10px; 
+}

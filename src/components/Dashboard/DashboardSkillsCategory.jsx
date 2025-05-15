@@ -3,8 +3,18 @@ import { Modal,ModalHeader,ModalBody,ModalFooter } from "reactstrap";
 import '../../styles/EmpleadoDashboard.css'
 import '../../styles/ManagerDashboard.css'
 
+/*
+<ModalFooter className="modal-skills-footer">
+          <button className="btn btn-secondary custom-font2" onClick={toggleSkillModal}>
+            Cancel
+          </button>
+          <button className="btn btn-secondary custom-font2" onClick={toggleSkillModal}>
+            Save
+          </button>
+        </ModalFooter>
+ */
 
-export const DashboardSkillsCategory = ({data_skills, skillModalOpen, setSkillSelected, toggleSkillModal}) => {
+export const DashboardSkillsCategory = ({data_skills, data_skills1,skillModalOpen, setSkillSelected, toggleSkillModal}) => {
 
     return (
         <Modal isOpen={skillModalOpen}  className="modal-skills-category" backdrop={false} >
@@ -17,7 +27,6 @@ export const DashboardSkillsCategory = ({data_skills, skillModalOpen, setSkillSe
             <h2>None</h2>
           </div>
           <br/>
-
           <br/>
           <div className="skills-technique">
             <h2 className="title-skills-technique">Technical skills</h2>
@@ -41,20 +50,14 @@ export const DashboardSkillsCategory = ({data_skills, skillModalOpen, setSkillSe
                     <h2>{skill.nombre}</h2>
                 </div>
               ))}
+              
             </div>
             
           </div>
           
 
         </ModalBody>
-        <ModalFooter className="modal-skills-footer">
-          <button className="btn btn-secondary custom-font2" onClick={toggleSkillModal}>
-            Cancel
-          </button>
-          <button className="btn btn-secondary custom-font2" onClick={toggleSkillModal}>
-            Save
-          </button>
-        </ModalFooter>
+        
       </Modal>
       
     );

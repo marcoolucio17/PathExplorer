@@ -140,7 +140,7 @@
     box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
   }
  
- .skills_button {
+ .skills_button, roles_button {
     white-space: nowrap;
  }
 

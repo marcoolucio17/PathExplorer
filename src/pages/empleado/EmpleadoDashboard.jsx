@@ -28,17 +28,31 @@ export const EmpleadoDashboard = () => {
   const authState = useAuth();
   //Agregar el error y el loading de cada uno
   const [searchProjects, setSearchProjects] = useState('');
+
   const [skillSelected, setSkillSelected] = useState('Skills');
+  const [skillModalOpen, setSkillModalOpen] = useState(false);
+
+  const [roleSelected, setRoleSelected] = useState('Roles');
+  const [roleModalOpen, setRoleModalOpen] = useState(false);
   
   const {data: data_projects, error}= useGetFetch({rutaApi: `projects`,nombre: searchProjects,condicion1: 'Skills'});
   const {data: data_skills, error2}= useGetFetch({rutaApi: `skills`,nombre: '',condicion1: 'Skills'});
-  const [skillModalOpen, setSkillModalOpen] = useState(false);
+  
  
- const toggleSkillModal = () => {
+  const [optionSelected, setOptionSelected] = useState("");
+  const toggleSkillModal = () => {
     setSkillModalOpen(!skillModalOpen);
-    console.log(skillModalOpen);
   }
+
+  const toggleRoleModal = () => {
+    setRoleModalOpen(!roleModalOpen);  
+  }
+
  
+  useEffect(() => {
+    console.log(optionSelected);
+
+  }, [searchProjects]);
   return (
     <div className="dashboard-container">
       <div className= "dashboard-header ">
@@ -46,7 +60,7 @@ export const EmpleadoDashboard = () => {
           <i className="bi bi-search nav-search-icon-dashboard"></i>
           <input
             type="text"
-            value={searchProjects}
+            value={`${searchProjects}`}
             name="searchDashboard"
             onChange={(e) => setSearchProjects(e.target.value)}
             placeholder="Search..."
@@ -59,6 +73,10 @@ export const EmpleadoDashboard = () => {
             {skillSelected}
             
           </div>
+          <div className={`dropdown-arrow btn btn-secondary custom-font2 roles_button `} onClick={() => toggleRoleModal()}>
+            {roleSelected}
+            
+          </div>
           <button className="btn btn-primary custom-font2">
             Compability
           </button>
@@ -67,7 +85,8 @@ export const EmpleadoDashboard = () => {
 
     
       <DashboardSkillsCategory 
-        data_skills={data_skills} 
+        data_skills_tech={data_skills} 
+        data_skills_soft={data_skills}
         skillModalOpen={skillModalOpen}
         setSkillSelected={setSkillSelected} 
         toggleSkillModal={toggleSkillModal}/>

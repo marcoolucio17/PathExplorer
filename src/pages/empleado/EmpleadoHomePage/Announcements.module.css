@@ -1,0 +1,52 @@
+/* Announcements.module.css */
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.announcementsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.announcementItem {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.announcementItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.announcementIcon {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+}
+
+.announcementText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Different announcement types */
+.announcementItem[data-type="important"] .announcementIcon {
+  color: #ff6b6b;
+}
+
+.announcementItem[data-type="celebration"] .announcementIcon {
+  color: #4ecdc4;
+}
+
+.announcementItem[data-type="info"] .announcementIcon {
+  color: #48dbfb;
+}

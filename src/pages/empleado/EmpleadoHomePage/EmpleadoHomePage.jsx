@@ -121,8 +121,8 @@ export const EmpleadoHomePage = () => {
                   title="Project Progress"
                   primaryColor="#06b6d4"
                   secondaryColor="#3b82f6"
-                  size={120}
-                  strokeWidth={12}
+                  size={100}
+                  strokeWidth={10}
                 />
               </div>
               

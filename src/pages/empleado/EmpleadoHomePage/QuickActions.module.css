@@ -1,24 +1,24 @@
 /* QuickActions.module.css */
 .sectionTitle {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: white;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
 }
 
 .actionsContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .actionItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.5rem;
+  padding: 0.4rem 0.5rem;
   background: transparent;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
@@ -29,18 +29,18 @@
 .actionInfo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .actionIcon {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.8);
-  width: 20px;
+  width: 18px;
   text-align: center;
 }
 
 .actionTitle {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -49,10 +49,10 @@
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0.25rem;
+  padding: 0.2rem;
 }
 
 .actionButton:hover {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Import components
 import { GlassCard } from "../../../components/shared/GlassCard";
-import { DashboardProjectInfo } from "../../../components/Dashboard/DashboardProjectInfo";
+import { ProgressCircle } from "../../../components/ProgressCircle";
 import CustomScrollbar from "../../../components/CustomScrollbar";
 import { GlassFade } from "../../../components/GlassFade";
 // Import page-specific styles
@@ -10,32 +10,28 @@ import pageStyles from "./EmpleadoHomePage.module.css";
 // Import styles for specific sections
 import quickActionsStyles from "./QuickActions.module.css";
 import announcementsStyles from "./Announcements.module.css";
-import projectStyles from "./ProjectRecommendations.module.css";
 
 // Mock data - in a real app, this would come from props or API
 const MOCK_RECOMMENDED_PROJECTS = [
   {
     idproyecto: 1,
-    pnombre: "Proyecto Pepsi",
+    pnombre: "Project Pepsi",
     matchPercentage: 98,
-    skills: ["JavaScript", "C++"],
-    userSkills: ["JavaScript"],
+    skills: ["Figma", "Figma", "Figma"],
     status: "open"
   },
   {
     idproyecto: 2,
-    pnombre: "Proyecto Coca-Cola",
-    matchPercentage: 85,
-    skills: ["React", "Node.js", "MongoDB"],
-    userSkills: ["React", "Node.js"],
+    pnombre: "Project Pepsi",
+    matchPercentage: 98,
+    skills: ["Figma", "Figma", "Figma"],
     status: "open"
   },
   {
     idproyecto: 3,
-    pnombre: "Proyecto Nestlé",
-    matchPercentage: 75,
-    skills: ["Python", "Django", "PostgreSQL"],
-    userSkills: ["Python"],
+    pnombre: "Project Pepsi",
+    matchPercentage: 98,
+    skills: ["Figma", "Figma", "Figma"],
     status: "open"
   }
 ];
@@ -44,19 +40,19 @@ const MOCK_ANNOUNCEMENTS = [
   {
     id: 1,
     icon: "bi-megaphone-fill",
-    text: "A lot of very important announcements are being made right now!",
+    text: "A lot of important announcements are being made right now!",
     type: "important"
   },
   {
     id: 2,
-    icon: "bi-chat-dots-fill",
-    text: "A la bio a la bau, a la bim bom ba, Leo, Leo, RA RA RA!! Come and celebrate Leo right now!",
+    icon: "bi-star-fill",
+    text: "A la bio a la boo a la bim bom bam, Leo Leo RAH RAH RAH!! Come and celebrate Leo right now!!",
     type: "celebration"
   },
   {
     id: 3,
     icon: "bi-info-circle-fill",
-    text: "Look at the newest insights from our Accenture Analytics Team on the most trending skills.",
+    text: "A la bio a la boo a la bim bom bam, Leo Leo RAH RAH RAH!! Come and celebrate Leo right now!!",
     type: "info"
   }
 ];
@@ -65,6 +61,8 @@ export const EmpleadoHomePage = () => {
   const navigate = useNavigate();
   const [recommendedProjects] = useState(MOCK_RECOMMENDED_PROJECTS);
   const [announcements] = useState(MOCK_ANNOUNCEMENTS);
+  const [goalProgress] = useState(1); // 1/3
+  const [projectProgress] = useState(96); // 96%
 
   const handleApplyToProject = (projectId) => {
     console.log(`Applying to project ${projectId}`);
@@ -80,14 +78,14 @@ export const EmpleadoHomePage = () => {
     },
     {
       id: 2,
-      icon: "bi-easel",
+      icon: "bi-laptop",
       title: "Project Dashboard",
       path: "/empleado/dashboard"
     },
     {
       id: 3,
-      icon: "bi-clipboard2-check-fill",
-      title: "My Projects",
+      icon: "bi-folder-fill",
+      title: "My Project",
       path: "/empleado/proyectos"
     }
   ];
@@ -95,91 +93,130 @@ export const EmpleadoHomePage = () => {
   return (
     <div className={pageStyles.homeLayout}>
       <div className={pageStyles.mainContentWrapper}>
-        {/* Left Column - Project Recommendations */}
-        <div className={pageStyles.homeColumnLeft}>
-          {/* Header Section - Now inside the main container */}
-          <div className={pageStyles.headerSection}>
-            <h1 className={pageStyles.mainTitle}>Welcome back, Steely Dan</h1>
-            <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
-          </div>
-          
-          <GlassCard className={pageStyles.recommendationsSection}>
-            <h2 className={projectStyles.sectionTitle}>Recommended Projects</h2>
-            <div style={{ height: '100%', position: 'relative', flex: 1, minHeight: 0 }}>
-              <GlassFade fadeType="glass" fadeBackground="glass" fadeHeight="auto" style={{ height: '100%' }}>
-                <div className={projectStyles.projectsContainer}>
-                  {recommendedProjects.map((project) => (
-                    <div key={project.idproyecto} className={projectStyles.projectCard}>
-                      <div className={projectStyles.projectHeader}>
-                        <h3 className={projectStyles.projectName}>{project.pnombre}</h3>
-                        <span className={projectStyles.matchPercentage}>{project.matchPercentage}%</span>
-                      </div>
-                      <div className={projectStyles.skillsContainer}>
-                        {project.skills.map((skill, index) => (
-                          <span 
-                            key={index} 
-                            className={`${projectStyles.skillTag} ${project.userSkills.includes(skill) ? projectStyles.userSkill : ''}`}
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                      <button 
-                        className={projectStyles.applyButton}
-                        onClick={() => handleApplyToProject(project.idproyecto)}
-                      >
-                        <i className="bi bi-check-circle-fill" />
-                        <span>Apply to Project</span>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </GlassFade>
-            </div>
-          </GlassCard>
+        {/* Header Section */}
+        <div className={pageStyles.headerSection}>
+          <h1 className={pageStyles.mainTitle}>Welcome Back, Steely Dan</h1>
+          <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
         </div>
 
-        {/* Right Column - Quick Actions & Announcements */}
-        <div className={pageStyles.homeSidebar}>
-          {/* Quick Actions */}
-          <GlassCard className={pageStyles.sidebarSection}>
-            <h2 className={quickActionsStyles.sectionTitle}>Quick Actions</h2>
-            <div className={quickActionsStyles.actionsContainer}>
-              {quickActions.map((action) => (
-                <div key={action.id} className={quickActionsStyles.actionItem}>
-                  <div className={quickActionsStyles.actionInfo}>
-                    <i className={`${action.icon} ${quickActionsStyles.actionIcon}`} />
-                    <span className={quickActionsStyles.actionTitle}>{action.title}</span>
+        <div className={pageStyles.contentContainer}>
+          {/* Main Content Area */}
+          <div className={pageStyles.mainContent}>
+            {/* Progress Section Card */}
+            <GlassCard className={pageStyles.progressCard}>
+              <div className={pageStyles.progressContent}>
+                <div className={pageStyles.circlesContainer}>
+                  <div className={pageStyles.progressItemWrapper}>
+                    <ProgressCircle 
+                      value={goalProgress} 
+                      maxValue={3} 
+                      title="Goal Progress"
+                      primaryColor="#8b5cf6"
+                      secondaryColor="#3b82f6"
+                      size={120}
+                      strokeWidth={12}
+                    />
                   </div>
-                  <button
-                    onClick={() => navigate(action.path)}
-                    className={quickActionsStyles.actionButton}
-                  >
-                    <i className="bi bi-arrow-right-circle-fill" />
+                  
+                  <div className={pageStyles.progressItemWrapper}>
+                    <ProgressCircle 
+                      value={projectProgress} 
+                      maxValue={100} 
+                      title=""
+                      primaryColor="#06b6d4"
+                      secondaryColor="#3b82f6"
+                      size={120}
+                      strokeWidth={12}
+                    />
+                    <h3 className={pageStyles.progressLabel}>Project Progress</h3>
+                  </div>
+                </div>
+                
+                <div className={pageStyles.recommendedSection}>
+                  <h3 className={pageStyles.recommendedTitle}>Recommended:</h3>
+                  <button className={pageStyles.recommendedButton}>
+                    Skills
+                  </button>
+                  <button className={pageStyles.recommendedButton}>
+                    Certificates
                   </button>
                 </div>
-              ))}
-            </div>
-          </GlassCard>
+              </div>
+            </GlassCard>
 
-          {/* Announcements */}
-          <GlassCard className={pageStyles.sidebarSection}>
-            <h2 className={announcementsStyles.sectionTitle}>Announcements</h2>
-            <div style={{ height: '300px', position: 'relative' }}>
-              <GlassFade fadeType="glass" fadeBackground="glass" fadeHeight="auto" style={{ height: '100%' }}>
-                <div className={announcementsStyles.announcementsContainer}>
-                  {announcements.map((announcement) => (
-                    <div key={announcement.id} className={announcementsStyles.announcementItem}>
-                      <i className={`${announcement.icon} ${announcementsStyles.announcementIcon}`} />
-                      <div className={announcementsStyles.announcementText}>
-                        {announcement.text}
-                      </div>
+            {/* Project Recommendations Card */}
+            <GlassCard className={pageStyles.projectRecommendationsCard}>
+              <h3 className={pageStyles.recommendationTitle}>
+                Based on your profile, you'd be a great fit for these projects:
+              </h3>
+              <div className={pageStyles.projectCardsContainer}>
+                {recommendedProjects.map((project, index) => (
+                  <div key={project.idproyecto} className={pageStyles.projectCard}>
+                    <h4 className={pageStyles.projectName}>{project.pnombre}</h4>
+                    <div className={pageStyles.matchPercentage}>{project.matchPercentage}%</div>
+                    <div className={pageStyles.skillsContainer}>
+                      {project.skills.map((skill, idx) => (
+                        <span key={idx} className={pageStyles.skillTag}>
+                          {skill}
+                        </span>
+                      ))}
                     </div>
-                  ))}
+                    <button 
+                      className={pageStyles.applyButton}
+                      onClick={() => handleApplyToProject(project.idproyecto)}
+                    >
+                      <i className="bi bi-check-circle-fill" />
+                      Apply
+                    </button>
+                  </div>
+                ))}
+                
+                {/* Project Progress Label */}
+                <div className={pageStyles.projectProgressLabel}>
+                  <span>Project Progress</span>
                 </div>
-              </GlassFade>
-            </div>
-          </GlassCard>
+              </div>
+            </GlassCard>
+          </div>
+
+          {/* Sidebar */}
+          <div className={pageStyles.sidebarContainer}>
+            {/* Quick Actions Card */}
+            <GlassCard className={pageStyles.sidebarCard}>
+              <h2 className={quickActionsStyles.sectionTitle}>Quick Actions</h2>
+              <div className={quickActionsStyles.actionsContainer}>
+                {quickActions.map((action) => (
+                  <div key={action.id} className={quickActionsStyles.actionItem}>
+                    <div className={quickActionsStyles.actionInfo}>
+                      <i className={`${action.icon} ${quickActionsStyles.actionIcon}`} />
+                      <span className={quickActionsStyles.actionTitle}>{action.title}</span>
+                    </div>
+                    <button
+                      onClick={() => navigate(action.path)}
+                      className={quickActionsStyles.actionButton}
+                    >
+                      <i className="bi bi-arrow-right-circle-fill" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </GlassCard>
+
+            {/* Announcements Card */}
+            <GlassCard className={pageStyles.sidebarCard}>
+              <h2 className={announcementsStyles.sectionTitle}>Announcements</h2>
+              <div className={announcementsStyles.announcementsContainer}>
+                {announcements.map((announcement) => (
+                  <div key={announcement.id} className={announcementsStyles.announcementItem}>
+                    <i className={`${announcement.icon} ${announcementsStyles.announcementIcon}`} />
+                    <div className={announcementsStyles.announcementText}>
+                      {announcement.text}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </GlassCard>
+          </div>
         </div>
       </div>
     </div>

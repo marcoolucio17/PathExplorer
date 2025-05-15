@@ -105,7 +105,7 @@ export const EmpleadoHomePage = () => {
         <div className={pageStyles.homeColumnLeft}>
           <GlassCard className={pageStyles.recommendationsSection}>
             <h2 className={projectStyles.sectionTitle}>Recommended Projects</h2>
-            <div style={{ height: '600px', position: 'relative' }}>
+            <div style={{ height: '100%', position: 'relative', flex: 1, minHeight: 0 }}>
               <GlassFade fadeType="glass" fadeBackground="glass" fadeHeight="auto" style={{ height: '100%' }}>
                 <div className={projectStyles.projectsContainer}>
                   {recommendedProjects.map((project) => (

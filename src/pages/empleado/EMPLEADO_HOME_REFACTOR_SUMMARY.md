@@ -2,73 +2,73 @@
 
 ## Refactor Date: January 2024
 
-## Changes Made
+## Changes Made (Latest Update)
 
-1. **Restructured EmpleadoHome to match EmpleadoPerfilPage structure**:
-   - Created a new `EmpleadoHomePage` directory
-   - Moved component and all CSS modules into the standardized directory structure
-   - Created separate CSS modules for each section:
-     - `EmpleadoHomePage.module.css` (main layout)
-     - `QuickActions.module.css`
-     - `Announcements.module.css`
-     - `ProjectRecommendations.module.css`
+1. **Complete redesign to match new UI specifications**:
+   - Added progress circles for Goal Progress and Project Progress
+   - Created ProgressCircle component with gradient support
+   - Redesigned project cards to show in a 3-column grid
+   - Added recommendation buttons for Skills and Certificates
+   - Moved sidebar to absolute positioning on the right
+   - Adjusted header styling to maintain proper height
 
-2. **Used standardized components**:
-   - Replaced custom glass-card styles with `GlassCard` component
-   - Integrated `CustomScrollbar` for scrollable sections
-   - Added `GlassFade` for smooth content transitions
-   - Prepared structure for using `DashboardProjectInfo` component
+2. **Created new components**:
+   - `ProgressCircle` component with customizable colors and sizes
+   - Gradient progress bars with smooth animations
+   - Proper text display for both percentage and fraction formats
 
-3. **Aligned heights with EmpleadoPerfilPage**:
-   - Set viewport height to 100vh with min-height: 600px
-   - Used CSS custom properties for consistent heights:
-     - `--container-height: 70vh` for main content wrapper
-     - `--container-padding: 2rem` for consistent spacing
-   - Applied flex: 3 for main content, flex: 1.5 for sidebar
-   - Added proper overflow handling and responsive adjustments
+3. **Updated layout structure**:
+   - Header section at the top with welcome message
+   - Progress section with circles and recommendation buttons
+   - Project recommendation section with grid layout
+   - Floating sidebar with Quick Actions and Announcements
 
-4. **Improved component structure**:
-   - Separated concerns into distinct sections
-   - Created reusable data structures (mock data)
-   - Improved responsive design
-   - Added proper TypeScript-ready structure
-
-5. **Maintained backward compatibility**:
-   - Created wrapper in original `EmpleadoHome.jsx` file
-   - All existing imports will continue to work
+4. **Improved styling**:
+   - Dark theme with purple/blue accent colors
+   - Gradient buttons and progress indicators
+   - Hover effects and transitions
+   - Responsive design for different screen sizes
 
 ## File Structure After Refactor
 
 ```
-src/pages/empleado/
-├── EmpleadoHome.jsx (wrapper for backward compatibility)
-├── EmpleadoHomePage/
-│   ├── EmpleadoHomePage.jsx
-│   ├── EmpleadoHomePage.module.css
-│   ├── QuickActions.module.css
-│   ├── Announcements.module.css
-│   └── ProjectRecommendations.module.css
+src/
+├── components/
+│   └── ProgressCircle/
+│       ├── ProgressCircle.jsx
+│       ├── ProgressCircle.module.css
+│       └── index.js
+└── pages/empleado/
+    ├── EmpleadoHome.jsx (wrapper for backward compatibility)
+    └── EmpleadoHomePage/
+        ├── EmpleadoHomePage.jsx
+        ├── EmpleadoHomePage.module.css
+        ├── QuickActions.module.css
+        └── Announcements.module.css
 ```
 
-## Height and Layout Specifications
+## Key Features
 
-- **Main Layout**: 100vh with centering, consistent with other pages
-- **Content Wrapper**: 70vh height with proper flex distribution
-- **Sidebar Sections**: Flexible heights with proper overflow handling
-- **Responsive Breakpoints**: Matching EmpleadoPerfilPage at 768px and 1024px
+1. **Progress Visualization**:
+   - Circular progress indicators with gradients
+   - Support for both percentage and fractional progress
+   - Smooth animations on load
 
-## Benefits
+2. **Project Recommendations**:
+   - 3-column grid layout
+   - Match percentage display
+   - Skill tags for each project
+   - Apply button with hover effects
 
-1. **Consistency**: Matches the structure and heights of EmpleadoPerfilPage
-2. **Modularity**: Each section has its own CSS module
-3. **Maintainability**: Easier to update individual sections
-4. **Scalability**: Easy to add new sections or components
-5. **Reusability**: Uses shared components from the components directory
-6. **Uniform UX**: All pages now have the same viewport behavior
+3. **Responsive Design**:
+   - Sidebar becomes part of main flow on smaller screens
+   - Grid adjusts to 2 columns on tablets, 1 on mobile
+   - Flexible progress section layout
 
 ## Next Steps
 
-1. Connect to real data sources (remove mock data)
-2. Implement API calls for project recommendations
-3. Add real-time announcement fetching
-4. Integrate with authentication context for user data
+1. Connect to real data sources
+2. Implement Skills and Certificates recommendation logic
+3. Add animations for progress circles on data updates
+4. Integrate with project application API
+5. Add real-time updates for announcements

@@ -1,26 +1,26 @@
 /* Announcements.module.css */
 .sectionTitle {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: white;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
 }
 
 .announcementsContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  max-height: 170px;
+  gap: 0.35rem;
+  max-height: 150px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .announcementItem {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem 0.5rem;
+  gap: 0.4rem;
+  padding: 0.35rem 0.4rem;
   background: transparent;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: all 0.3s ease;
   align-items: flex-start;
 }
@@ -30,16 +30,16 @@
 }
 
 .announcementIcon {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
   margin-top: 0.1rem;
-  width: 18px;
+  width: 16px;
   text-align: center;
 }
 
 .announcementText {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1.3;
   color: rgba(255, 255, 255, 0.8);
   flex: 1;
@@ -62,7 +62,7 @@
 
 /* Custom scrollbar for announcements */
 .announcementsContainer::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 .announcementsContainer::-webkit-scrollbar-track {

@@ -129,10 +129,11 @@
 .recommendationsCard {
   flex: 1;
   min-height: 0;
-  padding: 1.25rem 1.5rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: transparent;
 }
 
 .recommendationTitle {

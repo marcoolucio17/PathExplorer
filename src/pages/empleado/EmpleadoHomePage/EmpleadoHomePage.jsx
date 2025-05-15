@@ -99,8 +99,8 @@ export const EmpleadoHomePage = () => {
 
         {/* Main Content */}
         <div className={pageStyles.contentSection}>
-          {/* Progress Section */}
-          <GlassCard className={pageStyles.progressCard}>
+          {/* Progress Section - No GlassCard wrapper */}
+          <div className={pageStyles.progressCard}>
             <div className={pageStyles.progressContent}>
               <div className={pageStyles.progressLeft}>
                 <ProgressCircle 
@@ -136,10 +136,10 @@ export const EmpleadoHomePage = () => {
                 </button>
               </div>
             </div>
-          </GlassCard>
+          </div>
 
-          {/* Project Recommendations Section */}
-          <GlassCard className={pageStyles.recommendationsCard}>
+          {/* Project Recommendations Section - No GlassCard wrapper */}
+          <div className={pageStyles.recommendationsCard}>
             <h3 className={pageStyles.recommendationTitle}>
               Based on your profile, you'd be a great fit for these projects:
             </h3>
@@ -166,7 +166,7 @@ export const EmpleadoHomePage = () => {
                 </GlassCard>
               ))}
             </div>
-          </GlassCard>
+          </div>
         </div>
 
         {/* Sidebar */}

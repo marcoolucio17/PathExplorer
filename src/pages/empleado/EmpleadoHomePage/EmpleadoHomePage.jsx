@@ -109,8 +109,8 @@ export const EmpleadoHomePage = () => {
                   title="Goal Progress"
                   primaryColor="#8b5cf6"
                   secondaryColor="#3b82f6"
-                  size={100}
-                  strokeWidth={10}
+                  size={90}
+                  strokeWidth={8}
                 />
               </div>
               
@@ -121,8 +121,8 @@ export const EmpleadoHomePage = () => {
                   title="Project Progress"
                   primaryColor="#06b6d4"
                   secondaryColor="#3b82f6"
-                  size={100}
-                  strokeWidth={10}
+                  size={90}
+                  strokeWidth={8}
                 />
               </div>
               

@@ -61,7 +61,7 @@ const MOCK_ANNOUNCEMENTS = [
   }
 ];
 
-export const EmpleadoHome = () => {
+export const EmpleadoHomePage = () => {
   const navigate = useNavigate();
   const [recommendedProjects] = useState(MOCK_RECOMMENDED_PROJECTS);
   const [announcements] = useState(MOCK_ANNOUNCEMENTS);

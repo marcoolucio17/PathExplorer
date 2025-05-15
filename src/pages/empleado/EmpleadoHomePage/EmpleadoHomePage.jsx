@@ -94,15 +94,15 @@ export const EmpleadoHomePage = () => {
 
   return (
     <div className={pageStyles.homeLayout}>
-      {/* Header Section */}
-      <div className={pageStyles.headerSection}>
-        <h1 className={pageStyles.mainTitle}>Welcome back, Steely Dan</h1>
-        <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
-      </div>
-
       <div className={pageStyles.mainContentWrapper}>
         {/* Left Column - Project Recommendations */}
         <div className={pageStyles.homeColumnLeft}>
+          {/* Header Section - Now inside the main container */}
+          <div className={pageStyles.headerSection}>
+            <h1 className={pageStyles.mainTitle}>Welcome back, Steely Dan</h1>
+            <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
+          </div>
+          
           <GlassCard className={pageStyles.recommendationsSection}>
             <h2 className={projectStyles.sectionTitle}>Recommended Projects</h2>
             <div style={{ height: '100%', position: 'relative', flex: 1, minHeight: 0 }}>

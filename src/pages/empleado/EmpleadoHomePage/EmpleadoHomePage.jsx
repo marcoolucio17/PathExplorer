@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Import components
-import { GlassCard } from "../../components/shared/GlassCard";
-import { DashboardProjectInfo } from "../../components/Dashboard/DashboardProjectInfo";
-import CustomScrollbar from "../../components/CustomScrollbar";
-import { GlassFade } from "../../components/GlassFade";
+import { GlassCard } from "../../../components/shared/GlassCard";
+import { DashboardProjectInfo } from "../../../components/Dashboard/DashboardProjectInfo";
+import CustomScrollbar from "../../../components/CustomScrollbar";
+import { GlassFade } from "../../../components/GlassFade";
 // Import page-specific styles
-import pageStyles from "./EmpleadoHome.module.css";
+import pageStyles from "./EmpleadoHomePage.module.css";
 // Import styles for specific sections
 import quickActionsStyles from "./QuickActions.module.css";
 import announcementsStyles from "./Announcements.module.css";

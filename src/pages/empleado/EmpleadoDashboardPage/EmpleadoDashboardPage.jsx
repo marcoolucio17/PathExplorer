@@ -4,12 +4,15 @@ import { ProgressCircle } from '../../../components/ProgressCircle';
 import CustomScrollbar from '../../../components/CustomScrollbar';
 import { DashboardSkillsCategory } from "../../../components/Dashboard/DashboardSkillsCategory";
 import { SkillsModal } from "../../../components/SkillsModal";
+import { CreateProjectModal } from "../../../components/CreateProjectModal";
+
 
 //hooks
 import { useGetFetch } from '../../../hooks/useGetFetch';
 
 //css
 import styles from "./EmpleadoDashboardPage.module.css";
+
 
 /**
  * Dashboard component for Empleado role
@@ -19,6 +22,7 @@ export const EmpleadoDashboardPage = () => {
   const [searchProjects, setSearchProjects] = useState('');
   const [skillSelected, setSkillSelected] = useState('Skills');
   const [skillModalOpen, setSkillModalOpen] = useState(false);
+  const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] = useState(false);
   const [showCompatibility, setShowCompatibility] = useState(false);
   const [skillsFilterModalOpen, setSkillsFilterModalOpen] = useState(false);
   const [selectedSkillFilters, setSelectedSkillFilters] = useState([]);
@@ -231,6 +235,18 @@ export const EmpleadoDashboardPage = () => {
     project.proyecto_roles.map(proyecto_rol => ({ project, proyecto_rol }))
   );
 
+  const handleCreateProjectClick = () => {
+    setIsCreateProjectModalOpen(true);
+  };
+
+  const closeCreateProjectModal = () => {
+    setIsCreateProjectModalOpen(false);
+  };
+
+  const handleCreateProject = (newCertificate) => {
+    setUserCertificates([...userCertificates, newCertificate]);
+  };
+
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.dashboardContent}>
@@ -273,6 +289,9 @@ export const EmpleadoDashboardPage = () => {
               title={viewMode === 'grid' ? 'Switch to list view' : 'Switch to grid view'}
             >
               <i className={`bi bi-${viewMode === 'grid' ? 'list' : 'grid-3x3-gap'}`}></i>
+            </button>
+            <button className={styles.createButton} onClick={handleCreateProjectClick}>
+              <i className="bi bi-file-earmark-plus" /> New Project
             </button>
           </div>
         </div>
@@ -432,6 +451,12 @@ export const EmpleadoDashboardPage = () => {
         onClose={() => setSkillsFilterModalOpen(false)}
         userSkills={selectedSkillFilters}
         onUpdateSkills={handleApplySkillFilters}
+      />
+
+      <CreateProjectModal
+        isOpen={isCreateProjectModalOpen}
+        onClose={closeCreateProjectModal}
+        onCreateProject={handleCreateProject}
       />
     </div>
   );

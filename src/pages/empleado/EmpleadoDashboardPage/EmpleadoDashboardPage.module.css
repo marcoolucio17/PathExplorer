@@ -113,6 +113,23 @@
   gap: 8px;
 }
 
+.createButton {
+  padding: 8px 25px;
+  border-radius: 50px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: 'Graphik Medium', sans-serif;
+  color: black;
+  text-shadow: var(--shadow-text);
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .skillsButton {
   background: var(--purple-btn-secondary);
   border-color: var(--border-medium);
@@ -137,6 +154,16 @@
 }
 
 .filterButton:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+}
+
+.createButton:hover {
+  transform: scale(1.02);
+  filter: brightness(1.15);
+}
+
+.createButton:active {
   transform: scale(0.98);
   filter: brightness(0.9);
 }

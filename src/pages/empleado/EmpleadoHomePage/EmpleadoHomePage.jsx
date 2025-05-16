@@ -107,8 +107,8 @@ export const EmpleadoHomePage = () => {
                   value={goalProgress} 
                   maxValue={3} 
                   title="Goal Progress"
-                  primaryColor="#8b5cf6"
-                  secondaryColor="#3b82f6"
+                  primaryColor="#8b5cf6"  // Vibrant purple
+                  secondaryColor="#3b82f6" // Blue
                   size={90}
                   strokeWidth={8}
                 />
@@ -119,8 +119,8 @@ export const EmpleadoHomePage = () => {
                   value={projectProgress} 
                   maxValue={100} 
                   title="Project Progress"
-                  primaryColor="#06b6d4"
-                  secondaryColor="#3b82f6"
+                  primaryColor="#6366f1" // Indigo
+                  secondaryColor="#06b6d4" // Cyan/Turquoise 
                   size={90}
                   strokeWidth={8}
                 />

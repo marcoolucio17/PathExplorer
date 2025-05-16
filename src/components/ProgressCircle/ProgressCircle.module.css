@@ -1,0 +1,98 @@
+/* ProgressCircle.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.progressWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 0px 8px rgba(139, 92, 246, 0.2));
+}
+
+.progressSvg {
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.backgroundCircle {
+  opacity: 0.3;
+}
+
+.whiteBorder {
+  fill: none;
+  stroke-linecap: round;
+  animation: progressFadeIn 1s ease-out;
+  z-index: 5;
+  filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.222));
+}
+
+.progressCircle {
+  fill: none;
+  stroke-linecap: round;
+  z-index: 10;
+  /* Add animation */
+  animation: progressFadeIn 1s ease-out forwards;
+  filter: drop-shadow(0px 0px 4px rgba(139, 92, 246, 0.4));
+}
+
+.progressText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  /* Add text animation */
+  animation: textFadeIn 1.2s ease-out;
+  z-index: 20;
+}
+
+@keyframes textFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(0.97);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.progressValue {
+  font-size: clamp(1.25rem, 4vw, 1.25rem);
+  color: white;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin: 0;
+  white-space: nowrap;
+  /* Add title animation */
+  animation: titleFadeIn 1.5s ease-out;
+}
+
+@keyframes titleFadeIn {
+  0%, 30% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

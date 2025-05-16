@@ -5,7 +5,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 
 // Imports de empleado
-import { EmpleadoDashboard } from "./pages/empleado/EmpleadoDashboard";
+import { EmpleadoDashboardPage } from "./pages/empleado/EmpleadoDashboardPage/EmpleadoDashboardPage";
 import { EmpleadoPerfil } from "./pages/empleado/EmpleadoPerfil";
 import { EmpleadoProyecto } from "./pages/empleado/EmpleadoProyecto";
 import { EmpleadoHome } from "./pages/empleado/EmpleadoHome";
@@ -61,7 +61,7 @@ function App() {
       {/* rutas de empleado */}
       <Route element={<PrivateRoutes allowedRoles={["empleado"]} />}>
         <Route path="empleado" element={<EmpleadoHome />} />
-        <Route path="empleado/dashboard" element={<EmpleadoDashboard />} />
+        <Route path="empleado/dashboard" element={<EmpleadoDashboardPage />} />
         <Route path="empleado/perfil" element={<EmpleadoPerfil />} />
         <Route path="empleado/proyecto" element={<EmpleadoProyecto />} />
       </Route>

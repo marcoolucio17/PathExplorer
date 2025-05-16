@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Import components
 import { GlassCard } from "../../../components/shared/GlassCard";
-import { ProgressCircle } from "../../../components/ProgressCircle";
+import { ProgressCircle } from "../../../components/ProgressCircle/ProgressCircle";
 // Import page-specific styles
 import pageStyles from "./EmpleadoHomePage.module.css";
 // Import styles for specific sections

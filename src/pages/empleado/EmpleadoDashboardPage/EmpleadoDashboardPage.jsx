@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-// Import components
+//components
 import { ProgressCircle } from '../../../components/ProgressCircle';
 import CustomScrollbar from '../../../components/CustomScrollbar';
 import { DashboardSkillsCategory } from "../../../components/Dashboard/DashboardSkillsCategory";
 import { SkillsModal } from "../../../components/SkillsModal";
 
-// Import hooks
+//hooks
 import { useGetFetch } from '../../../hooks/useGetFetch';
 
-// Import page-specific styles
+//css
 import styles from "./EmpleadoDashboardPage.module.css";
 
 /**
@@ -42,13 +42,11 @@ export const EmpleadoDashboardPage = () => {
   // Filter projects based on selected skills
   useEffect(() => {
     if (data_projects) {
-      setIsLoading(true); // Set loading to true before filtering
+      setIsLoading(true); 
       
       if (selectedSkillFilters.length === 0) {
-        // If no skills selected, show all projects
         setFilteredProjects(data_projects);
       } else {
-        // Filter projects that have at least one of the selected skills
         const filtered = data_projects.filter(project => {
           return project.proyecto_roles.some(proyecto_rol => {
             return proyecto_rol.roles.requerimientos_roles.some(req_rol => {
@@ -58,21 +56,18 @@ export const EmpleadoDashboardPage = () => {
         });
         setFilteredProjects(filtered);
       }
-      
-      // Add a small delay to allow loading animation
+
       setTimeout(() => {
         setIsLoading(false);
       }, 100);
     }
   }, [data_projects, selectedSkillFilters]);
 
-  // Reset isLoading state when changing view mode
   useEffect(() => {
-    // Reset loading state whenever filtered projects change
     setIsLoading(false);
   }, [filteredProjects]);
 
-  // Toggle skill modal (DashboardSkillsCategory)
+  //skill modal
   const toggleSkillModal = () => {
     setSkillModalOpen(!skillModalOpen);
   };
@@ -89,17 +84,14 @@ export const EmpleadoDashboardPage = () => {
 
   // Toggle view mode (grid/list)
   const toggleViewMode = () => {
-    // Apply a fade-out effect
+    //effect
     const container = document.querySelector(`.${styles.projectsGrid}`) || 
                       document.querySelector(`.${styles.projectsList}`);
     if (container) {
       container.style.opacity = '0';
       
-      // Change view mode after a short delay
       setTimeout(() => {
         setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-        
-        // Fade back in
         setTimeout(() => {
           const newContainer = document.querySelector(`.${styles.projectsGrid}`) || 
                               document.querySelector(`.${styles.projectsList}`);
@@ -109,12 +101,11 @@ export const EmpleadoDashboardPage = () => {
         }, 50);
       }, 200);
     } else {
-      // Fallback if container not found
       setViewMode(viewMode === 'grid' ? 'list' : 'grid');
     }
   };
 
-  // Handle applying skill filters
+  //applying skills filters
   const handleApplySkillFilters = (selectedSkills) => {
     setSelectedSkillFilters(selectedSkills);
     
@@ -137,14 +128,14 @@ export const EmpleadoDashboardPage = () => {
     handleApplySkillFilters([]);
   };
 
-  // Function to generate a random progress value
+  // Function to generate a random progress value (QUITAR CON BACKEND)
   const getRandomProgress = () => {
     return Math.floor(Math.random() * 101); // Random value between 0-100
   };
 
-  // Render project list or grid item based on current view mode
+  // Render project list or grid
   const renderProject = (project, proyecto_rol, index, renderMode) => {
-    // Generate random progress value for this project
+    // Generate random progress value for this project (cambiar a datos actuales de db)
     const compatibilityValue = getRandomProgress();
     
     // Check if this role has any of the selected skills
@@ -209,7 +200,6 @@ export const EmpleadoDashboardPage = () => {
       </>
     );
 
-    // Calculate delay for staggered animation
     const staggerDelay = `${50 + (index * 80)}ms`;
     const key = `${project.idproyecto}-${proyecto_rol.idrol}`;
 
@@ -237,7 +227,6 @@ export const EmpleadoDashboardPage = () => {
     }
   };
 
-  // Flatten projects for animation indexing
   const flattenedProjects = filteredProjects.flatMap(project => 
     project.proyecto_roles.map(proyecto_rol => ({ project, proyecto_rol }))
   );

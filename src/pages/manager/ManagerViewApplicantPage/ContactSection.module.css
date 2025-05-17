@@ -1,0 +1,43 @@
+/* Contact info styles */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactDetail {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.contactDetail i {
+  width: 1.5rem;
+  color: var(--purple-icon-1);
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.contactValue {
+  color: var(--text-main);
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.contactTitle {
+  font-family: 'Graphik Medium', sans-serif;
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-light);
+}
+
+.contactTitle i {
+  margin-right: 0.75rem;
+  color: var(--purple-icon-1);
+}

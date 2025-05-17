@@ -1,0 +1,232 @@
+.profileHeaderCard {
+  /* Full width when no outer container */
+  width: 100%;
+  padding: 2.5rem 2rem !important;
+  min-height: 180px;
+  margin-bottom: 1.5rem;
+}
+
+.profileHeaderMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+.employeeSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.projectSection {
+  display: flex;
+  align-items: center;
+}
+
+.avatarXl {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--purple-progress-1);
+  flex-shrink: 0;
+}
+
+.employeeMeta {
+  flex-grow: 1;
+}
+
+.employeeMeta h1 {
+  font-size: 1.75rem;
+  color: var(--text-light);
+  margin: 0;
+  font-family: 'Graphik Semibold', sans-serif;
+}
+
+.employeeMeta h2 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin: 0.25rem 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.location {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.location i {
+  color: var(--purple-icon-1);
+  font-size: 1rem;
+}
+
+.projectMeta {
+  text-align: right;
+}
+
+.projectMeta h3 {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin: 0;
+  font-family: 'Graphik Semibold', sans-serif;
+}
+
+.projectDuration {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin: 0.25rem 0;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.projectRole {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.profileActions {
+  display: flex;
+  gap: 0.5rem; /* Reduced from 0.75rem */
+}
+
+.btnCV, .btnEdit {
+  background: var(--purple-btn-base);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-outer-subtle);
+  font-size: 0.9rem; /* Reduced from 1rem */
+  font-family: 'Graphik Medium', sans-serif;
+  white-space: nowrap;
+}
+
+.buttonText {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.btnCV {
+  background: var(--purple-btn-secondary);
+  border: 1px solid var(--border-medium);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
+}
+
+.btnEdit {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border: 1px solid var(--border-strong);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+}
+
+.btnCV:hover, .btnEdit:hover {
+  transform: scale(1.02);
+  filter: brightness(1.15);
+  border-color: var(--border-hover);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary-hover);
+}
+
+.btnCV:hover {
+  box-shadow: inset 0 1px 1px var(--border-medium), var(--shadow-glow-secondary-hover);
+}
+
+.btnCV:active, .btnEdit:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+  box-shadow: var(--shadow-inset-press);
+  transition-duration: 0.1s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .profileHeaderMain {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .projectSection {
+    width: 100%;
+  }
+  
+  .projectMeta {
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .profileHeaderCard {
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 1rem;
+  }
+  
+  .avatarXl {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .employeeMeta h1, .projectMeta h3 {
+    font-size: 1.5rem;
+  }
+  
+  .employeeMeta h2 {
+    font-size: 1rem;
+  }
+  
+  .location, .projectDuration, .projectRole {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileHeaderCard {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  .employeeSection {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .employeeMeta, .projectMeta {
+    text-align: center;
+  }
+  
+  .location {
+    justify-content: center;
+  }
+  
+  .profileHeaderMain {
+    gap: 1.5rem;
+  }
+  
+  .avatarXl {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .employeeMeta h1, .projectMeta h3 {
+    font-size: 1.25rem;
+  }
+  
+  .employeeMeta h2 {
+    font-size: 0.9rem;
+  }
+  
+  .location, .projectDuration, .projectRole {
+    font-size: 0.85rem;
+  }
+}

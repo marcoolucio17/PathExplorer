@@ -1,0 +1,60 @@
+
+/* Semibold - Usar para los textos mas grandes, especificamente en el NavBar */
+@font-face {
+  font-family: 'Graphik Semibold';
+  src: url('/fonts/Graphik Family/Graphik-Semibold-Trial.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Medium - Usar en titulos dentro de paginas - no abusar */
+@font-face {
+  font-family: 'Graphik Medium';
+  src: url('/fonts/Graphik Family/Graphik-Medium-Trial.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Regular - Usar en titulos dentro de paginas - no abusar */
+@font-face {
+  font-family: 'Graphik Regular';
+  src: url('/fonts/Graphik Family/Graphik-Regular-Trial.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Regular Italic - Usar en sub-titulos usualmente como <p>, usualmente gris */
+@font-face {
+  font-family: 'Graphik Regular Italic';
+  src: url('/fonts/Graphik Family/Graphik-RegularItalic-Trial.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Light - Usar en sub-titulos usualmente como <p>, usualmente gris */
+@font-face {
+  font-family: 'Graphik Light';
+  src: url('/fonts/Graphik Family/Graphik-Light-Trial.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.custom-font {
+  font-family: 'Graphik Semibold', sans-serif;
+  font-weight: bold;
+}
+
+.custom-font2 {
+  font-family: 'Graphik Medium', sans-serif;
+  font-weight: bold;
+}
+
+.custom-font3 {
+  font-family: 'Graphik Regular', sans-serif;
+  font-weight: normal;
+}
+
+.custom-font5 {
+  font-family: 'Graphik Regular Italic', sans-serif;
+  font-weight: normal;
+}

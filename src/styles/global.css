@@ -1,0 +1,126 @@
+@import url('../fonts.css');
+
+:root {
+  /* paleta de colores base */
+  --bg-dark-1: #1a1a2e;
+  --bg-dark-2: #2a2a4e;
+  --bg-dark-3: #4a2a6e;
+  --text-main: #e0e0e0;
+  --text-light: #ffffff;
+  --text-muted: #b0b0c0;
+  --text-muted-darker: #a0a0b0;
+  --text-skill: #d0d0d0;
+
+  /* colores glass y transparencias */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.221);
+  --highlight-inner-faint: rgba(255, 255, 255, 0.1);
+  --highlight-inner-medium: rgba(255, 255, 255, 0.15);
+  --highlight-inner-strong: rgba(255, 255, 255, 0.25);
+  --highlight-outer-subtle: rgba(255, 255, 255, 0.18);
+
+  /* colores progreso y botones (morados) */
+  --purple-progress-track: #3f3a60;
+  --purple-progress-1: #7c54c4;
+  --purple-progress-2: rgba(89, 0, 255, 0.75);
+  --purple-shadow-base: 103, 66, 192;
+  --purple-btn-base: rgba(60, 40, 100, 0.302);
+  --purple-btn-primary-1: #643cbeb3;
+  --purple-btn-primary-2: #8c5adccc;
+  --purple-btn-secondary: rgba(80, 60, 150, 0.4);
+  --purple-icon-1: rgba(128, 78, 243, 0.7);
+  --purple-icon-2: rgba(159, 116, 228, 0.8);
+  --purple-checkmark: #cd7cff;
+
+  /* colores skills */
+  --skill-bg: rgba(80, 60, 150, 0.25);
+  --user-skill-border: rgba(138, 115, 195, 0.85);
+  --user-skill-bg: rgba(100, 70, 170, 0.4);
+  --skill-hover-bg: rgba(100, 80, 170, 0.4);
+  --expand-skill-bg: rgba(60, 40, 100, 0.35);
+
+  /* bordes y separadores */
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.2);
+  --border-strong: rgba(255, 255, 255, 0.3);
+  --border-hover: rgba(255, 255, 255, 0.5);
+  --separator-dark: #3e3e3e;
+
+  /* sombras */
+  --shadow-text: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-outer-subtle: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-outer-medium: 0 2px 10px rgba(0, 0, 0, 0.2);
+  --shadow-outer-strong: 0 4px 15px rgba(0, 0, 0, 0.2);
+  --shadow-glow-primary: 0 6px 20px rgba(var(--purple-shadow-base), 0.4);
+  --shadow-glow-primary-hover: 0 8px 25px rgba(var(--purple-shadow-base), 0.45);
+  --shadow-glow-secondary-hover: 0 6px 18px rgba(0, 0, 0, 0.3);
+  --shadow-inset-press: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-dropdown: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --shadow-icon: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  /* Navbar specific variables */
+  --navbar-bg: linear-gradient(135deg, #190b2b82, #1515327f);
+  --nav-logo-margin-left: 2rem;
+  --nav-logo-margin-right: 1rem;
+  --search-padding-y: 0.4rem;
+  --search-padding-x: 0.8rem;
+  --search-padding-left: 40px;
+  --search-collapsed-width-default: 140px;
+  --search-expanded-width-default: 260px;
+  --popover-border-color-default: var(--glass-border);
+  --badge-size: 1.5rem;
+  --badge-font-size: 1rem;
+  --badge-offset-x: 0;
+  --badge-offset-y: 0;
+  --badge-translate-x: -10%;
+  --badge-translate-y: 20%;
+
+  /* Dashboard Navbar specific */
+  --search-collapsed-width-dashboard: 200px;
+  --search-expanded-width-dashboard: 260px;
+  --search-margin-left-dashboard: 0;
+  --popover-border-color-dashboard: var(--glass-border);
+}
+
+/* --- estilos generales --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, var(--bg-dark-1) 10%, var(--bg-dark-2) 50%, var(--bg-dark-3) 100%);
+  background-color: var(--bg-dark-1);
+  color: var(--text-main);
+  font-family: 'Graphik Regular', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Responsive adjustments - these can be applied to components that need them */
+@media (max-width: 1024px) {
+  .page-container-responsive {
+    overflow-y: auto;
+    display: block;
+    padding: 1rem;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .main-content-responsive {
+    flex-direction: column;
+    max-width: 100%;
+    gap: 1.5rem;
+  }
+
+  .column-responsive {
+    flex: none;
+    width: 100%;
+  }
+}

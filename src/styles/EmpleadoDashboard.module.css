@@ -1,0 +1,12 @@
+/* Override the global styles to fix the project card layout */
+.projectOverrides {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -20px;
+}
+
+.projectOverrides > div {
+  width: calc(33.33% - 20px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+}

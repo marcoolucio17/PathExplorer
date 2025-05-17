@@ -1,0 +1,114 @@
+.register-main-div {
+    display: flex
+}
+
+.register-image-background {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form-container {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    min-height: 90%;
+    max-width: 50%;
+    min-width: 400px;
+    width: 50vw;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.register-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    color: white;
+    align-items: center;
+}
+
+.register-role-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.register-confirm-button {
+    background-color: blueviolet;
+    color: white;
+    width: 7rem;
+    border-radius: 25px;
+    margin-top: 2rem;
+}
+
+.select-role {
+    margin-bottom: 0 important!;
+    font-size: large;
+}
+
+.r-transparent-input {
+  background-color: transparent;
+  border: 1px solid #d7d7d7;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: #bababa; 
+  outline: none;
+  width: 100%;
+  height: 3.4rem;
+}
+
+
+
+.r-transparent-input::placeholder {
+  color: #b2b2b2;
+}
+
+.r-transparent-input:focus {
+  border-color: #007bff;
+}
+
+
+.custom-select {
+  width: 40%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: transparent;
+  color: #fff; 
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  appearance: none; 
+  cursor: pointer;
+}
+
+.custom-select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+.custom-select option {
+  color: #000;
+  background-color: #fff;
+}
+
+
+.r-customSubmitButton {
+    background-color: blueviolet;
+    color: white;
+    width: 7rem;
+    border-radius: 25px;
+    margin-top: 3.7rem;
+}

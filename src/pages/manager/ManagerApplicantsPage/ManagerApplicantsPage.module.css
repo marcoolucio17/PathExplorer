@@ -1,0 +1,1109 @@
+:root {
+  --container-height: 70vh;
+  --container-padding: 2rem;
+  --min-content-width: 320px;
+}
+
+/* Main container */
+.dashboardContainer {
+  background: transparent;
+  color: var(--text-light);
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-padding);
+}
+
+/* Content container */
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  height: var(--container-height);
+  min-height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Page header with back button */
+.pageHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.backButton {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Graphik Medium', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-right: 15px;
+  box-shadow: var(--shadow-card);
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.pageTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-main);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+/* Search header with search and filter options */
+.searchHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Search input container */
+.searchContainer {
+  position: relative;
+  width: 250px;
+  min-height: 42px; /* Fixed height to prevent layout shift */
+  display: flex;
+  align-items: center;
+}
+
+.searchContainer i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted-darker);
+  opacity: 0.9;
+  pointer-events: none;
+  font-size: 0.95rem;
+  z-index: 2;
+}
+
+.searchInput {
+  width: 100%;
+  height: 42px;
+  padding: 0 10px 0 35px;
+  border: 1px solid transparent; /* Pre-allocate border space */
+  border-radius: 8px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: 'Graphik Light', sans-serif;
+  box-shadow: inset 0 1px 2px var(--highlight-inner-faint);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--text-light);
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.192);
+}
+
+/* Sort options container */
+.filterControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filterLabel {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+/* Button styles */
+.filterButton {
+  height: 38px;
+  padding: 0 15px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Graphik Medium', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filterButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.activeFilter {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+.activeFilter:hover {
+  filter: brightness(1.1);
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+}
+
+/* View toggle button */
+.viewToggleButton {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewToggleButton i {
+  font-size: 1.1rem;
+}
+
+.viewToggleButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Filter badge */
+.filterBadge {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+/* Active filters display */
+.activeFiltersContainer {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  animation: fadeDown 0.3s ease;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.activeFiltersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.activeFiltersTitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 500;
+}
+
+.clearAllButton {
+  background: transparent;
+  border: none;
+  color: var(--purple-btn-primary-1);
+  font-size: 0.8rem;
+  padding: 3px 6px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.clearAllButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--purple-btn-primary-2);
+}
+
+.activeFiltersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.activeFilterChip {
+  background: rgba(74, 158, 204, 0.2);
+  border: 1px solid rgba(74, 158, 204, 0.5);
+  border-radius: 50px;
+  padding: 4px 12px 4px 15px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.removeFilterButton {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.removeFilterButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.removeFilterButton i {
+  font-size: 0.8rem;
+}
+
+/* Applicants container */
+.applicantsContainer {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Grid layout */
+.applicantsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 5px 15px 5px 5px;
+  will-change: transform, opacity;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+/* List layout */
+.applicantsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 5px 15px 5px 5px;
+  will-change: transform, opacity;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+/* Empty state with example */
+.emptyApplicantsState {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* No applicants message */
+.noApplicantsMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 2rem;
+}
+
+.noApplicantsMessage p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Example section */
+.exampleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.exampleTitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.exampleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.exampleList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.clearFiltersButton {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Graphik Medium', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+.clearFiltersButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+/* Animation states */
+.applicantCard.loading,
+.applicantListItem.loading {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.applicantCard.loaded,
+.applicantListItem.loaded {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: 
+    opacity 0.4s ease var(--stagger-delay), 
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) var(--stagger-delay);
+}
+
+/* Applicant card styling (grid view) */
+.applicantCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+  min-height: 280px;
+  transform-origin: center bottom;
+  will-change: transform, opacity, box-shadow;
+}
+
+.applicantCard:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: var(--shadow-card-hover);
+  transition: 
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s ease;
+}
+
+/* Applicant list item styling (list view) */
+.applicantListItem {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  padding: 16px;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  grid-template-areas: 
+    "avatar info details actions";
+  gap: 20px;
+  transform-origin: center;
+  will-change: transform, opacity, box-shadow;
+  align-items: center;
+}
+
+.applicantListItem:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  transition: 
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s ease;
+}
+
+.applicantListItem .applicantHeader {
+  grid-area: avatar;
+  flex-direction: column;
+  gap: 0;
+}
+
+.applicantListItem .applicantAvatar {
+  width: 50px;
+  height: 50px;
+}
+
+.applicantListItem .applicantInfo {
+  grid-area: info;
+  max-width: 200px;
+}
+
+.applicantListItem .applicantDetails {
+  grid-area: details;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 20px;
+}
+
+.applicantListItem .detailRow {
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.applicantListItem .detailLabel {
+  min-width: unset;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+}
+
+.applicantListItem .detailValue {
+  font-size: 0.95rem;
+}
+
+.applicantListItem .applicantFooter {
+  grid-area: actions;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.applicantListItem .applicantSkills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+
+.applicantListItem .compatibilityCircle {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+
+/* Compatibility circle positioning */
+.compatibilityCircle {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  z-index: 10;
+  animation: popIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;
+  transform: scale(0.6);
+  opacity: 0;
+}
+
+@keyframes popIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.6); 
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(0.8); 
+  }
+}
+
+/* Applicant header with avatar and info */
+.applicantHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.applicantAvatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--purple-progress-1);
+}
+
+.applicantInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.applicantName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.applicantRole {
+  font-size: 0.95rem;
+  margin: 5px 0 0;
+  color: var(--text-light);
+  opacity: 0.8;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+/* Applicant details section */
+.applicantDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.detailLabel {
+  color: var(--text-light);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 100px;
+}
+
+.detailLabel i {
+  font-size: 0.85rem;
+}
+
+.detailValue {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Applicant footer section */
+.applicantFooter {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applicantSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 70%;
+}
+
+.skillTag {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border: 1px solid var(--border-strong);
+  border-radius: 50px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  color: var(--text-light);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+/* Highlighted skill when it matches a filter */
+.highlightedSkill {
+  background: linear-gradient(135deg, rgba(74, 158, 204, 0.8), rgba(139, 92, 246, 0.8));
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  transform: scale(1.1);
+  font-weight: 600;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+  }
+  to {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+  }
+  to {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
+  }
+}
+
+.viewProfileButton {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border: 1px solid var(--border-strong);
+  border-radius: 50px;
+  padding: 6px 15px;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+}
+
+.viewProfileButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.modalBackdrop.closing {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Modal content */
+.modalContent {
+  background: rgba(42, 42, 70, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContent.closing {
+  animation: slideOut 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+}
+
+/* Close button */
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  color: white;
+}
+
+.closeButton i {
+  font-size: 1.1rem;
+}
+
+/* Modal header */
+.modalHeader {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 0.5rem;
+  font-family: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #8b92ff;
+  margin: 0;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Controls section */
+.controls {
+  padding: 0 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.searchBox {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchBox i {
+  position: absolute;
+  left: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 40px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.searchInput:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Projects container */
+.projectsContainer {
+  padding: 0 2rem;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+  max-height: 40vh;
+}
+
+.projectOption {
+  width: 100%;
+}
+
+.projectButton {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.projectButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(2px);
+}
+
+.projectButton.active {
+  background: rgba(99, 102, 241, 0.9);
+  border-color: rgba(99, 102, 241, 0.9);
+  color: white;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.projectButton.active:hover {
+  background: rgba(99, 102, 241, 1);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Button group */
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem;
+}
+
+.cancelButton,
+.saveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none;
+}
+
+.cancelButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cancelButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.saveButton {
+  background: rgba(99, 102, 241, 0.9);
+  color: white;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.saveButton:hover {
+  background: rgba(99, 102, 241, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.saveButton i {
+  font-size: 1rem;
+}
+
+/* Glassmorphic scrollbar */
+.projectsContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.projectsContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+}
+
+.projectsContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+}
+
+.projectsContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .applicantsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .backButton {
+    margin-right: 0;
+  }
+  
+  .searchHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .searchContainer {
+    width: 100%;
+  }
+  
+  .sortContainer {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .filterButton {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+    flex-grow: 1;
+    max-width: calc(50% - 10px);
+    justify-content: center;
+  }
+  
+  .viewToggleButton {
+    flex-grow: 0;
+  }
+  
+  .applicantsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .applicantListItem {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "header"
+      "compatibility"
+      "details" 
+      "skills"
+      "button";
+  }
+  
+  .applicantListItem .applicantHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .applicantListItem .compatibilityCircle {
+    justify-self: center;
+    margin: 10px 0;
+  }
+  
+  .applicantListItem .viewProfileButton {
+    justify-self: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+}

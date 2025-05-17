@@ -1,0 +1,143 @@
+/* CV Section */
+.cvPreview {
+  width: 100%;
+  height: 200px; /* Reduced height to be more compact */
+  object-fit: contain;
+  background: var(--highlight-inner-faint);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cvPreview:hover {
+  transform: scale(1.02);
+}
+
+.viewFullButton {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+  background: var(--purple-btn-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.viewFullButton:hover {
+  background: var(--highlight-inner-faint);
+  box-shadow: var(--shadow-outer-subtle);
+}
+
+/* Modal for CV */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modalBackdrop.closing {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+.modalContent {
+  position: relative;
+  background: var(--bg-dark-2);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  animation: slideIn 0.3s ease;
+}
+
+.modalContent.closing {
+  animation: slideOut 0.3s ease forwards;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: var(--highlight-inner-faint);
+}
+
+.modalHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.title {
+  font-family: 'Graphik Medium', sans-serif;
+  font-size: 1.4rem;
+  margin: 0 0 0.25rem 0;
+  color: var(--text-light);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9rem;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.modalBody {
+  padding: 0;
+  overflow-y: auto;
+  max-height: calc(90vh - 6rem);
+}
+
+.cvFull {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(30px); opacity: 0; }
+}

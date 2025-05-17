@@ -1,0 +1,123 @@
+.formulario-crear-proyecto {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 14%;
+    margin-right: 14%;
+
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    
+    width: 72%;
+    height: 70vh min-content;
+    background-color: #500076;
+    border-radius: 5px;   
+}
+
+.campo-crear-proyecto {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    padding-left: 2%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    width: 98%;
+    background-color: #ffffff;
+    border-radius: 5px;   
+    display: flex;
+    align-items: center;
+}
+
+.campo-crear-proyecto h2 {
+    font-weight: normal;
+    font-style: italic;
+    color: #000000;
+    font-size: 1.5em;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+
+}
+
+.campo-crear-proyecto input {
+    width: 75%;
+    height: 3em;
+    border-radius: 5px;
+    
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 1%;
+    border: 0px;
+    background-color: #D9D9D9;
+    box-shadow: inset 2px 10px 4px rgba(0, 0, 0, 0.3);
+    color: #500076;      
+}
+
+.titulo-campo-crear-proyecto {
+    width: 30%;
+    align-items: center;
+}
+
+.botones-crear-proyecto {
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    display: flex;
+
+    bottom: 0;
+    justify-content: space-between;
+}
+
+.botones-crear-proyecto-formato  {
+    width: 30%;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 1.75em;
+    padding: 1%;
+    font-weight: normal;
+    align-items: center;
+    text-align: center; 
+
+}
+
+.boton-cancelar-form {
+    background-color: #D64242;
+    color: #ffffff;
+    
+    align-items: center;
+    width: 30%;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 1.75em;
+    padding: 1%;
+    font-weight: normal;
+    align-items: center;
+    text-align: center;  
+}
+
+.boton-text {
+    font-size: 1em;
+    font-weight: normal;
+    
+    text-align: center; 
+}
+.boton-atras-siguiente-form {
+    background-color: #ffffff;
+    color: #000000;
+    align-items: center;width: 30%;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 1.75em;
+    padding: 1%;
+    font-weight: normal;
+    align-items: center;
+    text-align: center;  
+    
+}

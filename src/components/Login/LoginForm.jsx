@@ -1,80 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import { Navigate, Link, useNavigate, NavLink } from "react-router";
-import Spinner from "react-bootstrap/Spinner";
+import { useAuth } from "../../context/AuthContext";
+import { Navigate, Link } from "react-router";
 import "../../styles/Login.css";
-import axios from "axios";
-
-const DB_URL = "https://pathexplorer-backend.onrender.com/";
-
-const roleMap = {
-  Manager: "manager",
-  User: "empleado",
-  TFS: "tfs",
-};
 
 /**
  * Componente que renderiza la forma dentro de login
+ * todo: actualizar status de AuthContext para asignar el rol indicado por supabase auth
  * @returns React Component
  */
 export const LoginForm = () => {
-  const navigate = useNavigate();
+  const authState = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[a-zA-Z]+\.[a-zA-Z]+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleEmailChange = (e) => {
-    const inputEmail = e.target.value;
-    setEmail(inputEmail);
-
-    if (!validateEmail(inputEmail)) {
-      setEmailError("ProviderID must be in the format 'juan.perez'");
-    } else {
-      setEmailError("");
-    }
-  };
-
-  const handleLogin = async () => {
-    setLoginError(""); // limpia error anterior
-    setIsLoading(true);
-    try {
-      if (email.length == 0 || password.length == 0) {
-        throw new Error("Missing one or two necessary fields.");
-      }
-
-      const res = await axios.post(
-        DB_URL + "api/authenticate",
-        { providerid: email, password },
-        { withCredentials: true }
-      );
-
-      let authz = res.data.authz;
-      localStorage.setItem("role", roleMap[authz]);
-      localStorage.setItem("token", res.data.token);
-      setIsLoading(false);
-      navigate(roleMap[authz]);
-    } catch (err) {
-      setIsLoading(false);
-      setLoginError(
-        "Authentication failed: " + (err.response?.data?.error || err.message)
-      );
-
-      setTimeout(() => {
-        setLoginError("");
-      }, 5000);
-    }
-  };
+  console.log(authState);
 
   return (
     <div className="mainLoginForm">
@@ -86,73 +25,33 @@ export const LoginForm = () => {
 
       <Form className="w-50">
         <Form.Group className="mt-5 mb-3" controlId="formBasicEmail">
-          <input
-            className="transparent-input"
+          <Form.Control
+            data-bs-theme="dark"
+            size="lg"
             type="email"
-            placeholder="Enter Employee ID"
-            onChange={handleEmailChange}
-            value={email}
+            placeholder="Enter email"
           />
-          {emailError && <small className="text-danger">{emailError}</small>}
         </Form.Group>
 
-        <Form.Group
-          className="mt-3 mb-5 position-relative"
-          controlId="formBasicPassword"
-        >
-          <input
-            type={showPassword ? "text" : "password"}
+        <Form.Group className="mt-3 mb-5" controlId="formBasicPassword">
+          <Form.Control
+            data-bs-theme="dark"
+            size="lg"
+            type="password"
             placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            className="transparent-input"
           />
-          <Button
-            variant="link"
-            className="position-absolute top-50 end-0 translate-middle-y me-4 p-0"
-            onClick={() => setShowPassword(!showPassword)}
-            aria-label="Toggle password visibility"
-          >
-            <i
-              className={`bi ${
-                showPassword ? "bi-eye-slash" : "bi-eye"
-              } fs-3 text-white`}
-            />
-          </Button>
         </Form.Group>
 
-        <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center"}}>
-          <button
-            type="button"
-            onClick={handleLogin}
-            className="customSubmitButton"
-            disabled={isLoading}
-          >
-            Submit
-            {isLoading && (
-              <Spinner
-                animation="border"
-                role="status"
-                size="sm"
-                className="ms-3"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-            )}
-          </button>
-        </div>
+        <Link className="customSubmitButton" to={authState + "/dashboard"}>
+          {/* Esta funcionalidad es para simplemente atravesar la página hacia dashboard. */}
+          {/* Más adelante, se incorporará la lógica para autentificar el usuario y verificar su rol antes de proceder. */}
+          Submit
+        </Link>
 
-        <div className="d-flex mt-2 h-25 align-items-center justify-content-center gap-3">
+        <div className="d-flex mt-2 h-25 align-items-center justify-content-center">
           <p className="text-light m-0">Don't have an account?</p>
-          <NavLink to="register">Register</NavLink>
+          <Button variant="link">Register</Button>
         </div>
-
-        {/* Alerta de error */}
-        {loginError && (
-          <Alert className="mt-4" variant="danger">
-            {loginError}
-          </Alert>
-        )}
       </Form>
     </div>
   );

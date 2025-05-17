@@ -1,1 +1,0 @@
-export { AddCertificateModal } from './AddCertificateModal';

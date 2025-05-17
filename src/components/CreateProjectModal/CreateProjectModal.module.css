@@ -1,0 +1,460 @@
+/* Modal backdrop */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.modalBackdrop.closing {
+  animation: fadeOut 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Modal content */
+.modalContent {
+  background: rgba(42, 42, 70, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modalContent.closing {
+  animation: slideOut 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+}
+
+/* Close button */
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  color: white;
+}
+
+.closeButton i {
+  font-size: 1.1rem;
+}
+
+/* Modal header */
+.modalHeader {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 0.5rem;
+  font-family: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #8b92ff;
+  margin: 0;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Form */
+.form {
+  padding: 0 2rem 2rem;
+}
+
+/* Image Upload section */
+.uploadSection {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.uploadLabel {
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uploadLabel:hover {
+  transform: scale(1.02);
+}
+
+.uploadPreview {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.uploadPlaceholder {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.uploadPlaceholder:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.uploadPlaceholder i {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.uploadPlaceholder span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.fileInput {
+  display: none;
+}
+
+/* File Upload section */
+.fileUploadSection {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.fileUploadLabel {
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fileUploadLabel:hover {
+  transform: scale(1.02);
+}
+
+.fileUploadPreview {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fileUploadPlaceholder {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.fileUploadPlaceholder:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.fileUploadPlaceholder i {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fileUploadPlaceholder span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+
+/* Form grid */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup:nth-child(6),
+.formGroup:nth-child(7) {
+  grid-column: span 2;
+}
+
+.formGroup label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.formGroup input {
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.formGroup input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.formGroup input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Button group */
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.cancelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cancelButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  background: rgba(99, 102, 241, 0.9);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.saveButton:hover:not(:disabled) {
+  background: rgba(99, 102, 241, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.saveButton:disabled {
+  background: rgba(99, 102, 241, 0.5);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.saveButton i {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .modalContent {
+    max-height: 100vh;
+    border-radius: 16px 16px 0 0;
+    margin-top: auto;
+  }
+  
+  .modalHeader {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .form {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .formGroup:nth-child(6),
+  .formGroup:nth-child(7) {
+    grid-column: span 1;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+  }
+  
+  .cancelButton,
+  .saveButton {
+    width: 100%;
+  }
+}
+
+/* Glassmorphic scrollbar */
+.modalContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Columns for File Upload */
+
+/* containers for the two-column layout */
+.columnsContainer {
+  display: flex;
+  gap: 2rem;            /* space between columns */
+  align-items: flex-start;
+}
+
+/* each column will take up half the space by default */
+.column {
+  flex: 1;
+}

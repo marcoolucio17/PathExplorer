@@ -16,7 +16,7 @@ function CustomNavbar() {
   // Define search categories
   const searchCategories = [
     { key: 'people', label: 'People', icon: 'bi-person-fill' },
-    { key: 'projects', label: 'Projects', icon: 'bi-folder-fill' },
+    { key: 'projects', label: 'Projects', icon: 'bi-folder2-open' }, // Changed for better visibility
     { key: 'certificates', label: 'Certificates', icon: 'bi-award-fill' },
     { key: 'skills', label: 'Skills', icon: 'bi-tag-fill' }
   ];

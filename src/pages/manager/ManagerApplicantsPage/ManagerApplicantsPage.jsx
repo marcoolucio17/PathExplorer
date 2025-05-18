@@ -475,6 +475,28 @@ export const ManagerApplicantsPage = () => {
               badgeCount: 0
             }
           ]}
+          activeFilters={{
+            projects: {
+              label: "Project",
+              values: projectFilter !== 'All Projects' ? [projectFilter] : [],
+              color: 'rgba(74, 158, 204, 0.2)',
+              borderColor: 'rgba(74, 158, 204, 0.5)'
+            },
+            skills: {
+              label: "Skill",
+              values: selectedSkillFilters,
+              color: 'rgba(139, 92, 246, 0.2)',
+              borderColor: 'rgba(139, 92, 246, 0.5)'
+            }
+          }}
+          onRemoveFilter={(filterType, value) => {
+            if (filterType === 'projects') {
+              clearProjectFilter();
+            } else if (filterType === 'skills') {
+              removeSkillFilter(value);
+            }
+          }}
+          onClearFilters={handleClearFilters}
         />
 
         {/* Active filters display */}

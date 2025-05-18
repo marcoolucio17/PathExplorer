@@ -239,15 +239,14 @@
 }
 
 .inSearchBarInput {
-  height: 40px;
+  height: 36px;
   background: rgba(30, 30, 40, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
+  border-radius: 10px;
   font-size: 0.9rem;
   color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding-left: 40px;
-  padding-right: 15px;
+  padding-left: 35px;
 }
 
 /* Search Results Dropdown */

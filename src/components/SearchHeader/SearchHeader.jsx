@@ -18,9 +18,9 @@ import styles from "./SearchHeader.module.css";
  * @param {Object} props.activeFilters - Object with active filters data (e.g., {projects: {label, values}, skills: {label, values}})
  * @param {function} props.onRemoveFilter - Function to call when a filter is removed
  * @param {function} props.onClearFilters - Function to call when all filters are cleared
- * @param {Object} props.inSearchBar - Parameter to indicate if this is being used in the search bar (affects styling)
- * @param {Array} props.searchResults - Array of search results to display in dropdown (for inSearchBar mode)
+ * @param {boolean} props.inSearchBar - Parameter to indicate if this is being used in the search bar (affects styling)
  * @param {Function} props.onSearchResultClick - Function to call when a search result is clicked
+ * @param {Array} props.searchCategories - Array of search categories with their icons and labels
  * @returns {JSX.Element}
  */
 export const SearchHeader = ({
@@ -38,8 +38,13 @@ export const SearchHeader = ({
   onRemoveFilter,
   onClearFilters,
   inSearchBar = false,
-  searchResults = {},
-  onSearchResultClick
+  onSearchResultClick,
+  searchCategories = [
+    { key: 'people', label: 'People', icon: 'bi-person-fill' },
+    { key: 'projects', label: 'Projects', icon: 'bi-folder-fill' },
+    { key: 'certificates', label: 'Certificates', icon: 'bi-award-fill' },
+    { key: 'skills', label: 'Skills', icon: 'bi-tag-fill' }
+  ]
 }) => {
   // State to track input focus
   const [isFocused, setIsFocused] = useState(false);
@@ -91,12 +96,6 @@ export const SearchHeader = ({
             type="text"
             value={searchTerm}
             name={searchName}
-            onKeyUp={(e) => {
-              // Show results when user types something
-              if (inSearchBar && searchTerm.length > 0) {
-                setShowResults(true);
-              }
-            }}
             onChange={(e) => {
               setSearchTerm(e.target.value);
               if (inSearchBar && e.target.value.length > 0) {
@@ -120,28 +119,30 @@ export const SearchHeader = ({
                 setShowResults(true);
               }
             }}
+            onKeyUp={(e) => {
+              // Show results when user types something
+              if (inSearchBar && searchTerm.length > 0) {
+                setShowResults(true);
+              }
+            }}
           />
           
           {/* Search Results Dropdown */}
           {inSearchBar && showResults && searchTerm.length > 0 && (
             <div className={styles.searchResultsDropdown}>
-              {/* Always show these categories with the search term */}
-              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'people')}>
-                <i className="bi bi-person-fill"></i>
-                <span>{searchTerm} in People</span>
-              </div>
-              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'projects')}>
-                <i className="bi bi-folder-fill"></i>
-                <span>{searchTerm} in Projects</span>
-              </div>
-              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'certificates')}>
-                <i className="bi bi-award-fill"></i>
-                <span>{searchTerm} in Certificates</span>
-              </div>
-              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'skills')}>
-                <i className="bi bi-tag-fill"></i>
-                <span>{searchTerm} in Skills</span>
-              </div>
+              {/* Dynamically render search categories */}
+              {searchCategories.map((category) => (
+                <div 
+                  key={category.key}
+                  className={styles.searchResultItem} 
+                  onClick={() => onSearchResultClick(searchTerm, category.key)}
+                >
+                  <div className={styles.iconWrapper}>
+                    <i className={`bi ${category.icon}`}></i>
+                  </div>
+                  <span>{searchTerm} in {category.label}</span>
+                </div>
+              ))}
             </div>
           )}
         </div>

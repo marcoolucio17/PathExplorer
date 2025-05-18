@@ -2,6 +2,7 @@ import React from 'react';
 import { GlassCard } from '../GlassCard';
 import { ProgressCircle } from '../../ProgressCircle';
 import styles from './ApplicantCard.module.css';
+import Button from '../Button';
 
 /**
  * ApplicantCard component for displaying applicant information in grid or list view
@@ -47,8 +48,7 @@ const ApplicantCard = ({
           <ProgressCircle 
             value={matchPercentage}
             size={60} 
-            strokeWidth={6}
-            title="Match"
+            strokeWidth={8}
           />
         </div>
       )}
@@ -98,7 +98,7 @@ const ApplicantCard = ({
               className={styles.viewReasonButton}
               onClick={() => onViewReason(applicant.id)}
             >
-              <i className="bi bi-exclamation-circle"></i> View Reason
+              <i className="bi bi-exclamation-circle"></i> View 
             </button>
             <button 
               className={styles.viewRequestButton}
@@ -207,8 +207,7 @@ const ApplicantCard = ({
           <ProgressCircle 
             value={matchPercentage}
             size={60} 
-            strokeWidth={6}
-            title="Match"
+            strokeWidth={5}
           />
         </div>
       )}

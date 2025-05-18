@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Components
 import ApplicantsList from "../../../components/ApplicantsList";
@@ -13,7 +13,8 @@ import Button from '../../../components/shared/Button';
 // Hooks
 import { useGetFetch } from '../../../hooks/useGetFetch';
 
-// Global CSS is now imported via index.css, no need for CSS modules
+// CSS
+import styles from "./ManagerApplicantsPage.module.css";
 
 /**
  * Applicants component for Manager role
@@ -21,9 +22,14 @@ import { useGetFetch } from '../../../hooks/useGetFetch';
  */
 export const ManagerApplicantsPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Parse search param from URL
+  const searchParams = new URLSearchParams(location.search);
+  const searchFromURL = searchParams.get('search') || '';
   
   // States for search and filtering
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(searchFromURL);
   const [skillSelected, setSkillSelected] = useState('Skills');
   const [showCompatibility, setShowCompatibility] = useState(true);
   const [skillsFilterModalOpen, setSkillsFilterModalOpen] = useState(false);
@@ -44,6 +50,29 @@ export const ManagerApplicantsPage = () => {
 
   // Animation state for applicant cards
   const [shouldAnimate, setShouldAnimate] = useState(true);
+
+  // Update URL when search term changes
+  useEffect(() => {
+    if (searchTerm) {
+      const params = new URLSearchParams(location.search);
+      params.set('search', searchTerm);
+      navigate(`${location.pathname}?${params.toString()}`, { replace: true });
+    } else if (searchFromURL) {
+      // If search term is cleared, remove it from URL
+      const params = new URLSearchParams(location.search);
+      params.delete('search');
+      navigate(`${location.pathname}${params.toString() ? `?${params.toString()}` : ''}`, { replace: true });
+    }
+  }, [searchTerm, navigate, location.pathname]);
+  
+  // Update search term when URL changes
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const searchParam = params.get('search');
+    if (searchParam && searchParam !== searchTerm) {
+      setSearchTerm(searchParam);
+    }
+  }, [location.search]);
   
   // Fetch data for applicants, skills, and projects
   const { data: data_applicants, error } = useGetFetch({ 
@@ -225,12 +254,12 @@ export const ManagerApplicantsPage = () => {
   const toggleProjectFilterModal = () => {
     if (projectFilterModalOpen) {
       // Add closing animation
-      const modal = document.querySelector(`.modal-content`);
-      const backdrop = document.querySelector(`.modal-backdrop`);
+      const modal = document.querySelector(`.${styles.modalContent}`);
+      const backdrop = document.querySelector(`.${styles.modalBackdrop}`);
       
       if (modal && backdrop) {
-        modal.classList.add('closing');
-        backdrop.classList.add('closing');
+        modal.classList.add(styles.closing);
+        backdrop.classList.add(styles.closing);
         
         setTimeout(() => {
           setProjectFilterModalOpen(false);
@@ -431,9 +460,9 @@ export const ManagerApplicantsPage = () => {
   const tabCounts = getTabCounts();
 
   return (
-    <div className="page-container">
-      <div className="page-content">
-        <div className="page-header">
+    <div className={styles.dashboardContainer}>
+      <div className={styles.dashboardContent}>
+        <div className={styles.pageHeader}>
           <Button 
             type="secondary"
             variant="back"
@@ -442,7 +471,7 @@ export const ManagerApplicantsPage = () => {
           >
             Back to Dashboard
           </Button>
-          <h1 className="page-title">Project Applicants</h1>
+          <h1 className={styles.pageTitle}>Project Applicants</h1>
         </div>
         
         <SearchHeader 
@@ -511,8 +540,8 @@ export const ManagerApplicantsPage = () => {
           onTabClick={handleTabChange}
         />
 
-        <div className="main-content">
-          <div className="applicants-grid">
+        <div className={styles.applicantsContainer}>
+          <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showHorizontalScroll={false}>
             <ApplicantsList 
               applicants={getTabApplicants()}
               viewMode={viewMode}
@@ -524,64 +553,62 @@ export const ManagerApplicantsPage = () => {
               onViewReason={handleViewApplicant}
               onClearFilters={handleClearFilters}
             />
-          </div>
+          </CustomScrollbar>
         </div>
       </div>
       
       {/* Project filter modal */}
       {projectFilterModalOpen && (
-        <div className="modal-backdrop" onClick={toggleProjectFilterModal}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="close-button" onClick={toggleProjectFilterModal}>
+        <div className={styles.modalBackdrop} onClick={toggleProjectFilterModal}>
+          <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+            <button className={styles.closeButton} onClick={toggleProjectFilterModal}>
               <i className="bi bi-x-lg"></i>
             </button>
             
-            <div className="modal-header">
-              <h3 className="modal-title">Select Project</h3>
-              <p className="modal-subtitle">Choose a project to filter applicants</p>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.title}>Select Project</h3>
+              <p className={styles.subtitle}>Choose a project to filter applicants</p>
             </div>
             
-            <div className="p-4">
-              <div className="search-box">
+            <div className={styles.controls}>
+              <div className={styles.searchBox}>
                 <i className="bi bi-search"></i>
                 <input
                   type="text"
-                  className="search-input"
+                  className={styles.searchInput}
                   placeholder="Search projects..."
                 />
               </div>
             </div>
             
-            <div className="modal-body">
-              <div className="flex flex-col gap-3">
-                <div>
+            <div className={styles.projectsContainer}>
+              <div className={styles.projectOption}>
+                <button 
+                  className={`${styles.projectButton} ${projectFilter === 'All Projects' ? styles.active : ''}`}
+                  onClick={() => handleSelectProject('All Projects')}
+                >
+                  All Projects
+                </button>
+              </div>
+              {/* Use dummy data - would be replaced with data_projects */}
+              {['Project 1', 'Project 2', 'Project 3', 'Project 4'].map(project => (
+                <div key={project} className={styles.projectOption}>
                   <button 
-                    className={`btn w-full text-left p-4 ${projectFilter === 'All Projects' ? 'btn-primary' : 'btn-secondary'}`}
-                    onClick={() => handleSelectProject('All Projects')}
+                    className={`${styles.projectButton} ${projectFilter === project ? styles.active : ''}`}
+                    onClick={() => handleSelectProject(project)}
                   >
-                    All Projects
+                    {project}
                   </button>
                 </div>
-                {/* Use dummy data - would be replaced with data_projects */}
-                {['Project 1', 'Project 2', 'Project 3', 'Project 4'].map(project => (
-                  <div key={project}>
-                    <button 
-                      className={`btn w-full text-left p-4 ${projectFilter === project ? 'btn-primary' : 'btn-secondary'}`}
-                      onClick={() => handleSelectProject(project)}
-                    >
-                      {project}
-                    </button>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
             
-            <div className="modal-footer">
-              <button className="btn btn-secondary" onClick={toggleProjectFilterModal}>
+            <div className={styles.buttonGroup}>
+              <button className={styles.cancelButton} onClick={toggleProjectFilterModal}>
                 Cancel
               </button>
               <button 
-                className="btn btn-primary" 
+                className={styles.saveButton} 
                 onClick={() => {
                   toggleProjectFilterModal();
                   // Use animation sequence for consistent animation

@@ -8,12 +8,12 @@ import { SkillsModal } from "../../../components/SkillsModal";
 import { DenialReasonModal } from "../../../components/DenialReasonModal";
 import { SearchHeader } from "../../../components/SearchHeader";
 import { Tabs } from "../../../components/Tabs";
+import Button from '../../../components/shared/Button';
 
 // Hooks
 import { useGetFetch } from '../../../hooks/useGetFetch';
 
-// CSS
-import styles from "./ManagerApplicantsPage.module.css";
+// Global CSS is now imported via index.css, no need for CSS modules
 
 /**
  * Applicants component for Manager role
@@ -225,12 +225,12 @@ export const ManagerApplicantsPage = () => {
   const toggleProjectFilterModal = () => {
     if (projectFilterModalOpen) {
       // Add closing animation
-      const modal = document.querySelector(`.${styles.modalContent}`);
-      const backdrop = document.querySelector(`.${styles.modalBackdrop}`);
+      const modal = document.querySelector(`.modal-content`);
+      const backdrop = document.querySelector(`.modal-backdrop`);
       
       if (modal && backdrop) {
-        modal.classList.add(styles.closing);
-        backdrop.classList.add(styles.closing);
+        modal.classList.add('closing');
+        backdrop.classList.add('closing');
         
         setTimeout(() => {
           setProjectFilterModalOpen(false);
@@ -431,22 +431,24 @@ export const ManagerApplicantsPage = () => {
   const tabCounts = getTabCounts();
 
   return (
-    <div className={styles.dashboardContainer}>
-      <div className={styles.dashboardContent}>
-        <div className={styles.pageHeader}>
-          <button 
-            className={styles.backButton}
+    <div className="page-container">
+      <div className="page-content">
+        <div className="page-header">
+          <Button 
+            type="secondary"
+            variant="back"
+            icon="bi bi-arrow-left"
             onClick={handleBackToDashboard}
           >
-            <i className="bi bi-arrow-left"></i> Back to Dashboard
-          </button>
-          <h1 className={styles.pageTitle}>Project Applicants</h1>
+            Back to Dashboard
+          </Button>
+          <h1 className="page-title">Project Applicants</h1>
         </div>
         
         <SearchHeader 
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
-          placeholder="Search..."
+          placeholder="Search by Name..."
           searchName="searchApplicants"
           labelText="Filter by:"
           viewToggle={true}
@@ -509,7 +511,7 @@ export const ManagerApplicantsPage = () => {
           onTabClick={handleTabChange}
         />
 
-        <div className={styles.applicantsContainer}>
+        <div className="main-content">
           <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showHorizontalScroll={false}>
             <ApplicantsList 
               applicants={getTabApplicants()}
@@ -528,56 +530,58 @@ export const ManagerApplicantsPage = () => {
       
       {/* Project filter modal */}
       {projectFilterModalOpen && (
-        <div className={styles.modalBackdrop} onClick={toggleProjectFilterModal}>
-          <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={toggleProjectFilterModal}>
+        <div className="modal-backdrop" onClick={toggleProjectFilterModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="close-button" onClick={toggleProjectFilterModal}>
               <i className="bi bi-x-lg"></i>
             </button>
             
-            <div className={styles.modalHeader}>
-              <h3 className={styles.title}>Select Project</h3>
-              <p className={styles.subtitle}>Choose a project to filter applicants</p>
+            <div className="modal-header">
+              <h3 className="modal-title">Select Project</h3>
+              <p className="modal-subtitle">Choose a project to filter applicants</p>
             </div>
             
-            <div className={styles.controls}>
-              <div className={styles.searchBox}>
+            <div className="controls p-4">
+              <div className="search-box">
                 <i className="bi bi-search"></i>
                 <input
                   type="text"
-                  className={styles.searchInput}
+                  className="search-input"
                   placeholder="Search projects..."
                 />
               </div>
             </div>
             
-            <div className={styles.projectsContainer}>
-              <div className={styles.projectOption}>
-                <button 
-                  className={`${styles.projectButton} ${projectFilter === 'All Projects' ? styles.active : ''}`}
-                  onClick={() => handleSelectProject('All Projects')}
-                >
-                  All Projects
-                </button>
-              </div>
-              {/* Use dummy data - would be replaced with data_projects */}
-              {['Project 1', 'Project 2', 'Project 3', 'Project 4'].map(project => (
-                <div key={project} className={styles.projectOption}>
+            <div className="modal-body">
+              <div className="flex flex-col gap-3">
+                <div>
                   <button 
-                    className={`${styles.projectButton} ${projectFilter === project ? styles.active : ''}`}
-                    onClick={() => handleSelectProject(project)}
+                    className={`btn w-full text-left p-4 ${projectFilter === 'All Projects' ? 'btn-primary' : 'btn-secondary'}`}
+                    onClick={() => handleSelectProject('All Projects')}
                   >
-                    {project}
+                    All Projects
                   </button>
                 </div>
-              ))}
+                {/* Use dummy data - would be replaced with data_projects */}
+                {['Project 1', 'Project 2', 'Project 3', 'Project 4'].map(project => (
+                  <div key={project}>
+                    <button 
+                      className={`btn w-full text-left p-4 ${projectFilter === project ? 'btn-primary' : 'btn-secondary'}`}
+                      onClick={() => handleSelectProject(project)}
+                    >
+                      {project}
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
             
-            <div className={styles.buttonGroup}>
-              <button className={styles.cancelButton} onClick={toggleProjectFilterModal}>
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={toggleProjectFilterModal}>
                 Cancel
               </button>
               <button 
-                className={styles.saveButton} 
+                className="btn btn-primary" 
                 onClick={() => {
                   toggleProjectFilterModal();
                   // Use animation sequence for consistent animation

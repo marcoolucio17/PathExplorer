@@ -333,11 +333,7 @@
 }
 
 .searchResultItem i {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-right: 12px;
-  min-width: 24px;
-  display: inline-block;
+  /* This style should be completely removed or overridden by the iconWrapper i style */
 }
 
 .resultContent {

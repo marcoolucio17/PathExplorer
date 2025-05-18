@@ -308,14 +308,11 @@
 }
 
 .searchResultItem i {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
   margin-right: 12px;
   min-width: 24px;
-  text-align: center;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
 }
 
 .resultContent {

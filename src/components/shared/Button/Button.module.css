@@ -116,6 +116,21 @@
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(139, 92, 246, 0.5);
 }
 
+/* Override default active styles with more specific selectors for our variants */
+.button.view:active,
+.button.view.active {
+  transform: scale(0.98);
+  filter: brightness(1.05);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(106, 130, 251, 0.4);
+}
+
+.button.alert:active,
+.button.alert.active {
+  transform: scale(0.98);
+  filter: brightness(1.05);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 126, 95, 0.4);
+}
+
 .toggle {
   width: 42px;
   padding: 0;

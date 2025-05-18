@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../shared/Button";
+import ActiveFilters from "../shared/ActiveFilters";
 import styles from "./SearchHeader.module.css";
 
 /**
@@ -15,6 +16,9 @@ import styles from "./SearchHeader.module.css";
  * @param {string} props.viewMode - Current view mode ("grid" or "list")
  * @param {function} props.setViewMode - Function to update view mode
  * @param {Array} props.customButtons - Array of custom button config objects to render before filter buttons
+ * @param {Object} props.activeFilters - Object with active filters data for the ActiveFilters component
+ * @param {function} props.onRemoveFilter - Function to call when a filter is removed
+ * @param {function} props.onClearFilters - Function to call when all filters are cleared
  * @returns {JSX.Element}
  */
 export const SearchHeader = ({

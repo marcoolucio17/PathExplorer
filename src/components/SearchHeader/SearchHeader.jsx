@@ -72,9 +72,8 @@ export const SearchHeader = ({
         <div 
           className={`${styles.searchContainer} ${isFocused ? styles.searchContainerFocused : ''} ${inSearchBar ? styles.inSearchBarContainer : ''}`}
           style={{
-            // Use inline style for consistent behavior
-            width: inSearchBar ? '350px' : (isFocused ? '300px' : '250px'), 
-            transition: 'width 0.25s ease'
+            // Width animation happens via CSS, but we add these inline styles for initial states
+            width: inSearchBar ? (isFocused ? '350px' : '280px') : (isFocused ? '300px' : '250px')
           }}
           ref={dropdownRef}
         >

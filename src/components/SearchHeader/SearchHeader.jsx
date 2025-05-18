@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "../shared/Button";
 import styles from "./SearchHeader.module.css";
 
@@ -19,6 +19,8 @@ import styles from "./SearchHeader.module.css";
  * @param {function} props.onRemoveFilter - Function to call when a filter is removed
  * @param {function} props.onClearFilters - Function to call when all filters are cleared
  * @param {Object} props.inSearchBar - Parameter to indicate if this is being used in the search bar (affects styling)
+ * @param {Array} props.searchResults - Array of search results to display in dropdown (for inSearchBar mode)
+ * @param {Function} props.onSearchResultClick - Function to call when a search result is clicked
  * @returns {JSX.Element}
  */
 export const SearchHeader = ({
@@ -35,16 +37,39 @@ export const SearchHeader = ({
   activeFilters = {},
   onRemoveFilter,
   onClearFilters,
-  inSearchBar = false
+  inSearchBar = false,
+  searchResults = {},
+  onSearchResultClick
 }) => {
   // State to track input focus
   const [isFocused, setIsFocused] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const dropdownRef = useRef(null);
   
   // Check if there are any active filters
   const hasActiveFilters = activeFilters && 
     Object.values(activeFilters).some(
       filterGroup => filterGroup && filterGroup.values && filterGroup.values.length > 0
     );
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowResults(false);
+      }
+    }
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Check if we have any search results
+  const hasSearchResults = Object.values(searchResults).some(
+    category => category && category.length > 0
+  );
 
   return (
     <div className={`${styles.searchHeaderWrapper} ${inSearchBar ? styles.inSearchBar : ''}`}>
@@ -56,6 +81,7 @@ export const SearchHeader = ({
             width: inSearchBar ? '100%' : (isFocused ? '300px' : '250px'), 
             transition: 'width 0.25s ease'
           }}
+          ref={dropdownRef}
         >
           <i className="bi bi-search"></i>
           <input
@@ -66,9 +92,63 @@ export const SearchHeader = ({
             placeholder={placeholder}
             className={`${styles.searchInput} ${inSearchBar ? styles.inSearchBarInput : ''}`}
             aria-label={placeholder}
-            onFocus={() => setIsFocused(true)}
+            onFocus={() => {
+              setIsFocused(true);
+              if (inSearchBar && searchTerm.length > 0) {
+                setShowResults(true);
+              }
+            }}
             onBlur={() => setIsFocused(false)}
+            onClick={() => {
+              if (inSearchBar && searchTerm.length > 0) {
+                setShowResults(true);
+              }
+            }}
           />
+          
+          {/* Search Results Dropdown */}
+          {inSearchBar && showResults && searchTerm.length > 0 && (
+            <div className={styles.searchResultsDropdown}>
+              {!hasSearchResults && (
+                <div className={styles.noResults}>
+                  No results found for "{searchTerm}"
+                </div>
+              )}
+              
+              {Object.entries(searchResults).map(([category, results]) => {
+                if (!results || results.length === 0) return null;
+                
+                return (
+                  <div key={category} className={styles.resultCategory}>
+                    {results.map((result, index) => (
+                      <div 
+                        key={`${category}-${index}`} 
+                        className={styles.searchResultItem}
+                        onClick={() => {
+                          if (onSearchResultClick) {
+                            onSearchResultClick(result, category);
+                            setShowResults(false);
+                          }
+                        }}
+                      >
+                        {category === 'people' && <i className="bi bi-person"></i>}
+                        {category === 'projects' && <i className="bi bi-clipboard"></i>}
+                        {category === 'certificates' && <i className="bi bi-award"></i>}
+                        {category === 'skills' && <i className="bi bi-tag"></i>}
+                        
+                        <div className={styles.resultContent}>
+                          <div className={styles.resultName}>{result.name}</div>
+                          <div className={styles.resultCategory}>
+                            in {category.charAt(0).toUpperCase() + category.slice(1)}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
         
         {!inSearchBar && (

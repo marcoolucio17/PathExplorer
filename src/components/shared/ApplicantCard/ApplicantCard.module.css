@@ -119,10 +119,14 @@
 }
 
 .applicantListItem .compatibilityCircle {
-  position: absolute;
-  height: 55px;
-  top: 15px;
-  right: 455px;
+  grid-area: progress;
+  position: relative;
+  height: auto;
+  top: auto;
+  right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .applicantListItem .deniedButtonsGroup {

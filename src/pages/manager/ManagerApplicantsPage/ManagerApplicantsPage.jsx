@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-//components
-import { ProgressCircle } from '../../../components/ProgressCircle';
+// Components
+import ApplicantsList from "../../../components/ApplicantsList";
 import CustomScrollbar from '../../../components/CustomScrollbar';
 import { SkillsModal } from "../../../components/SkillsModal";
+import { DenialReasonModal } from "../../../components/DenialReasonModal";
+import { SearchHeader } from "../../../components/SearchHeader";
+import { Tabs } from "../../../components/Tabs";
 
-//hooks
+// Hooks
 import { useGetFetch } from '../../../hooks/useGetFetch';
 
-//css
+// CSS
 import styles from "./ManagerApplicantsPage.module.css";
 
 /**
  * Applicants component for Manager role
- * Shows all applicants for the manager's projects
+ * Shows all applicants for the manager's projects with tabs for different application statuses
  */
 export const ManagerApplicantsPage = () => {
   const navigate = useNavigate();
@@ -30,6 +33,17 @@ export const ManagerApplicantsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [projectFilter, setProjectFilter] = useState('All Projects');
   const [projectFilterModalOpen, setProjectFilterModalOpen] = useState(false);
+  
+  // Denial Reason Modal state
+  const [denialReasonModalOpen, setDenialReasonModalOpen] = useState(false);
+  const [selectedDeniedApplicant, setSelectedDeniedApplicant] = useState(null);
+  
+  // Tab functionality
+  const [activeTab, setActiveTab] = useState('Pending');
+  const tabNames = ['Pending', 'In Review', 'Accepted', 'Denied'];
+
+  // Animation state for applicant cards
+  const [shouldAnimate, setShouldAnimate] = useState(true);
   
   // Fetch data for applicants, skills, and projects
   const { data: data_applicants, error } = useGetFetch({ 
@@ -51,15 +65,16 @@ export const ManagerApplicantsPage = () => {
     condicion1: 'Projects' 
   });
 
-  // Filter applicants based on selected skills and project
+  // Filter applicants based on selected skills, project, search term, and active tab
   useEffect(() => {
     if (data_applicants) {
+      // Always start with loading state for proper animation
       setIsLoading(true); 
       
       // When there are no filters, populate with dummy data
-      if (selectedSkillFilters.length === 0 && projectFilter === 'All Projects') {
+      if (selectedSkillFilters.length === 0 && projectFilter === 'All Projects' && !searchTerm) {
         // Using dummy data for now
-        const dummyApplicants = Array(10).fill().map((_, index) => ({
+        const dummyApplicants = Array(20).fill().map((_, index) => ({
           id: `app-${index + 1}`,
           name: `Applicant ${index + 1}`,
           avatar: "/img/fotogabo.jpg",
@@ -76,10 +91,45 @@ export const ManagerApplicantsPage = () => {
           ],
           experience: `${index + 1} years`,
           lastActive: '2 days ago',
+          // Assign status based on index to distribute among tabs
+          status: index % 4 === 0 ? 'Pending' : (index % 4 === 1 ? 'In Review' : (index % 4 === 2 ? 'Accepted' : 'Denied'))
         }));
         setFilteredApplicants(dummyApplicants);
       } else {
-        let filtered = [...data_applicants];
+        // Start with all applicants (or dummy data since we don't have real data)
+        let baseApplicants = data_applicants;
+        if (!baseApplicants || baseApplicants.length === 0) {
+          baseApplicants = Array(20).fill().map((_, index) => ({
+            id: `app-${index + 1}`,
+            name: `Applicant ${index + 1}`,
+            avatar: "/img/fotogabo.jpg",
+            role: `Developer ${(index % 3) + 1}`,
+            project: `Project ${(index % 4) + 1}`,
+            skills: [
+              { nombre: 'JavaScript' },
+              { nombre: 'React' },
+              { nombre: 'Node.js' },
+              { nombre: 'CSS' }
+            ],
+            applications: [
+              { proyecto: { pnombre: `Project ${(index % 4) + 1}` } }
+            ],
+            experience: `${index + 1} years`,
+            lastActive: '2 days ago',
+            status: index % 4 === 0 ? 'Pending' : (index % 4 === 1 ? 'In Review' : (index % 4 === 2 ? 'Accepted' : 'Denied'))
+          }));
+        }
+        
+        let filtered = [...baseApplicants];
+        
+        // Apply search filter
+        if (searchTerm) {
+          filtered = filtered.filter(applicant => 
+            applicant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            applicant.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            applicant.project.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        }
         
         // Filter by skills if any selected
         if (selectedSkillFilters.length > 0) {
@@ -93,24 +143,78 @@ export const ManagerApplicantsPage = () => {
         // Filter by project if not "All Projects"
         if (projectFilter !== 'All Projects') {
           filtered = filtered.filter(applicant => 
-            applicant.applications && applicant.applications.some(app => 
-              app.proyecto.pnombre === projectFilter
-            )
+            applicant.project === projectFilter || // Filter by project field
+            (applicant.applications && 
+             applicant.applications.some(app => 
+               app.proyecto.pnombre === projectFilter ||
+               app.proyecto === projectFilter
+             ))
           );
         }
         
         setFilteredApplicants(filtered);
       }
 
+      // Longer delay for initial load animation
       setTimeout(() => {
+        setShouldAnimate(true);
         setIsLoading(false);
-      }, 100);
+      }, 500);
     }
-  }, [data_applicants, selectedSkillFilters, projectFilter]);
+  }, [data_applicants, selectedSkillFilters, projectFilter, searchTerm]);
 
+  // Trigger animation when tab changes
   useEffect(() => {
-    setIsLoading(false);
+    // Animate cards when tab changes
+    setShouldAnimate(false);
+    setIsLoading(true);
+    
+    // Clear any existing timeouts to prevent animation conflicts
+    clearTimeout(window.tabAnimationTimer);
+    
+    // Use a short delay to allow the state to update
+    window.tabAnimationTimer = setTimeout(() => {
+      setShouldAnimate(true);
+      setIsLoading(false);
+    }, 300);
+    
+    return () => {
+      clearTimeout(window.tabAnimationTimer);
+    };
+  }, [activeTab]);
+
+  // Update view when filteredApplicants changes
+  useEffect(() => {
+    // First set loading to true to ensure animation runs
+    setIsLoading(true);
+    
+    // Then set to false after a delay to trigger animation
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+    
+    // Check if we need to refresh the current tab view
+    // This helps when filters change but we stay on the same tab
+    const tabApplicants = filteredApplicants.filter(app => app.status === activeTab);
+    if (tabApplicants.length === 0 && filteredApplicants.length > 0) {
+      // We have applicants but none in the current tab,
+      // maybe we should switch to a tab that has applicants
+      const tabsWithApplicants = tabNames.filter(tab => 
+        filteredApplicants.some(app => app.status === tab)
+      );
+      
+      if (tabsWithApplicants.length > 0) {
+        // Switch to the first tab that has applicants
+        handleTabChange(tabsWithApplicants[0]);
+      }
+    }
   }, [filteredApplicants]);
+  
+  // Use useLayoutEffect for filter changes to ensure DOM updates before paint
+  useLayoutEffect(() => {
+    // When project filter or search term changes, trigger animation sequence
+    triggerAnimationSequence();
+  }, [projectFilter, searchTerm]);
 
   // Toggle skills filter modal
   const toggleSkillsFilterModal = () => {
@@ -146,25 +250,16 @@ export const ManagerApplicantsPage = () => {
 
   // Toggle view mode (grid/list)
   const toggleViewMode = () => {
-    //effect
-    const container = document.querySelector(`.${styles.applicantsGrid}`) || 
-                      document.querySelector(`.${styles.applicantsList}`);
-    if (container) {
-      container.style.opacity = '0';
-      
-      setTimeout(() => {
-        setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-        setTimeout(() => {
-          const newContainer = document.querySelector(`.${styles.applicantsGrid}`) || 
-                              document.querySelector(`.${styles.applicantsList}`);
-          if (newContainer) {
-            newContainer.style.opacity = '1';
-          }
-        }, 50);
-      }, 200);
-    } else {
-      setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-    }
+    // Set loading state to true to trigger animation
+    setIsLoading(true);
+    
+    // Toggle the view mode
+    setViewMode(viewMode === 'grid' ? 'list' : 'grid');
+    
+    // After a short delay, turn off loading to animate cards in
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
   };
 
   // Apply skills filters
@@ -183,6 +278,14 @@ export const ManagerApplicantsPage = () => {
   const handleSelectProject = (projectName) => {
     setProjectFilter(projectName);
     setProjectFilterModalOpen(false);
+    
+    // Force refresh of the current tab's content when project filter changes
+    setIsLoading(true);
+    
+    // Use a small timeout to allow the state to update
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
   };
 
   // Remove a specific skill filter
@@ -201,9 +304,43 @@ export const ManagerApplicantsPage = () => {
     setProjectFilter('All Projects');
   };
 
+  // Handle tab change
+  const handleTabChange = (tabName) => {
+    // Don't do anything if it's already the active tab
+    if (tabName === activeTab) return;
+    
+    // Cancel any previous animations
+    clearTimeout(window.tabChangeTimeout);
+    clearTimeout(window.opacityTimeout);
+    
+    // Set loading state first to trigger animations
+    setIsLoading(true);
+    setShouldAnimate(false);
+    
+    // Change the tab
+    window.tabChangeTimeout = setTimeout(() => {
+      // Change the active tab
+      setActiveTab(tabName);
+      
+      // Delay setting filtered applicants to allow for animation
+      setTimeout(() => {
+        // Filter applicants based on the selected tab
+        const filtered = filteredApplicants.filter(applicant => 
+          applicant.status === tabName
+        );
+        
+        // Turn off loading and enable animations after a delay
+        setTimeout(() => {
+          setShouldAnimate(true);
+          setIsLoading(false);
+        }, 300);
+      }, 100);
+    }, 100);
+  };
+
   // Function to calculate matching percentage (would be replaced with real data from backend)
-  const calculateMatchPercentage = (applicant, project) => {
-    if (!applicant || !project) return 0;
+  const calculateMatchPercentage = (applicant) => {
+    if (!applicant) return 0;
     
     // This is a placeholder implementation
     // In a real app, you would compare applicant skills with project requirements
@@ -217,8 +354,81 @@ export const ManagerApplicantsPage = () => {
 
   // View applicant details
   const handleViewApplicant = (applicantId) => {
-    navigate(`/manager/applicants/${applicantId}`);
+    // If viewing a denied applicant, show the denial reason modal
+    const applicant = filteredApplicants.find(app => app.id === applicantId);
+    if (applicant && applicant.status === 'Denied') {
+      setSelectedDeniedApplicant(applicant);
+      setDenialReasonModalOpen(true);
+    } else {
+      navigate(`/manager/applicants/${applicantId}`);
+    }
   };
+  
+  // Handle accepting a denied applicant
+  const handleAcceptDeniedApplicant = (applicant) => {
+    const updatedApplicants = filteredApplicants.map(app => {
+      if (app.id === applicant.id) {
+        return { ...app, status: 'In Review' };
+      }
+      return app;
+    });
+    setFilteredApplicants(updatedApplicants);
+    // In a real app, you would make an API call to update the applicant status
+  };
+  
+  // Handle appeal for a denied applicant
+  const handleAppealDeniedApplicant = (applicant, appealReason) => {
+    console.log(`Appeal submitted for ${applicant.name}: ${appealReason}`);
+    // In a real app, you would make an API call to submit the appeal
+  };
+
+  // Get filtered applicants for the current tab
+  const getTabApplicants = () => {
+    return filteredApplicants.filter(applicant => applicant.status === activeTab);
+  };
+
+  // Animation sequence - call this when changing tabs or filters
+  const triggerAnimationSequence = () => {
+    // First, set loading to true to hide cards
+    setIsLoading(true);
+    setShouldAnimate(false);
+    
+    // Clear any previous animation timers
+    clearTimeout(window.animationTimer);
+    
+    // Delay to ensure DOM updates
+    window.animationTimer = setTimeout(() => {
+      // Then turn off loading to begin staggered animation
+      setIsLoading(false);
+      setShouldAnimate(true);
+    }, 300);
+  };
+
+  // Handle Clear Filters from the empty state
+  const handleClearFilters = () => {
+    clearAllSkillFilters();
+    clearProjectFilter();
+  };
+
+  // Get count of applicants for each tab (for badges)
+  const getTabCounts = () => {
+    const counts = {
+      Pending: 0,
+      'In Review': 0,
+      Accepted: 0,
+      Denied: 0
+    };
+    
+    filteredApplicants.forEach(applicant => {
+      if (counts[applicant.status] !== undefined) {
+        counts[applicant.status]++;
+      }
+    });
+    
+    return counts;
+  };
+
+  const tabCounts = getTabCounts();
 
   return (
     <div className={styles.dashboardContainer}>
@@ -233,56 +443,39 @@ export const ManagerApplicantsPage = () => {
           <h1 className={styles.pageTitle}>Project Applicants</h1>
         </div>
         
-        <div className={styles.searchHeader}>
-          <div className={styles.searchContainer}>
-            <i className="bi bi-search"></i>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search applicants..."
-              className={styles.searchInput}
-              aria-label="Search applicants"
-            />
-          </div>
-          
-          <div className={styles.filterControls}>
-            <span className={styles.filterLabel}>Filter by:</span>
-            <button 
-              className={`${styles.filterButton} ${projectFilter !== 'All Projects' ? styles.activeFilter : ''}`}
-              onClick={toggleProjectFilterModal}
-            >
-              {projectFilter}
-              {projectFilter !== 'All Projects' && (
-                <span className={styles.filterBadge}>1</span>
-              )}
-            </button>
-            <button 
-              className={`${styles.filterButton} ${selectedSkillFilters.length > 0 ? styles.activeFilter : ''}`}
-              onClick={toggleSkillsFilterModal}
-            >
-              {skillSelected}
-              {selectedSkillFilters.length > 0 && (
-                <span className={styles.filterBadge}>{selectedSkillFilters.length}</span>
-              )}
-            </button>
-            <button 
-              className={`${styles.filterButton} ${showCompatibility ? styles.activeFilter : ''}`}
-              onClick={toggleCompatibility}
-            >
-              Match %
-            </button>
-            
-            {/* View toggle button */}
-            <button 
-              className={styles.viewToggleButton}
-              onClick={toggleViewMode}
-              title={viewMode === 'grid' ? 'Switch to list view' : 'Switch to grid view'}
-            >
-              <i className={`bi bi-${viewMode === 'grid' ? 'list' : 'grid-3x3-gap'}`}></i>
-            </button>
-          </div>
-        </div>
+        <SearchHeader 
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          placeholder="Search..."
+          searchName="searchApplicants"
+          labelText="Filter by:"
+          viewToggle={true}
+          viewMode={viewMode}
+          setViewMode={toggleViewMode}
+          filterButtons={[
+            {
+              label: projectFilter,
+              onClick: toggleProjectFilterModal,
+              type: 'secondary',
+              isActive: projectFilter !== 'All Projects',
+              badgeCount: projectFilter !== 'All Projects' ? 1 : 0
+            },
+            {
+              label: skillSelected,
+              onClick: toggleSkillsFilterModal,
+              type: 'secondary',
+              isActive: selectedSkillFilters.length > 0,
+              badgeCount: selectedSkillFilters.length > 0 ? selectedSkillFilters.length : 0
+            },
+            {
+              label: "Compability",
+              onClick: toggleCompatibility,
+              type: 'primary',
+              isActive: showCompatibility,
+              badgeCount: 0
+            }
+          ]}
+        />
 
         {/* Active filters display */}
         {(selectedSkillFilters.length > 0 || projectFilter !== 'All Projects') && (
@@ -291,10 +484,7 @@ export const ManagerApplicantsPage = () => {
               <h3 className={styles.activeFiltersTitle}>Active Filters:</h3>
               <button 
                 className={styles.clearAllButton} 
-                onClick={() => {
-                  clearAllSkillFilters();
-                  clearProjectFilter();
-                }}
+                onClick={handleClearFilters}
               >
                 Clear All
               </button>
@@ -327,459 +517,34 @@ export const ManagerApplicantsPage = () => {
           </div>
         )}
 
+        {/* Use the enhanced Tabs component */}
+        <Tabs 
+          tabs={tabNames.map(tab => ({
+            name: tab,
+            notificationCount: tabCounts[tab]
+          }))}
+          activeTab={activeTab}
+          onTabClick={handleTabChange}
+        />
+
         <div className={styles.applicantsContainer}>
-          <CustomScrollbar fadeBackground="transparent" fadeHeight={40}>
-            {filteredApplicants && filteredApplicants.length === 0 ? (
-              <div className={styles.emptyApplicantsState}>
-                <div className={styles.noApplicantsMessage}>
-                  <i className="bi bi-people" style={{ fontSize: '2rem', marginBottom: '1rem' }}></i>
-                  <p>No applicants match your selected filters</p>
-                  <button 
-                    className={styles.clearFiltersButton}
-                    onClick={() => {
-                      clearAllSkillFilters();
-                      clearProjectFilter();
-                    }}
-                  >
-                    Clear Filters
-                  </button>
-                </div>
-                
-                {/* Example applicants section - always shown for demo */}
-                <div className={styles.exampleSection}>
-                  <h3 className={styles.exampleTitle}>Example Applicants</h3>
-                  <div className={viewMode === 'grid' ? styles.exampleGrid : styles.exampleList}>
-                    {/* Example applicant 1 - Grid View */}
-                    {viewMode === 'grid' ? (
-                      <div className={`${styles.applicantCard} ${styles.loaded}`}>
-                        {showCompatibility && (
-                          <div className={styles.compatibilityCircle}>
-                            <ProgressCircle 
-                              value={87}
-                              size={60} 
-                              strokeWidth={6}
-                              title="Match"
-                            />
-                          </div>
-                        )}
-                        
-                        <div className={styles.applicantHeader}>
-                          <img 
-                            className={styles.applicantAvatar} 
-                            src="/img/fotogabo.jpg" 
-                            alt="Example applicant avatar"
-                          />
-                          <div className={styles.applicantInfo}>
-                            <h3 className={styles.applicantName}>John Anderson</h3>
-                            <p className={styles.applicantRole}>Full Stack Developer</p>
-                          </div>
-                        </div>
-                        
-                        <div className={styles.applicantDetails}>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-briefcase"></i> Experience:
-                            </span>
-                            <span className={styles.detailValue}>4 years</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-folder"></i> Applied for:
-                            </span>
-                            <span className={styles.detailValue}>Project Pathfinder</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-clock"></i> Last active:
-                            </span>
-                            <span className={styles.detailValue}>2 hours ago</span>
-                          </div>
-                        </div>
-                        
-                        <div className={styles.applicantFooter}>
-                          <div className={styles.applicantSkills}>
-                            <div className={styles.skillTag}>React</div>
-                            <div className={styles.skillTag}>Node.js</div>
-                            <div className={styles.skillTag}>TypeScript</div>
-                            <div className={styles.skillTag}>MongoDB</div>
-                          </div>
-                          
-                          <button 
-                            className={styles.viewProfileButton}
-                            onClick={() => handleViewApplicant('example-1')}
-                          >
-                            View Profile
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className={`${styles.applicantListItem} ${styles.loaded}`}>
-                        <div className={styles.applicantHeader}>
-                          <img 
-                            className={styles.applicantAvatar} 
-                            src="/img/fotogabo.jpg" 
-                            alt="Example applicant avatar"
-                          />
-                        </div>
-                        
-                        <div className={styles.applicantInfo}>
-                          <h3 className={styles.applicantName}>John Anderson</h3>
-                          <p className={styles.applicantRole}>Full Stack Developer</p>
-                        </div>
-                        
-                        <div className={styles.applicantDetails}>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-briefcase"></i> Experience
-                            </span>
-                            <span className={styles.detailValue}>4 years</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-folder"></i> Project
-                            </span>
-                            <span className={styles.detailValue}>Project Pathfinder</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-clock"></i> Last active
-                            </span>
-                            <span className={styles.detailValue}>2 hours ago</span>
-                          </div>
-                        </div>
-                        
-                        <div className={styles.applicantFooter}>
-                          <div className={styles.applicantSkills}>
-                            <div className={styles.skillTag}>React</div>
-                            <div className={styles.skillTag}>Node.js</div>
-                            <div className={styles.skillTag}>+2</div>
-                          </div>
-                          
-                          <button 
-                            className={styles.viewProfileButton}
-                            onClick={() => handleViewApplicant('example-1')}
-                          >
-                            View Profile
-                          </button>
-                        </div>
-                        
-                        {showCompatibility && (
-                          <div className={styles.compatibilityCircle}>
-                            <ProgressCircle 
-                              value={87}
-                              size={60} 
-                              strokeWidth={6}
-                              title="Match"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
-                    
-                    {/* Example applicant 2 */}
-                    {viewMode === 'grid' ? (
-                      <div className={`${styles.applicantCard} ${styles.loaded}`}>
-                        {showCompatibility && (
-                          <div className={styles.compatibilityCircle}>
-                            <ProgressCircle 
-                              value={94}
-                              size={60} 
-                              strokeWidth={6}
-                              title="Match"
-                            />
-                          </div>
-                        )}
-                        
-                        <div className={styles.applicantHeader}>
-                          <img 
-                            className={styles.applicantAvatar} 
-                            src="/img/fotogabo.jpg" 
-                            alt="Example applicant avatar"
-                          />
-                          <div className={styles.applicantInfo}>
-                            <h3 className={styles.applicantName}>Sarah Miller</h3>
-                            <p className={styles.applicantRole}>UI/UX Designer</p>
-                          </div>
-                        </div>
-                        
-                        <div className={styles.applicantDetails}>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-briefcase"></i> Experience:
-                            </span>
-                            <span className={styles.detailValue}>6 years</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-folder"></i> Applied for:
-                            </span>
-                            <span className={styles.detailValue}>Visual Redesign</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-clock"></i> Last active:
-                            </span>
-                            <span className={styles.detailValue}>1 day ago</span>
-                          </div>
-                        </div>
-                        
-                        <div className={styles.applicantFooter}>
-                          <div className={styles.applicantSkills}>
-                            <div className={styles.skillTag}>Figma</div>
-                            <div className={styles.skillTag}>UI Design</div>
-                            <div className={styles.skillTag}>Prototyping</div>
-                            <div className={styles.skillTag}>Adobe XD</div>
-                          </div>
-                          
-                          <button 
-                            className={styles.viewProfileButton}
-                            onClick={() => handleViewApplicant('example-2')}
-                          >
-                            View Profile
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className={`${styles.applicantListItem} ${styles.loaded}`}>
-                        <div className={styles.applicantHeader}>
-                          <img 
-                            className={styles.applicantAvatar} 
-                            src="/img/fotogabo.jpg" 
-                            alt="Example applicant avatar"
-                          />
-                        </div>
-                        
-                        <div className={styles.applicantInfo}>
-                          <h3 className={styles.applicantName}>Sarah Miller</h3>
-                          <p className={styles.applicantRole}>UI/UX Designer</p>
-                        </div>
-                        
-                        <div className={styles.applicantDetails}>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-briefcase"></i> Experience
-                            </span>
-                            <span className={styles.detailValue}>6 years</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-folder"></i> Project
-                            </span>
-                            <span className={styles.detailValue}>Visual Redesign</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-clock"></i> Last active
-                            </span>
-                            <span className={styles.detailValue}>1 day ago</span>
-                          </div>
-                        </div>
-                        
-                        <div className={styles.applicantFooter}>
-                          <div className={styles.applicantSkills}>
-                            <div className={styles.skillTag}>Figma</div>
-                            <div className={styles.skillTag}>UI Design</div>
-                            <div className={styles.skillTag}>+2</div>
-                          </div>
-                          
-                          <button 
-                            className={styles.viewProfileButton}
-                            onClick={() => handleViewApplicant('example-2')}
-                          >
-                            View Profile
-                          </button>
-                        </div>
-                        
-                        {showCompatibility && (
-                          <div className={styles.compatibilityCircle}>
-                            <ProgressCircle 
-                              value={94}
-                              size={60} 
-                              strokeWidth={6}
-                              title="Match"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className={viewMode === 'grid' ? styles.applicantsGrid : styles.applicantsList}>
-                {filteredApplicants.map((applicant, index) => {
-                  // Calculate match percentage
-                  const matchPercentage = calculateMatchPercentage(applicant, projectFilter);
-                  
-                  // Calculate delay for staggered animation
-                  const staggerDelay = `${50 + (index * 80)}ms`;
-                  
-                  // Common content for both views
-                  const applicantContent = (
-                    <>
-                      {/* Show match percentage when enabled */}
-                      {showCompatibility && (
-                        <div className={styles.compatibilityCircle}>
-                          <ProgressCircle 
-                            value={matchPercentage}
-                            size={60} 
-                            strokeWidth={6}
-                            title="Match"
-                          />
-                        </div>
-                      )}
-                      
-                      <div className={styles.applicantHeader}>
-                        <img 
-                          className={styles.applicantAvatar} 
-                          src={applicant.avatar} 
-                          alt={`${applicant.name} avatar`}
-                        />
-                        <div className={styles.applicantInfo}>
-                          <h3 className={styles.applicantName}>{applicant.name}</h3>
-                          <p className={styles.applicantRole}>{applicant.role}</p>
-                        </div>
-                      </div>
-                      
-                      <div className={styles.applicantDetails}>
-                        <div className={styles.detailRow}>
-                          <span className={styles.detailLabel}>
-                            <i className="bi bi-briefcase"></i> Experience:
-                          </span>
-                          <span className={styles.detailValue}>{applicant.experience}</span>
-                        </div>
-                        <div className={styles.detailRow}>
-                          <span className={styles.detailLabel}>
-                            <i className="bi bi-folder"></i> Applied for:
-                          </span>
-                          <span className={styles.detailValue}>{applicant.project}</span>
-                        </div>
-                        <div className={styles.detailRow}>
-                          <span className={styles.detailLabel}>
-                            <i className="bi bi-clock"></i> Last active:
-                          </span>
-                          <span className={styles.detailValue}>{applicant.lastActive}</span>
-                        </div>
-                      </div>
-                      
-                      <div className={styles.applicantFooter}>
-                        <div className={styles.applicantSkills}>
-                          {applicant.skills.map((skill, skillIndex) => (
-                            <div 
-                              className={`${styles.skillTag} ${selectedSkillFilters.includes(skill.nombre) ? styles.highlightedSkill : ''}`} 
-                              key={`${applicant.id}-skill-${skillIndex}`}
-                            >
-                              {skill.nombre}
-                            </div>
-                          ))}
-                        </div>
-                        
-                        <button 
-                          className={styles.viewProfileButton}
-                          onClick={() => handleViewApplicant(applicant.id)}
-                        >
-                          View Profile
-                        </button>
-                      </div>
-                    </>
-                  );
-                  
-                  // Apply different styles based on view mode
-                  if (viewMode === 'grid') {
-                    return (
-                      <div 
-                        className={`${styles.applicantCard} ${isLoading ? styles.loading : styles.loaded}`}
-                        key={applicant.id}
-                        style={{ '--stagger-delay': staggerDelay }}
-                      >
-                        {applicantContent}
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div 
-                        className={`${styles.applicantListItem} ${isLoading ? styles.loading : styles.loaded}`}
-                        key={applicant.id}
-                        style={{ '--stagger-delay': staggerDelay }}
-                      >
-                        <div className={styles.applicantHeader}>
-                          <img 
-                            className={styles.applicantAvatar} 
-                            src={applicant.avatar} 
-                            alt={`${applicant.name} avatar`}
-                          />
-                        </div>
-                        
-                        <div className={styles.applicantInfo}>
-                          <h3 className={styles.applicantName}>{applicant.name}</h3>
-                          <p className={styles.applicantRole}>{applicant.role}</p>
-                        </div>
-                        
-                        <div className={styles.applicantDetails}>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-briefcase"></i> Experience
-                            </span>
-                            <span className={styles.detailValue}>{applicant.experience}</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-folder"></i> Project
-                            </span>
-                            <span className={styles.detailValue}>{applicant.project}</span>
-                          </div>
-                          <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>
-                              <i className="bi bi-clock"></i> Last active
-                            </span>
-                            <span className={styles.detailValue}>{applicant.lastActive}</span>
-                          </div>
-                        </div>
-                        
-                        <div className={styles.applicantFooter}>
-                          <div className={styles.applicantSkills}>
-                            {applicant.skills.slice(0, 2).map((skill, skillIndex) => (
-                              <div 
-                                className={`${styles.skillTag} ${selectedSkillFilters.includes(skill.nombre) ? styles.highlightedSkill : ''}`} 
-                                key={`${applicant.id}-skill-${skillIndex}`}
-                              >
-                                {skill.nombre}
-                              </div>
-                            ))}
-                            {applicant.skills.length > 2 && (
-                              <div className={styles.skillTag}>+{applicant.skills.length - 2}</div>
-                            )}
-                          </div>
-                          
-                          <button 
-                            className={styles.viewProfileButton}
-                            onClick={() => handleViewApplicant(applicant.id)}
-                          >
-                            View Profile
-                          </button>
-                        </div>
-                        
-                        {showCompatibility && (
-                          <div className={styles.compatibilityCircle}>
-                            <ProgressCircle 
-                              value={matchPercentage}
-                              size={60} 
-                              strokeWidth={6}
-                              title="Match"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-            )}
+          <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showHorizontalScroll={false}>
+            <ApplicantsList 
+              applicants={getTabApplicants()}
+              viewMode={viewMode}
+              showCompatibility={showCompatibility}
+              activeTab={activeTab}
+              isLoading={isLoading}
+              calculateMatchPercentage={calculateMatchPercentage}
+              onViewRequest={handleViewApplicant}
+              onViewReason={handleViewApplicant}
+              onClearFilters={handleClearFilters}
+            />
           </CustomScrollbar>
         </div>
       </div>
       
-      {/* Project filter modal would be implemented here */}
+      {/* Project filter modal */}
       {projectFilterModalOpen && (
         <div className={styles.modalBackdrop} onClick={toggleProjectFilterModal}>
           <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
@@ -831,7 +596,11 @@ export const ManagerApplicantsPage = () => {
               </button>
               <button 
                 className={styles.saveButton} 
-                onClick={toggleProjectFilterModal}
+                onClick={() => {
+                  toggleProjectFilterModal();
+                  // Use animation sequence for consistent animation
+                  setTimeout(triggerAnimationSequence, 100);
+                }}
               >
                 Apply Filter <i className="bi bi-check-lg"></i>
               </button>
@@ -846,6 +615,15 @@ export const ManagerApplicantsPage = () => {
         onClose={() => setSkillsFilterModalOpen(false)}
         userSkills={selectedSkillFilters}
         onUpdateSkills={handleApplySkillFilters}
+      />
+
+      {/* Modal for denied applicant details */}
+      <DenialReasonModal
+        isOpen={denialReasonModalOpen}
+        onClose={() => setDenialReasonModalOpen(false)}
+        applicant={selectedDeniedApplicant}
+        onAccept={handleAcceptDeniedApplicant}
+        onAppeal={handleAppealDeniedApplicant}
       />
     </div>
   );

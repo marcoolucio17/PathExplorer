@@ -1,0 +1,228 @@
+/* Search header with search and sort options */
+.searchHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Search input container */
+.searchContainer {
+  position: relative;
+  width: 250px;
+  min-height: 42px; /* Fixed height to prevent layout shift */
+  display: flex;
+  align-items: center;
+  overflow: visible; /* Allow input to expand beyond container */
+  transition: width 0.25s ease;
+}
+
+.searchContainerFocused {
+  /* This will be controlled by inline styles */
+  border-color: var(--text-light);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.searchContainer i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted-darker);
+  opacity: 0.9;
+  pointer-events: none;
+  font-size: 0.95rem;
+  z-index: 2;
+}
+
+.searchInput {
+  width: 100%;
+  height: 42px;
+  padding: 0 10px 0 35px;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: 'Graphik Light', sans-serif;
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+/* Sort options container */
+.sortContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* View Applicants button */
+.viewApplicantsButton {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border: 1px solid var(--border-strong);
+  border-radius: 50px;
+  padding: 8px 15px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+  transition: all 0.2s ease;
+}
+
+.viewApplicantsButton:hover {
+  transform: scale(1.02);
+  filter: brightness(1.15);
+}
+
+.viewApplicantsButton:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+}
+
+/* Sort/Filter label */
+.sortLabel {
+  font-size: 0.9rem;
+  color: #FFFFFF;
+  opacity: 0.5;
+  margin: 0;
+  margin-left: 10px;
+}
+
+/* Button styles */
+.filterButton {
+  padding: 8px 25px;
+  border-radius: 50px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: 'Graphik Medium', sans-serif;
+  color: var(--text-light);
+  text-shadow: var(--shadow-text);
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skillsButton {
+  background: var(--purple-btn-secondary);
+  border-color: var(--border-medium);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
+}
+
+.compabilityButton {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border-color: var(--border-strong);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+}
+
+.activeButton {
+  transform: scale(0.98);
+  filter: brightness(1.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(139, 92, 246, 0.5);
+}
+
+.filterButton:hover {
+  transform: scale(1.02);
+  filter: brightness(1.15);
+}
+
+.filterButton:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+}
+
+/* View toggle button */
+.viewToggleButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 5px;
+}
+
+.viewToggleButton i {
+  font-size: 1.1rem;
+}
+
+.viewToggleButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.viewToggleButton.gridActive {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.viewToggleButton.listActive {
+  background: rgba(74, 158, 204, 0.3);
+  border-color: rgba(74, 158, 204, 0.5);
+}
+
+/* Filter badge */
+.filterBadge {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+/* Container classes for animation targets */
+.gridContainer, .listContainer {
+  transition: opacity 0.25s ease;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .searchHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .searchContainer {
+    width: 100%;
+  }
+  
+  .sortContainer {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .filterButton {
+    flex-grow: 1;
+    max-width: calc(50% - 10px);
+    justify-content: center;
+    padding: 6px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .viewToggleButton {
+    flex-grow: 0;
+  }
+}

@@ -6,6 +6,7 @@ import { ProgressCircle } from '../../../components/ProgressCircle';
 import CustomScrollbar from '../../../components/CustomScrollbar';
 import { DashboardSkillsCategory } from "../../../components/Dashboard/DashboardSkillsCategory";
 import { SkillsModal } from "../../../components/SkillsModal";
+import { SearchHeader } from "../../../components/SearchHeader";
 
 //hooks
 import { useGetFetch } from '../../../hooks/useGetFetch';
@@ -88,25 +89,7 @@ export const ManagerDashboardPage = () => {
 
   // Toggle view mode (grid/list)
   const toggleViewMode = () => {
-    //effect
-    const container = document.querySelector(`.${styles.projectsGrid}`) || 
-                      document.querySelector(`.${styles.projectsList}`);
-    if (container) {
-      container.style.opacity = '0';
-      
-      setTimeout(() => {
-        setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-        setTimeout(() => {
-          const newContainer = document.querySelector(`.${styles.projectsGrid}`) || 
-                              document.querySelector(`.${styles.projectsList}`);
-          if (newContainer) {
-            newContainer.style.opacity = '1';
-          }
-        }, 50);
-      }, 200);
-    } else {
-      setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-    }
+    setViewMode(viewMode === 'grid' ? 'list' : 'grid');
   };
 
   //applying skills filters
@@ -238,54 +221,39 @@ export const ManagerDashboardPage = () => {
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.dashboardContent}>
-        <div className={styles.searchHeader}>
-          <div className={styles.searchContainer}>
-            <i className="bi bi-search"></i>
-            <input
-              type="text"
-              value={searchProjects}
-              name="searchDashboard"
-              onChange={(e) => setSearchProjects(e.target.value)}
-              placeholder="Search..."
-              className={styles.searchInput}
-              aria-label="Search projects"
-            />
-          </div>
-          
-          <div className={styles.sortContainer}>
-            <button 
-              className={styles.viewApplicantsButton}
-              onClick={() => navigate('/manager/applicants')}
-            >
-              <i className="bi bi-people"></i> View Applicants
-            </button>
-            <h2 className={styles.sortLabel}>Sort by:</h2>
-            <button 
-              className={`${styles.filterButton} ${styles.skillsButton} ${selectedSkillFilters.length > 0 ? styles.activeButton : ''}`}
-              onClick={toggleSkillsFilterModal}
-            >
-              {skillSelected}
-              {selectedSkillFilters.length > 0 && (
-                <span className={styles.filterBadge}>{selectedSkillFilters.length}</span>
-              )}
-            </button>
-            <button 
-              className={`${styles.filterButton} ${styles.compabilityButton} ${showCompatibility ? styles.activeButton : ''}`}
-              onClick={toggleCompatibility}
-            >
-              Compability
-            </button>
-            
-            {/* View toggle button */}
-            <button 
-              className={`${styles.viewToggleButton} ${viewMode === 'list' ? styles.listActive : styles.gridActive}`}
-              onClick={toggleViewMode}
-              title={viewMode === 'grid' ? 'Switch to list view' : 'Switch to grid view'}
-            >
-              <i className={`bi bi-${viewMode === 'grid' ? 'list' : 'grid-3x3-gap'}`}></i>
-            </button>
-          </div>
-        </div>
+        <SearchHeader 
+          searchTerm={searchProjects}
+          setSearchTerm={setSearchProjects}
+          placeholder="Search..."
+          searchName="searchDashboard"
+          labelText="Sort by:"
+          viewToggle={true}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+          customButtons={[
+            {
+              label: "View Applicants",
+              icon: "bi bi-people",
+              onClick: () => navigate('/manager/applicants')
+            }
+          ]}
+          filterButtons={[
+            {
+              label: skillSelected,
+              onClick: toggleSkillsFilterModal,
+              type: 'secondary',
+              isActive: selectedSkillFilters.length > 0,
+              badgeCount: selectedSkillFilters.length > 0 ? selectedSkillFilters.length : 0
+            },
+            {
+              label: "Compability",
+              onClick: toggleCompatibility,
+              type: 'primary',
+              isActive: showCompatibility,
+              badgeCount: 0
+            }
+          ]}
+        />
 
         {/* Active filters display */}
         {selectedSkillFilters.length > 0 && (
@@ -329,7 +297,7 @@ export const ManagerDashboardPage = () => {
                 </button>
               </div>
             ) : (
-              <div className={viewMode === 'grid' ? styles.projectsGrid : styles.projectsList}>
+              <div className={viewMode === 'grid' ? `${styles.projectsGrid} gridContainer` : `${styles.projectsList} listContainer`}>
                 {flattenedProjects.map((item, index) => {
                   // Generate random progress value for this project
                   const compatibilityValue = getRandomProgress();

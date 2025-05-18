@@ -7,7 +7,6 @@
 /* Main container */
 .dashboardContainer {
   background: transparent;
-  color: var(--text-light);
   height: 100vh;
   min-height: 600px;
   display: flex;
@@ -69,127 +68,80 @@
   font-family: 'Graphik Medium', sans-serif;
 }
 
-/* Search header with search and filter options */
-.searchHeader {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-/* Search input container */
-.searchContainer {
-  position: relative;
-  width: 250px;
-  min-height: 42px; /* Fixed height to prevent layout shift */
-  display: flex;
-  align-items: center;
-}
-
-.searchContainer i {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-muted-darker);
-  opacity: 0.9;
-  pointer-events: none;
-  font-size: 0.95rem;
-  z-index: 2;
-}
-
-.searchInput {
-  width: 100%;
-  height: 42px;
-  padding: 0 10px 0 35px;
-  border: 1px solid transparent; /* Pre-allocate border space */
-  border-radius: 8px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--text-main);
-  font-size: 0.9rem;
-  font-family: 'Graphik Light', sans-serif;
-  box-shadow: inset 0 1px 2px var(--highlight-inner-faint);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  position: relative;
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: var(--text-light);
-  box-shadow: 0 0 3px rgba(255, 255, 255, 0.192);
-}
-
 /* Sort options container */
-.filterControls {
+.sortContainer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
-.filterLabel {
+.sortLabel {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
+  color: #FFFFFF;
+  opacity: 0.5;
+  margin: 0;
 }
 
 /* Button styles */
 .filterButton {
-  height: 38px;
-  padding: 0 15px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
-  font-weight: 500;
-  font-family: 'Graphik Medium', sans-serif;
+  padding: 8px 25px;
+  border-radius: 50px;
+  border: 1px solid var(--border-light);
   cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: 'Graphik Medium', sans-serif;
+  color: var(--text-light);
+  text-shadow: var(--shadow-text);
   transition: all 0.2s ease;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  max-width: 150px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  gap: 8px;
+}
+
+.skillsButton {
+  background: var(--purple-btn-secondary);
+  border-color: var(--border-medium);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
+}
+
+.compabilityButton {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border-color: var(--border-strong);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+}
+
+.activeButton {
+  transform: scale(0.98);
+  filter: brightness(1.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(139, 92, 246, 0.5);
 }
 
 .filterButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+  transform: scale(1.02);
+  filter: brightness(1.15);
 }
 
-.activeFilter {
-  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
-}
-
-.activeFilter:hover {
-  filter: brightness(1.1);
-  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+.filterButton:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
 }
 
 /* View toggle button */
 .viewToggleButton {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.9);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-left: 5px;
 }
 
 .viewToggleButton i {
@@ -197,8 +149,18 @@
 }
 
 .viewToggleButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.viewToggleButton.gridActive {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.viewToggleButton.listActive {
+  background: rgba(74, 158, 204, 0.3);
+  border-color: rgba(74, 158, 204, 0.5);
 }
 
 /* Filter badge */
@@ -307,6 +269,56 @@
   font-size: 0.8rem;
 }
 
+/* Custom Tabs Styling */
+.customTabsContainer {
+  margin-bottom: 15px;
+}
+
+.customTabsList {
+  display: flex;
+  gap: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.customTab {
+  position: relative;
+  padding: 10px 5px;
+  font-size: 1rem;
+  font-family: 'Graphik Medium', sans-serif;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.customTab:hover {
+  color: var(--text-light);
+}
+
+.customTabActive {
+  color: #d0a0ff;
+  border-bottom-color: #d0a0ff;
+  font-weight: 500;
+}
+
+.badgeNotif {
+  position: absolute;
+  font-family: 'Graphik Semibold', sans-serif;
+  top: -8px;
+  right: -12px;
+  width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9363d1;
+  color: var(--text-light);
+  border-radius: 50%;
+}
+
 /* Applicants container */
 .applicantsContainer {
   flex: 1;
@@ -319,7 +331,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 5px 15px 5px 5px;
+  padding: 20px;
   will-change: transform, opacity;
   opacity: 1;
   transition: opacity 0.25s ease;
@@ -330,7 +342,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 5px 15px 5px 5px;
+  padding: 20px;
   will-change: transform, opacity;
   opacity: 1;
   transition: opacity 0.25s ease;
@@ -416,7 +428,8 @@
 .applicantCard.loading,
 .applicantListItem.loading {
   opacity: 0;
-  transform: translateY(20px) scale(0.95);
+  transform: translateY(30px) scale(0.95);
+  pointer-events: none; /* Prevent interaction during animation */
 }
 
 .applicantCard.loaded,
@@ -424,8 +437,8 @@
   opacity: 1;
   transform: translateY(0) scale(1);
   transition: 
-    opacity 0.4s ease var(--stagger-delay), 
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) var(--stagger-delay);
+    opacity 0.6s ease var(--stagger-delay), 
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--stagger-delay);
 }
 
 /* Applicant card styling (grid view) */
@@ -445,6 +458,7 @@
   min-height: 280px;
   transform-origin: center bottom;
   will-change: transform, opacity, box-shadow;
+  margin: 5px;
 }
 
 .applicantCard:hover {
@@ -473,6 +487,7 @@
   transform-origin: center;
   will-change: transform, opacity, box-shadow;
   align-items: center;
+  margin: 5px;
 }
 
 .applicantListItem:hover {
@@ -647,7 +662,7 @@
 .applicantFooter {
   margin-top: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -688,15 +703,6 @@
   }
 }
 
-@keyframes glow {
-  from {
-    box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
-  }
-  to {
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
-  }
-}
-
 .viewProfileButton {
   background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
   border: 1px solid var(--border-strong);
@@ -712,6 +718,55 @@
 .viewProfileButton:hover {
   transform: translateY(-2px);
   filter: brightness(1.1);
+}
+
+/* Denied buttons group */
+.deniedButtonsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.viewReasonButton, 
+.viewRequestButton {
+  border-radius: 50px;
+  padding: 8px 20px;
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--border-strong);
+  white-space: nowrap;
+  width: 100%;
+  max-width: 200px;
+}
+
+.viewReasonButton {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 2px 8px rgba(255, 126, 95, 0.3);
+}
+
+.viewReasonButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 4px 12px rgba(255, 126, 95, 0.4);
+}
+
+.viewRequestButton {
+  background: linear-gradient(135deg, #6a82fb, #8b96ff);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 2px 8px rgba(106, 130, 251, 0.3);
+}
+
+.viewRequestButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 4px 12px rgba(106, 130, 251, 0.4);
 }
 
 .modalBackdrop {

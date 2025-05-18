@@ -110,7 +110,7 @@ export const SearchHeader = ({
                 <span>{searchTerm} in People</span>
               </div>
               <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'projects')}>
-                <i className="bi bi-clipboard"></i>
+                <i className="bi bi-clipboard-check"></i>
                 <span>{searchTerm} in Projects</span>
               </div>
               <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'certificates')}>
@@ -118,7 +118,7 @@ export const SearchHeader = ({
                 <span>{searchTerm} in Certificates</span>
               </div>
               <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'skills')}>
-                <i className="bi bi-tag"></i>
+                <i className="bi bi-tag-fill"></i>
                 <span>{searchTerm} in Skills</span>
               </div>
             </div>

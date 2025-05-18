@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../shared/Button";
 import styles from "./SearchHeader.module.css";
 
 /**
@@ -89,15 +90,15 @@ export const SearchHeader = ({
       <div className={styles.sortContainer}>
         {/* Optional custom buttons before the label */}
         {customButtons.map((button, index) => (
-          <button
+          <Button
             key={`custom-btn-${index}`}
-            className={`${styles.viewApplicantsButton} ${button.className || ''}`}
+            type="primary"
+            icon={button.icon}
             onClick={button.onClick}
+            className={button.className}
           >
-            {button.icon && <i className={button.icon}></i>}
-            {button.icon && " "}
             {button.label}
-          </button>
+          </Button>
         ))}
         
         {/* Sort/Filter label */}
@@ -110,45 +111,61 @@ export const SearchHeader = ({
             button.label === "Compatibility" || 
             button.label === "Compability";
           
-          // Apply proper styling based on button type
-          let buttonClass = styles.filterButton;
-          
-          // Add compatibility class if primary type or compatibility label
-          if (button.type === 'primary' || isCompatibilityButton) {
-            buttonClass += ` ${styles.compabilityButton}`;
-          } else {
-            buttonClass += ` ${styles.skillsButton}`;
-          }
-          
-          // Add active class if button is active
-          if (button.isActive) {
-            buttonClass += ` ${styles.activeButton}`;
-          }
-          
           return (
-            <button
+            <Button
               key={`filter-btn-${index}`}
-              className={buttonClass}
+              type={button.type === 'primary' ? 'primary' : 'secondary'}
+              variant={isCompatibilityButton ? 'compatibility' : 'default'}
+              isActive={button.isActive}
               onClick={button.onClick}
               title={isCompatibilityButton ? "Toggle compatibility mode" : button.label}
+              className={button.badgeCount > 0 ? styles.buttonWithBadge : ''}
             >
               {button.label}
               {button.badgeCount > 0 && (
                 <span className={styles.filterBadge}>{button.badgeCount}</span>
               )}
-            </button>
+            </Button>
           );
         })}
         
         {/* View toggle button */}
         {viewToggle && setViewMode && (
-          <button 
-            className={`${styles.viewToggleButton} ${viewMode === 'list' ? styles.listActive : styles.gridActive}`}
-            onClick={toggleViewMode}
+          <Button 
+            type="secondary"
+            isToggle={true}
+            toggleMode={viewMode}
+            onToggle={(newMode) => {
+              // Get the current container based on view mode
+              const container = document.querySelector(`.${styles.gridContainer}`) || 
+                                document.querySelector(`.${styles.listContainer}`);
+              
+              // Apply fade out effect if container exists
+              if (container) {
+                container.style.opacity = '0';
+                container.style.transform = 'translateY(8px) scale(0.98)';
+                
+                // Change view mode after short delay for animation
+                setTimeout(() => {
+                  setViewMode(newMode);
+                  
+                  // Fade in the new container
+                  setTimeout(() => {
+                    const newContainer = document.querySelector(`.${styles.gridContainer}`) || 
+                                        document.querySelector(`.${styles.listContainer}`);
+                    if (newContainer) {
+                      newContainer.style.opacity = '1';
+                      newContainer.style.transform = 'translateY(0) scale(1)';
+                    }
+                  }, 80);
+                }, 300);
+              } else {
+                // Direct change if no container found
+                setViewMode(newMode);
+              }
+            }}
             title={viewMode === 'grid' ? 'Switch to list view' : 'Switch to grid view'}
-          >
-            <i className={`bi bi-${viewMode === 'grid' ? 'list' : 'grid-3x3-gap'}`}></i>
-          </button>
+          />
         )}
       </div>
     </div>

@@ -82,7 +82,20 @@ export const SearchHeader = ({
             type="text"
             value={searchTerm}
             name={searchName}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyUp={(e) => {
+              // Show results when user types something
+              if (inSearchBar && searchTerm.length > 0) {
+                setShowResults(true);
+              }
+            }}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              if (inSearchBar && e.target.value.length > 0) {
+                setShowResults(true);
+              } else if (inSearchBar) {
+                setShowResults(false);
+              }
+            }}
             placeholder={placeholder}
             className={`${styles.searchInput} ${inSearchBar ? styles.inSearchBarInput : ''}`}
             aria-label={placeholder}

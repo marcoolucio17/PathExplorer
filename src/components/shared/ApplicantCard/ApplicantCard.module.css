@@ -292,6 +292,7 @@
     grid-template-areas: 
       "avatar"
       "info"
+      "progress"
       "details" 
       "actions";
     gap: 15px;
@@ -309,6 +310,11 @@
     max-width: 100%;
   }
   
+  .applicantListItem .compatibilityCircle {
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
   .applicantListItem .applicantDetails {
     flex-direction: column;
     border-left: none;
@@ -322,12 +328,5 @@
   .applicantListItem .applicantFooter {
     width: 100%;
     justify-content: center;
-  }
-  
-  .applicantListItem .compatibilityCircle {
-    position: relative;
-    top: auto;
-    right: auto;
-    margin: 10px auto 0;
   }
 }

@@ -144,6 +144,15 @@ export const SearchHeader = ({
           />
         )}
       </div>
+      
+      {/* Active Filters Component */}
+      {activeFilters && Object.keys(activeFilters).length > 0 && (
+        <ActiveFilters 
+          filters={activeFilters}
+          onRemoveFilter={onRemoveFilter}
+          onClearAll={onClearFilters}
+        />
+      )}
     </div>
   );
 };

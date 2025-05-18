@@ -269,6 +269,12 @@
   animation: fadeIn 0.2s ease;
 }
 
+.searchIconNavbar {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 1.1rem !important;
+  left: 16px !important;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

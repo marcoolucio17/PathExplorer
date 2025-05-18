@@ -92,28 +92,34 @@ const ApplicantCard = ({
       </div>
       
       <div className={styles.applicantFooter}>
-        {activeTab === 'Denied' ? (
+      {activeTab === 'Denied' ? (
           <div className={styles.deniedButtonsGroup}>
-            <button 
-              className={styles.viewReasonButton}
+            <Button 
+              type="secondary"
+              variant="alert"
+              icon="bi-exclamation-circle"
               onClick={() => onViewReason(applicant.id)}
             >
-              <i className="bi bi-exclamation-circle"></i> View 
-            </button>
-            <button 
-              className={styles.viewRequestButton}
+              Alert
+            </Button>
+            <Button 
+              type="secondary"
+              variant="view"
+              icon="bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              <i className="bi bi-file-earmark-text"></i> View Request
-            </button>
+              View
+            </Button>
           </div>
         ) : (
-          <button 
-            className={styles.viewRequestButton}
-            onClick={() => onViewRequest(applicant.id)}
-          >
-            <i className="bi bi-file-earmark-text"></i> View Request
-          </button>
+          <Button 
+              type="secondary"
+              variant="view"
+              icon="bi-file-earmark-text"
+              onClick={() => onViewRequest(applicant.id)}
+            >
+              View
+            </Button>
         )}
       </div>
     </>
@@ -180,27 +186,31 @@ const ApplicantCard = ({
         {activeTab === 'Denied' ? (
           <div className={styles.deniedButtonsGroup}>
             <Button 
-              type="primary"
+              type="secondary"
               variant="viewReason"
               icon="bi-exclamation-circle"
               onClick={() => onViewReason(applicant.id)}
             >
               View Reason
             </Button>
-            <button 
-              className={styles.viewRequestButton}
+            <Button 
+              type="secondary"
+              variant="viewRequest"
+              icon="bi bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              <i className="bi bi-file-earmark-text"></i> View Request
-            </button>
+              View Request
+            </Button>
           </div>
         ) : (
-          <button 
-            className={styles.viewRequestButton}
-            onClick={() => onViewRequest(applicant.id)}
-          >
-            <i className="bi bi-file-earmark-text"></i> View Request
-          </button>
+          <Button 
+              type="secondary"
+              variant="viewRequest"
+              icon="bi bi-file-earmark-text"
+              onClick={() => onViewRequest(applicant.id)}
+            >
+              View Request
+            </Button>
         )}
       </div>
       

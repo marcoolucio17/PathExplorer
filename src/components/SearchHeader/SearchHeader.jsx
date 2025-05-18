@@ -61,6 +61,20 @@ export const SearchHeader = ({
     }
   }, [searchTerm, inSearchBar]);
 
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowResults(false);
+      }
+    }
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={`${styles.searchHeaderWrapper} ${inSearchBar ? styles.inSearchBar : ''}`}>
       <div className={`${styles.searchHeader} ${inSearchBar ? styles.inSearchBarHeader : ''}`}>

@@ -52,19 +52,14 @@ export const SearchHeader = ({
       filterGroup => filterGroup && filterGroup.values && filterGroup.values.length > 0
     );
 
-  // Handle click outside to close dropdown
+  // Check if search term exists and immediately show results
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowResults(false);
-      }
+    if (inSearchBar && searchTerm && searchTerm.length > 0) {
+      setShowResults(true);
+    } else if (inSearchBar) {
+      setShowResults(false);
     }
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  }, [searchTerm, inSearchBar]);
 
   return (
     <div className={`${styles.searchHeaderWrapper} ${inSearchBar ? styles.inSearchBar : ''}`}>

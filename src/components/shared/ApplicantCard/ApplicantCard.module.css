@@ -1,8 +1,10 @@
-/* Animation states */
+
+
+/* Animation states - These are handled via inline styles now with useRef */
 .applicantCard.loading,
 .applicantListItem.loading {
   opacity: 0;
-  transform: translateY(20px) scale(0.95);
+  transform: translateY(30px) scale(0.95);
   pointer-events: none; /* Prevent interaction during animation */
 }
 
@@ -11,9 +13,8 @@
   opacity: 1;
   transform: translateY(0) scale(1);
   transition: 
-    opacity 0.4s ease var(--stagger-delay), 
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) var(--stagger-delay);
-  will-change: transform, opacity;
+    opacity 0.6s ease var(--stagger-delay), 
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--stagger-delay);
 }
 
 /* Applicant card styling (grid view) */
@@ -22,23 +23,14 @@
   flex-direction: column;
   gap: 15px;
   height: 100%;
-  min-height: 280px;
+  min-height: 250px;
   transform-origin: center bottom;
   will-change: transform, opacity, box-shadow;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: var(--shadow-card);
-  padding: 20px;
-  position: relative;
-  transform: translateY(20px) scale(0.95); /* Initial state */
-  opacity: 0; /* Initial state */
+  text-align: left;
 }
 
 .applicantCard:hover {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(-5px) scale(1.01) !important;
   box-shadow: var(--shadow-card-hover);
   transition: 
     transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -48,27 +40,18 @@
 /* Applicant list item styling (list view) */
 .applicantListItem {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto auto auto;
   grid-template-areas: 
-    "avatar info details actions";
+    "avatar info progress details actions";
   gap: 20px;
   transform-origin: center;
   will-change: transform, opacity, box-shadow;
   align-items: center;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: var(--shadow-card);
-  padding: 20px;
   position: relative;
-  transform: translateY(20px) scale(0.95); /* Initial state */
-  opacity: 0; /* Initial state */
 }
 
 .applicantListItem:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) !important;
   box-shadow: var(--shadow-card-hover);
   transition: 
     transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -89,6 +72,7 @@
 .applicantListItem .applicantInfo {
   grid-area: info;
   max-width: 200px;
+  text-align: left;
 }
 
 .applicantListItem .applicantDetails {
@@ -111,6 +95,7 @@
   min-width: unset;
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.8rem;
+  text-align: left;
 }
 
 .applicantListItem .detailValue {
@@ -123,6 +108,7 @@
   gap: 10px;
   align-items: flex-end;
   justify-content: center;
+  margin-top: 0px;
 }
 
 .applicantListItem .applicantSkills {
@@ -134,33 +120,52 @@
 
 .applicantListItem .compatibilityCircle {
   position: absolute;
-  top: -15px;
-  right: -15px;
+  height: 55px;
+  top: 15px;
+  right: 455px;
+}
+
+.applicantListItem .deniedButtonsGroup {
+  justify-content: center;
+  align-items: stretch; 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: auto; 
+  max-width: none; 
 }
 
 /* Compatibility circle positioning */
 .compatibilityCircle {
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: 7.5%;
+  right: 5%;
   z-index: 10;
   animation: popIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;
-  animation-delay: 0.3s; /* Delay to start after card animation */
-  transform: scale(0.6);
+  animation-delay: 0.2s;
+  transform: scale(0.99);
   opacity: 0;
+  color: white;
+}
+
+.compatibilityCircle .progressValue{
+  font-size: 100rem;
+  color: white;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Graphik Medium', sans-serif;
 }
 
 @keyframes popIn {
   from { 
     opacity: 0; 
-    transform: scale(0.6); 
+    transform: scale(0.89); 
   }
   50% {
     transform: scale(0.9);
   }
   to { 
     opacity: 1; 
-    transform: scale(0.8); 
+    transform: scale(0.89); 
   }
 }
 
@@ -177,7 +182,7 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 2px solid var(--purple-progress-1);
+  border: 1px solid var(--purple-progress-1);
 }
 
 .applicantInfo {
@@ -209,6 +214,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  font-family: 'Graphik Light', sans-serif;
+  padding-left: 3.5%;
 }
 
 .detailRow {
@@ -246,51 +253,31 @@
 
 /* Denied buttons group */
 .deniedButtonsGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  max-width: 200px;
-}
-
-.viewReasonButton, 
-.viewRequestButton {
-  border-radius: 50px;
-  padding: 8px 20px;
-  color: white;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  justify-content: center;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  border: 1px solid var(--border-strong);
-  white-space: nowrap;
+  flex-direction: row;
+  gap: 10px;
   width: 100%;
-  max-width: 200px;
+  max-width: 500px;
 }
 
-.viewReasonButton {
-  background: linear-gradient(135deg, #ff7e5f, #feb47b);
-  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 2px 8px rgba(255, 126, 95, 0.3);
+/* Custom animation keyframes for entrance effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.viewReasonButton:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 4px 12px rgba(255, 126, 95, 0.4);
-}
-
-.viewRequestButton {
-  background: linear-gradient(135deg, #6a82fb, #8b96ff);
-  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 2px 8px rgba(106, 130, 251, 0.3);
-}
-
-.viewRequestButton:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), 0 4px 12px rgba(106, 130, 251, 0.4);
+/* Additional animation for initial page load */
+.initialLoad {
+  animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--stagger-delay, 0ms);
 }
 
 /* Responsive styles */

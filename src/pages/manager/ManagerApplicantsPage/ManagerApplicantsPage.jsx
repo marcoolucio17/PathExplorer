@@ -512,7 +512,7 @@ export const ManagerApplicantsPage = () => {
         />
 
         <div className="main-content">
-          <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showHorizontalScroll={false}>
+          <div className="applicants-grid">
             <ApplicantsList 
               applicants={getTabApplicants()}
               viewMode={viewMode}
@@ -524,7 +524,7 @@ export const ManagerApplicantsPage = () => {
               onViewReason={handleViewApplicant}
               onClearFilters={handleClearFilters}
             />
-          </CustomScrollbar>
+          </div>
         </div>
       </div>
       
@@ -541,7 +541,7 @@ export const ManagerApplicantsPage = () => {
               <p className="modal-subtitle">Choose a project to filter applicants</p>
             </div>
             
-            <div className="controls p-4">
+            <div className="p-4">
               <div className="search-box">
                 <i className="bi bi-search"></i>
                 <input

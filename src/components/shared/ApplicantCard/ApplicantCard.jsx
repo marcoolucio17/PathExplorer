@@ -179,12 +179,14 @@ const ApplicantCard = ({
       <div className={styles.applicantFooter}>
         {activeTab === 'Denied' ? (
           <div className={styles.deniedButtonsGroup}>
-            <button 
-              className={styles.viewReasonButton}
+            <Button 
+              type="primary"
+              variant="viewReason"
+              icon="bi-exclamation-circle"
               onClick={() => onViewReason(applicant.id)}
             >
-              <i className="bi bi-exclamation-circle"></i> View Reason
-            </button>
+              View Reason
+            </Button>
             <button 
               className={styles.viewRequestButton}
               onClick={() => onViewRequest(applicant.id)}

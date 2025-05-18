@@ -13,8 +13,8 @@
   --text-skill: #d0d0d0;
 
   /* colores glass y transparencias */
-  --glass-bg: rgba(225, 225, 225, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.221);
+  --glass-bg: rgba(147, 147, 147, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.201);
   --highlight-inner-faint: rgba(255, 255, 255, 0.1);
   --highlight-inner-medium: rgba(255, 255, 255, 0.15);
   --highlight-inner-strong: rgba(255, 255, 255, 0.25);
@@ -32,6 +32,59 @@
   --purple-icon-1: rgba(128, 78, 243, 0.7);
   --purple-icon-2: rgba(159, 116, 228, 0.8);
   --purple-checkmark: #cd7cff;
+
+  /* botones colores y estilo */
+  --btn-height: 42px;
+  --btn-border-radius: 10px;
+  --btn-font-size: 0.9rem;
+  --btn-padding: 0 1.2rem;
+  --btn-font-family: 'Graphik Medium', sans-serif;
+  --btn-transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Botón primary (morado) */
+  --btn-primary-gradient-1: rgba(100, 60, 190, 0.7);
+  --btn-primary-gradient-2: rgba(140, 90, 220, 0.8);
+  --btn-primary-border: var(--border-strong);
+  --btn-primary-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+  --btn-primary-glow: rgba(var(--purple-shadow-base), 0.4);
+  
+  /* Botón secondary (morado más suave) */
+  --btn-secondary-bg: rgba(80, 60, 150, 0.4);
+  --btn-secondary-border: var(--border-medium);
+  --btn-secondary-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
+  --btn-secondary-glow: rgba(var(--purple-shadow-base), 0.3);
+  
+  /* Botón view (azul) */
+  --btn-view-gradient-1: rgba(106, 130, 251, 0.7);
+  --btn-view-gradient-2: rgba(139, 150, 255, 0.7);
+  --btn-view-gradient-hover-1: rgba(106, 130, 251, 0.8);
+  --btn-view-gradient-hover-2: rgba(139, 150, 255, 0.8);
+  --btn-view-border: var(--border-medium);
+  --btn-view-shadow: var(--btn-secondary-shadow);
+  --btn-view-glow: rgba(106, 130, 251, 0.4);
+  
+  /* Botón alert (naranja) */
+  --btn-alert-gradient-1: rgba(255, 126, 95, 0.7);
+  --btn-alert-gradient-2: rgba(254, 180, 123, 0.7);
+  --btn-alert-gradient-hover-1: rgba(255, 126, 95, 0.8);
+  --btn-alert-gradient-hover-2: rgba(254, 180, 123, 0.8);
+  --btn-alert-border: var(--border-medium);
+  --btn-alert-shadow: var(--btn-secondary-shadow);
+  --btn-alert-glow: rgba(255, 126, 95, 0.4);
+  
+  /* Estados de botones */
+  --btn-hover-brightness: 1.15;
+  --btn-hover-scale: 1.01;
+  --btn-hover-translateY: -2px;
+  --btn-hover-border: var(--border-hover);
+  
+  --btn-active-brightness: 1.05;
+  --btn-active-scale: 0.98;
+  --btn-active-shadow-depth: rgba(0, 0, 0, 0.3);
+  --btn-active-shadow-common: inset 0 1px 3px var(--btn-active-shadow-depth);
+
+  /*notificaciones */
+  --notification-badge: #804bc6;
 
   /* colores skills */
   --skill-bg: rgba(80, 60, 150, 0.25);
@@ -83,6 +136,8 @@
   --search-expanded-width-dashboard: 260px;
   --search-margin-left-dashboard: 0;
   --popover-border-color-dashboard: var(--glass-border);
+
+
 }
 
 /* --- estilos generales --- */

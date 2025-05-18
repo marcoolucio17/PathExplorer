@@ -187,29 +187,29 @@ const ApplicantCard = ({
           <div className={styles.deniedButtonsGroup}>
             <Button 
               type="secondary"
-              variant="viewReason"
+              variant="alert"
               icon="bi-exclamation-circle"
               onClick={() => onViewReason(applicant.id)}
             >
-              View Reason
+              Alert
             </Button>
             <Button 
               type="secondary"
-              variant="viewRequest"
-              icon="bi bi-file-earmark-text"
+              variant="view"
+              icon="bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              View Request
+              View
             </Button>
           </div>
         ) : (
           <Button 
               type="secondary"
-              variant="viewRequest"
-              icon="bi bi-file-earmark-text"
+              variant="view"
+              icon="bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              View Request
+              View
             </Button>
         )}
       </div>

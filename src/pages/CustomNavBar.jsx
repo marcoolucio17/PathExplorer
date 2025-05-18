@@ -13,6 +13,14 @@ function CustomNavbar() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // Define search categories
+  const searchCategories = [
+    { key: 'people', label: 'People', icon: 'bi-person-fill' },
+    { key: 'projects', label: 'Projects', icon: 'bi-folder-fill' },
+    { key: 'certificates', label: 'Certificates', icon: 'bi-award-fill' },
+    { key: 'skills', label: 'Skills', icon: 'bi-tag-fill' }
+  ];
+
   const handleSearch = (value) => {
     setSearchTerm(value);
   };
@@ -96,6 +104,7 @@ function CustomNavbar() {
               searchName="navSearch"
               inSearchBar={true}
               onSearchResultClick={handleSearchResultClick}
+              searchCategories={searchCategories}
             />
           </div>
 

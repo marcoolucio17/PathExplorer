@@ -220,6 +220,28 @@
   transform-origin: center top;
 }
 
+/* inSearchBar specific styles */
+.inSearchBar {
+  margin-bottom: 0;
+}
+
+.inSearchBarHeader {
+  justify-content: center;
+  width: 100%;
+}
+
+.inSearchBarContainer {
+  flex: 1;
+}
+
+.inSearchBarInput {
+  border-radius: 20px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .searchHeader {

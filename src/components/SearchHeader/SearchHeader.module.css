@@ -243,7 +243,7 @@
 
 .inSearchBarInput {
   height: 36px;
-  background: rgba(30, 30, 40, 0.6);
+  background: var(--highlight-inner-faint);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   font-size: 0.9rem;
@@ -274,7 +274,7 @@
 .searchIconNavbar {
   color: rgba(255, 255, 255, 0.6) !important;
   font-size: 1.1rem !important;
-  left: 16px !important;
+  left: 12px !important;
 }
 
 @keyframes fadeIn {
@@ -301,6 +301,14 @@
 
 .resultCategory:last-child {
   border-bottom: none;
+}
+
+.iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  margin-right: 12px;
 }
 
 .searchResultItem {

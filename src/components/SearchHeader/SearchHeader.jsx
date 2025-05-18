@@ -31,7 +31,10 @@ export const SearchHeader = ({
   viewToggle = true,
   viewMode = "grid",
   setViewMode,
-  customButtons = []
+  customButtons = [],
+  activeFilters = {},
+  onRemoveFilter,
+  onClearFilters
 }) => {
   // State to track input focus
   const [isFocused, setIsFocused] = useState(false);

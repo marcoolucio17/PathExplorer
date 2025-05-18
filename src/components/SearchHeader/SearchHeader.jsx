@@ -31,37 +31,6 @@ export const SearchHeader = ({
 }) => {
   // State to track input focus
   const [isFocused, setIsFocused] = useState(false);
-  
-  // Handle view mode toggle
-  const toggleViewMode = () => {
-    // Get the current container based on view mode
-    const container = document.querySelector(`.${styles.gridContainer}`) || 
-                      document.querySelector(`.${styles.listContainer}`);
-    
-    // Apply fade out effect if container exists
-    if (container) {
-      container.style.opacity = '0';
-      container.style.transform = 'translateY(8px) scale(0.98)';
-      
-      // Change view mode after short delay for animation
-      setTimeout(() => {
-        setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-        
-        // Fade in the new container
-        setTimeout(() => {
-          const newContainer = document.querySelector(`.${styles.gridContainer}`) || 
-                              document.querySelector(`.${styles.listContainer}`);
-          if (newContainer) {
-            newContainer.style.opacity = '1';
-            newContainer.style.transform = 'translateY(0) scale(1)';
-          }
-        }, 80);
-      }, 300);
-    } else {
-      // Direct change if no container found
-      setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-    }
-  };
 
   return (
     <div className={styles.searchHeader}>

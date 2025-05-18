@@ -234,6 +234,8 @@
   flex: 0 1 auto;
   width: 350px !important;
   position: relative;
+  border-radius: 50px;
+  overflow: hidden;
 }
 
 .inSearchBarInput {

@@ -78,7 +78,7 @@ export const SearchHeader = ({
           }}
           ref={dropdownRef}
         >
-          <i className="bi bi-search"></i>
+          <i className={`bi bi-search ${inSearchBar ? styles.searchIconNavbar : ''}`}></i>
           <input
             type="text"
             value={searchTerm}

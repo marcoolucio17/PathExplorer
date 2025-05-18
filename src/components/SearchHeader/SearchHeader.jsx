@@ -106,15 +106,15 @@ export const SearchHeader = ({
             <div className={styles.searchResultsDropdown}>
               {/* Always show these categories with the search term */}
               <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'people')}>
-                <i className="bi bi-person"></i>
+                <i className="bi bi-person-fill"></i>
                 <span>{searchTerm} in People</span>
               </div>
               <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'projects')}>
-                <i className="bi bi-clipboard-check"></i>
+                <i className="bi bi-folder-fill"></i>
                 <span>{searchTerm} in Projects</span>
               </div>
               <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'certificates')}>
-                <i className="bi bi-award"></i>
+                <i className="bi bi-award-fill"></i>
                 <span>{searchTerm} in Certificates</span>
               </div>
               <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'skills')}>

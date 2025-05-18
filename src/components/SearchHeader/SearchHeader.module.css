@@ -60,33 +60,6 @@
   gap: 15px;
 }
 
-/* View Applicants button */
-.viewApplicantsButton {
-  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
-  border: 1px solid var(--border-strong);
-  border-radius: 50px;
-  padding: 8px 15px;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
-  transition: all 0.2s ease;
-}
-
-.viewApplicantsButton:hover {
-  transform: scale(1.02);
-  filter: brightness(1.15);
-}
-
-.viewApplicantsButton:active {
-  transform: scale(0.98);
-  filter: brightness(0.9);
-}
-
 /* Sort/Filter label */
 .sortLabel {
   font-size: 0.9rem;
@@ -94,87 +67,6 @@
   opacity: 0.5;
   margin: 0;
   margin-left: 10px;
-}
-
-/* Button styles */
-.filterButton {
-  padding: 8px 25px;
-  border-radius: 50px;
-  border: 1px solid var(--border-light);
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 0.9rem;
-  font-family: 'Graphik Medium', sans-serif;
-  color: var(--text-light);
-  text-shadow: var(--shadow-text);
-  transition: all 0.2s ease;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.skillsButton {
-  background: var(--purple-btn-secondary);
-  border-color: var(--border-medium);
-  box-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
-}
-
-.compabilityButton {
-  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
-  border-color: var(--border-strong);
-  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
-}
-
-.activeButton {
-  transform: scale(0.98);
-  filter: brightness(1.1);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(139, 92, 246, 0.5);
-}
-
-.filterButton:hover {
-  transform: scale(1.02);
-  filter: brightness(1.15);
-}
-
-.filterButton:active {
-  transform: scale(0.98);
-  filter: brightness(0.9);
-}
-
-/* View toggle button */
-.viewToggleButton {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--glass-bg);
-  border: 1px solid var(--border-light);
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-left: 5px;
-}
-
-.viewToggleButton i {
-  font-size: 1.1rem;
-}
-
-.viewToggleButton:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-}
-
-.viewToggleButton.gridActive {
-  background: rgba(139, 92, 246, 0.3);
-  border-color: rgba(139, 92, 246, 0.5);
-}
-
-.viewToggleButton.listActive {
-  background: rgba(74, 158, 204, 0.3);
-  border-color: rgba(74, 158, 204, 0.5);
 }
 
 /* Filter badge */
@@ -191,9 +83,24 @@
   margin-left: 5px;
 }
 
-/* Container classes for animation targets */
+/* Button with badge positioning */
+.buttonWithBadge {
+  position: relative;
+}
+
+/* Container classes for animation targets - improved transitions */
 .gridContainer, .listContainer {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: opacity, transform;
+}
+
+.gridContainer {
+  transform-origin: center top;
+}
+
+.listContainer {
+  transform-origin: center top;
 }
 
 /* Responsive styles */
@@ -212,17 +119,6 @@
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-  
-  .filterButton {
-    flex-grow: 1;
-    max-width: calc(50% - 10px);
-    justify-content: center;
-    padding: 6px 15px;
-    font-size: 0.8rem;
-  }
-  
-  .viewToggleButton {
-    flex-grow: 0;
+    gap: 10px;
   }
 }

@@ -499,46 +499,6 @@ export const ManagerApplicantsPage = () => {
           onClearFilters={handleClearFilters}
         />
 
-        {/* Active filters display */}
-        {(selectedSkillFilters.length > 0 || projectFilter !== 'All Projects') && (
-          <div className={styles.activeFiltersContainer}>
-            <div className={styles.activeFiltersHeader}>
-              <h3 className={styles.activeFiltersTitle}>Active Filters:</h3>
-              <button 
-                className={styles.clearAllButton} 
-                onClick={handleClearFilters}
-              >
-                Clear All
-              </button>
-            </div>
-            <div className={styles.activeFiltersList}>
-              {projectFilter !== 'All Projects' && (
-                <div className={styles.activeFilterChip}>
-                  Project: {projectFilter}
-                  <button 
-                    className={styles.removeFilterButton}
-                    onClick={clearProjectFilter}
-                  >
-                    <i className="bi bi-x"></i>
-                  </button>
-                </div>
-              )}
-              
-              {selectedSkillFilters.map(skill => (
-                <div key={skill} className={styles.activeFilterChip}>
-                  {skill}
-                  <button 
-                    className={styles.removeFilterButton}
-                    onClick={() => removeSkillFilter(skill)}
-                  >
-                    <i className="bi bi-x"></i>
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Use the enhanced Tabs component */}
         <Tabs 
           tabs={tabNames.map(tab => ({

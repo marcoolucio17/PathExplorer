@@ -232,10 +232,9 @@
 
 .inSearchBarContainer {
   flex: 0 1 auto;
-  width: 350px !important;
+  width: 280px !important;
   position: relative;
-  border-radius: 50px;
-  overflow: hidden;
+  transition: width 0.3s ease-in-out;
 }
 
 .inSearchBarInput {

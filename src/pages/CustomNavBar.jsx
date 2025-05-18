@@ -18,7 +18,8 @@ function CustomNavbar() {
     { key: 'people', label: 'People', icon: 'people' },
     { key: 'projects', label: 'Projects', icon: 'projects' },
     { key: 'certificates', label: 'Certificates', icon: 'certificates' },
-    { key: 'skills', label: 'Skills', icon: 'skills' }
+    { key: 'skills', label: 'Skills', icon: 'skills' },
+    { key: 'applicants', label: 'Applicants', icon: 'people' } // Using people icon for applicants
   ];
 
   const handleSearch = (value) => {

@@ -1,15 +1,43 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Logo from "../assets/Acc_GT_Dimensional_RGB 1.png";
+import { SearchHeader } from "../components/SearchHeader";
 
 import "./CustomNavBar.css";
 
 function CustomNavbar() {
   const [showNotifications, setShowNotifications] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const authState = localStorage.getItem("role");
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+  };
+
+  const handleSearchResultClick = (searchValue, category) => {
+    // Navigate to the appropriate search page based on the category
+    switch (category) {
+      case 'people':
+        navigate(`/people/search?q=${encodeURIComponent(searchValue)}`);
+        break;
+      case 'projects':
+        navigate(`/projects/search?q=${encodeURIComponent(searchValue)}`);
+        break;
+      case 'certificates':
+        navigate(`/certificates/search?q=${encodeURIComponent(searchValue)}`);
+        break;
+      case 'skills':
+        navigate(`/skills/search?q=${encodeURIComponent(searchValue)}`);
+        break;
+      default:
+        // If there's no matching category, use a default
+        navigate(`/search?q=${encodeURIComponent(searchValue)}`);
+        break;
+    }
+  };
 
   return (
     <>
@@ -59,13 +87,15 @@ function CustomNavbar() {
             <img src={Logo} alt="Logo" className="logo-img" />
           </button>
 
-          {/* Search bar */}
+          {/* Search bar with SearchHeader component */}
           <div className="nav-search-container">
-            <i className="bi bi-search nav-search-icon"></i>
-            <input
-              type="text"
+            <SearchHeader 
+              searchTerm={searchTerm}
+              setSearchTerm={handleSearch}
               placeholder="Search..."
-              className="nav-search"
+              searchName="navSearch"
+              inSearchBar={true}
+              onSearchResultClick={handleSearchResultClick}
             />
           </div>
 
@@ -98,7 +128,7 @@ function CustomNavbar() {
                     <div>
                       <p className="mb-1"><strong>Welcome!!!</strong></p>
                       <p className="small mb-0">
-                        We’re excited to have you here! 🚀
+                        We're excited to have you here! 🚀
                       </p>
                     </div>
                   </div>

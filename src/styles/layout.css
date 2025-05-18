@@ -3,22 +3,22 @@
 /* Page Layout Containers */
 .page-container {
   background: transparent;
-  min-height: 100vh;
+  width: 100%;
+  min-height: calc(100vh - 70px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--container-padding);
+  flex-direction: column;
+  padding: 1.5rem;
   padding-top: 90px; /* Adjusted to account for fixed navbar */
+  margin: 0 auto;
 }
 
 .page-content {
-  display: flex;
-  flex-direction: column;
   max-width: var(--content-max-width);
   width: 100%;
-  min-height: 500px;
-  overflow: visible;
-  position: relative;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header Components */
@@ -26,13 +26,14 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 /* Main Content Area */
 .main-content {
   flex: 1;
-  overflow-x: hidden;
-  overflow-y: visible;
+  width: 100%;
+  overflow: hidden;
   position: relative;
 }
 
@@ -46,6 +47,7 @@
   padding: 1.5rem;
   box-shadow: var(--shadow-card);
   transition: var(--standard-transition);
+  height: 100%;
 }
 
 .card:hover {
@@ -56,13 +58,22 @@
 /* Grid Layouts */
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
 .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Applicant cards grid */
+.applicants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
 
 /* Flex Layouts */
 .flex { display: flex; }
@@ -144,5 +155,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
+  width: 100%;
   position: relative;
 }

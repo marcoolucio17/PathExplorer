@@ -237,6 +237,10 @@
   transition: width 0.3s ease-in-out;
 }
 
+.inSearchBarContainer:focus-within {
+  width: 350px !important;
+}
+
 .inSearchBarInput {
   height: 36px;
   background: rgba(30, 30, 40, 0.6);

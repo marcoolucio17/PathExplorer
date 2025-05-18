@@ -41,6 +41,9 @@ function CustomNavbar() {
       case 'skills':
         navigate(`/skills/search?q=${encodeURIComponent(searchValue)}`);
         break;
+      case 'applicants':
+        navigate(`/manager/applicants?search=${encodeURIComponent(searchValue)}`);
+        break;
       default:
         // If there's no matching category, use a default
         navigate(`/search?q=${encodeURIComponent(searchValue)}`);

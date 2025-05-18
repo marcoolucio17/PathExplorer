@@ -66,11 +66,6 @@ export const SearchHeader = ({
     };
   }, []);
 
-  // Check if we have any search results
-  const hasSearchResults = Object.values(searchResults).some(
-    category => category && category.length > 0
-  );
-
   return (
     <div className={`${styles.searchHeaderWrapper} ${inSearchBar ? styles.inSearchBar : ''}`}>
       <div className={`${styles.searchHeader} ${inSearchBar ? styles.inSearchBarHeader : ''}`}>
@@ -78,7 +73,7 @@ export const SearchHeader = ({
           className={`${styles.searchContainer} ${isFocused ? styles.searchContainerFocused : ''} ${inSearchBar ? styles.inSearchBarContainer : ''}`}
           style={{
             // Use inline style for consistent behavior
-            width: inSearchBar ? '100%' : (isFocused ? '300px' : '250px'), 
+            width: inSearchBar ? '350px' : (isFocused ? '300px' : '250px'), 
             transition: 'width 0.25s ease'
           }}
           ref={dropdownRef}
@@ -109,44 +104,23 @@ export const SearchHeader = ({
           {/* Search Results Dropdown */}
           {inSearchBar && showResults && searchTerm.length > 0 && (
             <div className={styles.searchResultsDropdown}>
-              {!hasSearchResults && (
-                <div className={styles.noResults}>
-                  No results found for "{searchTerm}"
-                </div>
-              )}
-              
-              {Object.entries(searchResults).map(([category, results]) => {
-                if (!results || results.length === 0) return null;
-                
-                return (
-                  <div key={category} className={styles.resultCategory}>
-                    {results.map((result, index) => (
-                      <div 
-                        key={`${category}-${index}`} 
-                        className={styles.searchResultItem}
-                        onClick={() => {
-                          if (onSearchResultClick) {
-                            onSearchResultClick(result, category);
-                            setShowResults(false);
-                          }
-                        }}
-                      >
-                        {category === 'people' && <i className="bi bi-person"></i>}
-                        {category === 'projects' && <i className="bi bi-clipboard"></i>}
-                        {category === 'certificates' && <i className="bi bi-award"></i>}
-                        {category === 'skills' && <i className="bi bi-tag"></i>}
-                        
-                        <div className={styles.resultContent}>
-                          <div className={styles.resultName}>{result.name}</div>
-                          <div className={styles.resultCategory}>
-                            in {category.charAt(0).toUpperCase() + category.slice(1)}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                );
-              })}
+              {/* Always show these categories with the search term */}
+              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'people')}>
+                <i className="bi bi-person"></i>
+                <span>{searchTerm} in People</span>
+              </div>
+              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'projects')}>
+                <i className="bi bi-clipboard"></i>
+                <span>{searchTerm} in Projects</span>
+              </div>
+              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'certificates')}>
+                <i className="bi bi-award"></i>
+                <span>{searchTerm} in Certificates</span>
+              </div>
+              <div className={styles.searchResultItem} onClick={() => onSearchResultClick(searchTerm, 'skills')}>
+                <i className="bi bi-tag"></i>
+                <span>{searchTerm} in Skills</span>
+              </div>
             </div>
           )}
         </div>

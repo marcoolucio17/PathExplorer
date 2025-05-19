@@ -1,0 +1,126 @@
+/* ActiveFilters.module.css */
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.animated {
+  animation: fadeDown 0.3s ease;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 500;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.clearButton {
+  height: 26px !important;
+  padding: 0 0.75rem !important;
+  font-size: 0.75rem !important;
+  opacity: 0.8;
+  min-width: auto !important;
+}
+
+.clearButton:hover {
+  opacity: 1;
+}
+
+.filtersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filterChip {
+  background: rgba(74, 158, 204, 0.2);
+  border: 1px solid rgba(74, 158, 204, 0.5);
+  border-radius: 50px;
+  padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 28px;
+  transition: all 0.2s ease;
+}
+
+.filterChip:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.filterLabel {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  margin-right: 0.25rem;
+}
+
+.filterValue {
+  font-weight: 500;
+}
+
+.removeButton {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.removeButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.removeButton i {
+  font-size: 0.8rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .filterChip {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem 0.2rem 0.6rem;
+    height: 24px;
+  }
+}

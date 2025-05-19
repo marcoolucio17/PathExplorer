@@ -187,7 +187,6 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 1px solid var(--purple-progress-1);
 }
 
 .applicantInfo {

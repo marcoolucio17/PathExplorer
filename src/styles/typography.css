@@ -1,0 +1,144 @@
+/* src/styles/typography.css */
+@font-face {
+  font-family: 'Graphik Semibold';
+  src: url('/fonts/Graphik Family/Graphik-Semibold-Trial.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Medium';
+  src: url('/fonts/Graphik Family/Graphik-Medium-Trial.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Regular';
+  src: url('/fonts/Graphik Family/Graphik-Regular-Trial.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Regular Italic';
+  src: url('/fonts/Graphik Family/Graphik-RegularItalic-Trial.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Graphik Light';
+  src: url('/fonts/Graphik Family/Graphik-Light-Trial.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Typography Base Styles */
+:root {
+  /* Font Families */
+  --font-primary: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-medium: 'Graphik Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-semibold: 'Graphik Semibold', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-light: 'Graphik Light', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-italic: 'Graphik Regular Italic', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.75rem;   /* 28px */
+  --text-4xl: 2rem;      /* 32px */
+  
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Font Weights (using semantic names) */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* Typography Utility Classes */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+.font-primary { font-family: var(--font-primary); }
+.font-medium-family { font-family: var(--font-medium); }
+.font-semibold-family { font-family: var(--font-semibold); }
+.font-light { font-family: var(--font-light); }
+.font-italic { font-family: var(--font-italic); }
+
+.leading-none { line-height: var(--leading-none); }
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Text Colors */
+.text-main { color: var(--text-main); }
+.text-light { color: var(--text-light); }
+.text-muted { color: var(--text-muted); }
+.text-muted-darker { color: var(--text-muted-darker); }
+
+/* Common Text Styles */
+.page-title {
+  font-family: var(--font-medium);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-light);
+  margin: 0 0 1rem;
+  text-shadow: var(--shadow-text);
+}
+
+.section-title {
+  font-family: var(--font-medium);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-light);
+  margin: 0 0 0.75rem;
+}
+
+.card-title {
+  font-family: var(--font-medium);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-light);
+  margin: 0 0 0.5rem;
+}
+
+.subtitle {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.label-text {
+  font-family: var(--font-medium);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-muted);
+  margin: 0 0 0.25rem;
+}

@@ -1,0 +1,171 @@
+/* Keep original dashboard dimensions and layout */
+.dashboardContainer {
+  width: 70vw;
+  height: 85vh;
+  margin-left: 15vw; 
+  margin-right: 15vw;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+}
+
+/* Header with search and filter buttons */
+.dashboardHeader {
+  width: 100%;
+  height: 15%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Dashboard content area with projects */
+.dashboardContent {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3%;
+}
+
+/* Search container with glass effect */
+.searchContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+}
+
+.searchContainer i {
+  position: absolute;
+  left: calc(var(--search-padding-left) - 27.5px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;                
+  color: var(--text-muted-darker);
+  opacity: 0.9;                       
+  pointer-events: none;
+}
+
+.searchInput {
+  width: var(--search-collapsed-width);
+  padding:
+    var(--search-padding-y)
+    var(--search-padding-x)
+    var(--search-padding-y)
+    var(--search-padding-left);
+  font-family: 'Graphik Light', sans-serif;
+  border: none;
+  border-radius: 8px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  background-color: #ffffff20;
+  box-shadow: inset 0 1px 2px var(--highlight-inner-faint);
+  transition:
+    width 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.searchInput:focus {
+  width: var(--search-expanded-width);
+  outline: none;
+  border: 1px solid var(--text-light);
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.192);
+}
+
+/* Header buttons section */
+.headerButtons {
+  white-space: nowrap;
+  width: 60%;
+  height: 100%; 
+  align-items: center;
+  margin-top: 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.buttonLabel {
+  font-size: 0.9rem;
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+
+/* Button styles */
+.filterButton {
+  padding: 0.6rem 1.6rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: 'Graphik Medium', sans-serif;
+  color: var(--text-light);
+  text-shadow: var(--shadow-text);
+  border: 1px solid var(--border-light);
+  background: var(--purple-btn-base);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-medium), var(--shadow-outer-strong);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.secondaryButton {
+  background: var(--purple-btn-secondary) !important;
+  border-color: var(--border-medium) !important;
+  box-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
+  white-space: nowrap;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border-color: var(--border-strong);
+  box-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+}
+
+.secondaryButton:hover {
+  box-shadow: inset 0 1px 1px var(--border-medium), var(--shadow-glow-secondary-hover);
+}
+
+.filterButton:active {
+  transform: scale(0.99999);
+  filter: brightness(0.9);
+  box-shadow: var(--shadow-inset-press);
+  transition-duration: 0.1s;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .dashboardContent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+  
+  .dashboardHeader {
+    flex-direction: column;
+    height: auto;
+    gap: 1rem;
+  }
+  
+  .searchContainer {
+    width: 100%;
+  }
+  
+  .headerButtons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .dashboardContent {
+    grid-template-columns: 1fr;
+  }
+}

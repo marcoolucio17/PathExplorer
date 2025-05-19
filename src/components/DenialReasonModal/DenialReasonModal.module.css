@@ -1,56 +1,3 @@
-:root {
-  --container-height: 70vh;
-  --container-padding: 2rem;
-  --min-content-width: 320px;
-}
-
-/* Main container */
-.dashboardContainer {
-  background: transparent;
-  height: 100vh;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--container-padding);
-}
-
-/* Content container */
-.dashboardContent {
-  display: flex;
-  flex-direction: column;
-  max-width: 1300px;
-  width: 100%;
-  height: var(--container-height);
-  min-height: 500px;
-  overflow: visible;
-  position: relative;
-}
-
-/* Page header with back button */
-.pageHeader {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.pageTitle {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin: 0;
-  color: var(--text-light);
-  font-family: 'Graphik Medium', sans-serif;
-}
-
-/* Applicants container */
-.applicantsContainer {
-  flex: 1;
-  overflow-x: hidden;
-  overflow-y: visible;
-  position: relative;
-}
-
-/* Modal styles */
 .modalBackdrop {
   position: fixed;
   top: 0;
@@ -134,23 +81,6 @@
   }
 }
 
-/* ApplicantCard.module.css - Relevant parts */
-.applicantCard.loading,
-.applicantListItem.loading {
-  opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  pointer-events: none; /* Prevent interaction during animation */
-}
-
-.applicantCard.loaded,
-.applicantListItem.loaded {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: 
-    opacity 0.6s ease var(--stagger-delay), 
-    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--stagger-delay);
-}
-
 /* Close button */
 .closeButton {
   position: absolute;
@@ -208,113 +138,141 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Controls section */
-.controls {
-  padding: 0 2rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  gap: 1rem;
-  flex-shrink: 0;
-}
-
-.searchBox {
-  flex: 1;
-  position: relative;
+/* Applicant header */
+.applicantHeader {
   display: flex;
   align-items: center;
-}
-
-.searchBox i {
-  position: absolute;
-  left: 12px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 0.875rem 1rem 0.875rem 40px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-.searchInput::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.searchInput:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-/* Projects container */
-.projectsContainer {
+  gap: 15px;
   padding: 0 2rem;
+  margin-bottom: 1rem;
+}
+
+.applicantAvatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--purple-progress-1);
+}
+
+.applicantInfo {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-height: 0;
-  max-height: 40vh;
 }
 
-.projectOption {
-  width: 100%;
+.applicantName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--text-main);
+  font-family: 'Graphik Medium', sans-serif;
 }
 
-.projectButton {
-  width: 100%;
-  text-align: left;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.applicantRole {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--text-light);
+  opacity: 0.8;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+/* Reason section */
+.reasonSection {
+  padding: 0 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.reasonTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--text-main);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.reasonContent {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 1rem;
+  color: var(--text-light);
+  font-family: 'Graphik Regular', sans-serif;
+  max-height: 150px;
+  overflow: hidden;
 }
 
-.projectButton:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  transform: translateX(2px);
+.reasonContent p {
+  margin: 0;
+  line-height: 1.5;
 }
 
-.projectButton.active {
-  background: rgba(99, 102, 241, 0.9);
-  border-color: rgba(99, 102, 241, 0.9);
-  color: white;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+/* Denied info */
+.deniedInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 2rem;
+  margin-bottom: 1.5rem;
+  color: #ff9494;
 }
 
-.projectButton.active:hover {
-  background: rgba(99, 102, 241, 1);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+.deniedInfo i {
+  font-size: 1.2rem;
+}
+
+.deniedInfo p {
+  margin: 0;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.deniedInfo span {
+  font-weight: 600;
+}
+
+/* Appeal form */
+.appealFormSection {
+  padding: 0 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.appealTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--text-main);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.appealTextarea {
+  width: 100%;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  color: var(--text-light);
+  font-family: 'Graphik Regular', sans-serif;
+  resize: none;
+  transition: border-color 0.2s ease;
+}
+
+.appealTextarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.appealTextarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Button group */
 .buttonGroup {
   display: flex;
   gap: 1rem;
-  margin: 2rem;
+  padding: 0 2rem 2rem;
 }
 
+.acceptButton,
+.appealButton,
 .cancelButton,
 .saveButton {
   display: flex;
@@ -347,31 +305,63 @@
   transform: translateY(-2px);
 }
 
+.appealButton {
+  background: rgba(255, 140, 0, 0.8);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+}
+
+.appealButton:hover {
+  background: rgba(255, 140, 0, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+.acceptButton {
+  background: rgba(50, 205, 50, 0.8);
+  color: white;
+  box-shadow: 0 4px 15px rgba(50, 205, 50, 0.3);
+}
+
+.acceptButton:hover {
+  background: rgba(50, 205, 50, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(50, 205, 50, 0.4);
+}
+
 .saveButton {
   background: rgba(99, 102, 241, 0.9);
   color: white;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
-.saveButton:hover {
+.saveButton:hover:not(:disabled) {
   background: rgba(99, 102, 241, 1);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
 
-.saveButton i {
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.saveButton i,
+.acceptButton i,
+.appealButton i {
   font-size: 1rem;
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
-  .pageHeader {
+@media (max-width: 600px) {
+  .buttonGroup {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
   }
   
-  .backButton {
-    margin-right: 0;
+  .acceptButton,
+  .appealButton,
+  .cancelButton,
+  .saveButton {
+    width: 100%;
   }
 }

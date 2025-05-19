@@ -193,6 +193,7 @@ export const EmpleadoPerfilPage = () => {
             tabs={TAB_OPTIONS}
             activeTab={activeTab}
             onTabClick={setActiveTab}
+            borderStyle = 'tab-only'
             actionButtons={
               <>
                 <button className={pageStyles.actionBtn} onClick={handleCVClick} title="View CV">

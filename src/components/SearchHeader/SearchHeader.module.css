@@ -243,7 +243,7 @@
 
 .inSearchBarInput {
   height: 36px;
-  background: var(--highlight-inner-faint);
+  background: rgba(30, 30, 40, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   font-size: 0.9rem;
@@ -269,12 +269,6 @@
   -webkit-backdrop-filter: blur(12px);
   z-index: 1000;
   animation: fadeIn 0.2s ease;
-}
-
-.searchIconNavbar {
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-size: 1.1rem !important;
-  left: 12px !important;
 }
 
 @keyframes fadeIn {
@@ -303,20 +297,28 @@
   border-bottom: none;
 }
 
+.searchIconNavbar {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 1.1rem !important;
+  left: 16px !important;
+}
+
+/* Icon wrapper and search result item styling */
 .iconWrapper {
   display: inline-block;
   width: 24px;
   height: 24px;
   margin-right: 12px;
-  text-align: center;
+  flex-shrink: 0;
+  vertical-align: middle;
 }
 
-.iconWrapper i {
+.customIcon {
+  width: 16px;
+  height: 16px;
+  fill: rgba(255, 255, 255, 0.9);
   display: inline-block;
-  font-size: 16px;
-  line-height: 24px;
   vertical-align: middle;
-  color: rgba(255, 255, 255, 0.8);
 }
 
 .searchResultItem {
@@ -330,26 +332,6 @@
 
 .searchResultItem:hover {
   background: rgba(255, 255, 255, 0.1);
-}
-
-.searchResultItem i {
-  /* This style should be completely removed or overridden by the iconWrapper i style */
-}
-
-.resultContent {
-  flex: 1;
-}
-
-.resultName {
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
-.resultCategory {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8rem;
 }
 
 /* Responsive styles */

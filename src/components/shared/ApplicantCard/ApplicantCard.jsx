@@ -47,8 +47,10 @@ const ApplicantCard = ({
         <div className={styles.compatibilityCircle}>
           <ProgressCircle 
             value={matchPercentage}
-            size={60} 
-            strokeWidth={8}
+            size={60}
+            fontSize="1.1rem" 
+            strokeWidth={6}
+            fontWeight="light"
           />
         </div>
       )}
@@ -100,7 +102,7 @@ const ApplicantCard = ({
               icon="bi-exclamation-circle"
               onClick={() => onViewReason(applicant.id)}
             >
-              Alert
+              View Reason
             </Button>
             <Button 
               type="secondary"
@@ -108,7 +110,7 @@ const ApplicantCard = ({
               icon="bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              View
+              View Request
             </Button>
           </div>
         ) : (
@@ -118,7 +120,7 @@ const ApplicantCard = ({
               icon="bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              View
+              View Request
             </Button>
         )}
       </div>
@@ -191,7 +193,7 @@ const ApplicantCard = ({
               icon="bi-exclamation-circle"
               onClick={() => onViewReason(applicant.id)}
             >
-              Alert
+              View Reason
             </Button>
             <Button 
               type="secondary"
@@ -199,7 +201,7 @@ const ApplicantCard = ({
               icon="bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              View
+              View Request
             </Button>
           </div>
         ) : (
@@ -209,7 +211,7 @@ const ApplicantCard = ({
               icon="bi-file-earmark-text"
               onClick={() => onViewRequest(applicant.id)}
             >
-              View
+              View Request
             </Button>
         )}
       </div>
@@ -219,7 +221,9 @@ const ApplicantCard = ({
           <ProgressCircle 
             value={matchPercentage}
             size={60} 
-            strokeWidth={5}
+            strokeWidth={6}
+            fontSize="1rem"
+            fontWeight="light"
           />
         </div>
       )}

@@ -6,7 +6,9 @@ export const ProgressCircle = ({
   maxValue = 100, 
   title, 
   size = 150,
-  strokeWidth = 12
+  strokeWidth = 12,
+  fontWeight = 'medium', // 'medium' (default) or 'light'
+  fontSize // Custom font size (optional)
 }) => {
   const [animatedValue, setAnimatedValue] = useState(0);
   
@@ -32,6 +34,12 @@ export const ProgressCircle = ({
   
   // Generate unique IDs for gradients
   const uniqueId = `gradient-${title?.replace(/\s/g, '') || Math.random().toString(36).substr(2, 9)}`;
+  
+  // Determine the font weight class based on the parameter
+  const fontWeightClass = fontWeight === 'light' ? styles.lightFont : styles.mediumFont;
+
+  // Create style object for font size if provided
+  const valueStyle = fontSize ? { fontSize } : {};
   
   return (
     <div className={styles.container}>
@@ -99,7 +107,12 @@ export const ProgressCircle = ({
           />
         </svg>
         <div className={styles.progressText}>
-          <span className={styles.progressValue}>{displayText}</span>
+          <span 
+            className={`${styles.progressValue} ${fontWeightClass}`}
+            style={valueStyle}
+          >
+            {displayText}
+          </span>
         </div>
       </div>
       {title && <h3 className={styles.title}>{title}</h3>}

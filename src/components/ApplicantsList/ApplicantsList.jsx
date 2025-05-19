@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ApplicantCard from '../shared/ApplicantCard';
 import styles from './ApplicantsList.module.css';
 
+
 /**
  * ApplicantsList component to display applicants in grid or list view
  * 

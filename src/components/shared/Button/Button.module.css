@@ -42,6 +42,11 @@
   background: linear-gradient(135deg, var(--btn-view-gradient-1), var(--btn-view-gradient-2));
 }
 
+.back {
+  background: var(--glass-bg);
+  margin-right: 1rem;
+}
+
 /* Compatibility variant - primary button with loading circle */
 .compatibility {
   position: relative;

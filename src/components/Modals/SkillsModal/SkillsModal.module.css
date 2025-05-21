@@ -1,0 +1,147 @@
+/* SkillsModal specific styling */
+.categorySection {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+}
+
+.categorySection:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.categoryHeader {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease;
+  font-family: var(--btn-font-family);
+}
+
+.categoryHeader:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.categoryHeader i {
+  font-size: 0.9rem;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.categoryHeader.expanded i {
+  transform: rotate(180deg);
+}
+
+.skillsList {
+  padding: 0.5rem 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: visible;
+  min-height: 50px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 1000px;
+  }
+}
+
+/* Filter buttons */
+.filterButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filterButton {
+  padding: 0.875rem 1.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.filterButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.filterButton.active {
+  background: rgba(111, 131, 255, 0.8);
+  border-color: rgba(111, 131, 255, 0.8);
+  color: white;
+}
+
+/* Search box */
+.searchBox {
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 2.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Selected count */
+.selectedCount {
+  color: var(--modal-accent, #8b92ff);
+  font-size: 0.95rem;
+  margin: 8px 0 0 0;
+  font-weight: 500;
+  font-family: var(--btn-font-family, 'Graphik Medium', sans-serif);
+  text-align: center;
+}

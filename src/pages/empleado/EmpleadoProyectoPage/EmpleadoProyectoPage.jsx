@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { GlassCard } from '../../../components/shared/GlassCard';
 import { ProgressBar } from '../../../components/ProgressBar';
 import { MembersDropdown } from '../../../components/MembersDropdown';
+import SkillChip from '../../../components/SkillChip/SkillChip';
 // Import page-specific styles
 import pageStyles from './EmpleadoProyectoPage.module.css';
 // Import styles for specific sections
@@ -126,14 +127,14 @@ export const EmpleadoProyectoPage = () => {
               <h2 className={`${detailsStyles.cardTitle} ${skillsStyles.skillsTitle}`} style={{ fontSize: '1.35rem' }}>Skills Required</h2>
               <div className={skillsStyles.skillsContainer}>
                 <div className={skillsStyles.skillsList}>
-                  <span className={`${skillsStyles.skillTag} ${skillsStyles.userSkill}`}>JavaScript</span>
-                  <span className={skillsStyles.skillTag}>C++</span>
-                  <span className={skillsStyles.skillTag}>Java</span>
-                  <span className={skillsStyles.skillTag}>AI</span>
-                  <span className={`${skillsStyles.skillTag} ${skillsStyles.userSkill}`}>Agile</span>
-                  <span className={skillsStyles.skillTag}>HR</span>
-                  <span className={`${skillsStyles.skillTag} ${skillsStyles.userSkill}`}>Figma</span>
-                  <span className={skillsStyles.skillTag}>Photoshop</span>
+                  <SkillChip text="JavaScript" isUserSkill={true} />
+                  <SkillChip text="C++" />
+                  <SkillChip text="Java" />
+                  <SkillChip text="AI" />
+                  <SkillChip text="Agile" isUserSkill={true} />
+                  <SkillChip text="HR" />
+                  <SkillChip text="Figma" isUserSkill={true} />
+                  <SkillChip text="Photoshop" />
                 </div>
               </div>
             </div>

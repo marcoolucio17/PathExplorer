@@ -70,6 +70,7 @@
   font-weight: 500;
   color: var(--text-light);
   margin-bottom: 0.1rem;
+  font-family: 'Graphik Regular', sans-serif;
 }
 
 .personRole {

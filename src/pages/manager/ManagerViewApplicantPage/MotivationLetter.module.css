@@ -1,0 +1,19 @@
+/* Motivation Letter styles */
+.motivationText {
+  color: var(--text-main);
+  line-height: 1.6;
+  margin: 0.5rem 0 0 0;
+  padding: 1rem;
+  background: var(--highlight-inner-faint);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  overflow-y: auto;
+  max-height: 120px; /* Limit the height to keep things compact */
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.motivationContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}

@@ -5,13 +5,16 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 
 // Imports de empleado
-import { EmpleadoDashboard } from "./pages/empleado/EmpleadoDashboard";
+import { EmpleadoDashboardPage } from "./pages/empleado/EmpleadoDashboardPage/EmpleadoDashboardPage";
 import { EmpleadoPerfil } from "./pages/empleado/EmpleadoPerfil";
 import { EmpleadoProyecto } from "./pages/empleado/EmpleadoProyecto";
 import { EmpleadoHome } from "./pages/empleado/EmpleadoHome";
 
 // Imports de manager
 import { ManagerDashboard } from "./pages/manager/ManagerDashboard";
+import { ManagerDashboardPage } from "./pages/manager/ManagerDashboardPage/ManagerDashboardPage";
+import { ManagerApplicantsPage } from "./pages/manager/ManagerApplicantsPage/ManagerApplicantsPage";
+import { ManagerViewApplicantPage } from "./pages/manager/ManagerViewApplicantPage";
 import { ManagerDashboardCreateProject } from "./pages/manager/ManagerDashboardCreateProject";
 import { ManagerPerfil } from "./pages/manager/ManagerPerfil";
 import { ManagerProyecto } from "./pages/manager/ManagerProyecto";
@@ -39,14 +42,16 @@ function App() {
       {/* rutas de manager */}
       <Route element={<PrivateRoutes allowedRoles={["manager"]} />}>
         <Route path="manager" element={<Navigate to="dashboard" />} />
-        <Route path="manager/dashboard" element={<ManagerDashboard />} />
+        <Route path="manager/dashboard" element={<ManagerDashboardPage />} />
+        <Route path="manager/applicants" element={<ManagerApplicantsPage />} />
+        <Route path="manager/applicants/view" element={<ManagerViewApplicantPage />} />
         <Route
           path="manager/dashboard/createproject"
           element={<ManagerDashboardCreateProject />}
         />
         <Route path="manager/perfil" element={<ManagerPerfil />} />
-        <Route path="manager/proyecto" element={<ManagerProyecto />} />
         <Route path="manager/vistaperfil" element={<ManagerVistaPerfil />} />
+        <Route path="manager/proyecto" element={<EmpleadoProyecto />} />
       </Route>
 
       {/* rutas de tfs */}
@@ -61,7 +66,7 @@ function App() {
       {/* rutas de empleado */}
       <Route element={<PrivateRoutes allowedRoles={["empleado"]} />}>
         <Route path="empleado" element={<EmpleadoHome />} />
-        <Route path="empleado/dashboard" element={<EmpleadoDashboard />} />
+        <Route path="empleado/dashboard" element={<EmpleadoDashboardPage />} />
         <Route path="empleado/perfil" element={<EmpleadoPerfil />} />
         <Route path="empleado/proyecto" element={<EmpleadoProyecto />} />
       </Route>

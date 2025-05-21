@@ -4,10 +4,10 @@
   /* paleta de colores base */
   --bg-dark-1: #1a1a2e;
   --bg-dark-2: #2a2a4e;
-  --bg-dark-3: #4a2a6e;
+  --bg-dark-3: #7700ff;
   --text-main: #e0e0e0;
   --text-light: #ffffff;
-  --text-muted: #b0b0c0;
+  --text-muted: #0000ff;
   --text-muted-darker: #a0a0b0;
   --text-skill: #d0d0d0;
 
@@ -25,7 +25,7 @@
   --purple-progress-1: #7c54c4;
   --purple-progress-2: rgba(89, 0, 255, 0.75);
   --purple-shadow-base: 103, 66, 192; /* rgb para rgba */
-  --purple-btn-base: rgba(60, 40, 100, 0.302);
+  --purple-btn-base: rgba(87, 50, 162, 0.302);
   --purple-btn-primary-1: #643cbeb3;
   --purple-btn-primary-2: #8c5adccc;
   --purple-btn-secondary: rgba(80, 60, 150, 0.4);

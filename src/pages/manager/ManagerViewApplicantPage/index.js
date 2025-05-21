@@ -1,0 +1,1 @@
+export { ManagerViewApplicantPage } from './ManagerViewApplicantPage';

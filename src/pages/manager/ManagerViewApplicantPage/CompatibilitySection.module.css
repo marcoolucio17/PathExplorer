@@ -1,0 +1,36 @@
+/* Compatibility info */
+.compatibilityContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.compatibilityScore {
+  font-family: 'Graphik Medium', sans-serif;
+  font-size: 1.1rem;
+  margin: 0.75rem 0 0.5rem 0;
+  color: var(--text-light);
+}
+
+.compatibilityText {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.compatibilityTitle {
+  font-family: 'Graphik Medium', sans-serif;
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-light);
+}
+
+.compatibilityTitle i {
+  margin-right: 0.75rem;
+  color: var(--purple-icon-1);
+}

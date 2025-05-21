@@ -1,27 +1,18 @@
 import React, {useState,useEffect, useRef, use} from "react";
 import { Link } from "react-router";
 
-
 import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjectInfo'
+import { DashboardSkillsCategory } from "../../components/Dashboard/DashboardSkillsCategory";
 
 import "../../styles/EmpleadoDashboard.css";
+import "../../styles/EmpleadoDashboardFixes.css"; // Import the fixes
 
 import { useGetFetch } from '../../hooks/useGetFetch';
-import { DashboardSkillsCategory } from "../../components/Dashboard/DashboardSkillsCategory";
+
 /**
  * Componente dashboard para usuarios con rol de Empleado
  * @returns
  */
-
-//Se instalo npm i reactstrap
-
-//Cosas pendientes por hacer:
-// Realizar componente la barra de busqueda y el modal de skills
-// El filtro de skills que funcione correctamente
-// Realizar que las imágenes de los proyectos se vean correctamente
-// Realizar que la información de compatibilidad se vea correctamente
-// Realizar la condición de que si no hay proyectos se vea un mensaje de que no hay proyectos
-
 export const EmpleadoDashboard = () => {
   const authState = localStorage.getItem("role");
   //Agregar el error y el loading de cada uno
@@ -32,14 +23,13 @@ export const EmpleadoDashboard = () => {
   const {data: data_skills, error2}= useGetFetch({rutaApi: `skills`,nombre: '',condicion1: 'Skills'});
   const [skillModalOpen, setSkillModalOpen] = useState(false);
  
- const toggleSkillModal = () => {
+  const toggleSkillModal = () => {
     setSkillModalOpen(!skillModalOpen);
-    console.log(skillModalOpen);
   }
  
   return (
     <div className="dashboard-container">
-      <div className= "dashboard-header ">
+      <div className="dashboard-header">
         <div className="nav-search-container-dashboard glass-navbarDashboard">
           <i className="bi bi-search nav-search-icon-dashboard"></i>
           <input
@@ -52,28 +42,25 @@ export const EmpleadoDashboard = () => {
           />
         </div>
         <div className="dashboard-header-buttons" >
-          <h2 className="title-header-buttons">Sort by:</h2>
-          <div className={`dropdown-arrow btn btn-secondary custom-font2 skills_button `} onClick={() => toggleSkillModal()}>
+          <h2 className="title-header-buttons custom-font2">Sort by:</h2>
+          <div className={`dropdown-arrow btn btn-secondary custom-font2 skills_button`} onClick={() => toggleSkillModal()}>
             {skillSelected}
-            
           </div>
           <button className="btn btn-primary custom-font2">
             Compability
           </button>
         </div>
       </div>
-
     
       <DashboardSkillsCategory 
         data_skills={data_skills} 
         skillModalOpen={skillModalOpen}
         setSkillSelected={setSkillSelected} 
-        toggleSkillModal={toggleSkillModal}/>
+        toggleSkillModal={toggleSkillModal}
+      />
 
-
-
-      <div className="dashboard-content"> 
-            {data_projects && <DashboardProjectInfo projects={data_projects}/>}
+      <div className="dashboard-content">
+        {data_projects && <DashboardProjectInfo projects={data_projects} />}
       </div>
     </div>
   );

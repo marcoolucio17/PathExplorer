@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: center;
   padding: var(--container-padding);
-  overflow-x: auto; /* Allow horizontal scroll on zoom */
-  overflow-y: auto; /* Allow vertical scroll when needed */
+  overflow-x: visible; /* Allow horizontal scroll on zoom */
+  overflow-y: visible; /* Allow vertical scroll when needed */
 }
 
 .proyectoMainContent {
@@ -25,7 +25,7 @@
   height: var(--container-height);
   min-height: 500px; /* Minimum height */
   min-width: var(--min-content-width); /* Minimum width */
-  overflow: hidden;
+  overflow: visible;
   position: relative;
 }
 

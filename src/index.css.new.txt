@@ -1,0 +1,104 @@
+/* src/index.css - Global Styles Entry Point */
+
+/* Import all CSS files in correct order */
+@import './styles/variables.css';
+@import './styles/typography.css';
+@import './styles/layout.css';
+@import './styles/components.css';
+@import './styles/utilities.css';
+@import './styles/animations.css';
+@import './styles/navbar.css'; /* Added navbar styles */
+
+/* Global CSS Reset and Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, var(--bg-dark-1) 10%, var(--bg-dark-2) 50%, var(--bg-dark-3) 100%);
+  background-color: var(--bg-dark-1); /* Fallback */
+  color: var(--text-main);
+  font-family: var(--font-primary);
+  margin: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Page Layout */
+#root {
+  height: 100%;
+}
+
+/* Remove default focus outlines and replace with custom ones */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.6);
+  outline-offset: 2px;
+}
+
+/* Better default anchor styles */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Better button reset */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Input styles reset */
+input, select, textarea {
+  font-family: inherit;
+}
+
+/* Container for wrapping page content */
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Add top padding to account for fixed navbar */
+.page-container {
+  padding-top: 70px; /* Adjusted to account for navbar height + some spacing */
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  :root {
+    --container-padding: 1rem;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}

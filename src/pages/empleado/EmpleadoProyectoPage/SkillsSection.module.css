@@ -44,36 +44,3 @@
   padding: clamp(0.25rem, 0.5vw, 0.5rem);
   min-width: 200px; /* Prevent too much shrinking */
 }
-
-.skillTag {
-  background-color: var(--skill-bg);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid var(--glass-border);
-  color: var(--text-skill);
-  padding: clamp(0.25rem, 0.5vw, 0.35rem) clamp(0.6rem, 1.2vw, 0.9rem);
-  border-radius: 50px;
-  font-size: clamp(0.7rem, 1vw, 0.85rem);
-  white-space: nowrap;
-  box-shadow: var(--shadow-outer-subtle);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
-  display: inline-block;
-  line-height: 1.2;
-}
-
-.userSkill {
-  border: 1.5px solid var(--user-skill-border);
-  font-family: 'Graphik Light', sans-serif;
-  color: var(--text-light);
-  background-color: var(--user-skill-bg);
-  box-shadow: inset 0 0 5px var(--highlight-inner-faint), var(--shadow-outer-subtle);
-}
-
-.skillTag:hover {
-  background-color: var(--skill-hover-bg);
-  border-color: var(--border-strong);
-  color: var(--text-light);
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-}

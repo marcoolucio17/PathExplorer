@@ -1,5 +1,6 @@
 /* src/index.css (or src/styles/global.css) */
 @import url('./pages/fonts.css'); /* Adjust path as needed */
+@import './styles/typography.css';
 
 :root {
   /* paleta de colores base */
@@ -13,8 +14,9 @@
   --text-skill: #d0d0d0;
 
   /* colores glass y transparencias */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.221);
+  --glass-bg: rgba(147, 147, 147, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.201);
+  --dropdown: rgba(29, 29, 55, 0.98);
   --highlight-inner-faint: rgba(255, 255, 255, 0.1);
   --highlight-inner-medium: rgba(255, 255, 255, 0.15);
   --highlight-inner-strong: rgba(255, 255, 255, 0.25);
@@ -33,12 +35,73 @@
   --purple-icon-2: rgba(159, 116, 228, 0.8);
   --purple-checkmark: #cd7cff;
 
+  /* botones colores y estilo */
+  --btn-height: 42px;
+  --btn-border-radius: 10px;
+  --btn-font-size: 0.9rem;
+  --btn-padding: 0 1.2rem;
+  --btn-font-family: 'Graphik Medium', sans-serif;
+  --btn-transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Botón primary (morado brillante) */
+  --btn-primary-gradient-1: var(--purple-btn-primary-1);
+  --btn-primary-gradient-2: var(--purple-btn-primary-2);
+  --btn-primary-border: var(--border-strong);
+  --btn-primary-shadow: inset 0 1px 1px var(--highlight-inner-strong), var(--shadow-glow-primary);
+  --btn-primary-glow: rgba(var(--purple-shadow-base), 0.4);
+  
+  /* Botón secondary (morado oscuro) */
+  --btn-secondary-bg: var(--purple-btn-secondary);
+  --btn-secondary-border: var(--border-medium);
+  --btn-secondary-shadow: inset 0 1px 1px var(--highlight-inner-faint), var(--shadow-outer-medium);
+  
+  /* Botón view (azul) */
+  --btn-view-gradient-1: rgba(106, 130, 251, 0.7);
+  --btn-view-gradient-2: rgba(139, 150, 255, 0.7);
+  
+  /* Botón alert (naranja) */
+  --btn-alert-gradient-1: rgba(255, 126, 95, 0.7);
+  --btn-alert-gradient-2: rgba(254, 180, 123, 0.7);
+  
+  /* Estados de botones */
+  --btn-hover-brightness: 1.15;
+  --btn-hover-scale: 1.019;
+  --btn-hover-translateY: -2px;
+  --btn-hover-border: var(--border-hover);
+  
+  --btn-active-brightness: 0.95;
+  --btn-active-scale: 0.98;
+  --btn-active-shadow: var(--shadow-inset-press);
+
+  /*notificaciones */
+  --notification-badge: #804bc6;
+
   /* colores skills */
   --skill-bg: rgba(80, 60, 150, 0.25);
   --user-skill-border: rgba(138, 115, 195, 0.85);
   --user-skill-bg: rgba(100, 70, 170, 0.4);
   --skill-hover-bg: rgba(100, 80, 170, 0.4);
   --expand-skill-bg: rgba(60, 40, 100, 0.35);
+
+  /* colores modales */
+  --modal-backdrop: rgba(0, 0, 0, 0.6);
+  --modal-bg: rgba(42, 42, 70, 0.95);
+  --modal-border: rgba(255, 255, 255, 0.15);
+  --modal-accent: #8b92ff;
+  --modal-button-bg: rgba(255, 255, 255, 0.1);
+  --modal-button-border: rgba(255, 255, 255, 0.2);
+  --modal-button-hover-bg: rgba(255, 255, 255, 0.15);
+  --modal-button-hover-border: rgba(255, 255, 255, 0.3);
+  --modal-button-primary-bg: rgba(99, 102, 241, 0.9);
+  --modal-button-primary-hover: rgba(99, 102, 241, 1);
+  --modal-button-primary-shadow: rgba(99, 102, 241, 0.3);
+  --modal-input-bg: rgba(255, 255, 255, 0.06);
+  --modal-input-border: rgba(255, 255, 255, 0.08);
+  --modal-input-focus-bg: rgba(255, 255, 255, 0.08);
+  --modal-input-focus-border: rgba(255, 255, 255, 0.12);
+  --modal-scrollbar-track: rgba(255, 255, 255, 0.05);
+  --modal-scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --modal-scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
 
   /* bordes y separadores */
   --border-light: rgba(255, 255, 255, 0.1);
@@ -50,6 +113,7 @@
   /* sombras */
   --shadow-text: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 12px 36px rgba(0, 0, 0, 0.35);
   --shadow-outer-subtle: 0 1px 3px rgba(0, 0, 0, 0.2);
   --shadow-outer-medium: 0 2px 10px rgba(0, 0, 0, 0.2);
   --shadow-outer-strong: 0 4px 15px rgba(0, 0, 0, 0.2);

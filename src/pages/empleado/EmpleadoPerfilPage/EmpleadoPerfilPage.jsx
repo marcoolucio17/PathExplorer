@@ -4,10 +4,10 @@ import { ProfileHeaderCard } from "../../../components/ProfileHeaderCard";
 import { Tabs } from "../../../components/Tabs";
 import { GlassCard } from "../../../components/shared/GlassCard";
 import { SkillChip } from "../../../components/SkillChip";
-import { CertificateModal } from "../../../components/CertificateModal";
-import { CVModal } from "../../../components/CVModal";
-import { SkillsModal } from "../../../components/SkillsModal";
-import { AddCertificateModal } from "../../../components/AddCertificateModal";
+import { CertificateModal } from "../../../components/Modals/CertificateModal";
+import { CVModal } from "../../../components/Modals/CVModal";
+import { SkillsModal } from "../../../components/Modals/SkillsModal";
+import { AddCertificateModal } from "../../../components/Modals/AddCertificateModal";
 import CustomScrollbar from "../../../components/CustomScrollbar";
 import { GlassFade } from "../../../components/GlassFade";
 // Import page-specific styles
@@ -193,6 +193,7 @@ export const EmpleadoPerfilPage = () => {
             tabs={TAB_OPTIONS}
             activeTab={activeTab}
             onTabClick={setActiveTab}
+            borderStyle = 'tab-only'
             actionButtons={
               <>
                 <button className={pageStyles.actionBtn} onClick={handleCVClick} title="View CV">

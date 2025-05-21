@@ -1,0 +1,147 @@
+/* Direct animation for items in grid and list views */
+.item {
+  opacity: 0;
+  animation-name: fadeInUp;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-duration: 0.8s;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  60% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Item staggered animation delays */
+.item:nth-child(1) { animation-delay: 0.15s; }
+.item:nth-child(2) { animation-delay: 0.3s; }
+.item:nth-child(3) { animation-delay: 0.45s; }
+.item:nth-child(4) { animation-delay: 0.6s; }
+.item:nth-child(5) { animation-delay: 0.75s; }
+.item:nth-child(6) { animation-delay: 0.9s; }
+.item:nth-child(7) { animation-delay: 1.05s; }
+.item:nth-child(8) { animation-delay: 1.2s; }
+.item:nth-child(9) { animation-delay: 1.35s; }
+.item:nth-child(10) { animation-delay: 1.5s; }
+.item:nth-child(11) { animation-delay: 1.65s; }
+.item:nth-child(12) { animation-delay: 1.8s; }
+.item:nth-child(13) { animation-delay: 1.95s; }
+.item:nth-child(14) { animation-delay: 2.1s; }
+.item:nth-child(15) { animation-delay: 2.25s; }
+.item:nth-child(16) { animation-delay: 2.4s; }
+.item:nth-child(17) { animation-delay: 2.55s; }
+.item:nth-child(18) { animation-delay: 2.7s; }
+.item:nth-child(19) { animation-delay: 2.85s; }
+.item:nth-child(20) { animation-delay: 3.0s; }
+
+/* Handle any items beyond 20 */
+.item:nth-child(n+21) { animation-delay: 3.0s; }
+
+/* Grid layout with container animation */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+/* List layout with container animation */
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+/* Empty state with fade in animation */
+.emptyStateContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* No items message */
+.noItemsMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-light);
+  padding: 2rem;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  box-shadow: var(--shadow-outer-medium);
+  border: 1px solid var(--glass-border);
+}
+
+.noItemsMessage p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+.clearFiltersButton {
+  background: linear-gradient(135deg, var(--purple-btn-primary-1), var(--purple-btn-primary-2));
+  border: 1px solid var(--border-strong);
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding);
+  color: var(--text-light);
+  font-size: var(--btn-font-size);
+  font-weight: 500;
+  font-family: var(--btn-font-family);
+  cursor: pointer;
+  transition: var(--btn-transition);
+  box-shadow: var(--btn-primary-shadow);
+  height: var(--btn-height);
+}
+
+.clearFiltersButton:hover {
+  transform: translateY(var(--btn-hover-translateY));
+  filter: brightness(var(--btn-hover-brightness));
+  box-shadow: var(--shadow-glow-primary-hover);
+  border-color: var(--btn-hover-border);
+  scale: var(--btn-hover-scale);
+}
+
+.clearFiltersButton:active {
+  filter: brightness(var(--btn-active-brightness));
+  transform: scale(var(--btn-active-scale));
+  box-shadow: var(--btn-active-shadow);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+}

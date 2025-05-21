@@ -1,0 +1,1 @@
+export { CVModal } from './CVModal';

@@ -1,0 +1,291 @@
+:root {
+  --container-height: 70vh;
+  --container-padding: 2rem;
+  --min-content-width: 320px;
+}
+
+/* Main container - Using styles from ManagerApplicantsPage */
+.applicantDetailContainer {
+  background: transparent;
+  color: var(--text-light);
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-padding);
+  overflow-x: visible;
+  overflow-y: visible;
+  position: relative;
+}
+
+/* Dashboard content layout */
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  height: var(--container-height);
+  min-height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Page header with back button */
+.pageHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.backButton {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Graphik Medium', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-right: 15px;
+  box-shadow: var(--shadow-card);
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.backButton i {
+  margin-right: 0.5rem;
+}
+
+/* Content layout */
+.applicantDetail {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Main content with tabs */
+.mainContent {
+  position: relative;
+  flex: 3;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  color: var(--text-light);
+  padding: clamp(0.75rem, 1.5vw, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  max-width: 800px;
+}
+
+/* Right sidebar */
+.sidebar {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-width: 280px;
+  max-width: 350px;
+}
+
+/* Applicant header at top of main content */
+.applicantHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tab content container */
+.tabContent {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Card styles - simplified for tabs */
+.card {
+  background: rgba(34, 34, 57, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+/* Section title with icons */
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-family: 'Graphik Medium', sans-serif;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.sectionTitle i {
+  margin-right: 0.75rem;
+  color: var(--purple-icon-1);
+  opacity: 0.9;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0.75rem 0;
+}
+
+/* Loading and error states */
+.loadingState, .errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  width: 100%;
+  text-align: center;
+}
+
+.errorState p {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+/* Sidebar sections - inspired by EmpleadoProyectoPage */
+.sidebarSection {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  color: var(--text-light);
+  padding: clamp(0.75rem, 1.5vw, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebarSection:first-child {
+  flex: 1.5;
+  margin-bottom: 1rem;
+}
+
+.sidebarSection:last-child {
+  flex: 1;
+}
+
+.sidebarContent {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  :root {
+    --container-height: 90vh;
+    --container-padding: 1rem;
+  }
+
+  .applicantDetailContainer {
+    padding: var(--container-padding);
+  }
+
+  .dashboardContent {
+    height: var(--container-height);
+  }
+
+  .applicantDetail {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .mainContent,
+  .sidebar {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .mainContent {
+    height: 70%;
+  }
+  
+  .sidebar {
+    height: 30%;
+    flex-direction: row;
+    min-height: 250px;
+  }
+  
+  .sidebarSection {
+    width: 50%;
+    min-height: 100%;
+  }
+  
+  .sidebarSection:first-child {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .applicantDetailContainer {
+    padding: 1rem;
+    align-items: flex-start;
+  }
+  
+  .dashboardContent {
+    height: auto;
+    min-height: calc(100vh - 2rem);
+  }
+  
+  .mainContent, .sidebar {
+    height: auto;
+    min-height: 300px;
+  }
+  
+  .sidebar {
+    flex-direction: column;
+  }
+  
+  .sidebarSection {
+    width: 100%;
+    min-height: 200px;
+  }
+  
+  .sidebarSection:first-child {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}

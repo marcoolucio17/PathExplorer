@@ -1,0 +1,149 @@
+/* Override styles for ProjectCard - POSITIONING ONLY */
+
+/* List view card - complete grid redesign */
+.cardList {
+  display: grid !important;
+  grid-template-columns: auto auto 1fr auto auto !important;
+  grid-template-areas: 
+    "avatar title-info . skills-circle duration" !important;
+  gap: 25px !important;
+  align-items: center !important;
+  padding: 16px 30px !important;
+  min-height: unset !important;
+  height: auto !important;
+  max-height: 90px !important; /* Limit height */
+}
+
+/* Avatar area */
+.cardList .cardHeader {
+  grid-area: avatar !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Title and project info container */
+.titleContainer {
+  grid-area: title-info !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  max-width: 180px !important;
+}
+
+/* Description floating in the middle */
+.floatingDescription {
+  position: absolute !important;
+  left: 33% !important; /* Position about 1/3 of the way across */
+  transform: translateX(-50%) !important;
+  max-width: 300px !important;
+  min-width: 200px !important;
+  text-align: left !important;
+  z-index: 5 !important;
+}
+
+/* Skills and Circle container */
+.skillsCircleContainer {
+  grid-area: skills-circle !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  height: 100% !important;
+  padding: 0 !important;
+  gap: 15px !important;
+  width: auto !important; 
+}
+
+/* Skills positioning */
+.cardList .cardSkills {
+  border-top: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-wrap: nowrap !important;
+}
+
+/* Duration styling - direct copy of styles */
+.durationColumn {
+  grid-area: duration !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  width: 130px !important; /* Fixed width */
+}
+
+/* Direct copy of detailValue styles to force correct font */
+.originalDetailValue {
+  font-family: 'Graphik Light', sans-serif !important;
+  color: var(--text-main) !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Force specific font for duration value */
+.durationValue {
+  font-family: 'Graphik Light', sans-serif !important;
+  color: var(--text-main) !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Circle positioning */
+.cardList .statusCircle {
+  position: static !important;
+  transform: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+  margin: 0 !important;
+}
+
+/* Hide original details and description */
+.cardList .cardDetails, 
+.cardList .cardDescription {
+  display: none !important;
+}
+
+/* Media query adjustments */
+@media (max-width: 1200px) {
+  .cardList {
+    grid-template-columns: auto auto 1fr auto auto !important;
+    gap: 15px !important;
+  }
+  
+  .floatingDescription {
+    left: 40% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardList {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: 
+      "avatar"
+      "title-info"
+      "skills-circle"
+      "duration" !important;
+    gap: 15px !important;
+    max-height: none !important;
+  }
+  
+  .floatingDescription {
+    position: static !important;
+    transform: none !important;
+    margin: 10px 0 !important;
+    max-width: 100% !important;
+    left: 0 !important;
+  }
+  
+  .skillsCircleContainer {
+    justify-content: center !important;
+    border-top: 1px solid var(--border-light) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    padding: 15px 0 !important;
+    margin: 10px 0 !important;
+  }
+  
+  .durationColumn {
+    align-items: center !important;
+    width: 100% !important;
+  }
+}

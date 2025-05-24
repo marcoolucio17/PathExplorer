@@ -10,6 +10,7 @@ import CustomScrollbar from '../../CustomScrollbar';
  * @param {string} props.variant - Button variant: 'default', 'view', 'alert', 'compatibility'
  * @param {string} props.icon - Icon class (Bootstrap Icons class name, e.g. 'bi-search')
  * @param {boolean} props.isActive - Whether button is in active state
+ * @param {boolean} props.isLoading - Whether button is in loading state (for compatibility variant)
  * @param {boolean} props.isToggle - Whether button is a toggle button (square icon button)
  * @param {string} props.toggleMode - For toggle buttons: 'grid' or 'list'
  * @param {function} props.onToggle - For toggle buttons: function to call when toggled (receives new mode)
@@ -26,6 +27,7 @@ const Button = ({
   variant = 'default',
   icon,
   isActive = false,
+  isLoading = false,
   isToggle = false,
   toggleMode,
   onToggle,
@@ -121,6 +123,7 @@ const Button = ({
     styles[type],
     variant !== 'default' && styles[variant],
     isActive && styles.active,
+    isLoading && styles.loading,
     isToggle && styles.toggle,
     isToggle && toggleMode === 'grid' && styles.gridActive,
     isToggle && toggleMode === 'list' && styles.listActive,

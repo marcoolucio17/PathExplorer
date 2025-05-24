@@ -1,0 +1,271 @@
+.objectivesSection {
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  text-align: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.objectivesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Enhanced objective card design */
+.objectiveCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: clamp(1rem, 2vw, 1.25rem);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.objectiveCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.objectiveCard.completed {
+  background: rgba(124, 84, 196, 0.1);
+  border-color: rgba(124, 84, 196, 0.3);
+}
+
+.objectiveCard.overdue {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.objectiveCard.completed.overdue {
+  background: rgba(124, 84, 196, 0.1);
+  border-color: rgba(124, 84, 196, 0.3);
+}
+
+/* Main content container - left content + right badges */
+.objectiveContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Left side - checkbox, title, and description */
+.objectiveLeft {
+  flex: 1;
+  min-width: 0; /* Allow text to wrap */
+}
+
+.objectiveCheckboxContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+/* Container for title and description */
+.objectiveTitleDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem; /* Tight spacing between title and description */
+  flex: 1;
+  min-width: 0;
+}
+
+.objectiveCheckbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid var(--text-muted);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.objectiveCheckbox:checked {
+  background-color: var(--purple-progress-1);
+  border-color: var(--purple-progress-1);
+}
+
+.objectiveCheckbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 0.25em;
+  top: 0.05em;
+  width: 0.3em;
+  height: 0.6em;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.objectiveTitle {
+  color: var(--text-light);
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  font-weight: 600;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.objectiveCard.completed .objectiveTitle {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+/* Description - now directly under title with minimal spacing */
+.objectiveDescription {
+  color: var(--text-muted);
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  line-height: 1.5;
+  margin: 0;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+.objectiveCard.completed .objectiveDescription {
+  color: var(--text-muted-darker);
+}
+
+/* Right side - priority and date badges */
+.objectiveMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+  flex-shrink: 0;
+  justify-content: flex-start; /* Align to top */
+}
+
+.priorityBadge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 0.5px;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.dateBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: 'Graphik Regular', sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dateBadge.overdueBadge {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--status-urgent);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.dateBadge i {
+  font-size: 0.7rem;
+}
+
+/* Completed indicator */
+.completedIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--purple-progress-1);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.completedIndicator i {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .objectiveContent {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .objectiveMeta {
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .objectiveCard {
+    padding: 1rem;
+  }
+  
+  .objectiveCheckboxContainer {
+    gap: 0.5rem;
+  }
+}
+
+/* Enable scrolling on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .objectivesList {
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Placeholder when no objectives */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  min-height: 120px;
+}
+
+.placeholder i {
+  font-size: 2.5rem;
+  color: var(--text-muted-darker);
+  opacity: 0.6;
+}
+
+.placeholder p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.placeholder span {
+  font-size: 0.85rem;
+  color: var(--text-muted-darker);
+  font-family: 'Graphik Regular', sans-serif;
+  line-height: 1.4;
+}

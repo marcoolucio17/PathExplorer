@@ -1,0 +1,53 @@
+/* Profile Picture Section */
+.profilePictureSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 2px dashed var(--border-color);
+}
+
+.profilePicturePreview {
+  flex-shrink: 0;
+}
+
+.profilePicturePreview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border-color);
+  background: var(--bg-primary);
+}
+
+.profilePictureFields {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Bio Textarea */
+.bioTextarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: var(--font-family);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profilePictureSection {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profilePicturePreview {
+    align-self: center;
+  }
+  
+  .profilePicturePreview img {
+    width: 100px;
+    height: 100px;
+  }
+}

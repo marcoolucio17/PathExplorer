@@ -1,1 +1,0 @@
-export { SkillsModal } from './SkillsModal';

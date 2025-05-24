@@ -1,0 +1,191 @@
+:root {
+  --container-height: 70vh;
+  --container-padding: 2rem;
+  --min-content-width: 320px;
+}
+
+/* Main container */
+.profileContainer {
+  background: transparent;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-padding);
+}
+
+/* Content container */
+.profileContent {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  height: var(--container-height);
+  min-height: 500px;
+  overflow: visible;
+  position: relative;
+}
+
+/* Left column - Profile info and tabs */
+.profileColumnLeft {
+  position: relative;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.3rem, 0.6vw, 0.5rem);
+  height: 100%;
+  min-width: 0;
+  overflow: visible; /* Changed from hidden to visible for shadows */
+}
+
+/* Make ProfileHeaderCard full width and sticky to top */
+.profileColumnLeft > :first-child {
+  flex-shrink: 0;
+  max-height: 200px;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  position: relative;
+  overflow: visible; /* Allow shadows */
+}
+
+/* Tabs should be compact and full width */
+.profileColumnLeft > :nth-child(2) {
+  flex-shrink: 0;
+  margin-bottom: 0.75rem;
+  width: 100%;
+  overflow: visible; /* Allow button hover effects */
+}
+
+/* Tab content container */
+.tabContentContainer {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden; /* Keep hidden here for internal scrolling */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+
+  width: 100%;
+}
+
+/* Force content visibility */
+.tabContentContainer > * {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+}
+
+/* Right column - Sidebar */
+.profileSidebar {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-width: 280px;
+  overflow: visible;
+}
+
+/* Sidebar sections */
+.sidebarSection {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* Allow shadows to show */
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* Skills section (first - fixed height) */
+.sidebarSection:first-child {
+  flex: none; /* Don't flex, use fixed height */
+  height: 350px; /* Fixed height */
+  z-index: 20;
+}
+
+/* Certificates section (last - fixed height) */
+.sidebarSection:last-child {
+  flex: 1; /* Take remaining space */
+  min-height: 400px; /* Minimum height */
+  z-index: 10;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  :root {
+    --container-height: 90vh;
+    --container-padding: 1rem;
+  }
+
+  .profileContainer {
+    padding: var(--container-padding);
+  }
+
+  .profileContent {
+    flex-direction: column;
+    max-width: 100%;
+    height: var(--container-height);
+  }
+
+  .profileColumnLeft,
+  .profileSidebar {
+    flex: none;
+    width: 100%;
+    height: 50%;
+    min-height: 0;
+  }
+  
+  .sidebarSection {
+    min-height: 150px;
+  }
+  
+  .sidebarSection:first-child {
+    height: 250px; /* Smaller on mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-height: 85vh;
+    --container-padding: 1rem;
+  }
+  
+  .profileContainer {
+    padding: var(--container-padding);
+    overflow-y: auto;
+  }
+  
+  .profileContent {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 2rem);
+  }
+  
+  .profileColumnLeft {
+    overflow-y: visible; /* Allow shadows on mobile */
+    min-height: 400px;
+  }
+  
+  .profileSidebar {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .sidebarSection {
+    min-height: 200px;
+    overflow-y: auto;
+  }
+}

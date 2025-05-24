@@ -1,463 +1,76 @@
-import React, { useState, useEffect } from "react";
-//components
-import { ProgressCircle } from '../../../components/ProgressCircle';
+import React from "react";
+
+// Custom Hooks
+import useEmpleadoDashboardPage from '../../../hooks/dashboard/useEmpleadoDashboardPage';
+import useEmpleadoDashboardHeaderConfig from '../../../hooks/dashboard/useEmpleadoDashboardHeaderConfig';
+
+// Components
+import ProjectList from '../../../components/GridList/Project/ProjectList';
 import CustomScrollbar from '../../../components/CustomScrollbar';
-import { DashboardSkillsCategory } from "../../../components/Dashboard/DashboardSkillsCategory";
-import { SkillsModal } from "src/components/Modals/SkillsModal";
-import { CreateProjectModal } from "src/components/Modals/CreateProjectModal";
+import { SkillsModal } from "../../../components/Modals/SkillsModal";
+import { SearchHeader } from "../../../components/SearchHeader";
+import { Tabs } from "../../../components/Tabs";
 
-
-//hooks
-import { useGetFetch } from '../../../hooks/useGetFetch';
-
-//css
-import styles from "./EmpleadoDashboardPage.module.css";
-
+// CSS
+import styles from "src/styles/Pages/GridList/GridListDashboard.module.css";
 
 /**
- * Dashboard component for Empleado role
+ * Dashboard component for Employee role
+ * (Same as Manager but without "View Applicants" and "New Project" buttons)
  */
 export const EmpleadoDashboardPage = () => {
-  // States for search and filtering
-  const [searchProjects, setSearchProjects] = useState('');
-  const [skillSelected, setSkillSelected] = useState('Skills');
-  const [skillModalOpen, setSkillModalOpen] = useState(false);
-  const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] = useState(false);
-  const [showCompatibility, setShowCompatibility] = useState(false);
-  const [skillsFilterModalOpen, setSkillsFilterModalOpen] = useState(false);
-  const [selectedSkillFilters, setSelectedSkillFilters] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
-  const [isLoading, setIsLoading] = useState(true);
+  // Use the employee-specific dashboard hook
+  const dashboardPage = useEmpleadoDashboardPage();
   
-  // Fetch data for projects and skills
-  const { data: data_projects, error } = useGetFetch({ 
-    rutaApi: `projects`, 
-    nombre: searchProjects, 
-    condicion1: skillSelected 
-  });
-  
-  const { data: data_skills, error: error2 } = useGetFetch({ 
-    rutaApi: `skills`, 
-    nombre: '', 
-    condicion1: 'Skills' 
-  });
-
-  // Filter projects based on selected skills
-  useEffect(() => {
-    if (data_projects) {
-      setIsLoading(true); 
-      
-      if (selectedSkillFilters.length === 0) {
-        setFilteredProjects(data_projects);
-      } else {
-        const filtered = data_projects.filter(project => {
-          return project.proyecto_roles.some(proyecto_rol => {
-            return proyecto_rol.roles.requerimientos_roles.some(req_rol => {
-              return selectedSkillFilters.includes(req_rol.requerimientos.habilidades.nombre);
-            });
-          });
-        });
-        setFilteredProjects(filtered);
-      }
-
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 100);
-    }
-  }, [data_projects, selectedSkillFilters]);
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, [filteredProjects]);
-
-  //skill modal
-  const toggleSkillModal = () => {
-    setSkillModalOpen(!skillModalOpen);
-  };
-
-  // Toggle skills filter modal
-  const toggleSkillsFilterModal = () => {
-    setSkillsFilterModalOpen(!skillsFilterModalOpen);
-  };
-
-  // Toggle compatibility view
-  const toggleCompatibility = () => {
-    setShowCompatibility(!showCompatibility);
-  };
-
-  // Toggle view mode (grid/list)
-  const toggleViewMode = () => {
-    //effect
-    const container = document.querySelector(`.${styles.projectsGrid}`) || 
-                      document.querySelector(`.${styles.projectsList}`);
-    if (container) {
-      container.style.opacity = '0';
-      
-      setTimeout(() => {
-        setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-        setTimeout(() => {
-          const newContainer = document.querySelector(`.${styles.projectsGrid}`) || 
-                              document.querySelector(`.${styles.projectsList}`);
-          if (newContainer) {
-            newContainer.style.opacity = '1';
-          }
-        }, 50);
-      }, 200);
-    } else {
-      setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-    }
-  };
-
-  //applying skills filters
-  const handleApplySkillFilters = (selectedSkills) => {
-    setSelectedSkillFilters(selectedSkills);
-    
-    // Update the Skills button text based on selected skills
-    if (selectedSkills.length > 0) {
-      setSkillSelected(`${selectedSkills.length} skills`);
-    } else {
-      setSkillSelected('Skills');
-    }
-  };
-
-  // Remove a specific skill filter
-  const removeSkillFilter = (skillToRemove) => {
-    const updatedSkills = selectedSkillFilters.filter(skill => skill !== skillToRemove);
-    handleApplySkillFilters(updatedSkills);
-  };
-
-  // Clear all skill filters
-  const clearAllSkillFilters = () => {
-    handleApplySkillFilters([]);
-  };
-
-  // Function to generate a random progress value (QUITAR CON BACKEND)
-  const getRandomProgress = () => {
-    return Math.floor(Math.random() * 101); // Random value between 0-100
-  };
-
-  // Render project list or grid
-  const renderProject = (project, proyecto_rol, index, renderMode) => {
-    // Generate random progress value for this project (cambiar a datos actuales de db)
-    const compatibilityValue = getRandomProgress();
-    
-    // Check if this role has any of the selected skills
-    const hasSelectedSkills = selectedSkillFilters.length === 0 || 
-      proyecto_rol.roles.requerimientos_roles.some(req_rol => 
-        selectedSkillFilters.includes(req_rol.requerimientos.habilidades.nombre)
-      );
-    
-    // Only render if it matches the filter criteria
-    if (!hasSelectedSkills) return null;
-    
-    // Common content for both views
-    const projectContent = (
-      <>
-        {/* Show progress circle when compatibility is toggled */}
-        {showCompatibility && (
-          <div className={styles.compatibilityCircle}>
-            <ProgressCircle 
-              value={compatibilityValue}
-              size={60} 
-              strokeWidth={6}
-              title="Match"
-            />
-          </div>
-        )}
-        
-        <div className={styles.projectHeader}>
-          <img 
-            className={styles.projectLogo} 
-            src={project.imagen || "/images/ImagenProyectoDefault.png"} 
-            alt="Project logo"
-          />
-          <div className={styles.projectInfo}>
-            <h3 className={styles.projectTitle}>{project.pnombre}</h3>
-            <p className={styles.projectClient}>by {project.cliente.clnombre}</p>
-          </div>
-        </div>
-        
-        <div className={styles.projectRole}>
-          <h4 className={styles.roleName}>{proyecto_rol.roles.nombrerol}</h4>
-          <p className={styles.roleDescription}>{proyecto_rol.roles.descripcionrol}</p>
-        </div>
-        
-        <div className={styles.projectFooter}>
-          <div className={styles.projectSkills}>
-            {proyecto_rol.roles.requerimientos_roles.map((req_rol) => (
-              <div 
-                className={`${styles.skillTag} ${selectedSkillFilters.includes(req_rol.requerimientos.habilidades.nombre) ? styles.highlightedSkill : ''}`} 
-                key={`${project.idproyecto}-${proyecto_rol.idrol}-${req_rol.requerimientos.habilidades.idhabilidad}`}
-              >
-                {req_rol.requerimientos.habilidades.nombre}
-              </div>
-            ))}
-          </div>
-          
-          <div className={styles.projectParticipants}>
-            <img className={styles.participantAvatar} src="/img/fotogabo.jpg" alt="Participant" />
-            <img className={styles.participantAvatar} src="/img/fotogabo.jpg" alt="Participant" />
-            <img className={styles.participantAvatar} src="/img/fotogabo.jpg" alt="Participant" />
-          </div>
-        </div>
-      </>
-    );
-
-    const staggerDelay = `${50 + (index * 80)}ms`;
-    const key = `${project.idproyecto}-${proyecto_rol.idrol}`;
-
-    // Return the appropriate component based on the requested render mode
-    if (renderMode === 'grid') {
-      return (
-        <div 
-          className={`${styles.projectCard} ${isLoading ? styles.loading : styles.loaded}`}
-          key={key}
-          style={{ '--stagger-delay': staggerDelay }}
-        >
-          {projectContent}
-        </div>
-      );
-    } else {
-      return (
-        <div 
-          className={`${styles.projectListItem} ${isLoading ? styles.loading : styles.loaded}`}
-          key={key}
-          style={{ '--stagger-delay': staggerDelay }}
-        >
-          {projectContent}
-        </div>
-      );
-    }
-  };
-
-  const flattenedProjects = filteredProjects.flatMap(project => 
-    project.proyecto_roles.map(proyecto_rol => ({ project, proyecto_rol }))
-  );
-
-  const handleCreateProjectClick = () => {
-    setIsCreateProjectModalOpen(true);
-  };
-
-  const closeCreateProjectModal = () => {
-    setIsCreateProjectModalOpen(false);
-  };
-
-  const handleCreateProject = (newCertificate) => {
-    setUserCertificates([...userCertificates, newCertificate]);
-  };
+  // Get employee-specific header configuration (excludes manager buttons)
+  const headerProps = useEmpleadoDashboardHeaderConfig(dashboardPage);
 
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.dashboardContent}>
-        <div className={styles.searchHeader}>
-          <div className={styles.searchContainer}>
-            <i className="bi bi-search"></i>
-            <input
-              type="text"
-              value={searchProjects}
-              name="searchDashboard"
-              onChange={(e) => setSearchProjects(e.target.value)}
-              placeholder="Search..."
-              className={styles.searchInput}
-              aria-label="Search projects"
-            />
-          </div>
-          
-          <div className={styles.sortContainer}>
-            <h2 className={styles.sortLabel}>Sort by:</h2>
-            <button 
-              className={`${styles.filterButton} ${styles.skillsButton} ${selectedSkillFilters.length > 0 ? styles.activeButton : ''}`}
-              onClick={toggleSkillsFilterModal}
-            >
-              {skillSelected}
-              {selectedSkillFilters.length > 0 && (
-                <span className={styles.filterBadge}>{selectedSkillFilters.length}</span>
-              )}
-            </button>
-            <button 
-              className={`${styles.filterButton} ${styles.compabilityButton} ${showCompatibility ? styles.activeButton : ''}`}
-              onClick={toggleCompatibility}
-            >
-              Compability
-            </button>
-            
-            {/* View toggle button */}
-            <button 
-              className={`${styles.viewToggleButton} ${viewMode === 'list' ? styles.listActive : styles.gridActive}`}
-              onClick={toggleViewMode}
-              title={viewMode === 'grid' ? 'Switch to list view' : 'Switch to grid view'}
-            >
-              <i className={`bi bi-${viewMode === 'grid' ? 'list' : 'grid-3x3-gap'}`}></i>
-            </button>
-            <button className={styles.createButton} onClick={handleCreateProjectClick}>
-              <i className="bi bi-file-earmark-plus" /> New Project
-            </button>
-          </div>
+        <div className={styles.pageHeader}>
+          <h1 className={styles.pageTitle}>Project Dashboard</h1>
         </div>
+        
+        {/* Search header with filters */}
+        <SearchHeader {...headerProps} />
+        
+        {/* Tabs for different project statuses */}
+        <Tabs 
+          tabs={dashboardPage.tabNames.map(tab => ({
+            name: tab,
+            notificationCount: dashboardPage.tabCounts[tab] || 0
+          }))}
+          activeTab={dashboardPage.activeTab}
+          onTabClick={dashboardPage.setActiveTab}
+        />
 
-        {/* Active filters display */}
-        {selectedSkillFilters.length > 0 && (
-          <div className={styles.activeFiltersContainer}>
-            <div className={styles.activeFiltersHeader}>
-              <h3 className={styles.activeFiltersTitle}>Active Filters:</h3>
-              <button 
-                className={styles.clearAllButton} 
-                onClick={clearAllSkillFilters}
-              >
-                Clear All
-              </button>
-            </div>
-            <div className={styles.activeFiltersList}>
-              {selectedSkillFilters.map(skill => (
-                <div key={skill} className={styles.activeFilterChip}>
-                  {skill}
-                  <button 
-                    className={styles.removeFilterButton}
-                    onClick={() => removeSkillFilter(skill)}
-                  >
-                    <i className="bi bi-x"></i>
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className={styles.projectsContainer}>
-          <CustomScrollbar fadeBackground="transparent" fadeHeight={40}>
-            {filteredProjects.length === 0 ? (
-              <div className={styles.noProjectsMessage}>
-                <i className="bi bi-search" style={{ fontSize: '2rem', marginBottom: '1rem' }}></i>
-                <p>No projects match your selected filters</p>
-                <button 
-                  className={styles.clearFiltersButton}
-                  onClick={clearAllSkillFilters}
-                >
-                  Clear Filters
-                </button>
-              </div>
-            ) : (
-              <div className={viewMode === 'grid' ? styles.projectsGrid : styles.projectsList}>
-                {flattenedProjects.map((item, index) => {
-                  // Generate random progress value for this project
-                  const compatibilityValue = getRandomProgress();
-                  
-                  // Check if this role has any of the selected skills
-                  const hasSelectedSkills = selectedSkillFilters.length === 0 || 
-                    item.proyecto_rol.roles.requerimientos_roles.some(req_rol => 
-                      selectedSkillFilters.includes(req_rol.requerimientos.habilidades.nombre)
-                    );
-                  
-                  // Only render if it matches the filter criteria
-                  if (!hasSelectedSkills) return null;
-                  
-                  // Calculate delay for staggered animation
-                  const staggerDelay = `${50 + (index * 80)}ms`;
-                  
-                  // Common content for both views
-                  const projectContent = (
-                    <>
-                      {/* Show progress circle when compatibility is toggled */}
-                      {showCompatibility && (
-                        <div className={styles.compatibilityCircle}>
-                          <ProgressCircle 
-                            value={compatibilityValue}
-                            size={60} 
-                            strokeWidth={6}
-                            title="Match"
-                          />
-                        </div>
-                      )}
-                      
-                      <div className={styles.projectHeader}>
-                        <img 
-                          className={styles.projectLogo} 
-                          src={item.project.imagen || "/images/ImagenProyectoDefault.png"} 
-                          alt="Project logo"
-                        />
-                        <div className={styles.projectInfo}>
-                          <h3 className={styles.projectTitle}>{item.project.pnombre}</h3>
-                          <p className={styles.projectClient}>by {item.project.cliente.clnombre}</p>
-                        </div>
-                      </div>
-                      
-                      <div className={styles.projectRole}>
-                        <h4 className={styles.roleName}>{item.proyecto_rol.roles.nombrerol}</h4>
-                        <p className={styles.roleDescription}>{item.proyecto_rol.roles.descripcionrol}</p>
-                      </div>
-                      
-                      <div className={styles.projectFooter}>
-                        <div className={styles.projectSkills}>
-                          {item.proyecto_rol.roles.requerimientos_roles.map((req_rol) => (
-                            <div 
-                              className={`${styles.skillTag} ${selectedSkillFilters.includes(req_rol.requerimientos.habilidades.nombre) ? styles.highlightedSkill : ''}`} 
-                              key={`${item.project.idproyecto}-${item.proyecto_rol.idrol}-${req_rol.requerimientos.habilidades.idhabilidad}`}
-                            >
-                              {req_rol.requerimientos.habilidades.nombre}
-                            </div>
-                          ))}
-                        </div>
-                        
-                        <div className={styles.projectParticipants}>
-                          <img className={styles.participantAvatar} src="/img/fotogabo.jpg" alt="Participant" />
-                          <img className={styles.participantAvatar} src="/img/fotogabo.jpg" alt="Participant" />
-                          <img className={styles.participantAvatar} src="/img/fotogabo.jpg" alt="Participant" />
-                        </div>
-                      </div>
-                    </>
-                  );
-                  
-                  // Apply different styles based on view mode
-                  if (viewMode === 'grid') {
-                    return (
-                      <div 
-                        className={`${styles.projectCard} ${isLoading ? styles.loading : styles.loaded}`}
-                        key={`${item.project.idproyecto}-${item.proyecto_rol.idrol}`}
-                        style={{ '--stagger-delay': staggerDelay }}
-                      >
-                        {projectContent}
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div 
-                        className={`${styles.projectListItem} ${isLoading ? styles.loading : styles.loaded}`}
-                        key={`${item.project.idproyecto}-${item.proyecto_rol.idrol}`}
-                        style={{ '--stagger-delay': staggerDelay }}
-                      >
-                        {projectContent}
-                      </div>
-                    );
-                  }
-                }).filter(Boolean)}
-              </div>
-            )}
+        {/* Main content area with projects list */}
+        <div className={styles.cardsContainer}>
+          <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showHorizontalScroll={false}>
+            <ProjectList 
+              projects={dashboardPage.displayProjects}
+              viewMode={dashboardPage.viewMode}
+              showCompatibility={dashboardPage.showCompatibility}
+              selectedSkillFilters={dashboardPage.selectedSkillFilters}
+              userSkills={dashboardPage.userSkills}
+              calculateMatchPercentage={dashboardPage.calculateMatchPercentage}
+              onClearFilters={dashboardPage.handleClearFilters}
+              isLoading={dashboardPage.isLoading}
+            />
           </CustomScrollbar>
         </div>
       </div>
-      
-      {/* Original DashboardSkillsCategory modal - keeping it for backward compatibility */}
-      <DashboardSkillsCategory 
-        data_skills={data_skills} 
-        skillModalOpen={skillModalOpen}
-        setSkillSelected={setSkillSelected} 
-        toggleSkillModal={toggleSkillModal}
-      />
 
-      {/* Using the existing SkillsModal component for filtering */}
+      {/* Modals */}
       <SkillsModal 
-        isOpen={skillsFilterModalOpen}
-        onClose={() => setSkillsFilterModalOpen(false)}
-        userSkills={selectedSkillFilters}
-        onUpdateSkills={handleApplySkillFilters}
-      />
-
-      <CreateProjectModal
-        isOpen={isCreateProjectModalOpen}
-        onClose={closeCreateProjectModal}
-        onCreateProject={handleCreateProject}
+        isOpen={dashboardPage.modals.skillsFilter}
+        onClose={() => dashboardPage.closeModal('skillsFilter')}
+        userSkills={dashboardPage.selectedSkillFilters}
+        onUpdateSkills={dashboardPage.handleApplySkillFilters}
       />
     </div>
   );
 };
+
+export default EmpleadoDashboardPage;

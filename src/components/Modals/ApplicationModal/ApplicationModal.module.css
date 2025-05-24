@@ -1,0 +1,171 @@
+/* Application Modal Styles */
+.applicationContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-light);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.formLabel i {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-family: 'Graphik Light', sans-serif;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.formSelect {
+  cursor: pointer;
+}
+
+.formSelect option {
+  background: var(--modal-bg);
+  color: var(--text-light);
+  padding: 0.5rem;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: 'Graphik Light', sans-serif;
+  line-height: 1.5;
+}
+
+.error {
+  border-color: var(--error-color, #ef4444) !important;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.errorText {
+  color: var(--error-color, #ef4444);
+  font-size: 0.8rem;
+  font-family: 'Graphik Light', sans-serif;
+  margin-top: 0.25rem;
+}
+
+.helpText {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-family: 'Graphik Light', sans-serif;
+  font-style: italic;
+}
+
+.characterCount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-family: 'Graphik Light', sans-serif;
+  margin-top: 0.25rem;
+}
+
+.projectSummary {
+  padding: 1rem;
+  background: rgba(74, 144, 226, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  margin-top: 1rem;
+}
+
+.projectSummary h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.summaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summaryContent p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.summaryContent strong {
+  color: var(--text-light);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+/* Form validation states */
+.formInput.error:focus,
+.formSelect.error:focus,
+.formTextarea.error:focus {
+  border-color: var(--error-color, #ef4444);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .applicationContent {
+    gap: 1rem;
+  }
+  
+  .formInput,
+  .formSelect,
+  .formTextarea {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  .formTextarea {
+    min-height: 100px;
+  }
+  
+  .projectSummary {
+    padding: 0.75rem;
+  }
+  
+  .characterCount {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}

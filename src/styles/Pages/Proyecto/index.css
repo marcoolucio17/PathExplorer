@@ -1,0 +1,26 @@
+/* 
+ * Proyecto Page Styles Index
+ * 
+ * This directory contains organized CSS modules for the EmpleadoProyectoPage
+ * following the same pattern as other pages in the application.
+ * 
+ * Structure:
+ * - EmpleadoProyectoPage.module.css: Main page layout and container styles
+ * - PeopleSection.module.css: Styles for the people/team section
+ * - SkillsSection.module.css: Styles for the skills and compatibility section
+ * 
+ * Usage:
+ * Import these in your React components like:
+ * 
+ * import styles from "src/styles/Pages/Proyecto/EmpleadoProyectoPage.module.css";
+ * import peopleStyles from "src/styles/Pages/Proyecto/PeopleSection.module.css";
+ * import skillsStyles from "src/styles/Pages/Proyecto/SkillsSection.module.css";
+ * 
+ */
+
+/* Main page styles */
+@import './EmpleadoProyectoPage.module.css';
+
+/* Section-specific styles */
+@import './PeopleSection.module.css';
+@import './SkillsSection.module.css';

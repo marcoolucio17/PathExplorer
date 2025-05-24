@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Button from '../shared/Button';
 import styles from './MembersDropdown.module.css';
 
-const MembersDropdown = ({ members, peopleSectionRef }) => {
+const MembersDropdown = ({ members, peopleSectionRef, className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -20,11 +21,13 @@ const MembersDropdown = ({ members, peopleSectionRef }) => {
   }, [isOpen, peopleSectionRef]);
 
   return (
-    <div
-      className={`${styles.membersDropdown} ${isOpen ? styles.open : ''}`}
-      onClick={toggleDropdown}
-    >
-      <div className={styles.membersDropdownHeader}>
+    <div className={`${styles.membersDropdown} ${isOpen ? styles.open : ''}`}>
+      <Button
+        type="primary"
+        onClick={toggleDropdown}
+        fullWidth
+        className={`${styles.membersButton} ${className}`}
+      >
         <div className={styles.membersTextWrapper}>
           <div className={`${styles.stackedAvatars} ${isOpen ? styles.hidden : ''}`}>
             {members.slice(0, 3).map((member, index) => (
@@ -41,7 +44,7 @@ const MembersDropdown = ({ members, peopleSectionRef }) => {
         <i
           className={`${styles.dropdownArrow} bi bi-caret-down-fill ${isOpen ? styles.up : ''}`}
         ></i>
-      </div>
+      </Button>
 
       <div className={styles.membersDropdownContent}>
         {members.map((member) => (

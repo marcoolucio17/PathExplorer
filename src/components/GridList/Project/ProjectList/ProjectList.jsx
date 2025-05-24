@@ -16,7 +16,7 @@ import styles from 'src/styles/GridList/GridListContainer.module.css';
  * @param {boolean} props.isLoading - Whether items are currently loading
  */
 const ProjectList = ({ 
-  projects, 
+  projects = [], 
   viewMode, 
   showCompatibility, 
   selectedSkillFilters = [],
@@ -25,8 +25,20 @@ const ProjectList = ({
   onClearFilters,
   isLoading = false
 }) => {
+  // Safety check for undefined/null projects array
+  const safeProjects = Array.isArray(projects) ? projects : [];
+  
+  // If loading, show loader
+  if (isLoading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loader}></div>
+      </div>
+    );
+  }
+
   // If no projects, show empty state
-  if (projects.length === 0) {
+  if (safeProjects.length === 0) {
     return (
       <div className={styles.emptyStateContainer}>
         <div className={styles.noItemsMessage}>
@@ -45,22 +57,33 @@ const ProjectList = ({
 
   // Container class based on viewMode
   const containerClass = viewMode === 'grid' ? styles.gridContainer : styles.listContainer;
+  
+  // Create a unique key for the container to force re-render and animation restart
+  const containerKey = `container-projects-${viewMode}`;
 
   return (
-    <div className={containerClass}>
-      {projects.map((item, index) => {
+    <div 
+      key={containerKey}
+      className={containerClass}
+    >
+      {safeProjects.map((item, index) => {
+        // Check if item has the expected structure
+        if (!item || !item.project || !item.proyecto_rol) {
+          console.warn('Invalid project item structure:', item);
+          return null; // Skip rendering this item
+        }
+        
         // Calculate match percentage if function is provided
         const matchPercentage = calculateMatchPercentage ? 
           calculateMatchPercentage(item.project, item.proyecto_rol) : 0;
         
-        // Calculate delay for staggered animation
-        const staggerDelay = `${50 + (index * 80)}ms`;
+        // Force cards to always re-render when filter changes with a unique key
+        const renderKey = `${item.project.idproyecto || 'unknown'}-${item.proyecto_rol.idrol || 'unknown'}-${index}`;
         
         return (
           <div 
-            key={`${item.project.idproyecto}-${item.proyecto_rol.idrol}`}
-            className={`${styles.item} ${isLoading ? styles.loading : styles.loaded}`}
-            style={{ '--stagger-delay': staggerDelay }}
+            key={renderKey}
+            className={styles.item}
           >
             <ProjectCard
               project={item.project}
@@ -70,6 +93,7 @@ const ProjectList = ({
               matchPercentage={matchPercentage}
               selectedSkillFilters={selectedSkillFilters}
               userSkills={userSkills}
+              index={index}
             />
           </div>
         );

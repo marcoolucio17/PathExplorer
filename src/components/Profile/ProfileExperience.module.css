@@ -1,0 +1,190 @@
+.timeline {
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  padding-left: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  position: relative;
+  height: 100%;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 4rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: transparent;
+}
+
+.timeline li {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+/* Create timeline segment above the date */
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -3.75rem;
+  top: 0;
+  width: 2px;
+  height: 0px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Create timeline segment below the date */
+.timeline li::after {
+  content: "";
+  position: absolute;
+  left: -3.75rem;
+  top: 2.5rem; /* Start after date height */
+  width: 2px;
+  bottom: -1.75rem; /* Extend to next item */
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.timeline li:last-child::after {
+  content: "";
+  position: absolute;
+  left: -3.75rem;
+  top: 2.5rem; /* Start after date height */
+  width: 0px;
+  bottom: 0rem; /* Extend to next item */
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.date {
+  position: absolute;
+  left: -145px;
+  top: 10px;
+  width: 140px;
+  text-align: right;
+  color: var(--text-muted-darker);
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-family: 'Graphik Light', sans-serif;
+  overflow: visible;
+  z-index: 2;
+}
+
+/* Adjust date positioning to stay within container */
+@media (max-width: 1200px) {
+  .date {
+    position: relative;
+    left: 0;
+    width: auto;
+    text-align: left;
+    margin-bottom: 0.25rem;
+  }
+  
+  .timeline li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.bullet {
+  width: clamp(35px, 4vw, 45px);
+  height: clamp(35px, 4vw, 45px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.bullet img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.content h3 {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  color: var(--text-light);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.content p {
+  margin: 0.4rem 0 0;
+  color: var(--text-muted);
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  line-height: 1.4;
+  font-family: 'Graphik Regular', sans-serif;
+}
+
+/* Enable scrolling on zoom */
+@media (max-width: 768px), (max-height: 700px) {
+  .timeline {
+    overflow-y: auto;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .timeline li {
+    padding-left: 3rem;
+  }
+  
+  .date {
+    position: static;
+    width: auto;
+    text-align: left;
+    margin-bottom: 0.25rem;
+  }
+  
+  .timeline::before {
+    left: 1rem;
+  }
+}
+
+/* Placeholder when no experience */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  min-height: 120px;
+  margin-left: -5rem; /* Offset the timeline padding */
+}
+
+.placeholder i {
+  font-size: 2.5rem;
+  color: var(--text-muted-darker);
+  opacity: 0.6;
+}
+
+.placeholder p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.placeholder span {
+  font-size: 0.85rem;
+  color: var(--text-muted-darker);
+  font-family: 'Graphik Regular', sans-serif;
+  line-height: 1.4;
+}

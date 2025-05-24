@@ -41,7 +41,7 @@
 /* Card list item styling (list view) */
 .cardList {
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-columns: auto 1fr auto minmax(300px, 350px) auto;
   grid-template-areas: 
     "avatar info progress details actions";
   gap: 20px;
@@ -93,6 +93,7 @@
   flex-direction: column;
   gap: 5px;
   align-items: flex-start;
+  width: 100px; /* Fixed width for each detail column */
 }
 
 .cardList .detailLabel {
@@ -213,6 +214,11 @@
   margin-bottom: 10px;
   height: 42px; /* Fixed height for exactly 2 lines at 1.4 line height */
   overflow: hidden;
+}
+
+/* Reduced margin for better spacing */
+.reducedMargin {
+  margin-bottom: 4px;
 }
 
 .descriptionText {

@@ -1,0 +1,134 @@
+/* Compatibility Modal Styles */
+.compatibilityContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.compatibilityScore {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scoreTitle {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.progressCircleWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.scoreDescription {
+  margin: 1rem 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.skillsSection {
+  padding: 1rem 0;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.sectionTitle i {
+  font-size: 0.9rem;
+}
+
+.sectionTitle i.bi-check-circle-fill {
+  color: var(--success-color, #22c55e);
+}
+
+.sectionTitle i.bi-exclamation-circle-fill {
+  color: var(--warning-color, #f59e0b);
+}
+
+.sectionTitle i.bi-lightbulb-fill {
+  color: var(--info-color, #3b82f6);
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.missingSkillsNote {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.recommendations {
+  padding: 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.recommendationGood {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--success-color, #22c55e);
+  line-height: 1.5;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.recommendationModerate {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--warning-color, #f59e0b);
+  line-height: 1.5;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.recommendationLow {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--info-color, #3b82f6);
+  line-height: 1.5;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scoreHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .percentage {
+    font-size: 1.25rem;
+  }
+  
+  .compatibilityScore {
+    padding: 1rem;
+  }
+  
+  .skillsList {
+    justify-content: center;
+  }
+}

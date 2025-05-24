@@ -1,0 +1,45 @@
+/* All Skills Modal Styles */
+
+.allSkillsContent {
+  padding: 0.5rem 0;
+}
+
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.noSkillsMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.noSkillsMessage i {
+  font-size: 2.5rem;
+  opacity: 0.6;
+}
+
+.noSkillsMessage span {
+  font-size: 1rem;
+  font-family: 'Graphik Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .skillsGrid {
+    gap: 0.5rem;
+  }
+  
+  .allSkillsContent {
+    padding: 0.25rem 0;
+  }
+}

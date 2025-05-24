@@ -1,0 +1,203 @@
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.modalHeader {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 5px 0 0;
+}
+
+.controls {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.searchBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchBox i {
+  position: absolute;
+  left: 12px;
+  color: #888;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  border-color: #4a9ecc;
+}
+
+.projectsContainer {
+  padding: 15px 20px;
+  overflow-y: auto;
+  flex: 1;
+  max-height: 300px;
+}
+
+.projectOption {
+  margin-bottom: 8px;
+}
+
+.projectButton {
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.projectButton:hover {
+  background-color: #f8f9fa;
+  border-color: #ddd;
+}
+
+.projectButton.active {
+  background-color: rgba(74, 158, 204, 0.1);
+  border-color: rgba(74, 158, 204, 0.3);
+  color: #4a9ecc;
+  font-weight: 500;
+}
+
+.noResults {
+  padding: 20px 0;
+  text-align: center;
+  color: #888;
+}
+
+.buttonGroup {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #eee;
+  gap: 10px;
+}
+
+.cancelButton {
+  padding: 8px 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: #f8f8f8;
+}
+
+.applyButton {
+  padding: 8px 16px;
+  background-color: #4a9ecc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.applyButton:hover {
+  background-color: #3d8bb3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* For closing animations */
+.closing {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

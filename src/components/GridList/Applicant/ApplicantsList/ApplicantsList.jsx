@@ -20,11 +20,21 @@ const ApplicantsList = ({
   viewMode, 
   showCompatibility, 
   activeTab,
+  isLoading,
   calculateMatchPercentage,
   onViewRequest,
   onViewReason,
   onClearFilters
 }) => {
+  // If loading, show loader
+  if (isLoading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loader}></div>
+      </div>
+    );
+  }
+
   // If no applicants, show empty state
   if (applicants.length === 0) {
     return (

@@ -1,146 +1,259 @@
-import React, { useRef } from 'react';
+import React from 'react';
+
+// Custom Hooks
+import useEmpleadoProyectoPage from '../../../hooks/proyecto/useEmpleadoProyectoPage';
+
+// Components
 import { GlassCard } from '../../../components/shared/GlassCard';
 import { ProgressBar } from '../../../components/ProgressBar';
-import { MembersDropdown } from '../../../components/MembersDropdown';
 import SkillChip from '../../../components/SkillChip/SkillChip';
-// Import page-specific styles
-import pageStyles from './EmpleadoProyectoPage.module.css';
-// Import styles for specific sections
-import detailsStyles from './ProjectDetails.module.css';
-import peopleStyles from './PeopleSection.module.css';
-import skillsStyles from './SkillsSection.module.css';
+import Button from '../../../components/shared/Button';
+import CustomScrollbar from '../../../components/CustomScrollbar';
 
-// Placeholder images
-const pepsiLogo = '/img/pepsi-logo.png';
-const user1 = '/img/fotogabo.jpg';
-const user2 = '/img/fotogabo.jpg';
-const user3 = '/img/fotogabo.jpg';
+// Modals
+import { SkillsModal } from "../../../components/Modals/SkillsModal";
+import { CompatibilityModal } from "../../../components/Modals/CompatibilityModal";
+import { ApplicationModal } from "../../../components/Modals/ApplicationModal";
+import { AllSkillsModal } from "../../../components/Modals/AllSkillsModal";
 
+// CSS
+import styles from "src/styles/Pages/Proyecto/EmpleadoProyectoPage.module.css";
+import peopleStyles from "src/styles/Pages/Proyecto/PeopleSection.module.css";
+import skillsStyles from "src/styles/Pages/Proyecto/SkillsSection.module.css";
+
+/**
+ * Project details page component for Employee role
+ */
 export const EmpleadoProyectoPage = () => {
-  // Reference to the entire "People" section container
-  const peopleSectionRef = useRef(null);
+  // Use the custom hook to handle all logic
+  const proyectoPage = useEmpleadoProyectoPage();
+  const { projectData, userSkills, isApplied, isLoading } = proyectoPage;
 
-  // Example list of members
-  const members = [
-    { id: 1, name: 'Gabriel Martinez', avatar: user1, role: 'Frontend Developer' },
-    { id: 2, name: 'Sofia Rodriguez', avatar: user2, role: 'Backend Developer' },
-    { id: 3, name: 'Carlos Hernandez', avatar: user3, role: 'UI/UX Designer' },
-  ];
+  const compatibilityPercentage = proyectoPage.calculateCompatibilityPercentage();
+
+  // Skills display logic - show max 6 skills, then +X more
+  const maxVisibleSkills = 6;
+  const visibleSkills = projectData.requiredSkills.slice(0, maxVisibleSkills);
+  const remainingSkillsCount = projectData.requiredSkills.length - maxVisibleSkills;
 
   return (
-    <div className={pageStyles.empleadoProyectoContainer}>
-      <div className={pageStyles.proyectoMainContent}>
-        {/* Left Column */}
-        <div className={pageStyles.proyectoDetails}>
-          <h1 className={detailsStyles.cardTitle}>Project Pepsi</h1>
-          <div className={detailsStyles.proyectoDates}>
-            <span>Start Date: 4/8/2025</span>
-            <span>Est. Finish Date: 4/20/2025</span>
+    <div className={styles.proyectoContainer}>
+      <div className={styles.proyectoContent}>
+        {/* Left Column - Project Details */}
+        <div className={styles.proyectoDetails}>
+          <div className={styles.pageHeader}>
+            <div className={styles.titleContainer}>
+              <h1 className={styles.pageTitle}>
+                {projectData.title} - <span className={styles.userRole}>Sr. Frontend Developer</span>
+              </h1>
+            </div>
           </div>
-          <div className={detailsStyles.proyectoProgress}>
-            <ProgressBar percentage={67} />
+          
+          <div className={styles.proyectoDates}>
+            <span>Start Date: {projectData.startDate}</span>
+            <span>Est. Finish Date: {projectData.estimatedFinishDate}</span>
+          </div>
+          
+          <div className={styles.proyectoProgress}>
+            <ProgressBar percentage={projectData.progress} />
           </div>
 
           {/* Description Section */}
-          <div className={detailsStyles.proyectoDescription}>
-            <div className={detailsStyles.proyectoDescriptionContent}>
-              {/* Project Goal */}
-              <div className={detailsStyles.descriptionSection}>
-                <div className={detailsStyles.sectionHeader}>
-                  <div className={detailsStyles.iconContainer}>
-                    <i className="bi bi-bullseye"></i>
+          <div className={styles.proyectoDescription}>
+            <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showHorizontalScroll={false}>
+              <div className={styles.proyectoDescriptionContent}>
+                {/* Project Goal */}
+                <div className={styles.descriptionSection}>
+                  <div className={styles.sectionHeader}>
+                    <div className={styles.iconContainer}>
+                      <i className="bi bi-bullseye"></i>
+                    </div>
+                    <h2 className={styles.sectionTitle}>Project Goal</h2>
                   </div>
-                  <h2 className={detailsStyles.sectionTitle}>Project Goal</h2>
+                  <p className={styles.sectionText}>
+                    {projectData.goal}
+                  </p>
                 </div>
-                <p className={detailsStyles.sectionText}>
-                  Build a mobile app that acts like a social network for Pepsi customers —
-                  to share photos, connect, and stay updated.
-                </p>
-              </div>
 
-              {/* Deliverables */}
-              <div className={detailsStyles.descriptionSection}>
-                <div className={detailsStyles.sectionHeader}>
-                  <div className={detailsStyles.iconContainer}>
-                    <i className="bi bi-box-seam"></i>
+                {/* Deliverables */}
+                <div className={styles.descriptionSection}>
+                  <div className={styles.sectionHeader}>
+                    <div className={styles.iconContainer}>
+                      <i className="bi bi-box-seam"></i>
+                    </div>
+                    <h2 className={styles.sectionTitle}>Deliverables</h2>
                   </div>
-                  <h2 className={detailsStyles.sectionTitle}>Deliverables</h2>
+                  <ul className={styles.deliverablesList}>
+                    {projectData.deliverables.map((deliverable, index) => (
+                      <li key={index}>
+                        <i className={`bi bi-check-lg ${styles.checkmarkIcon}`}></i>
+                        {deliverable}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className={detailsStyles.deliverablesList}>
-                  <li><i className={`bi bi-check-lg ${detailsStyles.checkmarkIcon}`}></i> Android & iOS mobile app</li>
-                  <li><i className={`bi bi-check-lg ${detailsStyles.checkmarkIcon}`}></i> Backend to manage user data & posts</li>
-                  <li><i className={`bi bi-check-lg ${detailsStyles.checkmarkIcon}`}></i> Secure database</li>
-                  <li><i className={`bi bi-check-lg ${detailsStyles.checkmarkIcon}`}></i> Admin web portal</li>
-                </ul>
               </div>
-            </div>
+            </CustomScrollbar>
           </div>
 
-          <div className={detailsStyles.proyectoActions}>
-            <button className={`${detailsStyles.btn} ${detailsStyles.btnSecondary}`}>
+          {/* Action buttons */}
+          <div className={styles.proyectoActions}>
+            <Button 
+              type="secondary"
+              onClick={proyectoPage.handleShowCompatibility}
+            >
               Compatibility
-            </button>
-            <button className={`${detailsStyles.btn} ${detailsStyles.btnPrimary}`}>
-              <i className="bi bi-check-circle-fill"></i>
-              Apply to Project
-            </button>
+            </Button>
+            
+            <Button 
+              type="primary"
+              icon={isLoading ? "bi-arrow-clockwise" : isApplied ? "bi-check-circle-fill" : "bi-check-circle-fill"}
+              onClick={proyectoPage.handleShowApplication}
+              disabled={isLoading || isApplied}
+              isLoading={isLoading}
+            >
+              {isLoading ? "Applying..." : isApplied ? "Applied" : "Apply to Project"}
+            </Button>
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className={pageStyles.proyectoSidebar}>
-          <GlassCard className={pageStyles.sidebarSection}>
-            <div className={peopleStyles.peopleSection} ref={peopleSectionRef}>
-              <h2 className={`${detailsStyles.cardTitle} ${peopleStyles.peopleTitle}`} style={{ fontSize: '1.35rem' }}>People</h2>
+        {/* Right Column - Sidebar */}
+        <div className={styles.proyectoSidebar}>
+          {/* People Section */}
+          <GlassCard className={styles.sidebarSection}>
+            <div className={peopleStyles.peopleSection} ref={proyectoPage.peopleSectionRef}>
+              <h2 className={peopleStyles.peopleTitle}>People</h2>
               <div className={peopleStyles.peopleContent}>
-                <div className={peopleStyles.person}>
-                  <img src={user1} alt="Roberto Gomez" className={peopleStyles.personAvatar} />
-                  <div>
-                    <span className={peopleStyles.personName}>Roberto Gomez</span>
-                    <span className={peopleStyles.personRole}>Creador de Proyecto</span>
+                <CustomScrollbar fadeBackground="transparent" fadeHeight={30} showHorizontalScroll={false}>
+                  {projectData.people.map(person => (
+                    <div key={person.id} className={peopleStyles.person}>
+                      <img 
+                        src={person.avatar} 
+                        alt={person.name} 
+                        className={peopleStyles.personAvatar} 
+                      />
+                      <div className={peopleStyles.personInfo}>
+                        <div className={peopleStyles.personName}>{person.name}</div>
+                        <div className={peopleStyles.personRole}>{person.role}</div>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {/* Client */}
+                  <div className={peopleStyles.person}>
+                    <img 
+                      src={projectData.client.logo} 
+                      alt={projectData.client.name} 
+                      className={peopleStyles.personAvatar} 
+                    />
+                    <div className={peopleStyles.personInfo}>
+                      <div className={peopleStyles.personName}>{projectData.client.name}</div>
+                      <div className={peopleStyles.personRole}>Cliente</div>
+                    </div>
                   </div>
-                </div>
-                <div className={peopleStyles.person}>
-                  <img src={user2} alt="Felicia Martina" className={peopleStyles.personAvatar} />
-                  <div>
-                    <span className={peopleStyles.personName}>Felicia Martina</span>
-                    <span className={peopleStyles.personRole}>Project Manager</span>
-                  </div>
-                </div>
-                <div className={peopleStyles.person}>
-                  <img src={pepsiLogo} alt="Pepsi Co." className={peopleStyles.personAvatar} />
-                  <div>
-                    <span className={peopleStyles.personName}>Pepsi Co.</span>
-                    <span className={peopleStyles.personRole}>Cliente</span>
-                  </div>
-                </div>
+                </CustomScrollbar>
               </div>
-              <div className={peopleStyles.membersDropdownWrapper}>
-                <MembersDropdown members={members} peopleSectionRef={peopleSectionRef} />
+              
+              <div className={peopleStyles.buttonsContainer}>
+                <div className={peopleStyles.buttonsRow}>
+                  <Button
+                    type="secondary"
+                    hasDropdown={true}
+                    dropdownItems={[
+                      { label: 'Frontend Developer', icon: 'bi-code-slash' },
+                      { label: 'Backend Developer', icon: 'bi-database' },
+                      { label: 'UI/UX Designer', icon: 'bi-palette' },
+                      { label: 'Project Manager', icon: 'bi-person-gear' },
+                      { label: 'QA Engineer', icon: 'bi-bug' },
+                      { label: 'DevOps Engineer', icon: 'bi-cloud' },
+                      { label: 'Data Scientist', icon: 'bi-graph-up' },
+                      { label: 'Product Owner', icon: 'bi-briefcase' }
+                    ]}
+                    onDropdownItemClick={(item) => console.log('Selected role:', item.label)}
+                    className={peopleStyles.halfButton}
+                  >
+                    All Roles
+                  </Button>
+                  
+                  <Button
+                    type="primary"
+                    hasDropdown={true}
+                    dropdownItems={projectData.members.map(member => ({
+                      label: member.name,
+                      icon: 'bi-person',
+                      avatar: member.avatar,
+                      role: member.role
+                    }))}
+                    onDropdownItemClick={(item) => proyectoPage.handleMemberSelect(item)}
+                    className={peopleStyles.halfButton}
+                  >
+                    Members
+                  </Button>
+                </div>
               </div>
             </div>
           </GlassCard>
 
           {/* Skills Section */}
-          <GlassCard className={pageStyles.sidebarSection}>
+          <GlassCard className={styles.sidebarSection}>
             <div className={skillsStyles.skillsSection}>
-              <h2 className={`${detailsStyles.cardTitle} ${skillsStyles.skillsTitle}`} style={{ fontSize: '1.35rem' }}>Skills Required</h2>
+              <h2 className={skillsStyles.skillsTitle}>Skills Required</h2>
+              
               <div className={skillsStyles.skillsContainer}>
                 <div className={skillsStyles.skillsList}>
-                  <SkillChip text="JavaScript" isUserSkill={true} />
-                  <SkillChip text="C++" />
-                  <SkillChip text="Java" />
-                  <SkillChip text="AI" />
-                  <SkillChip text="Agile" isUserSkill={true} />
-                  <SkillChip text="HR" />
-                  <SkillChip text="Figma" isUserSkill={true} />
-                  <SkillChip text="Photoshop" />
+                  {visibleSkills.map((skill, index) => (
+                    <SkillChip 
+                      key={index}
+                      text={skill.name} 
+                      isUserSkill={skill.isUserSkill} 
+                    />
+                  ))}
+                  
+                  {remainingSkillsCount > 0 && (
+                    <SkillChip 
+                      text={`+${remainingSkillsCount}`}
+                      isExpandTag={true}
+                      onClick={proyectoPage.handleShowAllSkills}
+                    />
+                  )}
                 </div>
               </div>
             </div>
           </GlassCard>
         </div>
       </div>
+
+      {/* Modals */}
+      <SkillsModal 
+        isOpen={proyectoPage.modals.skills}
+        onClose={() => proyectoPage.closeModal('skills')}
+        userSkills={userSkills}
+        onUpdateSkills={() => {}} // Read-only mode for this page
+      />
+
+      <AllSkillsModal 
+        isOpen={proyectoPage.modals.allSkills}
+        onClose={() => proyectoPage.closeModal('allSkills')}
+        projectSkills={projectData.requiredSkills}
+      />
+
+      <CompatibilityModal 
+        isOpen={proyectoPage.modals.compatibility}
+        onClose={() => proyectoPage.closeModal('compatibility')}
+        projectSkills={projectData.requiredSkills}
+        userSkills={userSkills}
+        compatibilityPercentage={compatibilityPercentage}
+      />
+
+      <ApplicationModal
+        isOpen={proyectoPage.modals.application}
+        onClose={() => proyectoPage.closeModal('application')}
+        projectData={projectData}
+        onSubmitApplication={proyectoPage.handleSubmitApplication}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
+
+export default EmpleadoProyectoPage;

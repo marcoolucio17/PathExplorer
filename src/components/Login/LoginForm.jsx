@@ -7,7 +7,8 @@ import Spinner from "react-bootstrap/Spinner";
 import "../../styles/Login.css";
 import axios from "axios";
 
-const DB_URL = "https://pathexplorer-backend.onrender.com/";
+// const DB_URL = "https://pathexplorer-backend.onrender.com/";
+const DB_URL = "http://localhost:8080/";
 
 const roleMap = {
   Manager: "manager",
@@ -62,6 +63,7 @@ export const LoginForm = () => {
       let authz = res.data.authz;
       localStorage.setItem("role", roleMap[authz]);
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("id", res.data.user.idusuario);
       setIsLoading(false);
       navigate(roleMap[authz]);
     } catch (err) {
@@ -121,7 +123,14 @@ export const LoginForm = () => {
           </Button>
         </Form.Group>
 
-        <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <button
             type="button"
             onClick={handleLogin}

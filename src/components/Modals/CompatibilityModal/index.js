@@ -1,0 +1,1 @@
+export { CompatibilityModal } from './CompatibilityModal';

@@ -13,6 +13,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 padding: var(--container-padding);
+overflow-x: hidden; /* Only hide horizontal overflow */
+overflow-y: auto; /* Allow vertical scrolling if needed */
 }
 
 /* Content container */
@@ -23,7 +25,7 @@ max-width: 1200px;
 width: 100%;
 height: var(--container-height);
 min-height: 500px;
-overflow: visible;
+overflow: visible; /* Allow shadows and hover effects to show */
 position: relative;
 }
 
@@ -32,6 +34,8 @@ position: relative;
 display: flex;
 align-items: center;
 margin-bottom: 20px;
+flex-shrink: 0; /* Prevent shrinking */
+overflow: visible; /* Allow button hover effects */
 }
 
 .pageTitle {
@@ -49,14 +53,52 @@ align-items: center;
 justify-content: space-between;
 margin-bottom: 1.5rem;
 gap: 1rem;
+flex-shrink: 0; /* Prevent shrinking */
+overflow: visible; /* Allow button hover effects */
 }
 
 /* Applicants container */
 .cardsContainer {
 flex: 1;
-overflow-x: hidden;
-overflow-y: visible;
+overflow: visible; /* Allow shadows and hover effects */
 position: relative;
+min-height: 0; /* Allow flexbox to shrink */
+}
+
+/* Only hide scrollbars on the actual scrollable content, not the whole container */
+.dashboardContainer {
+scrollbar-width: thin; /* Firefox - allow thin scrollbar if needed */
+}
+
+/* Hide only unwanted scrollbars on the main dashboard container */
+.dashboardContainer::-webkit-scrollbar {
+width: 6px; /* Thin scrollbar instead of completely hidden */
+}
+
+.dashboardContainer::-webkit-scrollbar-track {
+background: transparent;
+}
+
+.dashboardContainer::-webkit-scrollbar-thumb {
+background: rgba(255, 255, 255, 0.1);
+border-radius: 3px;
+}
+
+.dashboardContainer::-webkit-scrollbar-thumb:hover {
+background: rgba(255, 255, 255, 0.2);
+}
+
+/* Simple tab action for My Projects - just button at top right */
+.tabActionSimple {
+display: flex;
+justify-content: flex-end;
+margin-bottom: 1rem;
+padding: 0 8px 0 0; /* Add right padding to prevent button hover clipping */
+overflow: visible; /* Allow button hover effects to show */
+}
+
+.createProjectButton {
+flex-shrink: 0;
 }
 
 /* Responsive styles */
@@ -69,5 +111,9 @@ position: relative;
 
 .backButton {
     margin-right: 0;
+}
+
+.createProjectButton {
+    width: 100%;
 }
 }

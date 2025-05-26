@@ -225,6 +225,7 @@ export const SearchHeader = ({
                   type={button.type === 'primary' ? 'primary' : 'secondary'}
                   variant={isCompatibilityButton ? 'compatibility' : 'default'}
                   isActive={button.isActive}
+                  isLoading={button.isLoading}
                   onClick={button.onClick}
                   title={isCompatibilityButton ? "Toggle compatibility mode" : button.label}
                   className={button.badgeCount > 0 ? styles.buttonWithBadge : ''}

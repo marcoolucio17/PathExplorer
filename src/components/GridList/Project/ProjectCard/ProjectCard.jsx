@@ -3,6 +3,7 @@ import { GlassCard } from 'src/components/shared/GlassCard';
 import { ProgressCircle } from 'src/components/ProgressCircle';
 import SkillChip from 'src/components/SkillChip/SkillChip';
 import styles from 'src/styles/GridList/GridListCard.module.css';
+import customStyles from 'src/styles/GridList/ProjectCard.module.css'; // Import our custom override styles
 
 /**
  * ProjectCard component for displaying project information in grid or list view
@@ -28,19 +29,16 @@ const ProjectCard = ({
   // Determine the class based on view mode
   const cardClass = viewMode === 'grid' 
     ? styles.cardGrid
-    : styles.cardList;
+    : `${styles.cardList} ${customStyles.cardList}`;
   
   // Prepare sample data to ensure visualization
-  const ensureRolesData = () => {
-    // Every card should have at least 2 roles for demo
+  const ensureRoleData = () => {
+    // Get current role data
     return {
-      currentRole: proyecto_rol.roles?.nombrerol || 'Developer',
-      otherRoles: project.proyecto_roles && project.proyecto_roles.length > 1 
-        ? project.proyecto_roles
-            .filter(pr => pr.idrol !== proyecto_rol.idrol)
-            .map(pr => pr.roles?.nombrerol || 'Other Role')
-        : ['Frontend Developer', 'Backend Developer'], // Default other roles
-      totalRoles: project.proyecto_roles?.length || 3
+      roleName: proyecto_rol.roles?.nombrerol || 'Developer',
+      projectName: project.pnombre || 'Project',
+      // Generate random duration 3-18 months
+      duration: Math.floor(Math.random() * 16) + 3
     };
   };
   
@@ -66,36 +64,11 @@ const ProjectCard = ({
     }));
   };
   
-  // Get roles data
-  const rolesData = ensureRolesData();
+  // Get role data
+  const roleData = ensureRoleData();
   
   // Get skills data
   const skillsData = ensureSkillsData();
-  
-  // Render roles with consistent "+ more" display
-  const renderRoles = () => {
-    const { currentRole, otherRoles, totalRoles } = rolesData;
-    
-    // For every other card, show a "+ more" example
-    const shouldShowMoreExample = project.idproyecto % 2 === 0 && otherRoles.length > 1;
-    
-    if (shouldShowMoreExample) {
-      return `${currentRole}, ${otherRoles[0]} + ${otherRoles.length - 1} more`;
-    }
-    
-    // If only one other role, just show both
-    if (otherRoles.length === 1) {
-      return `${currentRole}, ${otherRoles[0]}`;
-    }
-    
-    // If multiple other roles, show one and a "+ more" indicator
-    if (otherRoles.length > 1) {
-      return `${currentRole}, ${otherRoles[0]} + ${otherRoles.length - 1} more`;
-    }
-    
-    // If no other roles, just show the current role
-    return currentRole;
-  };
   
   // Render skills with consistent display
   const renderSkills = () => {
@@ -125,8 +98,8 @@ const ProjectCard = ({
     );
   };
   
-  // Common project content for both views
-  const projectContent = (
+  // Grid view content
+  const gridContent = (
     <>
       {/* Show match percentage when enabled */}
       {showCompatibility && (
@@ -148,26 +121,26 @@ const ProjectCard = ({
           alt={`${project.pnombre} logo`}
         />
         <div className={styles.cardInfo}>
-          <h3 className={styles.cardTitle}>{project.pnombre}</h3>
-          <p className={styles.cardSubtitle}>by {project.cliente?.clnombre || 'Client'}</p>
+          <h3 className={styles.cardTitle}>{roleData.roleName}</h3>
+          <p className={styles.cardSubtitle}>for {roleData.projectName}</p>
         </div>
       </div>
       
       {/* Project Description */}
-      <div className={styles.cardDescription}>
+      <div className={`${styles.cardDescription} ${styles.reducedMargin}`}>
         <p className={styles.descriptionText}>
           {project.descripcion || 'This project aims to develop a comprehensive solution that meets client requirements while leveraging modern technologies...'}
         </p>
       </div>
       
       <div className={styles.cardDetails}>
-        {/* Show all roles in a single line */}
+        {/* Show estimated duration instead of roles */}
         <div className={styles.detailRow}>
           <span className={styles.detailLabel}>
-            <i className="bi bi-people-fill"></i> Roles:
+            <i className="bi bi-clock"></i> Duration:
           </span>
           <span className={styles.detailValue}>
-            {renderRoles()}
+            {roleData.duration} months
           </span>
         </div>
       </div>
@@ -178,18 +151,10 @@ const ProjectCard = ({
     </>
   );
   
-  // Grid view - wrap the content in a GlassCard
-  if (viewMode === 'grid') {
-    return (
-      <GlassCard className={cardClass}>
-        {projectContent}
-      </GlassCard>
-    );
-  }
-  
-  // List view - custom layout for horizontal display
-  return (
-    <GlassCard className={cardClass}>
+  // List view content with completely redesigned layout
+  const listContent = (
+    <>
+      {/* Avatar area */}
       <div className={styles.cardHeader}>
         <img 
           className={styles.cardAvatar} 
@@ -198,45 +163,65 @@ const ProjectCard = ({
         />
       </div>
       
-      <div className={styles.cardInfo}>
-        <h3 className={styles.cardTitle}>{project.pnombre}</h3>
-        <p className={styles.cardSubtitle}>by {project.cliente?.clnombre || 'Client'}</p>
+      {/* Title and project name only */}
+      <div className={customStyles.titleContainer}>
+        <h3 className={styles.cardTitle}>{roleData.roleName}</h3>
+        <p className={styles.cardSubtitle}>for {roleData.projectName}</p>
       </div>
       
-      {/* Project Description */}
-      <div className={styles.cardDescription}>
+      {/* Floating description in the middle */}
+      <div className={customStyles.floatingDescription}>
         <p className={styles.descriptionText}>
-          {project.descripcion || 'This project aims to develop a comprehensive solution that meets client requirements while leveraging modern technologies...'}
+          Description for Project {project.pnombre || '5'}
         </p>
       </div>
       
-      <div className={styles.cardDetails}>
-        {/* Show all roles in a single line */}
-        <div className={styles.detailRow}>
-          <span className={styles.detailLabel}>
-            <i className="bi bi-people-fill"></i> Roles
-          </span>
-          <span className={styles.detailValue}>
-            {renderRoles()}
-          </span>
+      {/* Skills and Circle container */}
+      <div className={customStyles.skillsCircleContainer}>
+        {/* Skills */}
+        <div className={`${styles.cardSkills} ${customStyles.cardSkills}`}>
+          {renderSkills()}
         </div>
+        
+        {/* Compatibility Circle */}
+        {showCompatibility && (
+          <div className={`${styles.statusCircle} ${customStyles.statusCircle}`}>
+            <ProgressCircle 
+              value={matchPercentage}
+              size={60} 
+              strokeWidth={6}
+              fontSize="1rem"
+              fontWeight="light"
+            />
+          </div>
+        )}
       </div>
       
-      <div className={styles.cardSkills}>
-        {renderSkills()}
+      {/* Duration info - using hardcoded styles to ensure font consistency */}
+      <div className={customStyles.durationColumn}>
+        <span className={styles.detailLabel}>
+          <i className="bi bi-clock"></i> Duration
+        </span>
+        <span className={customStyles.durationValue}>
+          {roleData.duration} months
+        </span>
       </div>
-      
-      {showCompatibility && (
-        <div className={styles.statusCircle}>
-          <ProgressCircle 
-            value={matchPercentage}
-            size={60} 
-            strokeWidth={6}
-            fontSize="1rem"
-            fontWeight="light"
-          />
-        </div>
-      )}
+    </>
+  );
+  
+  // Grid view - wrap the content in a GlassCard
+  if (viewMode === 'grid') {
+    return (
+      <GlassCard className={cardClass}>
+        {gridContent}
+      </GlassCard>
+    );
+  }
+  
+  // List view - custom layout for horizontal display
+  return (
+    <GlassCard className={cardClass}>
+      {listContent}
     </GlassCard>
   );
 };

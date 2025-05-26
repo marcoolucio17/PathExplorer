@@ -1,0 +1,44 @@
+/* Skills Section Styles */
+.skillsSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.skillsTitle {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-light);
+  flex-shrink: 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.skillsContainer {
+  flex: 1;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-content: flex-start;
+  max-width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skillsContainer {
+    min-height: 150px;
+    padding: 0.5rem 0;
+  }
+}

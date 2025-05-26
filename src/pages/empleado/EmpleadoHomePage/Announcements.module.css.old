@@ -1,0 +1,80 @@
+/* Announcements.module.css */
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.5rem 0;
+}
+
+.announcementsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-height: 140px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.announcementItem {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.3rem 0.4rem;
+  background: transparent;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  align-items: flex-start;
+}
+
+.announcementItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.announcementIcon {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  width: 16px;
+  text-align: center;
+}
+
+.announcementText {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.8);
+  flex: 1;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Different announcement types */
+.announcementIcon.bi-megaphone-fill {
+  color: #8b5cf6;
+}
+
+.announcementIcon.bi-star-fill {
+  color: #eab308;
+}
+
+.announcementIcon.bi-info-circle-fill {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Custom scrollbar for announcements */
+.announcementsContainer::-webkit-scrollbar {
+  width: 3px;
+}
+
+.announcementsContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+.announcementsContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.announcementsContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

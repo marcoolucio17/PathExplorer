@@ -1,209 +1,193 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-// Import components
-import { GlassCard } from "../../../components/shared/GlassCard";
-import { ProgressCircle } from "../../../components/ProgressCircle/ProgressCircle";
-// Import page-specific styles
-import pageStyles from "./EmpleadoHomePage.module.css";
-// Import styles for specific sections
-import quickActionsStyles from "./QuickActions.module.css";
-import announcementsStyles from "./Announcements.module.css";
+import React from 'react';
 
-// Mock data - in a real app, this would come from props or API
-const MOCK_RECOMMENDED_PROJECTS = [
-  {
-    idproyecto: 1,
-    pnombre: "Project Pepsi",
-    matchPercentage: 98,
-    skills: ["Figma", "Figma", "Figma"],
-    status: "open"
-  },
-  {
-    idproyecto: 2,
-    pnombre: "Project Pepsi",
-    matchPercentage: 98,
-    skills: ["Figma", "Figma", "Figma"],
-    status: "open"
-  },
-  {
-    idproyecto: 3,
-    pnombre: "Project Pepsi",
-    matchPercentage: 98,
-    skills: ["Figma", "Figma", "Figma"],
-    status: "open"
-  }
-];
+// Custom Hooks
+import useEmpleadoHomePage from '../../../hooks/useEmpleadoHomePage';
 
-const MOCK_ANNOUNCEMENTS = [
-  {
-    id: 1,
-    icon: "bi-megaphone-fill",
-    text: "A lot of important announcements are being made right now!",
-    type: "important"
-  },
-  {
-    id: 2,
-    icon: "bi-star-fill",
-    text: "A la bio a la boo a la bim bom bam, Leo Leo RAH RAH RAH!! Come and celebrate Leo right now!!",
-    type: "celebration"
-  },
-  {
-    id: 3,
-    icon: "bi-info-circle-fill",
-    text: "A la bio a la boo a la bim bom bam, Leo Leo RAH RAH RAH!! Come and celebrate Leo right now!!",
-    type: "info"
-  }
-];
+// Components
+import { GlassCard } from '../../../components/shared/GlassCard';
+import { ProgressCircle } from '../../../components/ProgressCircle/ProgressCircle';
+import { SkillChip } from '../../../components/SkillChip';
+import Button from '../../../components/shared/Button';
+import CustomScrollbar from '../../../components/CustomScrollbar';
 
+// CSS
+import styles from "src/styles/Pages/Home/EmpleadoHomePage.module.css";
+
+/**
+ * Employee Home Page component
+ */
 export const EmpleadoHomePage = () => {
-  const navigate = useNavigate();
-  const [recommendedProjects] = useState(MOCK_RECOMMENDED_PROJECTS);
-  const [announcements] = useState(MOCK_ANNOUNCEMENTS);
-  const [goalProgress] = useState(1); // 1/3
-  const [projectProgress] = useState(96); // 96%
-
-  const handleApplyToProject = (projectId) => {
-    console.log(`Applying to project ${projectId}`);
-    // Handle application logic here
-  };
-
-  const quickActions = [
-    {
-      id: 1,
-      icon: "bi-person-fill",
-      title: "My Profile",
-      path: "/empleado/perfil"
-    },
-    {
-      id: 2,
-      icon: "bi-laptop",
-      title: "Project Dashboard",
-      path: "/empleado/dashboard"
-    },
-    {
-      id: 3,
-      icon: "bi-folder-fill",
-      title: "My Project",
-      path: "/empleado/proyectos"
-    }
-  ];
+  // Use the custom hook to handle all logic
+  const homePage = useEmpleadoHomePage();
+  const { 
+    userData, 
+    recommendedProjects, 
+    announcements, 
+    quickActions,
+    modals,
+    selectedProject,
+    isApplying
+  } = homePage;
 
   return (
-    <div className={pageStyles.homeLayout}>
-      <div className={pageStyles.mainContentWrapper}>
-        {/* Main Content Area */}
-        <div className={pageStyles.contentSection}>
+    <div className={styles.homeContainer}>
+      <div className={styles.homeContent}>
+        {/* Left Column - Main Content */}
+        <div className={styles.mainContent}>
           {/* Header Section */}
-          <div className={pageStyles.headerSection}>
-            <h1 className={pageStyles.mainTitle}>Welcome Back, Steely Dan</h1>
-            <h3 className={pageStyles.subtitle}>Ready to explore your next big project?</h3>
+          <div className={styles.headerSection}>
+            <h1 className={styles.mainTitle}>Welcome Back, {userData.name}</h1>
+            <p className={styles.subtitle}>Ready to explore your next big project?</p>
           </div>
-          
-          {/* Progress Section - No GlassCard wrapper */}
-          <div className={pageStyles.progressCard}>
-            <div className={pageStyles.progressContent}>
-              <div className={pageStyles.progressLeft}>
-                <ProgressCircle 
-                  value={goalProgress} 
-                  maxValue={3} 
-                  title="Goal Progress"
-                  size={90}
-                  strokeWidth={8}
-                />
-              </div>
-              
-              <div className={pageStyles.progressCenter}>
-                <ProgressCircle 
-                  value={projectProgress} 
-                  maxValue={100} 
-                  title="Project Progress"
-                  size={90}
-                  strokeWidth={8}
-                />
-              </div>
-              
-              <div className={pageStyles.progressRight}>
-                <h3 className={pageStyles.recommendedTitle}>Recommended:</h3>
-                <button className={pageStyles.recommendedButton}>
+
+          {/* Progress Section */}
+          <div className={styles.progressSection}>
+            <div className={styles.progressItem}>
+              <ProgressCircle 
+                value={userData.goalProgress.current} 
+                maxValue={userData.goalProgress.total} 
+                title="Goal Progress"
+                size={90}
+                strokeWidth={8}
+              />
+            </div>
+            
+            <div className={styles.progressItem}>
+              <ProgressCircle 
+                value={userData.projectProgress} 
+                maxValue={100} 
+                title="Project Progress"
+                size={90}
+                strokeWidth={8}
+              />
+            </div>
+            
+            <div className={styles.recommendedSection}>
+              <h3 className={styles.recommendedTitle}>Recommended:</h3>
+              <div className={styles.recommendedButtons}>
+                <Button 
+                  type="primary"
+                  onClick={homePage.handleShowSkills}
+                >
                   Skills
-                </button>
-                <button className={pageStyles.recommendedButton}>
+                </Button>
+                <Button 
+                  type="primary"
+                  onClick={homePage.handleShowCertificates}
+                >
                   Certificates
-                </button>
+                </Button>
               </div>
             </div>
           </div>
 
-          {/* Project Recommendations Section - Fills remaining height */}
-          <div className={pageStyles.recommendationsCard}>
-            <h3 className={pageStyles.recommendationTitle}>
+          {/* Project Recommendations Section */}
+          <div className={styles.recommendationsSection}>
+            <h3 className={styles.recommendationsHeader}>
               Based on your profile, you'd be a great fit for these projects:
             </h3>
             
-            <div className={pageStyles.projectCardsWrapper}>
-              {recommendedProjects.map((project) => (
-                <GlassCard key={project.idproyecto} className={pageStyles.projectCard}>
-                  <h4 className={pageStyles.projectName}>{project.pnombre}</h4>
-                  <div className={pageStyles.matchPercentage}>{project.matchPercentage}%</div>
-                  <div className={pageStyles.skillsContainer}>
-                    {project.skills.map((skill, idx) => (
-                      <span key={idx} className={pageStyles.skillTag}>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                  <button 
-                    className={pageStyles.applyButton}
-                    onClick={() => handleApplyToProject(project.idproyecto)}
+            <CustomScrollbar fadeBackground="transparent" fadeHeight={40} showHorizontalScroll={false}>
+              <div className={styles.projectsGrid}>
+                {recommendedProjects.map((project) => (
+                  <GlassCard 
+                    key={project.idproyecto} 
+                    className={styles.projectCard}
+                    onClick={() => homePage.handleApplyToProject(project)}
                   >
-                    <i className="bi bi-check-circle-fill" />
-                    Apply
-                  </button>
-                </GlassCard>
-              ))}
-            </div>
+                    <h4 className={styles.projectName}>{project.pnombre}</h4>
+                    <div className={styles.matchPercentage}>{project.matchPercentage}%</div>
+                    <div className={styles.skillsContainer}>
+                      {project.skills.map((skill, idx) => (
+                        <SkillChip 
+                          key={idx}
+                          text={skill}
+                          isUserSkill={false}
+                        />
+                      ))}
+                    </div>
+                    <div className={styles.projectActions}>
+                      <Button 
+                        type="primary"
+                        icon="bi-check-circle-fill"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          homePage.handleApplyToProject(project);
+                        }}
+                      >
+                        Apply
+                      </Button>
+                    </div>
+                  </GlassCard>
+                ))}
+              </div>
+            </CustomScrollbar>
           </div>
         </div>
 
-        {/* Sidebar */}
-        <div className={pageStyles.sidebar}>
-          {/* Quick Actions Card - Flexible height */}
-          <GlassCard className={pageStyles.sidebarCard}>
-            <h2 className={quickActionsStyles.sectionTitle}>Quick Actions</h2>
-            <div className={quickActionsStyles.actionsContainer}>
+        {/* Right Column - Sidebar */}
+        <div className={styles.sidebar}>
+          {/* Quick Actions Card */}
+          <GlassCard className={`${styles.sidebarCard} ${styles.quickActionsCard}`}>
+            <h2 className={styles.sectionTitle}>Quick Actions</h2>
+            <div className={styles.quickActionsList}>
               {quickActions.map((action) => (
-                <div key={action.id} className={quickActionsStyles.actionItem}>
-                  <div className={quickActionsStyles.actionInfo}>
-                    <i className={`${action.icon} ${quickActionsStyles.actionIcon}`} />
-                    <span className={quickActionsStyles.actionTitle}>{action.title}</span>
+                <div key={action.id} className={styles.quickActionItem}>
+                  <div className={styles.actionInfo}>
+                    <i className={`${action.icon} ${styles.actionIcon}`} />
+                    <span className={styles.actionTitle}>{action.title}</span>
                   </div>
-                  <button
-                    onClick={() => navigate(action.path)}
-                    className={quickActionsStyles.actionButton}
-                  >
-                    <i className="bi bi-arrow-right-circle-fill" />
-                  </button>
+                  <Button
+                    type="secondary"
+                    icon="bi-arrow-right-circle-fill"
+                    onClick={() => homePage.handleQuickAction(action)}
+                    rounded
+                  />
                 </div>
               ))}
             </div>
           </GlassCard>
 
-          {/* Announcements Card - Flexible height */}
-          <GlassCard className={pageStyles.sidebarCard}>
-            <h2 className={announcementsStyles.sectionTitle}>Announcements</h2>
-            <div className={announcementsStyles.announcementsContainer}>
-              {announcements.map((announcement) => (
-                <div key={announcement.id} className={announcementsStyles.announcementItem}>
-                  <i className={`${announcement.icon} ${announcementsStyles.announcementIcon}`} />
-                  <div className={announcementsStyles.announcementText}>
-                    {announcement.text}
+          {/* Announcements Card */}
+          <GlassCard className={`${styles.sidebarCard} ${styles.announcementsCard}`}>
+            <h2 className={styles.sectionTitle}>Announcements</h2>
+            <CustomScrollbar fadeBackground="transparent" fadeHeight={30} showHorizontalScroll={false}>
+              <div className={styles.announcementsContent}>
+                {announcements.map((announcement) => (
+                  <div key={announcement.id} className={styles.announcementItem}>
+                    <i className={`${announcement.icon} ${styles.announcementIcon}`} />
+                    <div className={styles.announcementText}>
+                      {announcement.text}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </CustomScrollbar>
           </GlassCard>
         </div>
       </div>
+
+      {/* Modals */}
+      <SkillsModal 
+        isOpen={modals.skills}
+        onClose={() => homePage.closeModal('skills')}
+        userSkills={[]} // TODO: Connect to actual user skills
+        onUpdateSkills={() => {}} // TODO: Implement skill update
+      />
+
+      <ApplicationModal
+        isOpen={modals.applicationModal}
+        onClose={() => homePage.closeModal('applicationModal')}
+        projectData={selectedProject ? {
+          id: selectedProject.idproyecto,
+          title: selectedProject.pnombre,
+          // Add other necessary project data
+        } : null}
+        onSubmitApplication={homePage.handleSubmitApplication}
+        isLoading={isApplying}
+      />
     </div>
   );
 };
+
+export default EmpleadoHomePage;

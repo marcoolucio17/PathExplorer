@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import Logo from "../assets/Acc_GT_Dimensional_RGB 1.png";
 import { SearchHeader } from "../components/SearchHeader";
+import { Notifications } from "../components/Notifications";
+
 
 import "./CustomNavBar.css";
 
@@ -101,7 +103,7 @@ function CustomNavbar() {
 
           {/* Search bar with SearchHeader component */}
           <div className="nav-search-container">
-            <SearchHeader 
+            <SearchHeader
               searchTerm={searchTerm}
               setSearchTerm={handleSearch}
               placeholder="Search..."
@@ -127,26 +129,13 @@ function CustomNavbar() {
                 className="icon-btn"
               >
                 <i className="bi bi-bell"></i>
-                <span className="badge-notif">1</span>
+                <span className="badge-notif">!</span>
               </button>
-              {showNotifications && (
-                <div className="glass-popover">
-                  <h6 className="fw-bold mb-2">Notifications</h6>
-                  <div className="notification-item d-flex align-items-center">
-                    <img
-                      src={Logo}
-                      alt="Avatar"
-                      className="rounded avatar-sm me-2"
-                    />
-                    <div>
-                      <p className="mb-1"><strong>Welcome!!!</strong></p>
-                      <p className="small mb-0">
-                        We're excited to have you here! 🚀
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
+
+              <Notifications
+                userId={localStorage.getItem("idusuario")}
+                visible={showNotifications}
+              />
             </div>
 
             <button

@@ -1,0 +1,438 @@
+:root {
+  --container-height: 70vh;
+  --container-padding: 2rem;
+  --min-content-width: 320px;
+  
+  /* Glass effect variables */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.1);
+  
+  /* Color variables */
+  --text-light: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --primary-color: #4A90E2;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+}
+
+/* Main container */
+.homeContainer {
+  background: transparent;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-padding);
+  overflow: hidden;
+}
+
+/* Content wrapper */
+.homeContent {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  height: var(--container-height);
+  min-height: 500px;
+  overflow: visible;
+  position: relative;
+}
+
+/* Left Column - Main Content */
+.mainContent {
+  position: relative;
+  flex: 3;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  color: var(--text-light);
+  padding: clamp(1.5rem, 2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Header Section */
+.headerSection {
+  flex-shrink: 0;
+}
+
+.mainTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.25rem 0 0 0;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+/* Progress Section */
+.progressSection {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.progressItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recommendedSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+  justify-self: end;
+}
+
+.recommendedTitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.recommendedButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Project Recommendations Section */
+.recommendationsSection {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.recommendationsHeader {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 1rem 0;
+  text-align: center;
+  flex-shrink: 0;
+  font-family: 'Graphik Light', sans-serif;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.25rem;
+}
+
+/* Project Card */
+.projectCard {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: fit-content;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.projectCard:hover {
+  transform: translateY(-3px);
+}
+
+.projectName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.matchPercentage {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0.5rem 0;
+  font-family: 'Graphik Bold', sans-serif;
+}
+
+.skillsContainer {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.projectActions {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Right Column - Sidebar */
+.sidebar {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-width: 320px;
+  overflow: visible;
+}
+
+/* Sidebar Cards */
+.sidebarCard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 1.25rem;
+}
+
+/* Quick Actions Card */
+.quickActionsCard {
+  flex: 1;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 1rem 0;
+  font-family: 'Graphik Medium', sans-serif;
+}
+
+.quickActionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quickActionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.actionInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.actionIcon {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  width: 24px;
+  text-align: center;
+}
+
+.actionTitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Graphik Light', sans-serif;
+}
+
+/* Announcements Card */
+.announcementsCard {
+  flex: 1.5;
+}
+
+.announcementsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.announcementItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.announcementItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.announcementIcon {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.announcementIcon.bi-megaphone-fill {
+  color: var(--danger-color);
+}
+
+.announcementIcon.bi-star-fill {
+  color: var(--warning-color);
+}
+
+.announcementIcon.bi-info-circle-fill {
+  color: var(--info-color);
+}
+
+.announcementText {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Graphik Light', sans-serif;
+}
+
+/* Custom scrollbar styling */
+.projectsGrid::-webkit-scrollbar,
+.announcementsContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.projectsGrid::-webkit-scrollbar-track,
+.announcementsContent::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.projectsGrid::-webkit-scrollbar-thumb,
+.announcementsContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.projectsGrid::-webkit-scrollbar-thumb:hover,
+.announcementsContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  :root {
+    --container-height: 90vh;
+    --container-padding: 1rem;
+  }
+
+  .homeContent {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 2rem);
+  }
+
+  .mainContent {
+    flex: none;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .sidebar {
+    flex: none;
+    flex-direction: row;
+    height: auto;
+    min-width: 0;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .sidebarCard {
+    flex: 1;
+    min-height: 200px;
+  }
+
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .progressSection {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .recommendedSection {
+    align-items: center;
+    justify-self: center;
+  }
+
+  .recommendedButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    flex-direction: column;
+  }
+
+  .sidebarCard {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 0.75rem;
+  }
+
+  .mainContent {
+    padding: 1rem;
+  }
+
+  .sidebarCard {
+    padding: 1rem;
+  }
+
+  .projectCard {
+    padding: 1rem;
+  }
+}

@@ -13,6 +13,7 @@ import CustomScrollbar from '../../../components/CustomScrollbar';
 // Modals
 import { SkillsModal } from "../../../components/Modals/SkillsModal";
 import { ApplicationModal } from "../../../components/Modals/ApplicationModal";
+import { CertificateModal } from "../../../components/Modals/CertificateModal";
 
 // CSS
 import styles from "src/styles/Pages/Home/EmpleadoHomePage.module.css";

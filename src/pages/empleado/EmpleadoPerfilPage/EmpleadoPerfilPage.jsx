@@ -107,6 +107,10 @@ export const EmpleadoPerfilPage = () => {
     profilePage.handleRemoveCertificate(certificateId);
   };
 
+  if (profilePage.loading) {
+    return <>loading..</>;
+  }
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileContent}>

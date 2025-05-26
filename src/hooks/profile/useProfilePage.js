@@ -106,6 +106,7 @@ function transformBackendCertificates(certificates) {
 }
 
 function transformBackendObjectives(objectives) {
+
   if (!objectives) return [];
   let res = [];
 
@@ -139,7 +140,22 @@ function transformBackendObjectives(objectives) {
 }
 
 function transformBackendSkils(skills) {
-  
+  let res = {
+    softSkills: [],
+    hardSkills: []
+  };
+
+  if (!skills) return res;
+
+  skills.forEach((skill) => {
+    if (skill.habilidades.estecnica === true) {
+      res.hardSkills.push(skill.habilidades.nombre);
+    } else {
+      res.softSkills.push(skill.habilidades.nombre);
+    }
+  });
+
+  return res;
 }
 
 // the name doesn't come formatted so i need to apply this function
@@ -261,16 +277,9 @@ export const useProfilePage = () => {
   );
 
   // Categorized skills
-  const categorizedSkills = useMemo(() => {
-    const hardSkills = userSkills.filter(
-      (skill) => !SOFT_SKILLS_LIST.includes(skill)
-    );
-    const softSkills = userSkills.filter((skill) =>
-      SOFT_SKILLS_LIST.includes(skill)
-    );
+  const categorizedSkills = transformBackendSkils(data.skills);
 
-    return { hardSkills, softSkills };
-  }, [userSkills, SOFT_SKILLS_LIST]);
+
 
   // Tab counts (for notification badges)
   const tabCounts = useMemo(() => {

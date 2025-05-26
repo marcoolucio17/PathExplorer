@@ -180,6 +180,12 @@ export const EmpleadoHomePage = () => {
         onUpdateSkills={() => {}} // TODO: Implement skill update
       />
 
+      <CertificateModal
+        isOpen={modals.certificates}
+        onClose={() => homePage.closeModal('certificates')}
+        certificates={[]} // TODO: Connect to actual user certificates
+      />
+
       <ApplicationModal
         isOpen={modals.applicationModal}
         onClose={() => homePage.closeModal('applicationModal')}

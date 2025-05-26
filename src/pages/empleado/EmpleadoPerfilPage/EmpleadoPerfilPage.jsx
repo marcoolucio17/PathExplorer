@@ -76,7 +76,11 @@ function TransformBackendUser(user) {
     linkedin: "linkedin.com/in/sammygarcy",
     github: "github.com/sammygarcy",
   };
-  console.log(user);
+  
+
+  // https://<tu-url>.supabase.co/storage/v1/object/public/fotos-perfil/foto-123.jpg"
+  // https://nxkreheabczqsutrzafn.supabase.co
+  let url = "https://nxkreheabczqsutrzafn.supabase.co/storage/v1/object/public/fotos-perfil/"
 
   newuser.name = formatName(user.nombre);
   newuser.location = user.ubicacion;
@@ -85,6 +89,7 @@ function TransformBackendUser(user) {
   newuser.linkedin = user.linkedin;
   newuser.github = user.github;
   newuser.title = user.puesto;
+  newuser.avatarUrl = "https://nxkreheabczqsutrzafn.supabase.co/storage/v1/object/sign/fotos-perfil/foto-15-1748207570840.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzFkNDY3ZWNhLTk2NDgtNGRjYy05YTQyLTJhMzQyNWZmM2VhMCJ9.eyJ1cmwiOiJmb3Rvcy1wZXJmaWwvZm90by0xNS0xNzQ4MjA3NTcwODQwLmpwZyIsImlhdCI6MTc0ODI5MTkyNywiZXhwIjoxNzc5ODI3OTI3fQ.gi_C6RcvsXN_fKFsLZHFZ8cAwQ065_8AjUxnZA-ecIU";
 
   return newuser;
 }

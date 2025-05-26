@@ -10,6 +10,10 @@ import { SkillChip } from '../../../components/SkillChip';
 import Button from '../../../components/shared/Button';
 import CustomScrollbar from '../../../components/CustomScrollbar';
 
+// Modals
+import { SkillsModal } from "../../../components/Modals/SkillsModal";
+import { ApplicationModal } from "../../../components/Modals/ApplicationModal";
+
 // CSS
 import styles from "src/styles/Pages/Home/EmpleadoHomePage.module.css";
 

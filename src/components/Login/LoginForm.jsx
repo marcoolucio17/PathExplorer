@@ -146,7 +146,7 @@ export const LoginForm = () => {
           <p className="text-light m-0">Don't have an account?</p>
           <NavLink to="register">Register</NavLink>
         </div>
-
+        
         {/* Alerta de error */}
         {loginError && (
           <Alert className="mt-4" variant="danger">

@@ -38,14 +38,14 @@ const ProjectCard = ({
       roleName: proyecto_rol.roles?.nombrerol || 'Developer',
       projectName: project.pnombre || 'Project',
       // Generate random duration 3-18 months
-      duration: Math.floor(Math.random() * 16) + 3
+      duration: project.duracionMes || 'TBD'
     };
   };
   
   // Prepare sample skills to ensure visualization
   const ensureSkillsData = () => {
     // Every card should have at least 2 skills for demo
-    if (!proyecto_rol.roles?.requerimientos_roles || proyecto_rol.roles.requerimientos_roles.length === 0) {
+    /*if (!proyecto_rol.roles?.requerimientos_roles || proyecto_rol.roles.requerimientos_roles.length === 0) {
       // Generate demo skills if none exist
       return [
         { id: 'demo-1', name: 'JavaScript', isUser: true },
@@ -53,9 +53,7 @@ const ProjectCard = ({
         { id: 'demo-3', name: 'Python', isUser: false },
         { id: 'demo-4', name: 'Node.js', isUser: true }
       ];
-    }
-    
-    // Use real skills data
+    }*/    // Use real skills data
     return proyecto_rol.roles.requerimientos_roles.map(req_rol => ({
       id: req_rol.requerimientos.habilidades.idhabilidad,
       name: req_rol.requerimientos.habilidades.nombre,
@@ -115,11 +113,11 @@ const ProjectCard = ({
       )}
       
       <div className={styles.cardHeader}>
-        <img 
+        {/*<img 
           className={styles.cardAvatar} 
           src={project.imagen || "/images/ImagenProyectoDefault.png"} 
           alt={`${project.pnombre} logo`}
-        />
+        />*/}
         <div className={styles.cardInfo}>
           <h3 className={styles.cardTitle}>{roleData.roleName}</h3>
           <p className={styles.cardSubtitle}>for {roleData.projectName}</p>

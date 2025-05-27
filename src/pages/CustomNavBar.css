@@ -92,6 +92,10 @@
 }
 
 .notification-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
   background: var(--highlight-inner-faint);
   border-radius: 8px;
   padding: 0.5rem;

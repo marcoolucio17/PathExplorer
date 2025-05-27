@@ -65,11 +65,11 @@ function CustomNavbar() {
         }}
       >
         <ul className="sidebar-menu">
-          <li onClick={() => navigate("/")}>
+          <li onClick={() => navigate("/empleado")}>
             <i className="bi bi-house"></i>
             {isSidebarOpen && <span>Home</span>}
           </li>
-          <li onClick={() => navigate("/projects")}>
+          <li onClick={() => navigate("empleado/dashboard")}>
             <i className="bi bi-clipboard"></i>
             {isSidebarOpen && <span>Projects</span>}
           </li>
@@ -84,6 +84,10 @@ function CustomNavbar() {
           <li onClick={() => navigate("/about")}>
             <i className="bi bi-info-circle"></i>
             {isSidebarOpen && <span>About</span>}
+          </li>
+          <li onClick={() => navigate("/")}>
+            <i className="bi bi-box-arrow-left"></i>
+            {isSidebarOpen && <span>Logout</span>}
           </li>
         </ul>
       </div>

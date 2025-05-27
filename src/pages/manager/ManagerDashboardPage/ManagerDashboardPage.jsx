@@ -15,6 +15,9 @@ import Button from "../../../components/shared/Button";
 // CSS
 import styles from "src/styles/Pages/GridList/GridListDashboard.module.css";
 
+// Modals
+import { CreateProjectModal } from "src/components/Modals/CreateProjectModal";
+
 /**
  * Dashboard component for Manager role
  */
@@ -27,8 +30,7 @@ export const ManagerDashboardPage = () => {
 
   // Handle creating a new project
   const handleCreateProject = () => {
-    // TODO: Add logic to open create project modal or navigate to create project page
-    console.log('Creating new project...');
+    dashboardPage.toggleCreateProjectModal()
   };
 
   return (
@@ -94,6 +96,14 @@ export const ManagerDashboardPage = () => {
         userSkills={dashboardPage.selectedSkillFilters}
         onUpdateSkills={dashboardPage.handleApplySkillFilters}
       />
+
+      <CreateProjectModal
+        isOpen={dashboardPage.modals.createProject}
+        onClose={() => dashboardPage.closeModal('createProject')}
+        onCreateProject={dashboardPage.handleCreateProject}
+      />
+
+
     </div>
   );
 };

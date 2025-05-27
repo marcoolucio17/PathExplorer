@@ -65,23 +65,23 @@ function CustomNavbar() {
         }}
       >
         <ul className="sidebar-menu">
-          <li onClick={() => navigate("/empleado")}>
+          <li onClick={() => navigate(`/${authState}`)}>
             <i className="bi bi-house"></i>
             {isSidebarOpen && <span>Home</span>}
           </li>
-          <li onClick={() => navigate("empleado/dashboard")}>
+          <li onClick={() => navigate(`/${authState}/dashboard`)}>
             <i className="bi bi-clipboard"></i>
             {isSidebarOpen && <span>Projects</span>}
           </li>
-          <li onClick={() => navigate("/certificates")}>
+          <li onClick={() => navigate(`/${authState}/certificates`)}>
             <i className="bi bi-award"></i>
             {isSidebarOpen && <span>Certificates</span>}
           </li>
-          <li onClick={() => navigate("/settings")}>
+          <li onClick={() => navigate(`/${authState}/settings`)}>
             <i className="bi bi-gear"></i>
             {isSidebarOpen && <span>Settings</span>}
           </li>
-          <li onClick={() => navigate("/about")}>
+          <li onClick={() => navigate(`/${authState}/about`)}>
             <i className="bi bi-info-circle"></i>
             {isSidebarOpen && <span>About</span>}
           </li>

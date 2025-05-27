@@ -27,14 +27,51 @@ import skillsStyles from "src/styles/Pages/Proyecto/SkillsSection.module.css";
 export const EmpleadoProyectoPage = () => {
   // Use the custom hook to handle all logic
   const proyectoPage = useEmpleadoProyectoPage();
-  const { projectData, userSkills, isApplied, isLoading } = proyectoPage;
+  const { projectData, userSkills, isApplied, isLoading, loading, error } = proyectoPage;
+
+  // Handle loading state
+  if (loading) {
+    return (
+      <div className={styles.proyectoContainer}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+          <p>Loading project details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle error state  
+  if (error) {
+    return (
+      <div className={styles.proyectoContainer}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '50vh', justifyContent: 'center' }}>
+          <h2>Error loading project</h2>
+          <p>There was an error loading the project details. Please try again later.</p>
+          <p>Error: {error.message}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle case where project data is not found
+  if (!projectData) {
+    return (
+      <div className={styles.proyectoContainer}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '50vh', justifyContent: 'center' }}>
+          <h2>Project not found</h2>
+          <p>The requested project could not be found.</p>
+        </div>
+      </div>
+    );
+  }
 
   const compatibilityPercentage = proyectoPage.calculateCompatibilityPercentage();
 
-  // Skills display logic - show max 6 skills, then +X more
+  // Skills display logic - show max 6 skills, then +X more (with safety checks)
   const maxVisibleSkills = 6;
-  const visibleSkills = projectData.requiredSkills.slice(0, maxVisibleSkills);
-  const remainingSkillsCount = projectData.requiredSkills.length - maxVisibleSkills;
+  const skillsArray = projectData?.requiredSkills || [];
+  const visibleSkills = skillsArray.slice(0, maxVisibleSkills);
+  const remainingSkillsCount = Math.max(0, skillsArray.length - maxVisibleSkills);
 
   return (
     <div className={styles.proyectoContainer}>
@@ -44,7 +81,9 @@ export const EmpleadoProyectoPage = () => {
           <div className={styles.pageHeader}>
             <div className={styles.titleContainer}>
               <h1 className={styles.pageTitle}>
-                {projectData.title} - <span className={styles.userRole}>Sr. Frontend Developer</span>
+                {projectData.title} - <span className={styles.userRole}>
+                  {projectData.primaryRole ? projectData.primaryRole.name : 'Role Not Specified'}
+                </span>
               </h1>
             </div>
           </div>
@@ -84,7 +123,7 @@ export const EmpleadoProyectoPage = () => {
                     <h2 className={styles.sectionTitle}>Deliverables</h2>
                   </div>
                   <ul className={styles.deliverablesList}>
-                    {projectData.deliverables.map((deliverable, index) => (
+                    {(projectData.deliverables || []).map((deliverable, index) => (
                       <li key={index}>
                         <i className={`bi bi-check-lg ${styles.checkmarkIcon}`}></i>
                         {deliverable}
@@ -125,7 +164,7 @@ export const EmpleadoProyectoPage = () => {
               <h2 className={peopleStyles.peopleTitle}>People</h2>
               <div className={peopleStyles.peopleContent}>
                 <CustomScrollbar fadeBackground="transparent" fadeHeight={30} showHorizontalScroll={false}>
-                  {projectData.people.map(person => (
+                  {(projectData.people || []).map(person => (
                     <div key={person.id} className={peopleStyles.person}>
                       <img 
                         src={person.avatar} 
@@ -140,17 +179,19 @@ export const EmpleadoProyectoPage = () => {
                   ))}
                   
                   {/* Client */}
-                  <div className={peopleStyles.person}>
-                    <img 
-                      src={projectData.client.logo} 
-                      alt={projectData.client.name} 
-                      className={peopleStyles.personAvatar} 
-                    />
-                    <div className={peopleStyles.personInfo}>
-                      <div className={peopleStyles.personName}>{projectData.client.name}</div>
-                      <div className={peopleStyles.personRole}>Cliente</div>
+                  {projectData.client && (
+                    <div className={peopleStyles.person}>
+                      <img 
+                        src={projectData.client.logo} 
+                        alt={projectData.client.name} 
+                        className={peopleStyles.personAvatar} 
+                      />
+                      <div className={peopleStyles.personInfo}>
+                        <div className={peopleStyles.personName}>{projectData.client.name}</div>
+                        <div className={peopleStyles.personRole}>Cliente</div>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </CustomScrollbar>
               </div>
               
@@ -159,26 +200,22 @@ export const EmpleadoProyectoPage = () => {
                   <Button
                     type="secondary"
                     hasDropdown={true}
-                    dropdownItems={[
-                      { label: 'Frontend Developer', icon: 'bi-code-slash' },
-                      { label: 'Backend Developer', icon: 'bi-database' },
-                      { label: 'UI/UX Designer', icon: 'bi-palette' },
-                      { label: 'Project Manager', icon: 'bi-person-gear' },
-                      { label: 'QA Engineer', icon: 'bi-bug' },
-                      { label: 'DevOps Engineer', icon: 'bi-cloud' },
-                      { label: 'Data Scientist', icon: 'bi-graph-up' },
-                      { label: 'Product Owner', icon: 'bi-briefcase' }
-                    ]}
-                    onDropdownItemClick={(item) => console.log('Selected role:', item.label)}
+                    dropdownItems={(projectData.availableRoles || []).map(role => ({
+                      label: `${role.name}`,
+                      icon: 'bi-person-badge',
+                      roleId: role.id,
+                      available: role.available
+                    }))}
+                    onDropdownItemClick={(item) => console.log('Selected role:', item)}
                     className={peopleStyles.halfButton}
                   >
-                    All Roles
+                    All Roles ({(projectData.availableRoles || []).length})
                   </Button>
                   
                   <Button
                     type="primary"
                     hasDropdown={true}
-                    dropdownItems={projectData.members.map(member => ({
+                    dropdownItems={(projectData.members || []).map(member => ({
                       label: member.name,
                       icon: 'bi-person',
                       avatar: member.avatar,
@@ -234,13 +271,13 @@ export const EmpleadoProyectoPage = () => {
       <AllSkillsModal 
         isOpen={proyectoPage.modals.allSkills}
         onClose={() => proyectoPage.closeModal('allSkills')}
-        projectSkills={projectData.requiredSkills}
+        projectSkills={skillsArray}
       />
 
       <CompatibilityModal 
         isOpen={proyectoPage.modals.compatibility}
         onClose={() => proyectoPage.closeModal('compatibility')}
-        projectSkills={projectData.requiredSkills}
+        projectSkills={skillsArray}
         userSkills={userSkills}
         compatibilityPercentage={compatibilityPercentage}
       />

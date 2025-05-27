@@ -68,7 +68,7 @@ function App() {
         <Route path="empleado" element={<EmpleadoHome />} />
         <Route path="empleado/dashboard" element={<EmpleadoDashboardPage />} />
         <Route path="empleado/perfil" element={<EmpleadoPerfil />} />
-        <Route path="empleado/proyecto" element={<EmpleadoProyecto />} />
+        <Route path="empleado/proyecto/:projectId" element={<EmpleadoProyecto />} />
       </Route>
     </Routes>
   );

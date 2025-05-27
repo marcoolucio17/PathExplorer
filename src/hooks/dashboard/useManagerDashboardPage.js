@@ -27,7 +27,8 @@ export const useManagerDashboardPage = () => {
     closeModal, 
     toggleModal 
   } = useModalControl({
-    skillsFilter: false
+    skillsFilter: false,
+    createProject: false
   });
   
   // Toggle for compatibility view
@@ -74,6 +75,11 @@ export const useManagerDashboardPage = () => {
   // Helper to toggle skills filter modal
   const toggleSkillsFilterModal = () => {
     toggleModal('skillsFilter');
+  };
+
+  // Helper to toggle create project modal
+  const toggleCreateProjectModal = () => {
+    toggleModal('createProject');
   };
   
   // Navigate to applicants page
@@ -136,6 +142,11 @@ export const useManagerDashboardPage = () => {
     dashboardData.clearAllSkillFilters();
     listPage.handleClearFilters();
   };
+
+  // Handle Project creation
+  const handleCreateProject =() => {
+    // Agregar lógica de agregar proyecto
+  }
   
   // Compute flattened projects for display
   const displayProjects = dashboardData.flattenProjectsForList(getTabProjects());
@@ -183,6 +194,7 @@ export const useManagerDashboardPage = () => {
     openModal,
     closeModal,
     toggleSkillsFilterModal,
+    toggleCreateProjectModal,
     handleViewApplicants,
     getActiveFilters,
     handleRemoveFilter,

@@ -218,7 +218,6 @@
 .buttonGroup {
   display: flex;
   gap: 1rem;
-  margin: 0 2rem 2rem;
 }
 
 .cancelButton,

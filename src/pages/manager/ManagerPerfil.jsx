@@ -1,7 +1,2 @@
-import React from 'react'
-
-export const ManagerPerfil = () => {
-  return (
-    <div>ManagerPerfil</div>
-  )
-}
+// This component now simply re-exports the CSS module version
+export { ManagerPerfilPage as ManagerPerfil } from './ManagerPerfilPage/ManagerPerfilPage';

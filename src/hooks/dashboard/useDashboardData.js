@@ -57,60 +57,12 @@ export const useDashboardData = () => {
         nombre: searchTerm, 
         condicion1: skillSelected,
         condicion2: ''
-      },
-      skills: { 
-        rutaApi: 'skills', 
-        nombre: '', 
-        condicion1: 'Skills' 
       }
-    },
-    {
-      projects: () => getDummyProjects(),
-      skills: () => []
     }
+    
   );
 
-  // Function to generate dummy projects for testing
-  const getDummyProjects = () => {
-    return Array(8).fill().map((_, index) => ({
-      idproyecto: index + 1,
-      pnombre: `Project ${index + 1}`,
-      descripcion: `Description for Project ${index + 1}`,
-      imagen: "/images/ImagenProyectoDefault.png",
-      cliente: { clnombre: `Client ${(index % 4) + 1}` },
-      status: index % 4 === 0 ? 'Active' : (index % 4 === 1 ? 'Upcoming' : (index % 4 === 2 ? 'Completed' : 'All')),
-      // User application and ownership data
-      userHasApplied: index % 3 === 0, // Every 3rd project user has applied to
-      managerId: index % 2 === 0 ? currentUserId : index + 10, // User manages every other project
-      ownerId: index % 4 === 0 ? currentUserId : index + 20, // User owns every 4th project
-      proyecto_roles: [
-        {
-          idrol: index * 2 + 1,
-          roles: {
-            nombrerol: `Role ${index * 2 + 1}`,
-            descripcionrol: `Description for Role ${index * 2 + 1}`,
-            requerimientos_roles: [
-              { requerimientos: { habilidades: { idhabilidad: index * 4 + 1, nombre: "JavaScript" } } },
-              { requerimientos: { habilidades: { idhabilidad: index * 4 + 2, nombre: "React" } } },
-              { requerimientos: { habilidades: { idhabilidad: index * 4 + 3, nombre: "Node.js" } } }
-            ]
-          }
-        },
-        {
-          idrol: index * 2 + 2,
-          roles: {
-            nombrerol: `Role ${index * 2 + 2}`,
-            descripcionrol: `Description for Role ${index * 2 + 2}`,
-            requerimientos_roles: [
-              { requerimientos: { habilidades: { idhabilidad: index * 4 + 4, nombre: "CSS" } } },
-              { requerimientos: { habilidades: { idhabilidad: index * 4 + 5, nombre: "UI/UX" } } }
-            ]
-          }
-        }
-      ]
-    }));
-  };
-
+ 
   // Apply skills filters
   const handleApplySkillFilters = (selectedSkills) => {
     setSelectedSkillFilters(selectedSkills);

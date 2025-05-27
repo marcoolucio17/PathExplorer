@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import styles from 'src/styles/Modals/Modal.module.css';
-import ModalScrollbar from 'src/components/Modals/ModalScrollbar';
+import React, { useState, useEffect } from "react";
+import styles from "src/styles/Modals/Modal.module.css";
+import ModalScrollbar from "src/components/Modals/ModalScrollbar";
+import axios from "axios";
 
 export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
   const [formData, setFormData] = useState({
-    title: '',
-    skill: '',
-    issuer: '',
-    obtainedDate: '',
-    expirationDate: '',
-    credentialId: '',
-    verifyUrl: '',
+    title: "",
+    skill: "",
+    issuer: "",
+    obtainedDate: "",
+    expirationDate: "",
+    credentialId: "",
+    verifyUrl: "",
     certificateImage: null,
-    imagePreview: null
+    imagePreview: null,
   });
 
   useEffect(() => {
@@ -34,15 +36,15 @@ export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
       setIsClosing(false);
       // Reset form
       setFormData({
-        title: '',
-        skill: '',
-        issuer: '',
-        obtainedDate: '',
-        expirationDate: '',
-        credentialId: '',
-        verifyUrl: '',
+        title: "",
+        skill: "",
+        issuer: "",
+        obtainedDate: "",
+        expirationDate: "",
+        credentialId: "",
+        verifyUrl: "",
         certificateImage: null,
-        imagePreview: null
+        imagePreview: null,
       });
     }, 300);
   };
@@ -55,52 +57,90 @@ export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData(prev => ({
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onloadend = async () => {
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const userId = localStorage.getItem("id");
+
+        // 1. POST request to upload the file
+        await axios.post(
+          `http://localhost:8080/api/certificaciones/upload-image/${userId}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        // 2. GET request to fetch the stored file path
+        const getResponse = await axios.get(
+          `http://localhost:8080/api/certificaciones/image-url/${userId}`,
+          // http://localhost:8080/api/certificaciones/image-url/1
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+
+        // 3. Extract file path from GET response
+        const filePath = getResponse.data?.certificateImage;
+
+        setFormData((prev) => ({
           ...prev,
-          certificateImage: file,
-          imagePreview: reader.result
+          certificateImage: filePath,
+          imagePreview: reader.result,
         }));
-      };
-      reader.readAsDataURL(file);
-    }
+      } catch (error) {
+        console.error("Error uploading or fetching certificate:", error);
+      }
+    };
+
+    reader.readAsDataURL(file);
   };
 
+  // todo : cambiar esta función para realizar el POST
+  // todo : revisar si es edición o adición
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Format dates to Spanish format
     const formatDate = (dateString) => {
-      if (!dateString) return '';
+      if (!dateString) return "";
       const date = new Date(dateString);
-      const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
-                     'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-      return `${date.getDate()} de ${months[date.getMonth()]}, ${date.getFullYear()}`;
+      // const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      //                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+      // return `${date.getDate()} de ${months[date.getMonth()]}, ${date.getFullYear()}`;
+      return date.toISOString();
     };
-    
+
     // Create certificate object
     const newCertificate = {
-      id: Date.now(), // Generate unique ID
-      img: formData.imagePreview || '/imagesUser/default-cert.png',
-      alt: formData.skill || formData.title,
-      title: formData.title,
-      issuer: formData.issuer,
+      cnombre: formData.title,
+      emitidopor: formData.issuer,
       skill: formData.skill,
-      fechaObtenido: formatDate(formData.obtainedDate),
-      fechaExpirado: formatDate(formData.expirationDate),
-      certificateImage: formData.imagePreview || '/imagesUser/default-cert.png',
-      credentialId: formData.credentialId,
-      verifyUrl: formData.verifyUrl
+      fechaobtenido: formatDate(formData.obtainedDate),
+      fechaexpirado: formatDate(formData.expirationDate),
+      imagencertificado:
+        formData.certificateImage || "/imagesUser/default-cert.png",
+      //credentialId: formData.credentialId,
+      // verifyUrl: formData.verifyUrl
     };
 
     onAddCertificate(newCertificate);
@@ -112,28 +152,36 @@ export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
   };
 
   return (
-    <div 
-      className={`${styles.modalBackdrop} ${isClosing ? styles.closing : ''}`} 
+    <div
+      className={`${styles.modalBackdrop} ${isClosing ? styles.closing : ""}`}
       onClick={handleBackdropClick}
     >
-      <div className={`${styles.modalContent} ${isClosing ? styles.closing : ''}`}>
+      <div
+        className={`${styles.modalContent} ${isClosing ? styles.closing : ""}`}
+      >
         <button className={styles.closeButton} onClick={handleClose}>
           <i className="bi bi-x-lg"></i>
         </button>
-        
+
         <div className={styles.modalHeader}>
           <h2 className={styles.title}>Add Certificate</h2>
-          <p className={styles.subtitle}>Upload and add details for your certificate</p>
+          <p className={styles.subtitle}>
+            Upload and add details for your certificate
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <form
+          onSubmit={handleSubmit}
+          className={styles.form}
+          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        >
           <div className={styles.modalBody}>
             <div className={styles.uploadSection}>
               <label className={styles.uploadLabel} htmlFor="certificateFile">
                 {formData.imagePreview ? (
-                  <img 
-                    src={formData.imagePreview} 
-                    alt="Certificate preview" 
+                  <img
+                    src={formData.imagePreview}
+                    alt="Certificate preview"
                     className={styles.uploadPreview}
                   />
                 ) : (
@@ -241,15 +289,15 @@ export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
           </div>
 
           <div className={styles.buttonGroup}>
-            <button 
+            <button
               type="button"
-              onClick={handleClose} 
+              onClick={handleClose}
               className={styles.cancelButton}
             >
               Cancel
             </button>
-            
-            <button 
+
+            <button
               type="submit"
               disabled={!isFormValid()}
               className={styles.saveButton}

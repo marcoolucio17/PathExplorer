@@ -235,51 +235,8 @@ export const useProfilePage = () => {
   // Enhanced objectives with description and target date
   const objectives = transformBackendObjectives(data.metas);
 
-  // Soft skills list for categorization
-  const SOFT_SKILLS_LIST = useMemo(
-    () => [
-      "Accountability",
-      "Active Listening",
-      "Adaptability",
-      "Collaboration",
-      "Communication",
-      "Conflict Resolution",
-      "Creativity & Innovation",
-      "Critical Thinking",
-      "Cultural Awareness",
-      "Decision-Making",
-      "Emotional Intelligence",
-      "Empathy",
-      "Facilitation",
-      "Flexibility",
-      "Growth Mindset",
-      "Leadership",
-      "Mentoring & Coaching",
-      "Negotiation",
-      "Networking",
-      "Presentation Skills",
-      "Prioritization",
-      "Problem-Solving",
-      "Public Speaking",
-      "Resilience",
-      "Self-Motivation",
-      "Stakeholder Management",
-      "Stress Management",
-      "Teamwork",
-      "Technical Writing",
-      "Time Management",
-      "Git mastery",
-      "agile practices",
-      "architectural writing",
-      "code reviews",
-    ],
-    []
-  );
-
   // Categorized skills
   const categorizedSkills = transformBackendSkils(data.skills);
-
-
 
   // Tab counts (for notification badges)
   const tabCounts = useMemo(() => {
@@ -316,6 +273,7 @@ export const useProfilePage = () => {
   // Handle add certificate
   const handleAddCertificate = useCallback((newCertificate) => {
     //setUserCertificates(prev => [...prev, newCertificate]);
+    
   }, []);
 
   // Handle remove certificate
@@ -348,6 +306,7 @@ export const useProfilePage = () => {
       setSelectedCertificate(null);
     }, 300);
   }, [closeModal]);
+
 
   // Navigate functions
   const handleBack = useCallback(() => {

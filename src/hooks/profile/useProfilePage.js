@@ -77,12 +77,11 @@ function transformBackendCertificates(certificates) {
   if (!certificates) return res;
 
   certificates.forEach((certificate) => {
+    let url = "/imagesUser/JavaScript-logo.png"
+
     let temp = {
       id: certificate.certificaciones.idcertificaciones,
-      img:
-        certificate.certificaciones.imagencertificado ||
-        "/imagesUser/JavaScript-logo.png",
-      alt: "certificado",
+      img: url,
       title: certificate.certificaciones.cnombre,
       issuer: certificate.certificaciones.emitidopor,
       skill: "Python",
@@ -106,7 +105,6 @@ function transformBackendCertificates(certificates) {
 }
 
 function transformBackendObjectives(objectives) {
-
   if (!objectives) return [];
   let res = [];
 
@@ -136,13 +134,12 @@ function transformBackendObjectives(objectives) {
   });
 
   return res;
-
 }
 
 function transformBackendSkils(skills) {
   let res = {
     softSkills: [],
-    hardSkills: []
+    hardSkills: [],
   };
 
   if (!skills) return res;
@@ -273,7 +270,6 @@ export const useProfilePage = () => {
   // Handle add certificate
   const handleAddCertificate = useCallback((newCertificate) => {
     //setUserCertificates(prev => [...prev, newCertificate]);
-    
   }, []);
 
   // Handle remove certificate
@@ -306,7 +302,6 @@ export const useProfilePage = () => {
       setSelectedCertificate(null);
     }, 300);
   }, [closeModal]);
-
 
   // Navigate functions
   const handleBack = useCallback(() => {

@@ -1,30 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import styles from 'src/styles/Modals/Modal.module.css';
-import ModalScrollbar from 'src/components/Modals/ModalScrollbar';
+import React, { useState, useEffect } from "react";
+import styles from "src/styles/Modals/Modal.module.css";
+import ModalScrollbar from "src/components/Modals/ModalScrollbar";
 
-export const CertificateModal = ({ certificate, isOpen, onClose, onAnimationComplete }) => {
+import axios from "axios";
+
+export const CertificateModal = ({
+  certificate,
+  isOpen,
+  onClose,
+  onAnimationComplete,
+}) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [localCertificate, setLocalCertificate] = useState(null);
+  const [img1, setImg] = useState("");
 
   useEffect(() => {
-    if (isOpen && certificate) {
-      setLocalCertificate(certificate);
-      setIsAnimating(true);
-      setIsClosing(false);
-    } else if (!isOpen && isAnimating) {
-      // Start closing animation
-      setIsClosing(true);
-      setTimeout(() => {
-        setIsAnimating(false);
-        setIsClosing(false);
-        setLocalCertificate(null);
-        if (onAnimationComplete) {
-          onAnimationComplete();
+  const fetchImageUrl = async () => {
+    if (!certificate?.id) return;
+
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/api/certificaciones/image-url/${certificate.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      }, 300); // Match animation duration
+      );
+      const imageUrl = res.data?.url;
+      setImg(imageUrl);
+    } catch (err) {
+      console.error("Error fetching image:", err);
     }
-  }, [isOpen, certificate, isAnimating, onAnimationComplete]);
+  };
+
+  if (isOpen && certificate) {
+    fetchImageUrl(); // ✅ call async function properly
+
+    setLocalCertificate(certificate);
+    setIsAnimating(true);
+    setIsClosing(false);
+  } else if (!isOpen && isAnimating) {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+      setIsClosing(false);
+      setLocalCertificate(null);
+      if (onAnimationComplete) {
+        onAnimationComplete();
+      }
+    }, 300);
+  }
+}, [isOpen, certificate, isAnimating, onAnimationComplete]);
+
 
   if (!isAnimating || !localCertificate) return null;
 
@@ -40,11 +69,12 @@ export const CertificateModal = ({ certificate, isOpen, onClose, onAnimationComp
 
   const handleDownload = async () => {
     try {
-      const imageUrl = localCertificate.certificateImage || localCertificate.img;
-      
       // For local images or same-origin images
-      if (imageUrl.startsWith('/') || imageUrl.startsWith(window.location.origin)) {
-        const link = document.createElement('a');
+      if (
+        imageUrl.startsWith("/") ||
+        imageUrl.startsWith(window.location.origin)
+      ) {
+        const link = document.createElement("a");
         link.href = imageUrl;
         link.download = `${localCertificate.title}-Certificate.png`;
         document.body.appendChild(link);
@@ -55,7 +85,7 @@ export const CertificateModal = ({ certificate, isOpen, onClose, onAnimationComp
         const response = await fetch(imageUrl);
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = url;
         link.download = `${localCertificate.title}-Certificate.png`;
         document.body.appendChild(link);
@@ -64,78 +94,91 @@ export const CertificateModal = ({ certificate, isOpen, onClose, onAnimationComp
         window.URL.revokeObjectURL(url);
       }
     } catch (error) {
-      console.error('Error downloading certificate:', error);
+      console.error("Error downloading certificate:", error);
       // Fallback: open image in new tab if download fails
-      window.open(localCertificate.certificateImage || localCertificate.img, '_blank');
+      window.open(
+        localCertificate.certificateImage || localCertificate.img,
+        "_blank"
+      );
     }
   };
 
   return (
-    <div 
-      className={`${styles.modalBackdrop} ${isClosing ? styles.closing : ''}`} 
+    <div
+      className={`${styles.modalBackdrop} ${isClosing ? styles.closing : ""}`}
       onClick={handleBackdropClick}
     >
-      <div className={`${styles.modalContent} ${isClosing ? styles.closing : ''}`}>
+      <div
+        className={`${styles.modalContent} ${isClosing ? styles.closing : ""}`}
+      >
         <button className={styles.closeButton} onClick={handleClose}>
           <i className="bi bi-x-lg"></i>
         </button>
-        
+
         <div className={styles.modalHeader}>
           <h2 className={styles.title}>{localCertificate.title}</h2>
           <p className={styles.subtitle}>{localCertificate.skill}</p>
         </div>
 
-        <div className={styles.modalBody} style={{ height: 'calc(100% - 200px)' }}>
+        <div
+          className={styles.modalBody}
+          style={{ height: "calc(100% - 200px)" }}
+        >
           <div className={`${styles.uploadSection} ${styles.mb3}`}>
-            <img 
-              src={localCertificate.certificateImage || localCertificate.img} 
+            <img
+              src={img1}
               alt={localCertificate.title}
               className={styles.uploadPreview}
-              style={{ width: '100%', maxWidth: '300px' }}
+              style={{ width: "100%", maxWidth: "300px" }}
             />
           </div>
 
           <div className={styles.mb4}>
             <div className={styles.detailRow}>
               <span className={styles.detailLabel}>Issued by:</span>
-              <span className={styles.detailValue}>{localCertificate.issuer}</span>
+              <span className={styles.detailValue}>
+                {localCertificate.issuer}
+              </span>
             </div>
-            
+
             <div className={styles.detailRow}>
               <span className={styles.detailLabel}>Obtained Date:</span>
-              <span className={styles.detailValue}>{localCertificate.fechaObtenido}</span>
+              <span className={styles.detailValue}>
+                {localCertificate.fechaObtenido}
+              </span>
             </div>
-            
+
             {localCertificate.fechaExpirado && (
               <div className={styles.detailRow}>
                 <span className={styles.detailLabel}>Expiration Date:</span>
-                <span className={styles.detailValue}>{localCertificate.fechaExpirado}</span>
+                <span className={styles.detailValue}>
+                  {localCertificate.fechaExpirado}
+                </span>
               </div>
             )}
 
             {localCertificate.credentialId && (
               <div className={styles.detailRow}>
                 <span className={styles.detailLabel}>Credential ID:</span>
-                <span className={styles.detailValue}>{localCertificate.credentialId}</span>
+                <span className={styles.detailValue}>
+                  {localCertificate.credentialId}
+                </span>
               </div>
             )}
           </div>
         </div>
 
         <div className={styles.buttonGroup}>
-          <button 
-            onClick={handleDownload} 
-            className={styles.secondaryButton}
-          >
+          <button onClick={handleDownload} className={styles.secondaryButton}>
             <i className="bi bi-download"></i>
             Download Certificate
           </button>
-          
+
           {localCertificate.verifyUrl && (
-            <a 
-              href={localCertificate.verifyUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={localCertificate.verifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.primaryButton}
             >
               <i className="bi bi-box-arrow-up-right"></i>

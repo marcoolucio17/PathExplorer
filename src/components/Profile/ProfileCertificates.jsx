@@ -1,20 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GlassCard } from "../shared/GlassCard";
 import CustomScrollbar from "../CustomScrollbar";
 import styles from "./ProfileCertificates.module.css";
+import axios from "axios";
 
-/**
- * ProfileCertificates component for displaying certificates
- * @param {Array} certificates - Array of certificate objects
- * @param {Function} onCertificateClick - Function to handle certificate click
- * @param {Function} onAddCertificateClick - Function to handle add certificate button click
- * @param {Function} onRemoveCertificate - Function to handle certificate removal
- * @returns {JSX.Element}
- */
-export const ProfileCertificates = ({ certificates = [], onCertificateClick, onAddCertificateClick, onRemoveCertificate }) => {
-  
+export const ProfileCertificates = ({
+  certificates = [],
+  onCertificateClick,
+  onAddCertificateClick,
+  onRemoveCertificate
+}) => {
+  const [certsWithImages, setCertsWithImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      const token = localStorage.getItem("token");
+
+      const enriched = await Promise.all(
+        certificates.map(async (cert) => {
+          try {
+            const res = await axios.get(
+              `http://localhost:8080/api/certificaciones/image-url/${cert.id}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            return {
+              ...cert,
+              img: res.data?.url || "/imagesUser/default-cert.png",
+              alt: cert.title,
+            };
+          } catch (err) {
+            console.error(`Error loading image for cert ${cert.id}:`, err);
+            return {
+              ...cert,
+              img: "/imagesUser/default-cert.png",
+              alt: cert.title,
+            };
+          }
+        })
+      );
+
+      setCertsWithImages(enriched);
+    };
+
+    if (certificates.length > 0) fetchImages();
+  }, [certificates]);
+
   const handleRemoveClick = (e, certificateId) => {
-    e.stopPropagation(); // Prevent certificate click event
+    e.stopPropagation();
     if (onRemoveCertificate) {
       onRemoveCertificate(certificateId);
     }
@@ -31,14 +67,14 @@ export const ProfileCertificates = ({ certificates = [], onCertificateClick, onA
       <div className={styles.certificatesScrollContainer}>
         <CustomScrollbar fadeBackground="transparent" fadeHeight={40}>
           <div className={styles.certificatesContent}>
-            {certificates.length === 0 ? (
+            {certsWithImages.length === 0 ? (
               <div className={styles.placeholder}>
                 <i className="bi bi-award"></i>
                 <p>No certificates yet</p>
                 <span>Add your first certificate to showcase your achievements</span>
               </div>
             ) : (
-              certificates.map(cert => (
+              certsWithImages.map(cert => (
                 <article 
                   key={cert.id} 
                   className={styles.certificate}

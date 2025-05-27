@@ -19,6 +19,8 @@ export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
     imagePreview: null,
   });
 
+  const [image, setImage] = useState(null);
+
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
@@ -68,83 +70,90 @@ export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
     if (!file) return;
 
     const reader = new FileReader();
-
-    reader.onloadend = async () => {
+    setImage(file);
+    reader.onloadend = () => {
       try {
-        const formData = new FormData();
-        formData.append("file", file);
-
-        const userId = localStorage.getItem("id");
-
-        // 1. POST request to upload the file
-        await axios.post(
-          `http://localhost:8080/api/certificaciones/upload-image/${userId}`,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-
-        // 2. GET request to fetch the stored file path
-        const getResponse = await axios.get(
-          `http://localhost:8080/api/certificaciones/image-url/${userId}`,
-          // http://localhost:8080/api/certificaciones/image-url/1
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-
-        // 3. Extract file path from GET response
-        const filePath = getResponse.data?.certificateImage;
-
         setFormData((prev) => ({
           ...prev,
-          certificateImage: filePath,
-          imagePreview: reader.result,
+          certificateImage: "static/path/to/certificate.jpg", // ← your static string
+          imagePreview: reader.result, // base64 preview
         }));
       } catch (error) {
-        console.error("Error uploading or fetching certificate:", error);
+        console.error("Error setting certificate data:", error);
       }
     };
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); // triggers onloadend
   };
 
   // todo : cambiar esta función para realizar el POST
   // todo : revisar si es edición o adición
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Format dates to Spanish format
     const formatDate = (dateString) => {
       if (!dateString) return "";
       const date = new Date(dateString);
-      // const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-      //                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-      // return `${date.getDate()} de ${months[date.getMonth()]}, ${date.getFullYear()}`;
       return date.toISOString();
     };
 
-    // Create certificate object
+    // 1. Build certificate data
     const newCertificate = {
       cnombre: formData.title,
       emitidopor: formData.issuer,
       skill: formData.skill,
       fechaobtenido: formatDate(formData.obtainedDate),
       fechaexpirado: formatDate(formData.expirationDate),
-      imagencertificado:
-        formData.certificateImage || "/imagesUser/default-cert.png",
-      //credentialId: formData.credentialId,
-      // verifyUrl: formData.verifyUrl
+      imagencertificado: null, // assigned later
     };
 
-    onAddCertificate(newCertificate);
-    handleClose();
+    try {
+      // 2. POST certificate (without image for now)
+      const certResponse = await axios.post(
+        `http://localhost:8080/api/certificados`,
+        //
+        newCertificate,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const createdCert = certResponse.data;
+      const certId = createdCert.cert.idcertificaciones;
+      const formData = new FormData();
+
+      if (image) {
+        formData.append("file", image);
+      }
+
+      const imageAssignResponse = await axios.post(
+        `http://localhost:8080/api/certificaciones/upload-image/${certId}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const userassign = await axios.post(
+        `http://localhost:8080/api/certificados/asignar`,
+        { idusuario: localStorage.getItem("id"), idcertificaciones: certId },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      console.log("Image assigned successfully:", userassign.data);
+
+      handleClose();
+    } catch (error) {
+      console.error("Error submitting certificate:", error);
+    }
   };
 
   const isFormValid = () => {

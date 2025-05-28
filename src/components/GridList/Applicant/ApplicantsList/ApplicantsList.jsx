@@ -26,7 +26,7 @@ const ApplicantsList = ({
   onViewReason,
   onClearFilters
 }) => {
-  // If loading, show loader
+  //loading, show loader
   if (isLoading) {
     return (
       <div className={styles.loadingContainer}>
@@ -35,7 +35,7 @@ const ApplicantsList = ({
     );
   }
 
-  // If no applicants, show empty state
+  //no applicants, show empty state
   if (applicants.length === 0) {
     return (
       <div className={styles.emptyStateContainer}>
@@ -53,10 +53,10 @@ const ApplicantsList = ({
     );
   }
 
-  // Container class based on viewMode
+  //class based on viewMode
   const containerClass = viewMode === 'grid' ? styles.gridContainer : styles.listContainer;
 
-  // Create a unique key for the container to force re-render and animation restart
+  //create a unique key for the container to force re-render and animation restart
   const containerKey = `container-${activeTab}-${viewMode}`;
 
   return (
@@ -65,10 +65,10 @@ const ApplicantsList = ({
       className={containerClass}
     >
       {applicants.map((applicant, index) => {
-        // Calculate match percentage
+        //calculate match percentage
         const matchPercentage = calculateMatchPercentage(applicant);
         
-        // Force cards to always re-render when tab or filter changes with a unique key
+        //force cards to always re-render when tab or filter changes with a unique key
         const renderKey = `${applicant.id}-${activeTab}-${index}`;
         
         return (

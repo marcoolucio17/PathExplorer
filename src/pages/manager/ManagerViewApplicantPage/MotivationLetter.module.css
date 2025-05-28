@@ -8,7 +8,7 @@
   border-radius: 8px;
   font-size: 0.95rem;
   overflow-y: auto;
-  max-height: 120px; /* Limit the height to keep things compact */
+  max-height: 120px; 
   font-family: 'Graphik Regular', sans-serif;
 }
 

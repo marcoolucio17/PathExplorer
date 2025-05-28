@@ -3,7 +3,7 @@ import CustomScrollbar from "../CustomScrollbar";
 import styles from "./ProfileContactInfo.module.css";
 
 /**
- * ProfileContactInfo component for displaying contact information
+ * 
  * @param {Object} userProfile - User profile object with contact info
  * @returns {JSX.Element}
  */
@@ -31,7 +31,7 @@ export const ProfileContactInfo = ({ userProfile = {} }) => {
     }
   ];
 
-  // Check if all contact fields are empty
+  //check if all contact fields are empty
   const hasNoContactInfo = contactItems.every(item => !item.value);
 
   return (
@@ -45,7 +45,7 @@ export const ProfileContactInfo = ({ userProfile = {} }) => {
           </div>
         ) : (
           contactItems
-            .filter(item => item.value) // Only show items with values
+            .filter(item => item.value) 
             .map((item, index) => (
               <div key={index} className={styles.contactItem}>
                 <i className={`bi ${item.icon} ${styles.contactIcon}`}></i>

@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 import CustomScrollbar from '../../CustomScrollbar';
 
 /**
- * Button component with primary/secondary types and variants
+ * 
  * 
  * @param {Object} props
  * @param {string} props.type - Button type: 'primary' or 'secondary'
@@ -47,7 +47,7 @@ const Button = ({
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
 
-  // Close dropdown when clicking outside
+  //close dropdown when the user presses outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
@@ -68,23 +68,23 @@ const Button = ({
     };
   }, [dropdownOpen]);
 
-  // Handle toggle button click with animation
+  //toggle button click
   const handleToggleClick = (e) => {
     if (isToggle && toggleMode && onToggle) {
-      // Switch between grid and list mode
+      //switch between grid and list mode
       const newMode = toggleMode === 'grid' ? 'list' : 'grid';
       
-      // Call the onToggle function with the new mode
+      //call the onToggle function with the new mode
       onToggle(newMode);
     }
     
-    // Call the original onClick handler if provided
+    //call the original onClick handler if provided
     if (onClick) {
       onClick(e);
     }
   };
 
-  // Handle button click - either open dropdown or call onClick
+  //handle button click - either open dropdown or call onClick
   const handleButtonClick = (e) => {
     if (hasDropdown) {
       setDropdownOpen(!dropdownOpen);
@@ -95,7 +95,7 @@ const Button = ({
     }
   };
 
-  // Handle dropdown item click
+  //handle dropdown item click
   const handleDropdownItemClick = (item, e) => {
     if (item.subMenu) {
       setActiveSubmenu(activeSubmenu === item.label ? null : item.label);
@@ -108,7 +108,7 @@ const Button = ({
     }
   };
 
-  // Handle submenu item click
+  //handle submenu item click
   const handleSubmenuItemClick = (item, e) => {
     if (onDropdownItemClick) {
       onDropdownItemClick(item, e);
@@ -117,7 +117,7 @@ const Button = ({
     setActiveSubmenu(null);
   };
   
-  // Build class name based on props
+  //class name on props
   const buttonClasses = [
     styles.button,
     styles[type],
@@ -133,7 +133,7 @@ const Button = ({
     className
   ].filter(Boolean).join(' ');
 
-  // For toggle buttons, determine the icon based on current mode
+  //toggle buttons, determine the icon based on current mode
   const buttonIcon = isToggle && toggleMode 
     ? `bi-${toggleMode === 'grid' ? 'list' : 'grid-3x3-gap'}`
     : icon;

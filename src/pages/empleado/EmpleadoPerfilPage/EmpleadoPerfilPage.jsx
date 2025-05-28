@@ -30,11 +30,9 @@ import { EditProfileDetailsModal } from "../../../components/Modals/EditProfileD
 // CSS
 import styles from "src/styles/Pages/Employee/EmpleadoPerfilPage.module.css";
 
-/**
- * Profile page component for Employee role
- */
+
 export const EmpleadoPerfilPage = () => {
-  // Use the custom hook to handle all logic
+  //use the custom hook to handle all logic
   const profilePage = useProfilePage();
 
   const renderTabContent = () => {
@@ -54,7 +52,7 @@ export const EmpleadoPerfilPage = () => {
   };
 
   const handleEditSection = (section) => {
-    // Handle editing specific sections
+    //handle editing specific sections
     console.log('Edit section:', section);
     console.log('Current modals state:', profilePage.modals);
     switch (section) {
@@ -79,7 +77,7 @@ export const EmpleadoPerfilPage = () => {
     }
   };
 
-  // Save handlers for edit modals
+  //save handlers for edit modals
   const handleSaveContact = (contactData) => {
     profilePage.setUserProfile(prev => ({
       ...prev,
@@ -102,7 +100,7 @@ export const EmpleadoPerfilPage = () => {
     }));
   };
 
-  // Certificate removal handler
+  //certificate removal handler
   const handleRemoveCertificate = (certificateId) => {
     profilePage.handleRemoveCertificate(certificateId);
   };

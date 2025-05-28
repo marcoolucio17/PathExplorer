@@ -9,8 +9,8 @@ import Button from 'src/components/shared/Button';
  * 
  * @param {Object} props
  * @param {Object} props.applicant - Applicant data
- * @param {string} props.viewMode - Display mode: 'grid' or 'list'
- * @param {boolean} props.showCompatibility - Whether to show compatibility circle
+ * @param {string} props.viewMode - 'grid' o 'list'
+ * @param {boolean} props.showCompatibility - show compatibility circle
  * @param {number} props.matchPercentage - Compatibility match percentage
  * @param {string} props.activeTab - Current active tab
  * @param {Function} props.onViewRequest - Function called when View Request button is clicked
@@ -25,15 +25,15 @@ const ApplicantCard = ({
   onViewRequest,
   onViewReason
 }) => {
-  // Determine the class based on view mode
+  //determine card type
   const cardClass = viewMode === 'grid' 
     ? styles.cardGrid
     : styles.cardList;
   
-  // Common applicant content for both views
+  //common applicant content for both views
   const applicantContent = (
     <>
-      {/* Show match percentage when enabled */}
+      {/*show match percentage */}
       {showCompatibility && (
         <div className={styles.statusCircle}>
           <ProgressCircle 
@@ -118,7 +118,7 @@ const ApplicantCard = ({
     </>
   );
   
-  // Grid view - wrap the content in a GlassCard
+  // Grid view 
   if (viewMode === 'grid') {
     return (
       <GlassCard className={cardClass}>
@@ -127,7 +127,7 @@ const ApplicantCard = ({
     );
   }
   
-  // List view - custom layout for horizontal display
+  // List view
   return (
     <GlassCard className={cardClass}>
       <div className={styles.cardHeader}>

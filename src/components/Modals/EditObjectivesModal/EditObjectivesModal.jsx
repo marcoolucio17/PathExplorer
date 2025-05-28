@@ -15,7 +15,6 @@ export const EditObjectivesModal = ({ isOpen, onClose, objectives = [], onSave }
     completed: false
   });
 
-  // Move resetForm function before useEffect
   const resetForm = () => {
     setFormData({
       title: '',
@@ -115,7 +114,6 @@ export const EditObjectivesModal = ({ isOpen, onClose, objectives = [], onSave }
     
     try {
       // TODO: Replace with actual API call
-      // await updateObjectives(objectivesList);
       
       if (onSave) {
         onSave(objectivesList);

@@ -21,11 +21,8 @@ import styles from "src/styles/Pages/Proyecto/EmpleadoProyectoPage.module.css";
 import peopleStyles from "src/styles/Pages/Proyecto/PeopleSection.module.css";
 import skillsStyles from "src/styles/Pages/Proyecto/SkillsSection.module.css";
 
-/**
- * Project details page component for Employee role
- */
+
 export const EmpleadoProyectoPage = () => {
-  // Use the custom hook to handle all logic
   const proyectoPage = useEmpleadoProyectoPage();
   const { projectData, userSkills, isApplied, isLoading, loading, error } = proyectoPage;
 
@@ -40,7 +37,7 @@ export const EmpleadoProyectoPage = () => {
     );
   }
 
-  // Handle error state  
+  //error state  
   if (error) {
     return (
       <div className={styles.proyectoContainer}>
@@ -53,7 +50,7 @@ export const EmpleadoProyectoPage = () => {
     );
   }
 
-  // Handle case where project data is not found
+  //if project data is not found
   if (!projectData) {
     return (
       <div className={styles.proyectoContainer}>
@@ -67,7 +64,7 @@ export const EmpleadoProyectoPage = () => {
 
   const compatibilityPercentage = proyectoPage.calculateCompatibilityPercentage();
 
-  // Skills display logic - show max 6 skills, then +X more (with safety checks)
+  //show max 6 skills
   const maxVisibleSkills = 6;
   const skillsArray = projectData?.requiredSkills || [];
   const visibleSkills = skillsArray.slice(0, maxVisibleSkills);
@@ -265,7 +262,7 @@ export const EmpleadoProyectoPage = () => {
         isOpen={proyectoPage.modals.skills}
         onClose={() => proyectoPage.closeModal('skills')}
         userSkills={userSkills}
-        onUpdateSkills={() => {}} // Read-only mode for this page
+        onUpdateSkills={() => {}} //read only
       />
 
       <AllSkillsModal 

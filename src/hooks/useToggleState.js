@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 /**
- * A hook for managing toggle state with optional loading state
+ *
  * 
  * @param {boolean} initialState - Initial state of the toggle
  * @param {number} loadingDelay - Delay in milliseconds for loading state (0 for no loading)

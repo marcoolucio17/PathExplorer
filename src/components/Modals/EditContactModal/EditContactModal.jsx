@@ -16,7 +16,7 @@ export const EditContactModal = ({ isOpen, onClose, contactInfo, onSave }) => {
     if (isOpen) {
       setIsVisible(true);
       setIsClosing(false);
-      // Populate form with current data
+      //current harcoded data
       setFormData({
         email: contactInfo?.email || '',
         phone: contactInfo?.phone || '',
@@ -55,10 +55,9 @@ export const EditContactModal = ({ isOpen, onClose, contactInfo, onSave }) => {
     e.preventDefault();
     
     try {
-      // TODO: Replace with actual API call
+      // hacer: actual API call
       // await updateContactInfo(formData);
       
-      // For now, use the callback to update local state
       if (onSave) {
         onSave(formData);
       }
@@ -66,7 +65,6 @@ export const EditContactModal = ({ isOpen, onClose, contactInfo, onSave }) => {
       handleClose();
     } catch (error) {
       console.error('Error updating contact info:', error);
-      // TODO: Add error handling UI
     }
   };
 

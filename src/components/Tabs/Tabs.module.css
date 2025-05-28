@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-/* Container for all tabs and action buttons */
+/*container for all tabs and action buttons */
 .tabsContainer {
   display: flex;
   width: 100%;
@@ -10,28 +10,25 @@
   align-items: center;
   padding-bottom: 0;
   margin-bottom: 0;
-  /* Default style has border on the entire container */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* In tab-only mode, remove the container border */
+/*tab-only mode, remove the container border */
 [data-border-style="tab-only"] .tabsContainer {
   border-bottom: none !important;
 }
 
-/* Wrapper for just the tabs */
+/*wrapper for tabs */
 .tabList {
   display: flex;
   gap: 2rem;
-  position: relative; /* For indicator positioning */
+  position: relative; 
 }
 
-/* Add border to tabs list only in tab-only mode */
 .tabList.borderBottom {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Animated sliding indicator */
 .tabIndicator {
   position: absolute;
   bottom: -2px;
@@ -40,7 +37,6 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
   border-radius: 3px 3px 0 0;
-  /* Glowing effect */
   box-shadow: 0 0 8px rgba(208, 160, 255, 0.5);
 }
 
@@ -51,7 +47,6 @@
   font-size: 1rem;
   padding: 0.75rem 0;
   cursor: pointer;
-  /* Remove the border as we're using the indicator instead */
   border-bottom: none;
   transition: color 0.3s ease;
   text-align: center;
@@ -69,11 +64,9 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  /* Add subtle scale animation */
   transition: transform 0.2s ease;
 }
 
-/* Subtle zoom effect on hover */
 .tab:hover .tabContent {
   transform: scale(1.05);
 }
@@ -83,7 +76,7 @@
   font-weight: 500;
 }
 
-/* Fade in animation for active tab */
+
 .tab.active .tabContent {
   animation: fadeIn 0.3s ease forwards;
 }
@@ -138,7 +131,6 @@
     justify-content: flex-end;
   }
   
-  /* When tabs wrap to multiple lines */
   .tabsContainer {
     flex-wrap: wrap;
   }
@@ -148,12 +140,10 @@
     margin-top: 10px;
   }
   
-  /* Hide the indicator on small screens where tabs might wrap */
   .tabIndicator {
     display: none;
   }
   
-  /* Restore the border for active tabs on small screens */
   .tab.active {
     border-bottom: 3px solid #d0a0ff;
   }

@@ -5,7 +5,7 @@ import { DashboardProjectInfo } from '../../components/Dashboard/DashboardProjec
 import { DashboardSkillsCategory } from "../../components/Dashboard/DashboardSkillsCategory";
 
 import "../../styles/EmpleadoDashboard.css";
-import "../../styles/EmpleadoDashboardFixes.css"; // Import the fixes
+import "../../styles/EmpleadoDashboardFixes.css"; 
 
 import { useGetFetch } from '../../hooks/useGetFetch';
 
@@ -15,7 +15,7 @@ import { useGetFetch } from '../../hooks/useGetFetch';
  */
 export const EmpleadoDashboard = () => {
   const authState = localStorage.getItem("role");
-  //Agregar el error y el loading de cada uno
+
   const [searchProjects, setSearchProjects] = useState('');
   const [skillSelected, setSkillSelected] = useState('Skills');
   

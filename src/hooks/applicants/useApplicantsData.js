@@ -3,16 +3,16 @@ import useDataFetching from '../useDataFetching';
 import { generateDummyApplicants, getUniqueProjects, getUniqueSkills } from '../../utils/dummyData';
 
 /**
- * Hook for managing applicants data including compatibility calculations
+ *
  * 
  * @param {string} searchTerm - Current search term
  * @returns {Object} Applicants data and related functions
  */
 export const useApplicantsData = (searchTerm) => {
-  // Cache for match percentages
+  //cache for match percentages
   const matchPercentagesRef = useRef({});
 
-  // Setup data fetching
+  //setup data fetching
   const { data, setApplicants } = useDataFetching(
     {
       applicants: { 
@@ -37,7 +37,7 @@ export const useApplicantsData = (searchTerm) => {
     }
   );
 
-  // Derive project and skill options
+  // rpoject and skill options derivation
   const projectOptions = useMemo(() => {
     if (data.projects && data.projects.length > 0) {
       return data.projects.map(project => project.pnombre || project.nombre);
@@ -52,7 +52,6 @@ export const useApplicantsData = (searchTerm) => {
     return getUniqueSkills(data.applicants);
   }, [data.skills, data.applicants]);
 
-  // Match percentage calculation
   const calculateMatchPercentage = (applicant, showCompatibility = true) => {
     if (!applicant || !showCompatibility) return 0;
     
@@ -66,10 +65,7 @@ export const useApplicantsData = (searchTerm) => {
   };
 
   const refreshMatchPercentages = () => {
-    // Clear cache and recalculate
     matchPercentagesRef.current = {};
-    
-    // Pre-calculate all percentages
     data.applicants.forEach(applicant => {
       if (applicant && applicant.id) {
         matchPercentagesRef.current[applicant.id] = Math.floor(Math.random() * 101);

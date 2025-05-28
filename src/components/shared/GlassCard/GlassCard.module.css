@@ -5,12 +5,12 @@
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   box-shadow: var(--shadow-card);
-  padding: clamp(0.75rem, 1.5vw, 1.25rem); /* Reduced padding */
+  padding: clamp(0.75rem, 1.5vw, 1.25rem); 
   color: var(--text-light);
   display: flex;
   flex-direction: column;
-  gap: clamp(0.5rem, 1vw, 0.75rem); /* Reduced gap */
+  gap: clamp(0.5rem, 1vw, 0.75rem);
   height: 100%;
-  overflow: visible; /* Allow children to handle overflow */
+  overflow: visible; 
   position: relative;
 }

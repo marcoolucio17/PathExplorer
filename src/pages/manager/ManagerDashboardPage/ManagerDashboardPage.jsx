@@ -15,19 +15,17 @@ import Button from "../../../components/shared/Button";
 // CSS
 import styles from "src/styles/Pages/GridList/GridListDashboard.module.css";
 
-/**
- * Dashboard component for Manager role
- */
+
 export const ManagerDashboardPage = () => {
-  // Use the manager-specific dashboard hook
+  //use the manager-specific dashboard hook
   const dashboardPage = useManagerDashboardPage();
   
-  // Get header configuration
+  //get header configuration
   const headerProps = useDashboardHeaderConfig(dashboardPage);
 
-  // Handle creating a new project
+  //handle creating a new project
   const handleCreateProject = () => {
-    // TODO: Add logic to open create project modal or navigate to create project page
+    // wait TODO:Add logic to open create project modal or navigate to create project page
     console.log('Creating new project...');
   };
 

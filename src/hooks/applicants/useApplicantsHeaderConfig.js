@@ -1,7 +1,7 @@
 import useHeaderConfig from '../useHeaderConfig';
 
 /**
- * Hook for configuring the SearchHeader for the Applicants page
+ * 
  * 
  * @param {Object} props - Props from the applicants page
  * @returns {Object} Header configuration for SearchHeader component
@@ -91,7 +91,7 @@ export const useApplicantsHeaderConfig = (props) => {
     }
   ];
 
-  // Handle removing filters
+  //handle removing filters
   const handleRemoveFilter = (filterType, value) => {
     if (filterType === 'projects') {
       filterStates.setSelectedProject('All Projects');

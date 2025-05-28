@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 
 /**
- * Custom hook for managing multiple filters (skills, projects, search)
+ * 
  * @param {Array} data - The data array to filter
  * @param {Object} options - Filter options and configuration
  * @returns {Object} - Filter state and filtered data
@@ -11,10 +11,9 @@ const useFilters = (data = [], options = {}) => {
   const [selectedProject, setSelectedProject] = useState('All Projects');
   const { searchTerm = '', skillsField = 'skills', projectField = 'project' } = options;
   
-  // Ensure data is always an array
   const safeData = Array.isArray(data) ? data : [];
 
-  // Filtering logic for skills
+  //filtering logic for skills
   const filterBySkills = useMemo(() => {
     if (selectedSkills.length === 0) return safeData;
     
@@ -35,7 +34,7 @@ const useFilters = (data = [], options = {}) => {
     });
   }, [safeData, selectedSkills, skillsField]);
   
-  // Filtering logic for project
+  //filtering logic for project
   const filterByProject = useMemo(() => {
     if (!selectedProject || selectedProject === 'All Projects') return filterBySkills;
     
@@ -44,14 +43,14 @@ const useFilters = (data = [], options = {}) => {
     return filterBySkills.filter(item => {
       if (!item) return false;
       
-      // Check direct project field
+      //check direct project field
       if (item[projectField] && 
           typeof item[projectField] === 'string' && 
           item[projectField].toLowerCase() === lowerProject) {
         return true;
       }
       
-      // Check in applications if available
+      //check in applications if available
       if (item.applications && Array.isArray(item.applications)) {
         return item.applications.some(app => {
           if (!app) return false;
@@ -75,7 +74,7 @@ const useFilters = (data = [], options = {}) => {
     });
   }, [filterBySkills, selectedProject, projectField]);
   
-  // Filtering logic for search term
+  //filtering logic for search term
   const filteredData = useMemo(() => {
     if (!searchTerm) return filterByProject;
     
@@ -84,31 +83,31 @@ const useFilters = (data = [], options = {}) => {
     return filterByProject.filter(item => {
       if (!item) return false;
       
-      // Check name
+      //check name
       if (item.name && typeof item.name === 'string' && 
           item.name.toLowerCase().includes(lowerSearchTerm)) {
         return true;
       }
       
-      // Check email
+      //check email
       if (item.email && typeof item.email === 'string' && 
           item.email.toLowerCase().includes(lowerSearchTerm)) {
         return true;
       }
       
-      // Check role
+      //check role
       if (item.role && typeof item.role === 'string' && 
           item.role.toLowerCase().includes(lowerSearchTerm)) {
         return true;
       }
       
-      // Check project
+      //check project
       if (item[projectField] && typeof item[projectField] === 'string' && 
           item[projectField].toLowerCase().includes(lowerSearchTerm)) {
         return true;
       }
       
-      // Check skills
+      //check skills
       if (item[skillsField] && Array.isArray(item[skillsField])) {
         return item[skillsField].some(skill => {
           if (typeof skill === 'string' && 

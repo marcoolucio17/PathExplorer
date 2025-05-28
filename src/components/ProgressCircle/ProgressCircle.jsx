@@ -8,11 +8,11 @@ export const ProgressCircle = ({
   size = 150,
   strokeWidth = 12,
   fontWeight = 'medium', // 'medium' (default) or 'light'
-  fontSize // Custom font size (optional)
+  fontSize //custom font size ( completely optional)
 }) => {
   const [animatedValue, setAnimatedValue] = useState(0);
   
-  // Animation effect when component mounts
+  //animation effect when component starts
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimatedValue(value);
@@ -26,19 +26,14 @@ export const ProgressCircle = ({
   const percentage = (animatedValue / maxValue) * 100;
   const offset = circumference - (percentage / 100) * circumference;
   
-  // Calculate the text for display
   const displayText = maxValue === 100 ? `${value}%` : `${value}/${maxValue}`;
   
-  // Calculate border opacity based on progress (higher progress = higher opacity)
   const borderOpacity = Math.min(0.1 + (percentage / 100) * 0.4, 0.5);
   
-  // Generate unique IDs for gradients
   const uniqueId = `gradient-${title?.replace(/\s/g, '') || Math.random().toString(36).substr(2, 9)}`;
   
-  // Determine the font weight class based on the parameter
   const fontWeightClass = fontWeight === 'light' ? styles.lightFont : styles.mediumFont;
 
-  // Create style object for font size if provided
   const valueStyle = fontSize ? { fontSize } : {};
   
   return (
@@ -47,7 +42,6 @@ export const ProgressCircle = ({
         <svg width={size} height={size} className={styles.progressSvg}>
           {/* Define gradients */}
           <defs>
-            {/* Main gradient - cyan to dark purple (reversed direction) */}
             <linearGradient id={uniqueId} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#06b6d4" /> {/* Cyan */}
               <stop offset="100%" stopColor="#9333ea" /> {/* Purple */}
@@ -71,7 +65,7 @@ export const ProgressCircle = ({
             className={styles.backgroundCircle}
           />
           
-          {/* White border that follows the progress exactly with dynamic opacity */}
+          {/* White border*/}
           <circle
             cx={size / 2}
             cy={size / 2}
@@ -95,7 +89,7 @@ export const ProgressCircle = ({
             cy={size / 2}
             r={radius}
             stroke={`url(#${uniqueId})`}
-            strokeWidth={strokeWidth - 2} // Slightly smaller to show white border
+            strokeWidth={strokeWidth - 2} 
             fill="none"
             strokeDasharray={circumference}
             strokeDashoffset={offset}

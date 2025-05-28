@@ -4,7 +4,7 @@ import CustomScrollbar from "../CustomScrollbar";
 import styles from "./ProfileCertificates.module.css";
 
 /**
- * ProfileCertificates component for displaying certificates
+ * ProfileCertificates component displaying certificates
  * @param {Array} certificates - Array of certificate objects
  * @param {Function} onCertificateClick - Function to handle certificate click
  * @param {Function} onAddCertificateClick - Function to handle add certificate button click
@@ -14,7 +14,7 @@ import styles from "./ProfileCertificates.module.css";
 export const ProfileCertificates = ({ certificates = [], onCertificateClick, onAddCertificateClick, onRemoveCertificate }) => {
   
   const handleRemoveClick = (e, certificateId) => {
-    e.stopPropagation(); // Prevent certificate click event
+    e.stopPropagation(); 
     if (onRemoveCertificate) {
       onRemoveCertificate(certificateId);
     }

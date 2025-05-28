@@ -5,7 +5,7 @@ import CustomScrollbar from "../CustomScrollbar";
 import styles from "./ProfileSkills.module.css";
 
 /**
- * ProfileSkills component for displaying skills with categories
+ * ProfileSkills componente
  * @param {Object} categorizedSkills - Object with hardSkills and softSkills arrays
  * @param {Function} onSkillsClick - Function to handle skills button click
  * @returns {JSX.Element}

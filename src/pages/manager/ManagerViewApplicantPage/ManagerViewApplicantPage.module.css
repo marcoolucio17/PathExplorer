@@ -4,7 +4,7 @@
   --min-content-width: 320px;
 }
 
-/* Main container - Using styles from ManagerApplicantsPage */
+/* Main container*/
 .applicantDetailContainer {
   background: transparent;
   color: var(--text-light);
@@ -111,7 +111,7 @@
   max-width: 350px;
 }
 
-/* Applicant header at top of main content */
+/* Applicant heade */
 .applicantHeader {
   display: flex;
   align-items: center;
@@ -128,7 +128,7 @@
   padding-right: 0.5rem;
 }
 
-/* Card styles - simplified for tabs */
+/* Card styles */
 .card {
   background: rgba(34, 34, 57, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -158,7 +158,7 @@
   opacity: 0.9;
 }
 
-/* Divider */
+/* divider */
 .divider {
   height: 1px;
   background: rgba(255, 255, 255, 0.1);
@@ -181,7 +181,7 @@
   color: var(--text-muted);
 }
 
-/* Sidebar sections - inspired by EmpleadoProyectoPage */
+/* Sidebar sections*/
 .sidebarSection {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
@@ -211,7 +211,7 @@
   min-height: 0;
 }
 
-/* Responsive styles */
+/*responsive styles */
 @media (max-width: 1024px) {
   :root {
     --container-height: 90vh;

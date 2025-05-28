@@ -1,5 +1,5 @@
 /**
- * A hook to generate header configuration for SearchHeader component
+ * 
  * 
  * @param {Object} options - Configuration options
  * @param {string} options.viewMode - Current view mode ('grid' or 'list')

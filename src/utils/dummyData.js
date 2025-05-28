@@ -1,5 +1,5 @@
 /**
- * Generates dummy applicant data for testing
+ * dummy applicant data for testing - well remove later on
  * @param {number} count - Number of applicants to generate
  * @returns {Array} - Array of dummy applicants
  */
@@ -12,7 +12,7 @@ export const generateDummyApplicants = (count = 20) => {
     const randomSkillCount = Math.floor(Math.random() * 4) + 1;
     const selectedSkills = [];
     
-    // Select random skills without duplicates
+    //random skills
     while (selectedSkills.length < randomSkillCount) {
       const skill = skills[Math.floor(Math.random() * skills.length)];
       if (!selectedSkills.includes(skill)) {

@@ -244,7 +244,7 @@
   height: fit-content;
 }
 
-/* Media queries for responsive design */
+/*media queries for responsive design */
 @media (max-width: 1024px) {
   .mainContentWrapper {
     grid-template-columns: 1fr;
@@ -307,7 +307,7 @@
   }
 }
 
-/* Custom scrollbar styling */
+/*custom scrollbar styling */
 .projectCardsWrapper::-webkit-scrollbar {
   width: 6px;
 }

@@ -1,7 +1,7 @@
 import useHeaderConfig from '../useHeaderConfig';
 
 /**
- * Hook for configuring the SearchHeader for the Profile page
+ * 
  * 
  * @param {Object} props - Props from the profile page
  * @returns {Object} Header configuration for SearchHeader component

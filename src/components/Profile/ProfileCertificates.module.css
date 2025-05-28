@@ -1,8 +1,8 @@
 .certificatesCard {
-  height: 100%; /* Take full height of container */
+  height: 100%; 
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Prevent expansion beyond container */
+  overflow: hidden;
 }
 
 .sectionHeader {
@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
-  flex-shrink: 0; /* Don't shrink header */
+  flex-shrink: 0; 
 }
 
 .sectionTitle {
@@ -20,7 +20,7 @@
   font-family: 'Graphik Medium', sans-serif;
 }
 
-/* Match the skills add button style exactly */
+/* Match the skills add button style*/
 .sectionAddBtn {
   width: 32px;
   height: 32px;
@@ -52,13 +52,13 @@
   color: var(--text-light);
 }
 
-/* Fixed height scrollable container */
+
 .certificatesScrollContainer {
-  flex: 1; /* Take remaining space */
-  height: 0; /* Force height calculation */
+  flex: 1; 
+  height: 0;
   position: relative;
-  min-height: 0; /* Allow shrinking */
-  overflow: hidden; /* Critical: prevent content from expanding beyond */
+  min-height: 0; 
+  overflow: hidden; 
 }
 
 .certificatesContent {
@@ -80,8 +80,8 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0; /* Don't shrink certificates */
-  position: relative; /* For positioning remove button */
+  flex-shrink: 0;
+  position: relative;
 }
 
 .certificate:hover {
@@ -134,7 +134,7 @@
   pointer-events: none;
 }
 
-/* Placeholder when no certificates */
+/*placeholder fot when no certificates */
 .placeholder {
   display: flex;
   flex-direction: column;

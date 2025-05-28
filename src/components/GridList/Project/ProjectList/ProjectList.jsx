@@ -25,10 +25,10 @@ const ProjectList = ({
   onClearFilters,
   isLoading = false
 }) => {
-  // Safety check for undefined/null projects array
+  // Safety check
   const safeProjects = Array.isArray(projects) ? projects : [];
   
-  // If loading, show loader
+  //loading, show loader
   if (isLoading) {
     return (
       <div className={styles.loadingContainer}>
@@ -37,7 +37,7 @@ const ProjectList = ({
     );
   }
 
-  // If no projects, show empty state
+  //no projects, show empty state
   if (safeProjects.length === 0) {
     return (
       <div className={styles.emptyStateContainer}>
@@ -55,10 +55,10 @@ const ProjectList = ({
     );
   }
 
-  // Container class based on viewMode
+  //container class viewMode
   const containerClass = viewMode === 'grid' ? styles.gridContainer : styles.listContainer;
   
-  // Create a unique key for the container to force re-render and animation restart
+  //create a unique key for the container to force re-render and animation restart
   const containerKey = `container-projects-${viewMode}`;
 
   return (
@@ -67,17 +67,14 @@ const ProjectList = ({
       className={containerClass}
     >
       {safeProjects.map((item, index) => {
-        // Check if item has the expected structure
         if (!item || !item.project || !item.proyecto_rol) {
           console.warn('Invalid project item structure:', item);
-          return null; // Skip rendering this item
+          return null; 
         }
         
-        // Calculate match percentage if function is provided
         const matchPercentage = calculateMatchPercentage ? 
           calculateMatchPercentage(item.project, item.proyecto_rol) : 0;
         
-        // Force cards to always re-render when filter changes with a unique key
         const renderKey = `${item.project.idproyecto || 'unknown'}-${item.proyecto_rol.idrol || 'unknown'}-${index}`;
         
         return (

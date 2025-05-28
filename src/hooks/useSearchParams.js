@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 /**
- * Custom hook for managing search parameters in URL
+ * 
  * @param {string} initialTerm - Initial search term
  * @returns {[string, function]} - Search term and setter function
  */
@@ -11,7 +11,7 @@ const useSearchParams = (initialTerm = '') => {
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState(initialTerm);
   
-  // Parse search param from URL on initial load
+  //parse search param from URL on initial load
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchFromURL = params.get('search') || '';
@@ -20,7 +20,7 @@ const useSearchParams = (initialTerm = '') => {
     }
   }, []);
   
-  // Update URL when search term changes
+  //update URL when search term changes
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (searchTerm) {
@@ -31,7 +31,7 @@ const useSearchParams = (initialTerm = '') => {
     navigate(`${location.pathname}?${params.toString()}`, { replace: true });
   }, [searchTerm, navigate, location.pathname]);
   
-  // Update search term when URL changes (for back/forward navigation)
+  //update search term when URL changes
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchFromURL = params.get('search') || '';

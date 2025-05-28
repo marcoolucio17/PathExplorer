@@ -10,10 +10,9 @@
   width: 100%;
   height: 100%;
   position: relative;
-  padding-bottom: 1px; /* Prevent margin collapse */
+  padding-bottom: 1px;
 }
 
-/* Ultra-sleek custom scrollbar - always visible */
 .scrollContainer::-webkit-scrollbar {
   width: 4px;
 }
@@ -38,25 +37,22 @@
   background: rgba(139, 146, 255, 0.5);
 }
 
-/* Firefox scrollbar - always visible */
 .scrollContainer {
   scrollbar-width: thin;
   scrollbar-color: rgba(139, 146, 255, 0.2) rgba(255, 255, 255, 0.03);
 }
 
-/* Smooth scrolling */
 .scrollContainer {
   scroll-behavior: smooth;
 }
 
-/* Add padding to content to prevent overlap with scrollbar */
+
 .scrollContent {
   width: 100%;
   padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* Bottom fade effect for glass containers with ultra-smooth edges */
 .fadeBottom {
   position: absolute;
   bottom: 0;
@@ -72,7 +68,7 @@
       rgba(42, 42, 70, 0.2) 80%,
       transparent 100%
     );
-  /* Multi-layer masking for ultra-smooth edges */
+
   mask-image: 
     radial-gradient(ellipse 100% 100% at center bottom, black 0%, transparent 100%),
     linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
@@ -92,7 +88,6 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Bottom fade effect for transparent containers with ultra-smooth edges */
 .fadeBottomTransparent {
   position: absolute;
   bottom: 0;
@@ -109,7 +104,6 @@
       rgba(30, 29, 54, 0.2) 80%,
       transparent 100%
     );
-  /* Multi-layer masking for ultra-smooth edges */
   mask-image: 
     radial-gradient(ellipse 100% 100% at center bottom, black 0%, transparent 100%),
     linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
@@ -129,7 +123,6 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Top fade effect for scrolled content with ultra-smooth edges */
 .fadeTop {
   position: absolute;
   top: 0;
@@ -145,7 +138,6 @@
       rgba(42, 42, 70, 0.2) 80%,
       transparent 100%
     );
-  /* Multi-layer masking for ultra-smooth edges */
   mask-image: 
     radial-gradient(ellipse 100% 100% at center top, black 0%, transparent 100%),
     linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
@@ -180,7 +172,7 @@
       rgba(30, 29, 54, 0.2) 80%,
       transparent 100%
     );
-  /* Multi-layer masking for ultra-smooth edges */
+
   mask-image: 
     radial-gradient(ellipse 100% 100% at center top, black 0%, transparent 100%),
     linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
@@ -200,7 +192,7 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Additional soft edge effect using pseudo-elements */
+
 .fadeBottom::before,
 .fadeBottomTransparent::before {
   content: '';
@@ -235,7 +227,7 @@
   pointer-events: none;
 }
 
-/* Feathered edge variant using box shadow for extra softness */
+
 .fadeBottomSoft {
   position: absolute;
   bottom: 0;

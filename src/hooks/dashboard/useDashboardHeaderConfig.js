@@ -1,7 +1,7 @@
 import useHeaderConfig from '../useHeaderConfig';
 
 /**
- * Hook for configuring the SearchHeader for the Dashboard page
+ *
  * 
  * @param {Object} props - Props from the dashboard page
  * @returns {Object} Header configuration for SearchHeader component

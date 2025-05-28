@@ -36,17 +36,17 @@
   gap: clamp(0.3rem, 0.6vw, 0.5rem);
   height: 100%;
   min-width: 0;
-  overflow: visible; /* Changed from hidden to visible for shadows */
+  overflow: visible; /*  visible for shadows */
 }
 
-/* Make ProfileHeaderCard full width and sticky to top */
+/*ProfileHeaderCard full width and sticky to top */
 .profileColumnLeft > :first-child {
   flex-shrink: 0;
   max-height: 200px;
   margin-bottom: 1.5rem;
   width: 100%;
   position: relative;
-  overflow: visible; /* Allow shadows */
+  overflow: visible; /*allow shadows */
 }
 
 /* Tabs should be compact and full width */
@@ -54,14 +54,14 @@
   flex-shrink: 0;
   margin-bottom: 0.75rem;
   width: 100%;
-  overflow: visible; /* Allow button hover effects */
+  overflow: visible;
 }
 
 /* Tab content container */
 .tabContentContainer {
   flex: 1;
   min-height: 0;
-  overflow: hidden; /* Keep hidden here for internal scrolling */
+  overflow: hidden; /* Keep hiddenfor internal scrolling */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -104,22 +104,22 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: visible; /* Allow shadows to show */
+  overflow: visible; /*allow shadows to show */
   min-height: 0;
   box-sizing: border-box;
 }
 
-/* Skills section (first - fixed height) */
+/* Skills section  */
 .sidebarSection:first-child {
-  flex: none; /* Don't flex, use fixed height */
-  height: 350px; /* Fixed height */
+  flex: none;
+  height: 350px;
   z-index: 20;
 }
 
-/* Certificates section (last - fixed height) */
+/* Certificates section */
 .sidebarSection:last-child {
-  flex: 1; /* Take remaining space */
-  min-height: 400px; /* Minimum height */
+  flex: 1; 
+  min-height: 400px;
   z-index: 10;
 }
 
@@ -153,7 +153,7 @@
   }
   
   .sidebarSection:first-child {
-    height: 250px; /* Smaller on mobile */
+    height: 250px; 
   }
 }
 
@@ -175,7 +175,7 @@
   }
   
   .profileColumnLeft {
-    overflow-y: visible; /* Allow shadows on mobile */
+    overflow-y: visible; 
     min-height: 400px;
   }
   

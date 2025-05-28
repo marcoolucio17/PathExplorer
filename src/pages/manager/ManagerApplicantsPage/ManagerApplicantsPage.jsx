@@ -17,15 +17,11 @@ import { Tabs } from "../../../components/Tabs";
 // CSS
 import styles from "src/styles/Pages/GridList/GridListDashboard.module.css";
 
-/**
- * Applicants component for Manager role
- * Shows all applicants for the manager's projects with tabs for different application statuses
- */
 export const ManagerApplicantsPage = () => {
-  // Use the custom hook to handle all logic
+  //use the custom hook to handle all logic
   const applicantsPage = useApplicantsPage();
   
-  // Get header configuration
+  //get header configuration
   const headerProps = useApplicantsHeaderConfig(applicantsPage);
 
   return (

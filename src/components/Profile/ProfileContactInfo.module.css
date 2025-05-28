@@ -5,7 +5,7 @@
   text-align: left;
   padding: clamp(0.5rem, 1vw, 0.75rem);
   height: 100%;
-  min-width: max-content; /* Allow content to exceed container width */
+  min-width: max-content; 
 }
 
 .contactItem {
@@ -17,7 +17,7 @@
   border-radius: 8px;
   border: 1px solid var(--glass-border);
   min-height: 3rem;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap; 
 }
 
 .contactIcon {
@@ -44,7 +44,6 @@
   white-space: nowrap;
 }
 
-/* Enable scrolling on zoom */
 @media (max-width: 768px), (max-height: 700px) {
   .contactInfoSection {
     overflow-y: auto;
@@ -52,7 +51,7 @@
   }
 }
 
-/* Placeholder when no contact info */
+/*placeholder when no contact info */
 .placeholder {
   display: flex;
   flex-direction: column;
@@ -63,7 +62,7 @@
   gap: 0.75rem;
   color: var(--text-muted);
   min-height: 120px;
-  grid-column: 1 / -1; /* Span all grid columns */
+  grid-column: 1 / -1; 
 }
 
 .placeholder i {

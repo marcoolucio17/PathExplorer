@@ -3,9 +3,7 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './ProjectFilterModal.module.css';
 
-/**
- * Modal component for filtering applicants by project
- */
+
 const ProjectFilterModal = ({
   isOpen,
   onClose,
@@ -16,7 +14,6 @@ const ProjectFilterModal = ({
   const [searchTerm, setSearchTerm] = useState('');
   const modalRef = useRef(null);
   
-  // Filter projects based on search term
   const filteredProjects = searchTerm 
     ? projectOptions.filter(project => 
         project.toLowerCase().includes(searchTerm.toLowerCase())

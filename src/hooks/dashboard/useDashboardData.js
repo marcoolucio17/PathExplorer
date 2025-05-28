@@ -5,7 +5,7 @@ import useListPage from '../useListPage';
 import useModalControl from '../useModalControl';
 
 /**
- * Hook for managing dashboard data including project filtering and processing
+ * 
  * 
  * @returns {Object} Dashboard data and related functions
  */
@@ -13,20 +13,20 @@ export const useDashboardData = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Parse search param from URL
+  //search param from URL
   const searchParams = new URLSearchParams(location.search);
   const searchFromURL = searchParams.get('search') || '';
   
-  // Search and filter state
+  //searchand filter state
   const [searchTerm, setSearchTerm] = useState(searchFromURL);
   const [skillSelected, setSkillSelected] = useState('Skills');
   const [selectedSkillFilters, setSelectedSkillFilters] = useState([]);
   const [userSkills, setUserSkills] = useState(['C#', 'React', 'Node.js']); // Example user skills
   
-  // Mock current user ID (this would come from authentication context in real app)
+  //mock current user ID (this would come from authentication context in real app)
   const currentUserId = 1;
   
-  // URL management for search
+  //URL management for search
   useEffect(() => {
     if (searchTerm) {
       const params = new URLSearchParams(location.search);
@@ -40,7 +40,7 @@ export const useDashboardData = () => {
     }
   }, [searchTerm, navigate, location.pathname, location.search, searchFromURL]);
   
-  // Update search term when URL changes
+  //Update search term when URL changes
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchParam = params.get('search');
@@ -49,7 +49,7 @@ export const useDashboardData = () => {
     }
   }, [location.search]);
 
-  // Fetch data
+  //fetch data
   const { data } = useDataFetching(
     {
       projects: { 
@@ -63,11 +63,11 @@ export const useDashboardData = () => {
   );
 
  
-  // Apply skills filters
+  //apply skills filters
   const handleApplySkillFilters = (selectedSkills) => {
     setSelectedSkillFilters(selectedSkills);
     
-    // Update the Skills button text based on selected skills
+    //update the Skills button text based on selected skills
     if (selectedSkills.length > 0) {
       setSkillSelected(`${selectedSkills.length} skills`);
     } else {
@@ -75,26 +75,26 @@ export const useDashboardData = () => {
     }
   };
 
-  // Remove a specific skill filter
+  //remove a specific skill filter
   const removeSkillFilter = (skillToRemove) => {
     const updatedSkills = selectedSkillFilters.filter(skill => skill !== skillToRemove);
     handleApplySkillFilters(updatedSkills);
   };
 
-  // Clear all skill filters
+  //clear all skill filters
   const clearAllSkillFilters = () => {
     handleApplySkillFilters([]);
   };
 
-  // Calculate matching percentage
+  //calculate matching percentage
   const calculateMatchPercentage = (project, proyecto_rol) => {
     if (!project || !proyecto_rol) return 0;
     
-    // Placeholder implementation
-    return Math.floor(Math.random() * 101); // Random value between 0-100 for demo
+    //placeholder implementation
+    return Math.floor(Math.random() * 101); 
   };
 
-  // Sort projects function
+  //sort projects function
   const sortProjects = (projects, option) => {
     const sorted = [...projects];
     
@@ -130,7 +130,6 @@ export const useDashboardData = () => {
     }
   };
 
-  // Flatten the projects to map each role to a project for the ProjectList component
   const flattenProjectsForList = (projects) => {
     return projects.flatMap(project => 
       project.proyecto_roles.map(proyecto_rol => ({ 

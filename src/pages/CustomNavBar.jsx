@@ -15,13 +15,13 @@ function CustomNavbar() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Define search categories
+  //search categories
   const searchCategories = [
     { key: 'people', label: 'People', icon: 'people' },
     { key: 'projects', label: 'Projects', icon: 'projects' },
     { key: 'certificates', label: 'Certificates', icon: 'certificates' },
     { key: 'skills', label: 'Skills', icon: 'skills' },
-    { key: 'applicants', label: 'Applicants', icon: 'people' } // Using people icon for applicants
+    { key: 'applicants', label: 'Applicants', icon: 'people' } //using people icon for applicants
   ];
 
   const handleSearch = (value) => {
@@ -29,7 +29,7 @@ function CustomNavbar() {
   };
 
   const handleSearchResultClick = (searchValue, category) => {
-    // Navigate to the appropriate search page based on the category
+    //navigate to the appropriate search page based on the category that was chosen yurd
     switch (category) {
       case 'people':
         navigate(`/people/search?q=${encodeURIComponent(searchValue)}`);
@@ -47,7 +47,7 @@ function CustomNavbar() {
         navigate(`/manager/applicants?search=${encodeURIComponent(searchValue)}`);
         break;
       default:
-        // If there's no matching category, use a default
+        //use a default if not
         navigate(`/search?q=${encodeURIComponent(searchValue)}`);
         break;
     }

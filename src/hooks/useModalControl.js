@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 /**
- * A hook for managing multiple modal states
+ * 
  * 
  * @param {Object} initialModals - An object with modal names as keys and boolean values
  * @returns {Object} Modal state and control functions

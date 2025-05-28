@@ -1,8 +1,8 @@
 import useHeaderConfig from '../useHeaderConfig';
 
 /**
- * Hook for configuring the SearchHeader for the Employee Dashboard page
- * (Excludes "View Applicants" and "New Project" buttons - only shows Filter by and Sort by)
+ * 
+ * 
  * 
  * @param {Object} props - Props from the dashboard page
  * @returns {Object} Header configuration for SearchHeader component

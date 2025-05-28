@@ -88,9 +88,8 @@ export const AddCertificateModal = ({ isOpen, onClose, onAddCertificate }) => {
       return `${date.getDate()} de ${months[date.getMonth()]}, ${date.getFullYear()}`;
     };
     
-    // Create certificate object
     const newCertificate = {
-      id: Date.now(), // Generate unique ID
+      id: Date.now(), 
       img: formData.imagePreview || '/imagesUser/default-cert.png',
       alt: formData.skill || formData.title,
       title: formData.title,

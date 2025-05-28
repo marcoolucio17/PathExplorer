@@ -44,14 +44,14 @@
   --font-italic: 'Graphik Regular Italic', -apple-system, BlinkMacSystemFont, sans-serif;
   
   /* Font Sizes */
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 1.75rem;   /* 28px */
-  --text-4xl: 2rem;      /* 32px */
+  --text-xs: 0.75rem;    
+  --text-sm: 0.875rem;   
+  --text-base: 1rem;    
+  --text-lg: 1.125rem;  
+  --text-xl: 1.25rem;   
+  --text-2xl: 1.5rem;  
+  --text-3xl: 1.75rem;  
+  --text-4xl: 2rem;     
   
   /* Line Heights */
   --leading-none: 1;
@@ -61,7 +61,7 @@
   --leading-relaxed: 1.625;
   --leading-loose: 2;
   
-  /* Font Weights (using semantic names) */
+  /* Font Weights */
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;

@@ -29,7 +29,6 @@
   padding-left: 3.5rem;
 }
 
-/* Create timeline segment above the date */
 .timeline li::before {
   content: "";
   position: absolute;
@@ -40,14 +39,13 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Create timeline segment below the date */
 .timeline li::after {
   content: "";
   position: absolute;
   left: -3.75rem;
-  top: 2.5rem; /* Start after date height */
+  top: 2.5rem; 
   width: 2px;
-  bottom: -1.75rem; /* Extend to next item */
+  bottom: -1.75rem; 
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -55,9 +53,9 @@
   content: "";
   position: absolute;
   left: -3.75rem;
-  top: 2.5rem; /* Start after date height */
+  top: 2.5rem;
   width: 0px;
-  bottom: 0rem; /* Extend to next item */
+  bottom: 0rem; 
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -74,7 +72,7 @@
   z-index: 2;
 }
 
-/* Adjust date positioning to stay within container */
+
 @media (max-width: 1200px) {
   .date {
     position: relative;
@@ -129,7 +127,6 @@
   font-family: 'Graphik Regular', sans-serif;
 }
 
-/* Enable scrolling on zoom */
 @media (max-width: 768px), (max-height: 700px) {
   .timeline {
     overflow-y: auto;
@@ -154,7 +151,7 @@
   }
 }
 
-/* Placeholder when no experience */
+/*placeholder when no experience */
 .placeholder {
   display: flex;
   flex-direction: column;
@@ -165,7 +162,7 @@
   gap: 0.75rem;
   color: var(--text-muted);
   min-height: 120px;
-  margin-left: -5rem; /* Offset the timeline padding */
+  margin-left: -5rem; 
 }
 
 .placeholder i {

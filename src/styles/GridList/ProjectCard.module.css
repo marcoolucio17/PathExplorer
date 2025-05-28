@@ -1,4 +1,4 @@
-/* Override styles for ProjectCard - POSITIONING ONLY */
+/* Project Card positioning */
 
 /* List view card - complete grid redesign */
 .cardList {
@@ -11,7 +11,7 @@
   padding: 16px 30px !important;
   min-height: unset !important;
   height: auto !important;
-  max-height: 90px !important; /* Limit height */
+  max-height: 90px !important; 
 }
 
 /* Avatar area */
@@ -33,7 +33,7 @@
 /* Description floating in the middle */
 .floatingDescription {
   position: absolute !important;
-  left: 33% !important; /* Position about 1/3 of the way across */
+  left: 33% !important; 
   transform: translateX(-50%) !important;
   max-width: 300px !important;
   min-width: 200px !important;
@@ -79,7 +79,6 @@
   font-size: 0.95rem !important;
 }
 
-/* Force specific font for duration value */
 .durationValue {
   font-family: 'Graphik Light', sans-serif !important;
   color: var(--text-main) !important;

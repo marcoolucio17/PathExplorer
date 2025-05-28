@@ -42,7 +42,7 @@ export const CertificateModal = ({ certificate, isOpen, onClose, onAnimationComp
     try {
       const imageUrl = localCertificate.certificateImage || localCertificate.img;
       
-      // For local images or same-origin images
+      //for local images or same-origin images
       if (imageUrl.startsWith('/') || imageUrl.startsWith(window.location.origin)) {
         const link = document.createElement('a');
         link.href = imageUrl;
@@ -65,7 +65,6 @@ export const CertificateModal = ({ certificate, isOpen, onClose, onAnimationComp
       }
     } catch (error) {
       console.error('Error downloading certificate:', error);
-      // Fallback: open image in new tab if download fails
       window.open(localCertificate.certificateImage || localCertificate.img, '_blank');
     }
   };

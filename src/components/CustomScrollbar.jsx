@@ -8,9 +8,9 @@ const CustomScrollbar = ({
   style = {}, 
   fadeBackground = '#2a2a46',
   showFade = true,
-  fadeHeight = 40, // Reduced default height
+  fadeHeight = 40, 
   fadeIntensity = 1,
-  showHorizontalScroll = false // New prop to enable horizontal scrolling
+  showHorizontalScroll = false 
 }) => {
   const [isNearBottom, setIsNearBottom] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,10 +38,10 @@ const CustomScrollbar = ({
       const progress = totalScrollable > 0 ? scrollTop / totalScrollable : 0;
       setScrollProgress(progress);
       
-      // Show fade when there's more content to scroll
+      // fade when there's more content to scroll
       setIsNearBottom(scrollBottom > 5);
       
-      // Show top fade when scrolled down
+      // top fade when scrolled down
       setIsScrolled(scrollTop > 5);
     };
 
@@ -49,7 +49,7 @@ const CustomScrollbar = ({
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll);
       
-      // Check initial state
+      //check initial state
       const checkInitialOverflow = () => {
         if (!scrollContainerRef.current) return;
         const { scrollHeight, clientHeight, scrollWidth, clientWidth } = scrollContainerRef.current;
@@ -58,10 +58,10 @@ const CustomScrollbar = ({
         handleScroll();
       };
       
-      // Use timeout to ensure content is rendered
+      //use timeout to ensure content is rendered
       setTimeout(checkInitialOverflow, 0);
 
-      // Also check on resize
+      //also check on resize
       const resizeObserver = new ResizeObserver(() => {
         checkInitialOverflow();
       });
@@ -72,7 +72,7 @@ const CustomScrollbar = ({
         resizeObserver.disconnect();
       };
     }
-  }, [children]); // Re-check when children change
+  }, [children]); //re-check when children change?
 
   const getFadeClassName = (type) => {
     const suffix = fadeBackground === 'transparent' ? 'Transparent' : '';
@@ -84,16 +84,16 @@ const CustomScrollbar = ({
     return styles[`${typeMap[type]}${suffix}`];
   };
 
-  // Calculate dynamic fade opacity based on scroll position
+  //calculate dynamic fade opacity based on scroll position
   const getBottomFadeOpacity = () => {
     if (!isNearBottom) return 0;
-    // Fade out more as we approach the bottom
+    //fade out more as the bottom comes
     return Math.min(1, (1 - scrollProgress) * fadeIntensity);
   };
 
   const getTopFadeOpacity = () => {
     if (!isScrolled) return 0;
-    // Fade out more as we approach the top
+    //fade out more as we approach the top
     return Math.min(1, scrollProgress * fadeIntensity);
   };
 

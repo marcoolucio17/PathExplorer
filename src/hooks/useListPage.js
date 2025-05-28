@@ -8,7 +8,7 @@ import useToggleState from './useToggleState';
 import useModalControl from './useModalControl';
 
 /**
- * A hook that provides common list page functionality
+ * 
  * 
  * @param {Object} options - Configuration options
  * @param {Array} options.data - The data array to display
@@ -33,16 +33,16 @@ export const useListPage = ({
 }) => {
   const navigate = useNavigate();
   
-  // View mode toggle
+  //view mode toggle
   const [viewMode, setViewMode] = useState(defaultViewMode);
   
-  // Sorting
+  //sorting
   const [sortOption, setSortOption] = useState(defaultSortOption);
   
-  // Search
+  //search
   const [searchTerm, setSearchTerm] = useSearchParams('');
   
-  // Tab setup
+  //tabs
   const {
     activeTab,
     setActiveTab,
@@ -50,7 +50,7 @@ export const useListPage = ({
     filteredData: tabFilteredData
   } = useTabbedData(data, tabConfig);
   
-  // Filters setup
+  //filters setup
   const filterResults = useFilters(tabFilteredData, { 
     searchTerm, 
     ...filterConfig 
@@ -58,12 +58,12 @@ export const useListPage = ({
   
   const { filteredData: filteredByFilters, ...filterStates } = filterResults;
   
-  // Sort the filtered data
+  //sort the filtered data
   const sortedData = useMemo(() => {
     return sortFunction ? sortFunction(filteredByFilters, sortOption) : filteredByFilters;
   }, [filteredByFilters, sortOption, sortFunction]);
   
-  // Animated list 
+  //animated list 
   const {
     isLoading,
     visibleItems,
@@ -71,21 +71,18 @@ export const useListPage = ({
     setIsLoading
   } = useAnimatedList(sortedData, 80, 300);
   
-  // Toggle view mode with animation
+  //toggle view mode with animation
   const toggleViewMode = useCallback(() => {
-    // Set loading state first to trigger animation
     setIsLoading(true);
     
-    // Toggle view mode
     setViewMode(prev => prev === 'grid' ? 'list' : 'grid');
     
-    // Trigger animation sequence with a short delay
     setTimeout(() => {
       triggerAnimationSequence();
     }, 50);
   }, [triggerAnimationSequence, setIsLoading]);
   
-  // Compatibility state
+  //compatibility state
   const { 
     state: showCompatibility, 
     isLoading: compatibilityLoading, 
@@ -100,10 +97,10 @@ export const useListPage = ({
     details: false
   });
   
-  // Selected item for modals
+  //selected item for modals
   const [selectedItem, setSelectedItem] = useState(null);
   
-  // Animation trigger for tab/filter/sort changes
+  //animation trigger
   useEffect(() => {
     const timerId = setTimeout(() => {
       triggerAnimationSequence();
@@ -111,13 +108,12 @@ export const useListPage = ({
     return () => clearTimeout(timerId);
   }, [filteredByFilters, sortOption, activeTab, triggerAnimationSequence]);
   
-  // Navigation functions
+  //navigation functions
   const handleBack = () => {
     navigate(baseUrl || '/');
   };
   
   const handleViewItem = (itemId) => {
-    // Custom view logic can be added here
     const item = data.find(item => item[itemIdField] === itemId);
     if (item) {
       setSelectedItem(item);
@@ -125,9 +121,8 @@ export const useListPage = ({
     }
   };
   
-  // Filter clearing
+  //filter clearing
   const handleClearFilters = () => {
-    // Reset all filter states
     Object.entries(filterStates).forEach(([key, value]) => {
       if (typeof value === 'function' && key.startsWith('set')) {
         if (key === 'setSelectedSkills') {

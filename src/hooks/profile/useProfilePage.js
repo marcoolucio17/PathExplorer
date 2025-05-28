@@ -4,14 +4,14 @@ import useModalControl from '../useModalControl';
 import useToggleState from '../useToggleState';
 
 /**
- * Main hook for the Profile page, combining all functionality
+ * Main hook for the Profile page
  * 
  * @returns {Object} Complete state and functions for the Profile page
  */
 export const useProfilePage = () => {
   const navigate = useNavigate();
   
-  // Tab names for the profile page
+  //tab names for the profile page
   const tabNames = ['Contact Information', 'Experience', 'Objectives'];
   
   // Modal controls
@@ -32,13 +32,13 @@ export const useProfilePage = () => {
     editProfileDetails: false
   });
   
-  // Profile data states
+  //profile data states
   const [activeTab, setActiveTab] = useState('Contact Information');
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
-  // User profile data
+  //user profile data // ALL MOCK
   const [userProfile, setUserProfile] = useState({
     name: "Sammy Garcy",
     title: "Sr. Software Engineer",
@@ -118,7 +118,7 @@ export const useProfilePage = () => {
     }
   ]);
   
-  // Enhanced objectives with description and target date
+  //Enhanced objectives with description and target date
   const [objectives, setObjectives] = useState([
     { 
       id: 1, 
@@ -154,7 +154,7 @@ export const useProfilePage = () => {
     },
   ]);
   
-  // Soft skills list for categorization
+  // Soft skills list for categorization -- should move to skill modals- idk why its here im sorry
   const SOFT_SKILLS_LIST = useMemo(() => [
     "Accountability", "Active Listening", "Adaptability", "Collaboration", "Communication", 
     "Conflict Resolution", "Creativity & Innovation", "Critical Thinking", "Cultural Awareness", 
@@ -183,7 +183,7 @@ export const useProfilePage = () => {
     };
   }, [userExperience.length, objectives]);
   
-  // Handle objective toggle
+  //handle objective toggle
   const handleObjectiveToggle = useCallback((id) => {
     setObjectives(prev =>
       prev.map((obj) =>
@@ -230,22 +230,22 @@ export const useProfilePage = () => {
     openModal('addCertificate');
   }, [openModal]);
   
-  // Close certificate modal with cleanup
+  //close certificate modal with cleanup
   const closeCertificateModal = useCallback(() => {
     closeModal('certificate');
-    // Clear selected certificate after a delay to allow modal animation
+    //clear selected certificate after a delay to allow modal animation
     setTimeout(() => {
       setSelectedCertificate(null);
     }, 300);
   }, [closeModal]);
   
-  // Navigate functions
+  //navigate functions
   const handleBack = useCallback(() => {
     navigate('/empleado/dashboard');
   }, [navigate]);
   
   return {
-    // Data
+    //Data
     userProfile,
     userSkills,
     userCertificates,
@@ -286,7 +286,7 @@ export const useProfilePage = () => {
     closeCertificateModal,
     handleBack,
     
-    // Data setters (for potential future use)
+    // Data setters for whne api consumption
     setUserProfile,
     setUserSkills,
     setUserCertificates,

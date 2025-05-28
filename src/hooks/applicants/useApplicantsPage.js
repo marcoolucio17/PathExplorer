@@ -4,15 +4,15 @@ import useListPage from '../useListPage';
 import { sortApplicants } from '../../utils/sortApplicants';
 
 /**
- * Main hook for the Applicants page, combining all functionality
+ * 
  * 
  * @returns {Object} Complete state and functions for the Applicants page
  */
 export const useApplicantsPage = () => {
-  // Search term will be managed by the list page hook
+  //search term will be managed by the list page hook
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Get applicant data
+  //get applicant data
   const {
     applicants,
     setApplicants,
@@ -22,10 +22,10 @@ export const useApplicantsPage = () => {
     refreshMatchPercentages
   } = useApplicantsData(searchTerm);
 
-  // Tab names for the page
+  //tab names for the page
   const tabNames = ['Pending', 'In Review', 'Accepted', 'Denied'];
 
-  // Setup list page logic
+  //setup list page logic
   const listPage = useListPage({
     data: applicants,
     defaultSortOption: 'date_desc',
@@ -42,19 +42,19 @@ export const useApplicantsPage = () => {
     baseUrl: '/manager/dashboard'
   });
 
-  // Update search term when ListPage updates it
+  //update search term when ListPage updates it
   useEffect(() => {
     setSearchTerm(listPage.searchTerm);
   }, [listPage.searchTerm]);
 
-  // Compatibility effect - recalculate match percentages when enabled
+  //compatibility effect
   useEffect(() => {
     if (listPage.showCompatibility && !listPage.compatibilityLoading) {
       refreshMatchPercentages();
     }
   }, [listPage.showCompatibility, listPage.compatibilityLoading]);
 
-  // Additional applicant-specific handlers
+  //additional applicant-specific handlers
   const handleAcceptDeniedApplicant = (applicant) => {
     setApplicants(prevApplicants => 
       prevApplicants.map(app => 
@@ -69,7 +69,7 @@ export const useApplicantsPage = () => {
     listPage.closeModal('denialReason');
   };
 
-  // Generate active filters for header
+  //generate active filters for header
   const getActiveFilters = () => {
     const filters = {};
     
@@ -96,7 +96,7 @@ export const useApplicantsPage = () => {
     return filters;
   };
 
-  // Custom handler for viewing applicants with special handling for denied ones
+  //custom handler for viewing applicants with special handling for denied ones
   const handleViewApplicant = (applicantId) => {
     const applicant = applicants.find(app => app.id === applicantId);
     if (applicant && applicant.status === 'Denied') {
@@ -107,7 +107,7 @@ export const useApplicantsPage = () => {
     }
   };
 
-  // Provide a wrapper for calculate match percentage that includes showCompatibility
+  //a wrapper for calculate match percentage that includes showCompatibility
   const calculateApplicantMatchPercentage = (applicant) => {
     return calculateMatchPercentage(applicant, listPage.showCompatibility);
   };

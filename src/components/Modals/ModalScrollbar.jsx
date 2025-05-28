@@ -2,7 +2,7 @@ import React from 'react';
 import CustomScrollbar from 'src/components/CustomScrollbar';
 
 /**
- * ModalScrollbar - A wrapper around CustomScrollbar with consistent settings for modals
+ * 
  * 
  * @param {Object} props - Component props
  * @param {React.ReactNode} props.children - Content to be scrolled

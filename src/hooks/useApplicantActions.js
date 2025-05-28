@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /**
- * Custom hook for managing applicant actions (view, approve, deny, appeal)
+ * 
  * @param {Array} applicants - The current applicants array
  * @param {Function} setApplicants - Function to update applicants
  * @returns {Object} - Actions and states for applicant management
@@ -12,9 +12,9 @@ const useApplicantActions = (applicants, setApplicants) => {
   const [denialReasonModalOpen, setDenialReasonModalOpen] = useState(false);
   const [selectedDeniedApplicant, setSelectedDeniedApplicant] = useState(null);
   
-  // View applicant details
+  //view the details of the specific applicants
   const handleViewApplicant = (applicantId) => {
-    // If viewing a denied applicant, show the denial reason modal
+
     const applicant = applicants.find(app => app.id === applicantId);
     if (applicant && applicant.status === 'Denied') {
       setSelectedDeniedApplicant(applicant);
@@ -24,7 +24,7 @@ const useApplicantActions = (applicants, setApplicants) => {
     }
   };
   
-  // Handle accepting an applicant
+  //handle accepting an applicant
   const handleApproveApplicant = (applicantId) => {
     setApplicants(prevApplicants => 
       prevApplicants.map(app => 
@@ -33,7 +33,7 @@ const useApplicantActions = (applicants, setApplicants) => {
     );
   };
   
-  // Handle accepting a denied applicant
+  //handle accepting a denied applicant
   const handleAcceptDeniedApplicant = (applicant) => {
     setApplicants(prevApplicants => 
       prevApplicants.map(app => 
@@ -43,7 +43,7 @@ const useApplicantActions = (applicants, setApplicants) => {
     setDenialReasonModalOpen(false);
   };
   
-  // Handle denying an applicant
+  //handle denying an applicant
   const handleDenyApplicant = (applicantId, reason) => {
     setApplicants(prevApplicants => 
       prevApplicants.map(app => 
@@ -52,16 +52,14 @@ const useApplicantActions = (applicants, setApplicants) => {
     );
   };
   
-  // Handle appeal for a denied applicant
+  //handle appeal for a denied applicant
   const handleAppealDeniedApplicant = (applicant, appealReason) => {
     console.log(`Appeal submitted for ${applicant.name}: ${appealReason}`);
     setDenialReasonModalOpen(false);
-    
-    // In a real app, you would make an API call to submit the appeal
-    // and potentially change the status back to "In Review" or a new "Appeal" status
+
   };
   
-  // Close the denial reason modal
+  //close the denial reason modal
   const closeDenialModal = () => {
     setDenialReasonModalOpen(false);
     setSelectedDeniedApplicant(null);

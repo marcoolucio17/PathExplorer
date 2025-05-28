@@ -15,7 +15,7 @@ const useAnimatedList = (data = [], delay = 100, initialDelay = 300) => {
   const dataRef = useRef(data);
   const isFirstRenderRef = useRef(true);
 
-  // Update the ref when data changes
+  //update the ref when data changes
   useEffect(() => {
     dataRef.current = data;
   }, [data]);
@@ -26,7 +26,7 @@ const useAnimatedList = (data = [], delay = 100, initialDelay = 300) => {
       animationTimerRef.current = null;
     }
     
-    // Clear global animation timers if they exist
+    //clear global animation timers if they exist
     if (window.tabAnimationTimer) {
       clearTimeout(window.tabAnimationTimer);
       window.tabAnimationTimer = null;
@@ -50,7 +50,7 @@ const useAnimatedList = (data = [], delay = 100, initialDelay = 300) => {
     setIsLoading(true);
     resetAnimation();
     
-    // Use a simple approach - immediately show all items after delay
+
     animationTimerRef.current = setTimeout(() => {
       setIsLoading(false);
       
@@ -59,33 +59,30 @@ const useAnimatedList = (data = [], delay = 100, initialDelay = 300) => {
         return;
       }
       
-      // Simply show all items at once
+
       setVisibleItems(items);
       setAnimationComplete(true);
     }, initialDelay);
   }, [initialDelay, resetAnimation]);
 
-  // Clean up timers when unmounting
   useEffect(() => {
     return () => clearAnimationTimers();
   }, [clearAnimationTimers]);
 
-  // Run on initial load with a short delay to prevent flicker
+
   useEffect(() => {
     if (isFirstRenderRef.current) {
       isFirstRenderRef.current = false;
       
-      // Set initial items immediately to prevent flicker
       setVisibleItems(data);
-      
-      // Then trigger proper animation sequence with a short delay
+
       setTimeout(() => {
         triggerAnimationSequence();
       }, 50);
       return;
     }
     
-    // Check if the data has actually changed
+    //check if the data has actually changed
     const hasDataChanged = 
       !dataRef.current ||
       !data ||
@@ -103,7 +100,7 @@ const useAnimatedList = (data = [], delay = 100, initialDelay = 300) => {
     visibleItems,
     resetAnimation,
     triggerAnimationSequence,
-    setIsLoading  // Export setIsLoading for external control
+    setIsLoading  
   };
 };
 

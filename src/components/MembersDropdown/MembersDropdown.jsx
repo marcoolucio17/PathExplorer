@@ -9,7 +9,6 @@ const MembersDropdown = ({ members, peopleSectionRef, className = '' }) => {
     setIsOpen(!isOpen);
   };
 
-  // Add or remove dropdown-active class on the people section parent
   useEffect(() => {
     if (peopleSectionRef?.current) {
       if (isOpen) {

@@ -1,4 +1,4 @@
-/* Override styles for ProjectCard - POSITIONING ONLY */
+/* Override styles for ProjectCard*/
 
 /* List view card - complete grid redesign */
 .cardList {
@@ -11,7 +11,7 @@
   padding: 16px 30px !important;
   min-height: unset !important;
   height: auto !important;
-  max-height: 90px !important; /* Limit height */
+  max-height: 90px !important; 
 }
 
 /* Avatar area */
@@ -33,7 +33,7 @@
 /* Description floating in the middle */
 .floatingDescription {
   position: absolute !important;
-  left: 33% !important; /* Position about 1/3 of the way across */
+  left: 33% !important; 
   transform: translateX(-50%) !important;
   max-width: 300px !important;
   min-width: 200px !important;
@@ -61,17 +61,17 @@
   flex-wrap: nowrap !important;
 }
 
-/* Duration styling - direct copy of styles */
+/* Duration styling*/
 .durationColumn {
   grid-area: duration !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-end !important;
   justify-content: center !important;
-  width: 130px !important; /* Fixed width */
+  width: 130px !important; 
 }
 
-/* Direct copy of detailValue styles to force correct font */
+/* detailValue copy*/
 .originalDetailValue {
   font-family: 'Graphik Light', sans-serif !important;
   color: var(--text-main) !important;
@@ -79,7 +79,7 @@
   font-size: 0.95rem !important;
 }
 
-/* Force specific font for duration value */
+/*force specific font*/
 .durationValue {
   font-family: 'Graphik Light', sans-serif !important;
   color: var(--text-main) !important;
@@ -96,13 +96,13 @@
   margin: 0 !important;
 }
 
-/* Hide original details and description */
+/*hide original details and description */
 .cardList .cardDetails, 
 .cardList .cardDescription {
   display: none !important;
 }
 
-/* Media query adjustments */
+/*media query adjustments */
 @media (max-width: 1200px) {
   .cardList {
     grid-template-columns: auto auto 1fr auto auto !important;

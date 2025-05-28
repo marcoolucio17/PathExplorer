@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ProfileObjectives.module.css";
 
 /**
- * ProfileObjectives component for displaying and managing objectives
+ * ProfileObjectives component
  * @param {Array} objectives - Array of objective objects
  * @param {Function} onObjectiveToggle - Function to handle objective toggle
  * @returns {JSX.Element}
@@ -21,7 +21,6 @@ export const ProfileObjectives = ({ objectives = [], onObjectiveToggle }) => {
     return date.toLocaleDateString('en-US', options);
   };
 
-  // Get priority color
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high': return 'var(--status-urgent)';
@@ -31,7 +30,7 @@ export const ProfileObjectives = ({ objectives = [], onObjectiveToggle }) => {
     }
   };
 
-  // Check if objective is overdue
+  //check if objective is overdue
   const isOverdue = (targetDate, completed) => {
     if (completed) return false;
     return new Date(targetDate) < new Date();

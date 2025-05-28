@@ -3,7 +3,7 @@ import CustomScrollbar from "../CustomScrollbar";
 import styles from "./ProfileExperience.module.css";
 
 /**
- * ProfileExperience component for displaying experience timeline
+ *
  * @param {Array} experienceItems - Array of experience objects
  * @returns {JSX.Element}
  */

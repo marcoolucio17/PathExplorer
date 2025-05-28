@@ -1,8 +1,8 @@
 .skillsCard {
-  height: 100%; /* Take full height of container */
+  height: 100%; 
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Prevent expansion beyond container */
+  overflow: hidden; 
 }
 
 .sectionHeader {
@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
-  flex-shrink: 0; /* Don't shrink header */
+  flex-shrink: 0;
 }
 
 .sectionTitle {
@@ -54,11 +54,11 @@
 
 /* Fixed height scrollable container */
 .skillsScrollContainer {
-  flex: 1; /* Take remaining space */
-  height: 0; /* Force height calculation */
+  flex: 1; 
+  height: 0; 
   position: relative;
-  min-height: 0; /* Allow shrinking */
-  overflow: hidden; /* Critical: prevent content from expanding beyond */
+  min-height: 0; 
+  overflow: hidden; 
 }
 
 .skillsContent {
@@ -100,7 +100,7 @@
   box-sizing: border-box;
 }
 
-/* Mobile responsiveness */
+/*mobile responsiveness - mmkinda useless */
 @media (max-width: 768px) {
   .sectionHeader {
     margin-bottom: 1rem;
@@ -119,7 +119,7 @@
   }
 }
 
-/* Placeholder when no skills */
+/*placeholder when no skills */
 .placeholder {
   display: flex;
   flex-direction: column;

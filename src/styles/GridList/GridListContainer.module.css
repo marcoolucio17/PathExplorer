@@ -43,10 +43,10 @@
 .item:nth-child(19) { animation-delay: 2.85s; }
 .item:nth-child(20) { animation-delay: 3.0s; }
 
-/* Handle any items beyond 20 */
+/*beyond 20 */
 .item:nth-child(n+21) { animation-delay: 3.0s; }
 
-/* Grid layout with container animation */
+/* Gridcontainer animation */
 .gridContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -82,7 +82,7 @@
   }
 }
 
-/* No items message */
+/* show 0 items message */
 .noItemsMessage {
   display: flex;
   flex-direction: column;

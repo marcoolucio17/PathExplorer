@@ -26,18 +26,18 @@ const ProjectCard = ({
   selectedSkillFilters = [],
   userSkills = []
 }) => {
-  // Determine the class based on view mode
+  //deteermine class
   const cardClass = viewMode === 'grid' 
     ? styles.cardGrid
     : `${styles.cardList} ${customStyles.cardList}`;
   
-  // Prepare sample data to ensure visualization
+  //prepare sample data to ensure visualization
   const ensureRoleData = () => {
-    // Get current role data
+    //current role data
     return {
       roleName: proyecto_rol.roles?.nombrerol || 'Developer',
       projectName: project.pnombre || 'Project',
-      // Generate random duration 3-18 months
+      //random duration for nwo
       duration: project.duracionMes || 'TBD'
     };
   };
@@ -96,10 +96,10 @@ const ProjectCard = ({
     );
   };
   
-  // Grid view content
+  // Grid view
   const gridContent = (
     <>
-      {/* Show match percentage when enabled */}
+      {/*match percentage when enabled */}
       {showCompatibility && (
         <div className={styles.statusCircle}>
           <ProgressCircle 
@@ -149,7 +149,7 @@ const ProjectCard = ({
     </>
   );
   
-  // List view content with completely redesigned layout
+  //List view 
   const listContent = (
     <>
       {/* Avatar area */}
@@ -161,13 +161,13 @@ const ProjectCard = ({
         />
       </div>
       
-      {/* Title and project name only */}
+      {/*Title and project name only */}
       <div className={customStyles.titleContainer}>
         <h3 className={styles.cardTitle}>{roleData.roleName}</h3>
         <p className={styles.cardSubtitle}>for {roleData.projectName}</p>
       </div>
       
-      {/* Floating description in the middle */}
+      {/*description in the middle */}
       <div className={customStyles.floatingDescription}>
         <p className={styles.descriptionText}>
           Description for Project {project.pnombre || '5'}
@@ -195,7 +195,7 @@ const ProjectCard = ({
         )}
       </div>
       
-      {/* Duration info - using hardcoded styles to ensure font consistency */}
+      {/*hardcoded styles because its not being consistent */}
       <div className={customStyles.durationColumn}>
         <span className={styles.detailLabel}>
           <i className="bi bi-clock"></i> Duration
@@ -207,7 +207,7 @@ const ProjectCard = ({
     </>
   );
   
-  // Grid view - wrap the content in a GlassCard
+  // Grid view
   if (viewMode === 'grid') {
     return (
       <GlassCard className={cardClass}>
@@ -216,7 +216,7 @@ const ProjectCard = ({
     );
   }
   
-  // List view - custom layout for horizontal display
+  // List view
   return (
     <GlassCard className={cardClass}>
       {listContent}

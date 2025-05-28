@@ -35,7 +35,6 @@
   fill: none;
   stroke-linecap: round;
   z-index: 10;
-  /* Add animation */
   animation: progressFadeIn 1s ease-out forwards;
   filter: drop-shadow(0px 0px 4px rgba(139, 92, 246, 0.4));
 }
@@ -46,7 +45,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  /* Add text animation */
   animation: textFadeIn 1.2s ease-out;
   z-index: 20;
 }
@@ -69,11 +67,9 @@
 }
 
 .progressValue {
-  /* Responsive font size by default */
   font-size: clamp(1.25rem, calc(0.8rem + 2vw), 1.8rem);
   color: white;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  /* Can be overridden by inline style when fontSize prop is provided */
 }
 
 /* Font weight variants */
@@ -92,7 +88,6 @@
   text-align: center;
   margin: 0;
   white-space: nowrap;
-  /* Add title animation */
   animation: titleFadeIn 1.5s ease-out;
 }
 

@@ -85,7 +85,7 @@
   }
 }
 
-/* Close button - FIXED: Ensure it's always visible */
+/* Close button */
 .closeButton {
   position: absolute;
   top: 1rem;
@@ -101,7 +101,7 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  z-index: 1001 !important; /* Ensure it's above everything */
+  z-index: 1001 !important; 
   padding: 0;
   flex-shrink: 0;
   font-size: 1rem;

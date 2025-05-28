@@ -17,7 +17,7 @@ export const EditExperienceModal = ({ isOpen, onClose, experiences = [], onSave 
     alt: ''
   });
 
-  // Move resetForm function before useEffect
+  //
   const resetForm = () => {
     setFormData({
       title: '',
@@ -88,8 +88,8 @@ export const EditExperienceModal = ({ isOpen, onClose, experiences = [], onSave 
       dateStart: experience.dateStart,
       dateEnd: experience.dateEnd,
       description: experience.description,
-      logo: null, // Reset file input
-      logoPreview: experience.logo, // Use existing logo as preview
+      logo: null, 
+      logoPreview: experience.logo, 
       alt: experience.alt
     });
     setEditingIndex(index);
@@ -109,12 +109,10 @@ export const EditExperienceModal = ({ isOpen, onClose, experiences = [], onSave 
     };
 
     if (editingIndex !== null) {
-      // Update existing
       const updated = [...experienceList];
       updated[editingIndex] = newExperience;
       setExperienceList(updated);
     } else {
-      // Add new
       setExperienceList([...experienceList, newExperience]);
     }
 
@@ -140,9 +138,7 @@ export const EditExperienceModal = ({ isOpen, onClose, experiences = [], onSave 
     e.preventDefault();
     
     try {
-      // TODO: Replace with actual API call
-      // await updateExperiences(experienceList);
-      
+
       if (onSave) {
         onSave(experienceList);
       }

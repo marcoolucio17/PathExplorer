@@ -3,9 +3,7 @@ import { useParams } from 'react-router-dom';
 import useModalControl from '../useModalControl';
 import { useFetch } from 'src/hooks/useFetch';
 
-/**
- * Helper function to determine if a skill is non-technical
- */
+
 function isNonTechnicalSkill(skillName) {
   const nonTechnicalSkills = [
     'responsabilidad', 'comunicación', 'liderazgo', 'teamwork', 
@@ -17,22 +15,19 @@ function isNonTechnicalSkill(skillName) {
   );
 }
 
-/**
- * Transform backend project data to frontend format
- */
+
 function transformBackendProject(projectData) {
-  console.log('🔍 Transform called with:', projectData);
+  
   
   if (!projectData) {
-    console.log('❌ projectData is null/undefined');
+    console.log('projectData is not being sent or has nothing');
     return null;
   }
 
-  // Handle both array and object formats
   let project;
   if (Array.isArray(projectData)) {
     if (projectData.length === 0) {
-      console.log('❌ projectData is empty array');
+
       return null;
     }
     project = projectData[0];
@@ -40,19 +35,12 @@ function transformBackendProject(projectData) {
     // projectData is already the project object
     project = projectData;
   }
-  
-  console.log('✅ Project object:', project);
-  
-  if (!project) {
-    console.log('❌ project is undefined/null');
-    return null;
-  } 
 
   const requiredSkills = [];
   const availableRoles = [];
   let primaryRole = null;
 
-  // Transform roles array (simple strings to objects)
+  //transform roles array 
   if (project.roles && Array.isArray(project.roles)) {
     project.roles.forEach((roleName, index) => {
       const roleObj = {
@@ -70,7 +58,7 @@ function transformBackendProject(projectData) {
     });
   }
 
-  // Transform skills array (simple strings to objects)
+  //transform skills array 
   if (project.habilidades && Array.isArray(project.habilidades)) {
     project.habilidades.forEach((skillName) => {
       requiredSkills.push({
@@ -83,7 +71,7 @@ function transformBackendProject(projectData) {
     });
   }
 
-  // Transform members array
+  //transform members array
   const members = [];
   if (project.miembros && Array.isArray(project.miembros)) {
     project.miembros.forEach((memberName, index) => {
@@ -127,41 +115,34 @@ function transformBackendProject(projectData) {
 }
 
 
-/**
- * Helper function to format dates
- */
+//format date for viewing
 function formatDate(dateString) {
   if (!dateString) return "";
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return dateString; // More robust check for invalid date
   return date.toLocaleDateString();
 }
-
-/**
- * Calculate project progress based on dates
- */
+//calculate progress
 function calculateProgress(startDate, endDate) {
-  if (!startDate || !endDate) return 67; // Default value
+  if (!startDate || !endDate) return 0; //default value
 
   const start = new Date(startDate);
   const end = new Date(endDate);
   const now = new Date();
 
-  if (isNaN(start.getTime()) || isNaN(end.getTime())) return 67; // Handle invalid dates
+  if (isNaN(start.getTime()) || isNaN(end.getTime())) return 0; 
 
   if (now < start) return 0;
   if (now > end) return 100;
 
   const total = end.getTime() - start.getTime();
-  if (total <= 0) return 100; // Avoid division by zero or negative duration if start > end
+  if (total <= 0) return 100; 
   const elapsed = now.getTime() - start.getTime();
 
   return Math.round((elapsed / total) * 100);
 }
 
-/**
- * Extract deliverables from description
- */
+
 function extractDeliverables(description) {
   if (!description) return [
     "Project documentation",
@@ -170,7 +151,6 @@ function extractDeliverables(description) {
     "Final deployment"
   ];
 
-  // For now return default, you can enhance this later
   return [
     "Android & iOS mobile app",
     "Backend to manage user data & posts",
@@ -179,13 +159,11 @@ function extractDeliverables(description) {
   ];
 }
 
-/**
- * Remove duplicate skills based on name
- */
+//remove duplicate skills
 function removeDuplicateSkills(skills) {
   const seen = new Set();
   return skills.filter(skill => {
-    const skillName = skill.name; // Ensure we are checking a consistent property
+    const skillName = skill.name; 
     if (seen.has(skillName)) {
       return false;
     }
@@ -194,57 +172,23 @@ function removeDuplicateSkills(skills) {
   });
 }
 
-/**
- * Check if user has specific skills
- */
+//check if user has specific skills
 function checkUserSkills(requiredSkills, userSkills) {
-  const userSkillsSet = new Set(userSkills); // Optimize lookup
+  const userSkillsSet = new Set(userSkills); 
   return requiredSkills.map(skill => ({
     ...skill,
     isUserSkill: userSkillsSet.has(skill.name)
   }));
 }
 
-/**
- * Custom hook for EmpleadoProyectoPage
- * Manages all state and logic for the project details page
- */
+//Custom hook for EmpleadoProyectoPageManages all state and logic for the project details page
+
 const useEmpleadoProyectoPage = () => {
-  // Get project ID from URL params
+
   const { projectId } = useParams();
 
-  // API call to fetch project data
-  const { data, error, loading } = useFetch(`projects?idproyecto=${projectId || '87'}`);
-
-  // 🔍 DEBUG: Log everything from the API call
-  console.log('🚀 ===== API CALL DEBUG =====');
-  console.log('📍 Project ID:', projectId);
-  console.log('🌐 API Endpoint:', `projects?idproyecto=${projectId || '87'}`);
-  console.log('🌐 Full URL would be:', `https://pathexplorer-backend.onrender.com/api/projects?idproyecto=${projectId || '87'}`);
-  console.log('📊 Loading state:', loading);
-  console.log('❌ Error state:', error);
-  console.log('📦 Raw data received:', data);
-  console.log('📦 Data type:', typeof data);
-  console.log('📦 Data is array?', Array.isArray(data));
-  if (data && Array.isArray(data)) {
-    console.log('📦 Data length:', data.length);
-    console.log('📦 First item:', data[0]);
-    if (data[0]) {
-      console.log('📦 First item keys:', Object.keys(data[0]));
-    }
-  }
-  if (data && typeof data === 'object' && !Array.isArray(data)) {
-    console.log('📦 Data keys:', Object.keys(data));
-  }
-  if (error) {
-    console.log('❌ Error details:', {
-      message: error.message,
-      status: error.response?.status,
-      statusText: error.response?.statusText,
-      data: error.response?.data
-    });
-  }
-  console.log('🚀 ===== END API DEBUG =====');
+  //API call to fetch project data
+  const { data, error, loading } = useFetch(`projects?idproyecto=${projectId || '87'}`); //remove 87
 
   // Modal control
   const { modals, openModal, closeModal } = useModalControl([
@@ -261,7 +205,7 @@ const useEmpleadoProyectoPage = () => {
   const [isApplied, setIsApplied] = useState(false);
   const [isLoadingApplication, setIsLoadingApplication] = useState(false); // Renamed to avoid conflict with 'loading' from useFetch
 
-  // Transform backend data to frontend format
+  //transform backend data to frontend format
   const projectData = useMemo(() => {
     return transformBackendProject(data);
   }, [data]);
@@ -291,7 +235,7 @@ const useEmpleadoProyectoPage = () => {
   const handleSubmitApplication = useCallback(async (applicationData) => {
     setIsLoadingApplication(true);
     try {
-      // TODO: Replace with actual API call to submit application
+      //replace with actual API call to submit application
       await new Promise(resolve => setTimeout(resolve, 1500));
       setIsApplied(true);
       closeModal('application');
@@ -300,12 +244,12 @@ const useEmpleadoProyectoPage = () => {
         projectId: projectData?.id,
         ...applicationData
       });
-    } catch (err) { // Changed 'error' to 'err' to avoid conflict with 'error' from useFetch
+    } catch (err) {
       console.error('Error submitting application:', err);
     } finally {
       setIsLoadingApplication(false);
     }
-  }, [projectData?.id, closeModal]); // Added projectData?.id dependency
+  }, [projectData?.id, closeModal]); 
 
   const handleShowCompatibility = useCallback(() => {
     openModal('compatibility');
@@ -321,10 +265,10 @@ const useEmpleadoProyectoPage = () => {
 
   const handleMemberSelect = useCallback((member) => {
     console.log('Selected member:', member);
-    // TODO: Implement member selection logic (filter, view profile, etc.)
+
   }, []);
   
-  // Calculate compatibility percentage
+  //calculate compatibility percentage
   const calculateCompatibilityPercentage = useCallback(() => {
     if (!enhancedProjectData?.requiredSkills || enhancedProjectData.requiredSkills.length === 0) {
       return 0;
@@ -345,12 +289,12 @@ const useEmpleadoProyectoPage = () => {
     userSkills,
 
     // API state
-    loading, // from useFetch
-    error,   // from useFetch
+    loading, 
+    error,  
 
     // State
     isApplied,
-    isLoadingApplication, // Renamed state
+    isLoadingApplication, 
 
     // Refs
     peopleSectionRef,

@@ -26,7 +26,7 @@ export const usePost = () => {
         };
 
         const response = await axios.post(
-        `https://pathexplorer-backend.onrender.com/${ruta}`,
+        `http://localhost:8080/${ruta}`,
         body,
         config
         );

@@ -101,33 +101,35 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
     };
 
     const informacion = {
-      proyect: {
-        pnombre: formData.title,
-        descripcion: formData.description,
-        fecha_inicio: formatDate(formData.startDate),
-        fecha_fin: formatDate(formData.endDate),
-        idcliente: 1 // Harcodeado
-      },
-      roles: [  //  Harcodeado
-        {
-          nombrerol: "Rol automático",
-          nivelrol: 1,
-          descripcionrol: "Generado automáticamente",
-          disponible: true,
-          requerimientos: [
-            {
-              tiempoexperiencia: "1 año",
-              idhabilidad: 1
-            }
-          ]
-        }
-      ]
+      informacion: {
+        proyect: {
+          pnombre: formData.title,
+          descripcion: formData.description,
+          fechainicio: formatDate(formData.startDate),
+          fechafin: formatDate(formData.endDate),
+          idcliente: 1 // Harcodeado
+        },
+        roles: [  //  Harcodeado
+          {
+            nombrerol: "Rol automático",
+            nivelrol: 1,
+            descripcionrol: "Generado automáticamente",
+            disponible: true,
+            requerimientos: [
+              {
+                tiempoexperiencia: "1 año",
+                idhabilidad: 1
+              }
+            ]
+          }
+        ]
+      }
     };
 
     try {
       // Paso 1: Crear el proyecto
-      const result = await triggerPost('projects', { informacion });
-
+      const result = await triggerPost('api/projects', { informacion });
+      console.log(informacion);
       const idproyecto = result?.idproyecto;
       if (!idproyecto) {
         alert("El proyecto fue creado pero no se recibió un ID.");
@@ -143,7 +145,7 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
         rfpForm.append('projectId', idproyecto);
 
         await axios.post(
-          'https://pathexplorer-backend.onrender.com/upload-rfp',
+          'http://localhost:8080/api/upload-rfp',
           rfpForm,
           {
             headers: {
@@ -201,7 +203,7 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
                     ) : (
                       <div className={styles.uploadPlaceholder} style={{ width: '500px', height: '500px' }}>
                         <i className="bi bi-cloud-upload"></i>
-                        <span>Click to upload project PFP</span>
+                        <span>Click to upload project RFP</span>
                       </div>
                     )}
                   </label>

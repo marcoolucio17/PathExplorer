@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from 'src/styles/Modals/Modal.module.css';
 import ModalScrollbar from 'src/components/Modals/ModalScrollbar';
+import { usePost } from 'src/hooks/usePost';
 
 export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
+  const { triggerPost, loading, error } = usePost();
   const [isClosing, setIsClosing] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -15,7 +17,7 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
     roles: '',
     clientImage: null,
     imagePreview: null,
-    projectPFP: null
+    projectRFP: null
   });
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
         roles: '',
         clientImage: null,
         imagePreview: null,
-        projectPFP: null
+        projectRFP: null
       });
     }, 300);
   };
@@ -78,36 +80,90 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Format dates to Spanish format
+
     const formatDate = (dateString) => {
       if (!dateString) return '';
+
+      // Detecta si viene en formato DD/MM/YYYY
+      const parts = dateString.split('/');
+      if (parts.length === 3) {
+        const [day, month, year] = parts;
+        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+      }
+
+      // Si no es DD/MM/YYYY, intenta convertir con Date
       const date = new Date(dateString);
-      const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
-                     'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-      return `${date.getDate()} de ${months[date.getMonth()]}, ${date.getFullYear()}`;
-    };
-    
-    // Create Project object
-    const newProject = {
-      id: Date.now(), // Generate unique ID
-      img: formData.imagePreview || '/imagesUser/default-cert.png',
-      alt: formData.skill || formData.title,
-      title: formData.title,
-      clientName: formData.clientName,
-      skills: formData.skills,
-      description: formData.description,
-      fechaInicio: formatDate(formData.startDate),
-      fechaFin: formatDate(formData.endDate),
-      clientImage: formData.imagePreview || '/imagesUser/default-cert.png',
-      projectoPlan: formData.projectPFP
+      if (isNaN(date)) return ''; // Fecha inválida
+
+      return date.toISOString().split('T')[0];
     };
 
-    onCreateProject(newProject);
-    handleClose();
+    const informacion = {
+      proyect: {
+        pnombre: formData.title,
+        descripcion: formData.description,
+        fecha_inicio: formatDate(formData.startDate),
+        fecha_fin: formatDate(formData.endDate),
+        idcliente: 1 // Harcodeado
+      },
+      roles: [  //  Harcodeado
+        {
+          nombrerol: "Rol automático",
+          nivelrol: 1,
+          descripcionrol: "Generado automáticamente",
+          disponible: true,
+          requerimientos: [
+            {
+              tiempoexperiencia: "1 año",
+              idhabilidad: 1
+            }
+          ]
+        }
+      ]
+    };
+
+    try {
+      // Paso 1: Crear el proyecto
+      const result = await triggerPost('projects', { informacion });
+
+      const idproyecto = result?.idproyecto;
+      if (!idproyecto) {
+        alert("El proyecto fue creado pero no se recibió un ID.");
+        return;
+      }
+
+      const token = localStorage.getItem("token");
+
+      // Paso 2: Subir el archivo RFP
+      if (formData.projectRFP) {
+        const rfpForm = new FormData();
+        rfpForm.append('file', formData.projectRFP);
+        rfpForm.append('projectId', idproyecto);
+
+        await axios.post(
+          'https://pathexplorer-backend.onrender.com/upload-rfp',
+          rfpForm,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        );
+      }
+
+      // Finalizar
+      onCreateProject(result);
+      handleClose();
+
+    } catch (err) {
+      console.error("Error al crear proyecto o subir archivos:", err);
+      alert("Ocurrió un error al guardar el proyecto.");
+    }
   };
+
 
   const isFormValid = () => {
     return formData.title && formData.clientName && formData.startDate;
@@ -115,15 +171,15 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
   };
 
   return (
-    <div 
-      className={`${styles.modalBackdrop} ${isClosing ? styles.closing : ''}`} 
+    <div
+      className={`${styles.modalBackdrop} ${isClosing ? styles.closing : ''}`}
       onClick={handleBackdropClick}
     >
       <div className={`${styles.modalContent} ${isClosing ? styles.closing : ''}`} style={{ maxWidth: '1200px' }}>
         <button className={styles.closeButton} onClick={handleClose}>
           <i className="bi bi-x-lg"></i>
         </button>
-        
+
         <div className={styles.modalHeader}>
           <h2 className={styles.title}>Create Project</h2>
           <p className={styles.subtitle}>Upload and add details for your project</p>
@@ -136,9 +192,9 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
                 <div className={styles.uploadSection}>
                   <label className={styles.uploadLabel} htmlFor="projectoPlan">
                     {formData.imagePreview ? (
-                      <img 
-                        src={formData.imagePreview} 
-                        alt="Project preview" 
+                      <img
+                        src={formData.imagePreview}
+                        alt="Project preview"
                         className={styles.uploadPreview}
                         style={{ width: '500px', height: '500px' }}
                       />
@@ -162,9 +218,9 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
                 <div className={styles.uploadSection} style={{ marginBottom: '2rem' }}>
                   <label className={styles.uploadLabel} htmlFor="clientImage">
                     {formData.imagePreview ? (
-                      <img 
-                        src={formData.imagePreview} 
-                        alt="Client preview" 
+                      <img
+                        src={formData.imagePreview}
+                        alt="Client preview"
                         className={styles.uploadPreview}
                         style={{ width: '150px', height: '150px' }}
                       />
@@ -263,15 +319,15 @@ export const CreateProjectModal = ({ isOpen, onClose, onCreateProject }) => {
           </div>
 
           <div className={styles.buttonGroup}>
-            <button 
+            <button
               type="button"
-              onClick={handleClose} 
+              onClick={handleClose}
               className={styles.cancelButton}
             >
               Cancel
             </button>
-            
-            <button 
+
+            <button
               type="submit"
               disabled={!isFormValid()}
               className={styles.saveButton}
